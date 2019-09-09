@@ -1,0 +1,68 @@
+/**index.wxss**/
+
+page {
+  background: #f7f7f7;
+}
+
+.head {
+  height: 300rpx;
+}
+
+/* 内容模块 */
+
+.main {
+  position: fixed;
+  top: 200rpx;
+  background: #fff;
+  width: 90%;
+  margin-left: 5%;
+  min-height: 600rpx;
+  border-top-left-radius: 20rpx;
+  border-top-right-radius: 20rpx;
+  border-bottom-left-radius: 20rpx;
+  border-bottom-right-radius: 20rpx;
+}
+.main .main-head{
+  padding: 20rpx;
+  display: flex;
+  border-bottom: 1px solid #E4E7ED;
+}
+
+.content{
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+  margin: auto;
+  margin-top: 60rpx;
+}
+.content .items{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 100rpx;
+  background: #f9f7f8;
+  margin-bottom: 30rpx;
+  border-top-left-radius: 10rpx;
+  border-top-right-radius: 10rpx;
+  border-bottom-left-radius: 10rpx;
+  border-bottom-right-radius: 10rpx;
+  justify-content: space-between;
+}
+.items .title{
+  width: 30%;
+  text-align: center;
+}
+
+.btn{
+  margin-top: 10rpx;
+  color: #fff;
+  background: black;
+  width: 60%;
+  margin: auto;
+  text-align: center;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 80rpx;
+  font-size: 25rpx;
+  margin-bottom: 100rpx;
+}

@@ -1,0 +1,41 @@
+<view class="head" style="background: url(../../static/images/bg.png)">
+</view>
+<view class="main">
+  <view class="main-head">
+    <text>填写申请信息</text>
+  </view>
+  <view class="content">
+    <view class="items">
+      <view class="title">
+        <text>邀请人
+      </text>
+      </view>
+      <view>
+        <input bindinput="bindInviter" placeholder="请输入真实姓名" />
+      </view>
+    </view>
+    <view class="items">
+      <view class="title">
+        <text>姓名
+      </text>
+      </view>
+      <view>
+        <input bindinput="bindNameInput" placeholder="输入姓名" />
+      </view>
+    </view>
+    <view class="items">
+      <view class="title">
+        <text>手机号
+      </text>
+      </view>
+      <view>
+        <input bindinput="bindReplaceInput" placeholder="请输入手机号码" />
+      </view>
+    </view>
+  </view>
+<!-- 提交 -->
+  <view class="btn" bindtap="handelPost">
+    申请成为经销商
+  </view>
+
+</view>
