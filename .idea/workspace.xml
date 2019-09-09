@@ -2,42 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="01f06058-1e1a-4f57-b129-c0d3a0c29f53" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/admin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geek/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geek/.travis.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geek/CHANGELOG.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geek/LICENSE.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geek/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geek/application/.htaccess" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geek/application/command.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geek/application/common.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geek/application/index/controller/Index.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geek/application/provider.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geek/application/tags.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geek/build.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geek/composer.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geek/composer.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geek/config/app.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geek/config/cache.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geek/config/console.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geek/config/cookie.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geek/config/database.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geek/config/log.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geek/config/middleware.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geek/config/session.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geek/config/template.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geek/config/trace.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geek/extend/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geek/public/.htaccess" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geek/public/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geek/public/index.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geek/public/robots.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geek/public/router.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geek/public/static/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geek/route/route.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geek/runtime/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geek/think" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -50,23 +15,27 @@
     <leaf>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/geek/index.vue">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="2" lean-forward="true" selection-start-column="2" selection-end-column="2" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/admin/.gitignore">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" column="17" lean-forward="true" selection-end-line="23" />
+            <state>
+              <caret column="5" selection-end-column="5" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
+        <entry file="file://$PROJECT_DIR$/admin/.env.production">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="7" lean-forward="true" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
+            <state relative-caret-position="90">
+              <caret line="6" column="1" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -80,6 +49,7 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/admin/.env.production" />
       </list>
     </option>
   </component>
@@ -100,6 +70,11 @@
             <path>
               <item name="极客联盟" type="b2602c69:ProjectViewProjectNode" />
               <item name="极客联盟" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="极客联盟" type="b2602c69:ProjectViewProjectNode" />
+              <item name="极客联盟" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -137,24 +112,24 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1568008523000</updated>
-      <workItem from="1568008527415" duration="3295000" />
+      <workItem from="1568008527415" duration="3439000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3295000" />
+    <option name="totallyTimeSpent" value="3439000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="726" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49882352" visible="true" weight="0.24959612" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49882352" visible="true" weight="0.24959612" />
       <window_info id="Structure" order="1" sideWeight="0.5011765" side_tool="true" weight="0.24959612" />
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" />
       <window_info anchor="bottom" id="Version Control" />
-      <window_info active="true" anchor="bottom" id="Terminal" visible="true" weight="0.329653" />
+      <window_info anchor="bottom" id="Terminal" visible="true" weight="0.329653" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -173,9 +148,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/geek/index.vue">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/admin/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
@@ -183,10 +155,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/geek/index.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="2" lean-forward="true" selection-start-column="2" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="7" lean-forward="true" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
+        <state>
+          <caret column="5" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/.env.production">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="1" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
         </state>
       </provider>
     </entry>
