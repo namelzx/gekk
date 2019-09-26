@@ -1,0 +1,26 @@
+<!--pages/home/score/detail/index.wxml-->
+
+<view class="detail-container">
+  <van-toast id="van-toast" />
+  <my-header />
+  <view class="sign-in" bindtap="signIn" wx:if="{{signIn===false}}">立即签到赚积分</view>
+  <view bindtap="signIn" class="sign-in {{signIn?'had-sign-in':''}}" wx:if="{{signIn===true}}">已签到</view>
+  <view class="integral-area">
+    <scroll-view scroll-y="true" class="scroll-wrapper">
+      <view class="scroll-item" wx:for="{{integral}}" wx:key="index">
+        <view class="item-detail">
+          <!-- type='1' 签到 -->
+          <view class="detail-consume" wx:if="{{item.type==='1'}}">签到</view>
+          <!-- type='2' 订单消费 -->
+          <view class="detail-consume" wx:if="{{item.type==='2'}}">订单消费：{{item.consume}}</view>
+          <!-- type='3' 充值 -->
+          <view class="detail-consume" wx:if="{{item.type==='3'}}">充值：{{item.consume}}</view>
+          <!-- type='4' 兑换 -->
+          <view class="detail-consume" wx:if="{{item.type==='4'}}">兑换：{{item.consume}}</view>
+          <view class="detail-time">{{item.time}}</view>
+        </view>
+        <view class="item-change">{{item.change}}</view>
+      </view>
+    </scroll-view>
+  </view>
+</view>

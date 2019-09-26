@@ -1,41 +1,48 @@
-<view class="head" style="background: url(../../static/images/bg.png)">
-</view>
-<view class="main">
-  <view class="main-head">
-    <text>填写申请信息</text>
-  </view>
-  <view class="content">
-    <view class="items">
-      <view class="title">
-        <text>邀请人
-      </text>
-      </view>
-      <view>
-        <input bindinput="bindInviter" placeholder="请输入真实姓名" />
+<!--index.wxml-->
+<view class="container">
+  <view class="locate-item">
+    <van-icon name="location-o" class="locate-icon"/>
+    <view class="shop-name">
+      <text>{{avatarList[0].name}}</text>
+      <view class="distance">
+        <text>距离你{{avatarList[0].km}}km</text>
       </view>
     </view>
-    <view class="items">
-      <view class="title">
-        <text>姓名
-      </text>
-      </view>
-      <view>
-        <input bindinput="bindNameInput" placeholder="输入姓名" />
-      </view>
-    </view>
-    <view class="items">
-      <view class="title">
-        <text>手机号
-      </text>
-      </view>
-      <view>
-        <input bindinput="bindReplaceInput" placeholder="请输入手机号码" />
-      </view>
-    </view>
-  </view>
-<!-- 提交 -->
-  <view class="btn" bindtap="handelPost">
-    申请成为经销商
+    <van-icon name="arrow" class="arrow-icon" />
   </view>
 
+  <view class="mask">
+    <view style="position:relative;">
+      <view class="shop-avatar" wx:for="{{avatarList}}" wx:key="item.id" style="left:{{item.xRadius}}rpx;top:{{item.yRadius}}rpx;" data-id="{{item.id}}" bindtap="toShop">
+        <view class="info-item">
+          <image src="{{item.logo}}">
+          </image>
+          <view class="info-text">
+            <!-- 如果地图上不显示商家店铺地址，就使用 .no-locate-name -->
+            <text class="{{item.shop_locate_name==='' ?'no-locate-name':''}}">{{item.name}} </text>
+            <view class="locate-name">{{item.shop_locate_name}}</view>
+          </view>
+
+        </view>
+        <view class="shop-distance">
+          <text>{{item.km}}km</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+  <view class="locate-area">
+    <view class="bg-circle">
+      <view class="md-circle">
+        <view class="sm-circle">
+          <view class="avatar">
+
+            <image src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3597547433,75461007&fm=26&gp=0.jpg"></image>
+            <text class="username">你的咖啡</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
 </view>

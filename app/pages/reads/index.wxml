@@ -1,0 +1,8 @@
+<!--pages/reads/index.wxml-->
+
+<view class="read-container" style="background:url('./../../static/images/article-bg.png');">
+  <!-- 轮播图 -->
+  <my-swiper swiper-img="{{imgUrls}}"></my-swiper>
+  <!-- 文章列表 -->
+  <my-list articleList="{{articleList}}"></my-list>
+</view>

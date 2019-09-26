@@ -1,0 +1,81 @@
+<!--pages/home/order/detail/index.wxml-->
+
+<view class="oreder-detail-container">
+  <view class="order-status">
+    <view class="status-text">订单已完成</view>
+  </view>
+  <!-- 订单收件人信息 -->
+  <view class="deliver-owner">
+    <view class="locate-icon-wrapper">
+      <van-icon name="location" class="location-o-icon" />
+    </view>
+    <view class="owner-info-wrapper">
+      <view class="owner-name-phone">
+        <text>我就是狗剩先生啊</text>
+        <text>15226530478</text>
+      </view>
+      <view class="owner-addr">广东省广州市白云区coco大院七栋二楼</view>
+    </view>
+  </view>
+  <!-- 订单物品 -->
+  <view class="order-info">
+    <view class="order-item">
+      <view class="img-item">
+        <image src="./../../../../../static/images/rate-img-2.png"></image>
+      </view>
+      <view class="detail-item">
+        <view class="detail-name">格米莱（GEMILAI）咖啡机家用意式半自动泵压式 不锈钢</view>
+        <view class="detail-amount">X 1件</view>
+        <view class="detail-price">¥ 1499.00</view>
+      </view>
+    </view>
+  </view>
+  <!-- 订单编号及下单时间 -->
+  <view class="order-number-time">
+    <view class="order-number">
+      <text>订单编码：</text>
+      <text>9996520190713215</text>
+    </view>
+    <view class="order-time">
+      <text>下单时间：</text>
+      <text>2019-09-15</text>
+    </view>
+  </view>
+  <!-- 支付方式 -->
+  <view class="pay-way-time">
+    <view class="pay-way">
+      <text>支付方式：</text>
+      <text>微信支付</text>
+    </view>
+    <view class="pay-time">
+      <text>支付时间：</text>
+      <text>2019-09-15</text>
+    </view>
+  </view>
+  <!-- 发票详情 -->
+  <view class="invoice">
+    <view class="invoice-type">
+      <text>发票类型：</text>
+      <text>电子普通发票</text>
+    </view>
+    <view class="invoice-title">
+      <text>发票抬头：</text>
+      <text>个人</text>
+    </view>
+    <view class="invoice-content">
+      <text>发票内容：</text>
+      <text>商品明细</text>
+    </view>
+    <view class="invoice-tips">
+      <van-icon name="info-o" class="info-o-icon" />电子发票将在订单完成之后1-2内开具
+    </view>
+  </view>
+  <!-- 底部 -->
+  <view class="footer-btn">
+    <view class="del-btn">删除订单</view>
+    <view class="right-btn">
+      <view class="refund">申请退款</view>
+      <view class="rate">评价晒单</view>
+    </view>
+  </view>
+</view>

@@ -1,15 +1,56 @@
 <?php
+
 namespace app\index\controller;
 
 class Index
 {
     public function index()
     {
-        return '<style type="text/css">*{ padding: 0; margin: 0; } div{ padding: 4px 48px;} a{color:#2E5CD5;cursor: pointer;text-decoration: none} a:hover{text-decoration:underline; } body{ background: #fff; font-family: "Century Gothic","Microsoft yahei"; color: #333;font-size:18px;} h1{ font-size: 100px; font-weight: normal; margin-bottom: 12px; } p{ line-height: 1.6em; font-size: 42px }</style><div style="padding: 24px 48px;"> <h1>:) </h1><p> ThinkPHP V5.1<br/><span style="font-size:30px">12载初心不改（2006-2018） - 你值得信赖的PHP框架</span></p></div><script type="text/javascript" src="https://tajs.qq.com/stats?sId=64890268" charset="UTF-8"></script><script type="text/javascript" src="https://e.topthink.com/Public/static/client.js"></script><think id="eab4b9f840753f8e7"></think>';
+        $address = '广西北海市银海区银滩镇桂林电子科技大学北海小区';
+        $url = 'https://apis.map.qq.com/ws/geocoder/v1/?address=' . $address . '&key=XB2BZ-J7PW3-DIZ3P-YC34A-BWFW7-ELBOI';
+        $res = curlSend($url);
+        return json($res);
+    }
+
+    public function getJl()
+    {
+        $url = 'https://apis.map.qq.com/ws/distance/v1/?mode=driving&from=39.983171,116.308479&to=39.996060,116.353455;39.949227,116.394310&key=XB2BZ-J7PW3-DIZ3P-YC34A-BWFW7-ELBOI';
+        $url = 'https://apis.map.qq.com/ws/distance/v1/?mode=driving&from=24.25465,109.32672&to=21.473345,109.119255;21.44866,109.174217;21.44866,109.174217&key=XB2BZ-J7PW3-DIZ3P-YC34A-BWFW7-ELBOI';
+        $res = curlSend($url);
+
+        return json($res);
     }
 
     public function hello($name = 'ThinkPHP5')
     {
         return 'hello,' . $name;
+    }
+
+    public function actionMenu()
+    {
+        $data = [
+            [
+                'path' => '/example',
+                'component' => 'Layout',
+                'redirect' => '',
+                'name' => 'ExampleRoot',
+                'meta' => [
+                    'title' => '示例',
+                    'icon' => 'table'
+                ],
+                'children' => [
+                    [
+                        'path' => 'sample',
+                        'component' => '/example/sample',
+                        'name' => 'ExampleSample',
+                        'meta' => [
+                            'title' => 'example',
+                            'icon' => 'table'
+                        ],
+                    ]
+                ]
+            ]
+        ];
+        return json_encode($data);
     }
 }

@@ -1,0 +1,35 @@
+<!--pages/home/score/instruction/index.wxml-->
+<view class="score-containet">
+  <van-toast id="van-toast" />
+  <my-header />
+  <view class="sign-in" bindtap="signIn" wx:if="{{signIn===false}}">立即签到赚积分</view>
+  <view bindtap="signIn" class="sign-in {{signIn?'had-sign-in':''}}" wx:if="{{signIn===true}}">已签到</view>
+
+  <!-- 积分商城 -->
+  <view class="stuff-wrapper">
+    <view class="mall-header">
+      <image src="./../../../static/images/coin.png"></image>
+      <text>积分商城</text>
+    </view>
+    <view class="mall-container">
+      <view class="no-goods-item" wx:if="{{mall.length===0}}">
+        商品暂时全部售罄，敬请期待上新。
+      </view>
+      <scroll-view scroll-y="true" class="mall-scroll" wx:if="{{mall.length!==0}}">
+        <view class="scroll-item" wx:for="{{mall}}" wx:key="index" >
+          <view class="img-wrapper">
+            <image src="{{item.img_url}}"></image>
+          </view>
+          <view class="item-info">
+            <view class="name">{{item.name}}</view>
+            <view class="condition">{{item.condition}}积分</view>
+            <view class="rate">
+              <text>{{item.rate}}条评论</text>
+              <text>好评率{{item.good_per}}</text>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+</view>

@@ -1,13 +1,54 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/home/index",
+    "pages/goods/index",
+    "pages/goods/swiper/index",
+    "pages/reads/index",
+    "pages/reads/swiper/index",
+    "pages/goods/fee/index",
+    "pages/goods/ratings/index",
+    "pages/goods/footer/index",
+    "pages/reads/list-detail/index",
+    "pages/shop/index",
+    "pages/shop/pay/index",
+    "pages/login/index",
+    "pages/home/order/evaluate/index",
+    "pages/home/map/index"
   ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于为您提供更合适您的服务"
+    }
+  },
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "极客联盟",
     "navigationBarTextStyle": "black"
   },
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "color": "#a9b7b7",
+    "selectedColor": "#11cd6e",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+        {
+          "pagePath": "pages/home/map/index",
+          "text": "好店"
+        },
+      {
+        "pagePath": "pages/reads/index",
+        "text": "文化"
+      },
+      {
+        "pagePath": "pages/home/index",
+        "text": "我的"
+      }
+    ]
+  }
 }

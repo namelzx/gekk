@@ -1,0 +1,5 @@
+/* pages/reads/list/index.wxss */
+
+.logo{
+  border-radius: 80rpx;
+}

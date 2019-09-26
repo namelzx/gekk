@@ -1,0 +1,80 @@
+<!--pages/home/distributor/index.wxml-->
+
+<!-- 不是经销商 -->
+<view class="distrib-container" wx:if="{{distributor===fasle}}">
+  <view class="img-wrapper">
+    <image src="./../../../static/images/distributor-bg.png"></image>
+  </view>
+  <view class="distrib-warning">您还不是分销商，请先提交申请</view>
+  <view class="distrib-btn" bindtap="clickToJoin">立即加入</view>
+</view>
+<!-- 是经销商 -->
+<view class="is-distrib distrib-container" wx:if="{{distributor===true}}">
+
+  <!-- 海报 -->
+  <view class="banner-item" bindtap="onToggleMask" wx:if="{{showBanner}}">
+    <image src="./../../../static/images/banner.png" catchlongpress="onClickPic"></image>
+  </view>
+  <!-- 海报 -->
+  <view class="apply-bg" style="background:url(./../../../../static/images/bg-1.png)">
+  </view>
+  <view class="distrib-center">
+    <view class="distrib-top-card">
+      <view class="card-title">
+        <view class="user-name">我就是狗剩先生啊</view>
+        <view class="invitor">推荐人：
+          <text>平台</text>
+        </view>
+        <view class="avatar">
+          <image src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1568441257&di=51141b3beb9703bba100f9cbb63439e4&imgtype=jpg&er=1&src=http%3A%2F%2Fimg.qqzhi.com%2Fuploads%2F2019-01-31%2F214531458.png"></image>
+        </view>
+      </view>
+      <view class="deposit-wrapper">
+        <view class="deposit-item">
+          <view class="deposit-left">
+            <view class="can-deposit">可提现：
+              <text>1000.00元</text>
+            </view>
+            <view class="ready-deposit">待提现：
+              <text>1000.00元</text>
+            </view>
+          </view>
+          <view class="deposit-right">
+            <view class="go-deposit">去提现</view>
+          </view>
+        </view>
+        <view class="already-deposit">
+          <text>已提现金额</text>
+          <text>1000.00元</text>
+        </view>
+      </view>
+    </view>
+    <view class="distrib-bottom-card">
+      <view class="category-item" bindtap="clickToBill">
+        <view class="icon-img">
+          <image src="./../../../static/images/bills.png"></image>
+        </view>
+        <view class="category-title">提现明细</view>
+      </view>
+      <view class="category-item" bindtap="clickToOrder">
+        <view class="icon-img">
+          <image src="./../../../static/images/order.png"></image>
+        </view>
+        <view class="category-title">分销订单</view>
+      </view>
+      <view class="category-item" bindtap="clickToTeam">
+        <view class="icon-img">
+          <image src="./../../../static/images/team.png"></image>
+        </view>
+        <view class="category-title">我的团队</view>
+      </view>
+      <view class="category-item" bindtap="onToggleMask">
+        <view class="icon-img">
+          <image src="./../../../static/images/qrcode.png"></image>
+        </view>
+        <view class="category-title">推广二维码</view>
+      </view>
+
+    </view>
+  </view>
+</view>

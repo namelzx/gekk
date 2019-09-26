@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+        "my-swiper": "./swiper/index"
+        
+  }
+}

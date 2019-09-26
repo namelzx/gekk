@@ -1,0 +1,149 @@
+/* pages/index/map/index.wxss */
+
+page {
+  background: #f7f7f7;
+}
+
+/* 列表 */
+
+.control-bar {
+  background: #fff;
+  padding: 0 30rpx;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+}
+
+.city-item {
+  display: inline-block;
+  width: 40%;
+  padding: 20rpx 0;
+  position: relative;
+  color: #333;
+  font-size: 28rpx;
+}
+
+.area text {
+  overflow: hidden;
+  width: 260rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+.city-item.exchange {
+  width: 20%;
+  text-align: right;
+}
+
+.city-item .item-icon {
+  position: absolute;
+  top: 26rpx;
+  left: 60rpx;
+}
+
+.city-item.exchange .item-icon {
+  left: 50rpx;
+}
+
+.shop-item {
+  margin-top: 100rpx;
+}
+
+.shop-banner {
+  margin: 50rpx 30rpx;
+  background: #fff;
+  box-shadow: 10rpx 10rpx 10rpx 4rpx #d1d1d1;
+}
+
+.shop-banner image {
+  width: 100%;
+  height: 450rpx;
+  max-width: 750rpx;
+  max-height: 450rpx;
+}
+
+.shop-name-distance {
+  display: flex;
+  font-size: 28rpx;
+  padding: 10rpx 0;
+}
+
+.shop-name {
+  width: 70%;
+  padding: 10rpx 0 10rpx 30rpx;
+  color: #333;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.shop-distance {
+  width: 30%;
+  position: relative;
+  line-height: 60rpx;
+  color: #777;
+  font-size: 24rpx;
+  padding-left: 26rpx;
+}
+
+.shop-distance .locate-icon {
+  position: absolute;
+  top: 4rpx;
+  left: 0;
+  font-size: 26rpx;
+}
+
+/* 地图 */
+
+.map-wrapper image {
+  /* width: 750rpx;
+  height: 510rpx;
+  max-width: 750rpx;
+  max-height: 510rpx; */
+  width: 750rpx;
+  height: 560rpx;
+  max-width: 750rpx;
+  max-height: 560rpx;
+}
+
+.shop-detail {
+  display: flex;
+  padding: 20rpx 10rpx;
+  border: 1px solid #f1f1f1;
+  margin: 100rpx 20rpx;
+  background: #fff;
+  box-shadow: 10rpx 10rpx 10rpx 4rpx #d1d1d1;
+}
+
+.shop-img-wrapper {
+  width: 40%;
+  height: 220rpx;
+}
+
+.shop-img-wrapper image {
+  width: 100%;
+  height: 100%;
+}
+
+.shop-info-wrapper {
+  width: 80%;
+  padding: 20rpx 10rpx;
+}
+
+.shop-name-item {
+  font-size: 32rpx;
+}
+
+.shop-on-sale {
+  font-size: 26rpx;
+  color: #666;
+  margin: 10rpx 0;
+}
+
+.shop-address-item {
+  font-size: 26rpx;
+  color: #333;
+}
