@@ -360,6 +360,8 @@
 .ticket, .goods-info {
   margin: 100rpx auto 20rpx;
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .ticket-item {

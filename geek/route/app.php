@@ -28,6 +28,8 @@ Route::group('api/app/', function () {
     Route::rule('coupons/GetUserByCoupons', 'api/Coupon/GetUserByCoupons'); /* 查询可用优惠卷列表*/
     Route::rule('coupons/PostUserCoupon', 'api/Coupon/PostUserCoupon'); /* 领取优惠卷*/
 
+    Route::rule('coupons/GetCounpn', 'api/Coupon/GetCounpn'); /* 领取优惠卷*/
+
 
     /**
      * 用户模块

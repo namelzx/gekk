@@ -1,5 +1,12 @@
 // pages/home/score/instruction/index.js
 import Toast from './../../../vant-weapp/dist/toast/toast';
+let app=getApp();
+
+import {
+  UserModel
+} from './../../../api/user.js';
+
+let userModel = new UserModel();
 Page({
 
   /**
@@ -8,6 +15,7 @@ Page({
   data: {
     signIn: false,
     // mall:[]
+    userinfo:{},
     mall:[
       {
         id:'1',
@@ -58,6 +66,16 @@ Page({
         good_per: '100%'
       }
     ]
+  },
+  onShow(){
+    var that=this;
+    userModel.GetUserByInfo(app.globalData.user_id,res=>{
+      that.setData({
+        userinfo:res
+      })
+      console.log(that.data.userinfo)
+
+    })
   },
   signIn() {
     if (!this.data.signIn) {
