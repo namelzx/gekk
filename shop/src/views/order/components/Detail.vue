@@ -328,6 +328,7 @@ export default {
     fetchData(id) {
       GetIdByDetails(id).then(res => {
         this.postForm = res.data;
+        console.log(    this.postForm )
       });
     }
   }

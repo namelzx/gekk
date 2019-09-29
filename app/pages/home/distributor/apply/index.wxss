@@ -115,3 +115,6 @@
   border-radius: 50rpx;
   font-size: 28rpx;
 }
+.fx{
+  font-size: 25rpx;
+}

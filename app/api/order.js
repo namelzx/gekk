@@ -50,13 +50,13 @@ class OrderModel extends HTTP {
     this.request(params)
   }
 
-  //获取用户地址数量
-  getUserAddressCount(user_id, res) {
+  //获取订单详情
+  GetOrderIdByFind(id, res) {
     var params = {
-      url: 'address/getUserAddressCount',//接口路径
+      url: 'order/GetOrderIdByFind',//接口路径
       method: 'get', //请求方式
       success: res,
-      data: { user_id }
+      data: { id }
     }
     this.request(params)
   }

@@ -1,5 +1,12 @@
 // pages/home/distributor/apply/index.js
 import Toast from './../../../../vant-weapp/dist/toast/toast';
+let  app=getApp();
+
+import {
+  UserModel
+} from './../../../../api/user.js'
+
+let userModel = new UserModel();
 Page({
 
   /**
@@ -40,14 +47,26 @@ Page({
   },
   // 申请成为经销商
   onApply () {
+    var that=this;
     let data = {
       ruleChecked: this.data.ruleChecked,
       invitor: this.data.invitor,
-      username: this.data.username,
-      phone: this.data.phone
+    
     }
     if(data.ruleChecked===true){
-      console.log(data)
+      var temp={
+        user_id: app.globalData.user_id,
+        username: this.data.username,
+        phone: this.data.phone
+
+      }
+      
+      userModel.PostDataByDist(temp,res=>{
+        console.log(res)
+        if(res.code!==200){
+          Toast(res.message)
+        }
+      })
     }else{
       Toast("请先阅读分销商申请协议")
     }

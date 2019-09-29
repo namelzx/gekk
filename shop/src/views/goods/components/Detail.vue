@@ -41,8 +41,24 @@
 
               </el-form-item>
 
-              freight
+              
+
+            
             </el-col>
+
+            <el-col :span="7">
+              <el-form-item label-width="100px" label="积分:">
+                
+            <el-input v-model="postForm.integral" placeholder="输入积分"></el-input>
+
+              </el-form-item>
+
+              
+
+            
+            </el-col>
+
+            
 
           </el-row>
 

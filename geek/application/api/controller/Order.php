@@ -11,9 +11,11 @@ namespace app\api\controller;
 
 use app\common\model\EvaluateImgModel;
 use app\common\model\EvaluateModel;
+use app\common\model\IntegralLogModel;
 use app\common\model\OrderGoodsModel;
 use app\common\model\OrderInvoiceModel;
 use app\common\model\OrderModel;
+use app\common\model\UserModel;
 
 class Order extends Base
 {
@@ -46,8 +48,21 @@ class Order extends Base
         if (!empty($data['status'])) {
             $where[] = ['status', '=', $data['status']];
         }
-        $res = OrderModel::with('goods')->where('user_id', $data['user_id'])->where($where)
+        $res = OrderModel::with('goods')->where('user_id', $data['user_id'])->where($where)->order('id desc')
             ->paginate($data['limit'], false, ['query' => $data['page']]);
+        return json($res);
+    }
+
+    public function GetOrderIdByFind()
+    {
+        $data = input('param.');
+        $where = [];
+        if (!empty($data['id'])) {
+            $where[] = ['id', '=', $data['id']];
+        }
+
+        $res = OrderModel::with(['getGoods', 'shop', 'address', 'invoice'])->where($where)
+            ->find();
         return json($res);
     }
 
@@ -55,7 +70,20 @@ class Order extends Base
     {
         $data = input('param.');
         $res = OrderModel::where('id', $data['id'])->data(['status' => $data['status']])->update();
-        return json(msg(200, $res, '取消订单'));
+        $goodsall = OrderGoodsModel::with(['goods'])->where('order_id', $data['id'])->select();
+        $order = OrderModel::where('id', $data['id'])->find();
+        foreach ($goodsall as $i => $item) {
+            UserModel::where('id', $order['user_id'])->setInc('integral', $item['goods']['integral']);
+            $instdata = [
+                'title' => '购买商品',
+                'type' => 2,
+                'integral' => $item['goods']['integral']//积分数量
+            ];
+            if ($item['goods']['integral'] > 0) {
+                IntegralLogModel::create($instdata);
+            }
+        }
+        return json(msg(200, $res, $goodsall));
     }
 
     /**
@@ -66,9 +94,9 @@ class Order extends Base
         $data = input('param.');
         $res = EvaluateModel::create($data['temp']);
         $img = $data['pics'];
-        $arr=[];
+        $arr = [];
         foreach ($img as $i => $item) {
-            $arr[$i]['url']=$item;
+            $arr[$i]['url'] = $item;
             $arr[$i]['ev_id'] = $res['id'];
         }
         EvaluateImgModel::PostDataByInsta($arr);

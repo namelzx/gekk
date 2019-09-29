@@ -17,10 +17,9 @@ Route::group('api/app/', function () {
     Route::get('shop/GetIdGoodsByInfo', 'api/shop/GetIdGoodsByInfo'); /* 根据店铺id获取店铺所有的数据*/
 
 
-    Route::get('city/getProvinces', 'api/shop/getProvinces'); /* 根据店铺id获取店铺所有的数据*/
-
-    Route::get('city/getCity', 'api/shop/getCity'); /* 根据店铺id获取店铺所有的数据*/
-    Route::get('city/getArea', 'api/shop/getArea'); /* 根据店铺id获取店铺所有的数据*/
+    Route::get('city/getProvinces', 'api/shop/getProvinces'); /* 获取省份*/
+    Route::get('city/getCity', 'api/shop/getCity'); /* 获取城市*/
+    Route::get('city/getArea', 'api/shop/getArea'); /* 获取区域*/
 
 
     /**
@@ -34,8 +33,8 @@ Route::group('api/app/', function () {
      * 用户模块
      */
     Route::post('user/postUserByRegistered', 'api/user/postUserByRegistered');//用户注册
-//    Route::post('user/postBind', 'api/user/postBind');//绑定用户信息
-//    Route::post('postCollection', 'api/Housing/postCollection');//收藏房间
+    Route::get('user/GetUserByInfo', 'api/user/GetUserByInfo');//绑定用户信息
+    Route::post('user/PostDataByDist', 'api/user/PostDataByDist');//收藏房间
 //    Route::post('postMake', 'api/Housing/postMake');//提交预约
 
 
@@ -56,9 +55,8 @@ Route::group('api/app/', function () {
     Route::rule('order/PostOrderByData', 'api/order/PostOrderByData'); /* 提交用户订单*/
     Route::rule('order/GetUserByOrder', 'api/order/GetUserByOrder'); /* 获取用户订单*/
     Route::rule('order/GetIdByCancel', 'api/order/GetIdByCancel'); /* 取消订单*/
-
     Route::rule('order/PostDataByEva', 'api/order/PostDataByEva'); /* 取消订单*/
-
+    Route::rule('order/GetOrderIdByFind', 'api/order/GetOrderIdByFind'); /* 订单详细*/
 
     /**
      * 文章管理
@@ -70,7 +68,6 @@ Route::group('api/app/', function () {
 
     Route::rule('Article/GetEavIdByLike', 'api/Article/GetEavIdByLike'); /* 用户评论点赞*/
     Route::rule('Article/GetArticleIdByLike', 'api/Article/GetArticleIdByLike'); /* 用户评论点赞*/
-
 
 
 });

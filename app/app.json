@@ -14,7 +14,9 @@
     "pages/shop/pay/index",
     "pages/login/index",
     "pages/home/order/evaluate/index",
-    "pages/home/map/index"
+    "pages/home/map/index",
+    "pages/test/index",
+    "pages/home/distributor/buffer/index"
   ],
   "permission": {
     "scope.userLocation": {
@@ -37,10 +39,10 @@
         "pagePath": "pages/index/index",
         "text": "首页"
       },
-        {
-          "pagePath": "pages/home/map/index",
-          "text": "好店"
-        },
+      {
+        "pagePath": "pages/home/map/index",
+        "text": "好店"
+      },
       {
         "pagePath": "pages/reads/index",
         "text": "文化"

@@ -14,7 +14,7 @@ class CouponsModel extends HTTP {
     this.request(params)
   }
 
-  //提交优惠卷
+  //获取用户优惠卷
   GetUserByCoupons(data, res) {
     var params = {
       url: 'coupons/GetUserByCoupons',//接口路径

@@ -58,7 +58,10 @@ class OrderModel extends BaseModel
     {
         return $this->hasOne('OrderCourierModel', 'order_id', 'id');
     }
+    public function invoice(){
+        return $this->hasOne('OrderInvoiceModel', 'order_id', 'id');
 
+    }
     public static function GetDataByList($data)
     {
 

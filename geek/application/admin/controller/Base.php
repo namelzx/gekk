@@ -8,6 +8,7 @@
 
 namespace app\admin\controller;
 
+use app\common\model\PositionModel;
 use think\Controller;
 
 
@@ -52,4 +53,28 @@ class Base extends Controller
         $res = curlSend($url);
         return $res;
     }
+
+    public function getProvinces()
+    {
+        $res = PositionModel::where('level', 1)->select();
+        return json(['data' =>$res, 'code' => 20000]);
+    }
+
+    public function getCity()
+    {
+        $data = input('param.');
+        $res = PositionModel::where('level', 2)
+            ->where('area_index', 'like', $data['index'])->select();
+        return json(['data' =>$res, 'code' => 20000]);
+    }
+
+    public function getArea()
+    {
+        $data = input('param.');
+        $res = PositionModel::where('level', 3)
+            ->where('area_index', 'like', '%' . $data['index'] . '%')->select();
+
+        return json(['data' =>$res, 'code' => 20000]);
+    }
+
 }

@@ -1,5 +1,13 @@
 // pages/home/index.js
+let app = getApp();
 import Toast from './../../vant-weapp/dist/toast/toast';
+
+
+import {
+  UserModel
+} from '../../api/user.js'
+
+let userModel = new UserModel();
 
 Page({
 
@@ -17,9 +25,21 @@ Page({
   },
   // 前往分销中心
   goRetail() {
-    wx.navigateTo({
-      url: './distributor/index',
+    let user_id = app.globalData.user_id
+
+    userModel.GetUserByInfo(user_id, res => {
+      console.log(res)
+      if (res.isdist === 2) {
+        wx.navigateTo({
+          url: './distributor/buffer/index',
+        })
+      } else {
+        wx.navigateTo({
+          url: './distributor/index',
+        })
+      }
     })
+
   },
   // 前往个人资料
   goProfile() {
@@ -48,12 +68,13 @@ Page({
   },
   // 前往领券中心
   goGetTicket() {
+
     wx.navigateTo({
       url: './ticket/index'
     })
   },
   // 我的优惠券
-  goMyTicket () {
+  goMyTicket() {
     wx.navigateTo({
       url: './ticket/myTicket/index'
     })

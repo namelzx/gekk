@@ -1,0 +1,17 @@
+
+
+<!-- 当前不是分销商 -->
+<view class="container b-f" >
+  <view class="no-dealer">
+    <view class="no-icon dis-flex flex-x-center">
+      <image src="/static/images/not-dealer.png"></image>
+    </view>
+    <view class="no-msg dis-flex flex-x-center f-30" style="">你还不是分销商,请先提交申请</view>
+    <!-- 立即申请 -->
+    <view class="no-submit form-submit dis-flex flex-x-center">
+      <form bindsubmit="triggerApply" report-submit="true">
+        <button formType="submit">申请成为分销商</button>
+      </form>
+    </view>
+  </view>
+</view>

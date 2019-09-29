@@ -1,0 +1,6 @@
+<!--pages/card/index.wxml-->
+
+<view class="card-container">
+  <button bindtap="toggleShowCard">点我显示卡片</button>
+  <card-item wx:if="{{showCard}}" list="{{myList}}" bind:closeBtn="onCloseCard"></card-item>
+</view>

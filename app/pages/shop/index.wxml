@@ -20,35 +20,37 @@
   </view>
   <scroll-view scroll-y="true" style="height: 500px;" scroll-into-view="{{toView}}" class="foods-wrapper">
     <view wx:for="{{goods}}" class="food-list food-list-hook" wx:for-index="parentIndex">
-      <view id="order {{parentIndex}}" class="title">{{item.name}}</view>
-      <view wx:for="{{item.foods}}" class="food-item" wx:for-item="food" data-food="{{food}}" data-id='{{food.id}}' bindtap="toGoods">
+      <view id="order{{parentIndex}}" class="title">{{item.name}}</view>
+      <view wx:for="{{item.foods}}" class="food-item" wx:for-item="food" data-food="{{food}}" data-id='{{food.id}}' >
         <view class="icon">
-          <image src="{{food.images_url}}" ></image>
+          <image src="{{food.images_url}}"></image>
         </view>
         <view class="content">
           <view class="logo">
             <image src="{{food.images_url}}"></image>
           </view>
           <view class="desc">
-             <view class="name">{{food.name}}</view>
-          <view class="desc">{{food.tag}}</view>
-          <view class="extra">
-            <text class="count">月售{{food.sales}}</text>
-          </view>
-          <view class="price">
-            <view class="now">￥{{food.total_price}}</view>
-            <view class="old" wx:if="{{food.oldPrice}}">￥{{food.oldPrice}}</view>
-          </view>
+            <view class="name">{{food.name}}</view>
+            <view class="desc">{{food.tag}}</view>
+            <view class="extra">
+              <text class="count">月售{{food.sales}}</text>
+            </view>
+            <view class="price">
+              <view class="now">￥{{food.total_price}}</view>
+              <view class="old" wx:if="{{food.oldPrice}}">￥{{food.oldPrice}}</view>
+            </view>
           </view>
           <!--cartControl-->
           <view class="cartControl-wrapper">
             <view class="cartControl">
               <view name="fade">
-                <view class="cart-decrease" wx:if="{{food.Count > 0}}" data-item-index="{{index}}" data-parentIndex="{{parentIndex}}" catchtap="decreaseCart">
-                  <view class="inner iconfont icon-jian" style="font-size:24px;color:black;"></view>
+                <view class=" iconfont  " 
+                style="color:black; "
+                 data-item-index="{{index}}"
+                  data-info="{{food}}" 
+                  data-parentIndex="{{parentIndex}}"          catchtap="addSuk">
+                选规格{{food.Count}} 
                 </view>
-                <view class="cart-count" wx:if="{{food.Count > 0 }}">{{food.Count}}</view>
-                <view class=" iconfont icon-jia cart-add " style="color:black; " data-item-index="{{index}}" data-parentIndex="{{parentIndex}}" catchtap="addCart"> </view>
               </view>
             </view>
           </view>
@@ -85,12 +87,10 @@
           </view>
           <view class="list-content">
             <view class="shopcart-food" wx:for="{{carArray}}">
-              <text class="name">{{item.name}}</text>
+              <text class="name">{{item.name}}{{item.suk_name}}</text>
               <view class="price" wx:if="{{item.num > 0}}">
                 <span>￥{{item.price*item.num}}</span>
               </view>
-
-          
             </view>
           </view>
         </view>
@@ -101,3 +101,56 @@
     <view class="list-mask" wx:if="{{listShow}}" bindtap="hideList"></view>
   </view>
 </view>
+
+  <van-popup show="{{ tarnShow }}" bind:close="onClose">
+      
+<view class="card-item">
+  <view class="card-wrapper">
+
+    <view class="btn-group">
+      <van-icon name="close" class="close-btn" catchtap="toggleShowCard" />
+    </view>
+    <view class="container">
+      <view class="img-item">
+        <image src="{{goodsinfo.images_url}}"></image>
+      </view>
+      <view class="goods-title">{{goodsinfo.name}}</view>
+
+      <view class="goods-desc">
+        <view class="desc-title">产品描述</view>
+        <view class="desc-content">{{myList[0].desc}}</view>
+      </view>
+      <view class="goods-temper">
+        <view class="temper-title">颜色</view>
+        <view class="temper-choise">
+          <view wx:for="{{goodsinfo.suk}}" wx:key="{{item.id}}" class="choise-item {{suk_id==item.id ? 'active' : ''}}" data-id="{{item.id }}" data-name="{{item.name}}" data-index="{{index}}" bindtap="handelsuk">{{item.name}}</view>
+        </view>
+      </view>
+      <view class="pick-up">
+        <view class="price-amount-wrapper">
+          <view class="left-item">
+            <view class="price-item">
+              <text>¥</text>{{suk_price}}</view>
+            <view class="temper-item">{{temper_type}}</view>
+          </view>
+          <view class="right-item">
+            <!-- <van-stepper value="{{ amount }}" bind:change="onChangeNum" /> -->
+              <view class="cartControl-wrapper">
+      <view class="cartControl">
+        <view class="fade">
+          <view wx:if="{{goodsinfo.Count > 0}}" data-item-index="{{goods_index}}" data-parentIndex="{{sukindex}}" catchtap="decreaseCart" class="decreaseCart">
+            <view class="inner iconfont icon-jian" style="font-size:24px;color:black;"></view>
+          </view>
+          <view class="cart-count" wx:if="{{goodsinfo.Count > 0 }}">{{goodsinfo.Count}}</view>
+          <view class=" iconfont icon-jia cart-add " data-item-index="{{ goods_index}}" data-parentIndex="{{sukindex}}" style="font-size:24px;color:black; paddi" catchtap="addCart"> </view>
+        </view>
+      </view>
+    </view>
+          </view>
+        </view>
+        <!-- <view class="purchase-btn" catchtap="clickToAdd">加入购物袋</view> -->
+      </view>
+    </view>
+  </view>
+</view>
+  </van-popup>

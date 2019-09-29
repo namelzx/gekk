@@ -14,9 +14,9 @@ class UserModel extends HTTP {
     this.request(params)
   }
 
-  postBind(data, res) {
+  PostDataByDist(data, res) {
     var params = {
-      url: 'user/postBind',//接口路径
+      url: 'user/PostDataByDist',//接口路径
       method: 'post', //请求方式
       data: data,
       success: res

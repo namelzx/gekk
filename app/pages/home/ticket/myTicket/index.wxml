@@ -6,14 +6,14 @@
       <image src="./../../../../static/images/ticket-bg.png"></image>
       <view class="ticket-img-text">
         <view class="img-text-top">
-          <text>¥</text>{{item.discount}}</view>
+          <text>¥</text>{{item.get_counpon.sub_price}}</view>
         <view class="img-text-bottom">
-          <text>满{{item.condition}}使用</text>
+          <text>满{{item.get_counpon.low_price}}使用</text>
         </view>
       </view>
     </view>
     <view class="ticket-text">
-      <text>店铺优惠券 \n  {{item.isp}}-{{item.exp}}</text>
+      <text>店铺优惠券 \n  {{item.get_counpon.start_time}}-{{item.get_counpon.end_time}}</text>
     </view>
   </view>
 </view>

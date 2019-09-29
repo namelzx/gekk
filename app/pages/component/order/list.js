@@ -53,7 +53,11 @@ Component({
     clickToPay() {
       console.log(1)
       this.triggerEvent("traCheckedNum", 11)
-
+    },
+    goOrderDetail(e){
+      wx.navigateTo({
+        url: '/pages/home/order/detail/index?id=' + e.currentTarget.dataset.id,
+      })
     }
   }
 })

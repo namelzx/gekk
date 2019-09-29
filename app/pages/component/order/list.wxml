@@ -1,6 +1,6 @@
  <view class="all-order-list">
         <view class="order-wrapper" wx:for="{{list}}" wx:key="{{index}}">
-          <view class="order-item" bindtap="goOrderDetail">
+          <view class="order-item" data-id="{{item.id}}" bindtap="goOrderDetail">
             <view class="img-item">
               <image src="{{item.goods.images_url}}"></image>
             </view>

@@ -1,4 +1,10 @@
 // pages/home/ticket/myTicket/index.js
+let app=getApp();
+import {
+  CouponsModel
+} from '../../../../api/coupons.js';
+
+let couponsModel = new CouponsModel();
 Page({
 
   /**
@@ -40,12 +46,22 @@ Page({
   onReady: function() {
 
   },
+  
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+    var that=this;
+      let temp={
+        user_id: app.globalData.user_id
+      }
 
+    couponsModel.GetUserByCoupons(temp,res=>{
+      that.setData({
+        ticketList: res.data
+      })
+    })
   },
 
   /**

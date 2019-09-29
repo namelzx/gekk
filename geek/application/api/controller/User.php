@@ -9,6 +9,7 @@
 namespace app\api\controller;
 
 
+use app\common\model\UserDistModel;
 use app\common\model\UserModel;
 use EasyWeChat\Factory;
 
@@ -22,7 +23,7 @@ class User extends Base
 
         $app = Factory::miniProgram($this->config);
         $res = $app->auth->session($data['code']);
-       $data['temp']['openid']=$res['openid'];
+        $data['temp']['openid'] = $res['openid'];
         $res = UserModel::postUserByRegistered($data['temp']);
         return json($res);
     }
@@ -72,9 +73,23 @@ class User extends Base
     public function GetUserByInfo()
     {
         $data = input('param.');
-        $res = UserModel::with(['getReal'])->where($data)->find();
+        $res = UserModel::where($data)->find();
         return json($res);
+    }
 
+    /**
+     * 提交分销商入驻申请
+     */
+    public function PostDataByDist()
+    {
+        $data = input('param.');
+        $cheuser=UserDistModel::where('phone',$data['phone'])->count();
+        if($cheuser>0){
+            return json(msg(204, $cheuser, '该用户信息已存在'));
+
+        }
+        $res = UserDistModel::create($data);
+        return json(msg(200, $res, '提交成功'));
 
     }
 

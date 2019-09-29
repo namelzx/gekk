@@ -17,7 +17,9 @@ class Coupon extends Base
     {
         $data = input('param.');
         $coupon = CouponReceiveModel::with(['getCounpon' => function ($query) use ($data) {
-            $query->where('scope', 1)->whereOr('goods_id', $data['id']);
+            if(!empty($data['id'])){
+                $query->where('scope', 1)->whereOr('goods_id', $data['id']);
+            }
         }]);
         if (!empty($data['user_id'])) {
             $coupon = $coupon->where('user_id', $data['user_id'])->where('status', 2);
@@ -39,4 +41,11 @@ class Coupon extends Base
         return json(msg(200, $res, '领取成功'));
     }
 
+
+    /**
+     * 获取所有的优惠卷
+     */
+    public function GetCounpn(){
+
+    }
 }

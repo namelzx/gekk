@@ -28,14 +28,15 @@ class Shop extends Base
         $dd = $model->range($data['latitude'], $data['longitude'], $res);
         return json($dd);
     }
-
     /**
      * 获取店铺商品列表
      */
     public function GetShopGoodsByList()
     {
         $data = input('param.');
-        $res = CategoryModel::with('foods')->where('shop_id', $data['shop_id'])->all();
+        $res = CategoryModel::with(['foods' => ['suk' => function ($query) {
+            $query->where('status',1);
+        }]])->where('shop_id', $data['shop_id'])->all();
         return json($res);
     }
 
@@ -55,7 +56,7 @@ class Shop extends Base
         $res['coupon'] = $coupon;
         $res['eva'] = $eav->items();
         $res['eavcout'] = $eav->total();
-        $res['eavnumber']=round( $stcount/($res['eavcout']*5)*100,2);
+        $res['eavnumber'] = round($stcount / ($res['eavcout'] * 5) * 100, 2);
         return json($res);
     }
 

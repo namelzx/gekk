@@ -105,7 +105,24 @@ Page({
           ticketList:res.data
         })
       })
-     
+      that.calTotalPrice();
+    }
+
+    if (e.type === 'cart') {
+      var goods = wx.getStorageSync('cart');
+      that.setData({
+        goods
+      })
+      var temp = {
+        user_id: that.data.user_id,
+        id: goods[0].id
+      }
+      couponsModel.GetUserByCoupons(temp, res => {
+        console.log(res)
+        that.setData({
+          ticketList: res.data
+        })
+      })
       that.calTotalPrice();
     }
   },
