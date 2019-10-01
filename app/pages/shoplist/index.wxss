@@ -1,0 +1,5 @@
+/* pages/shop/index.wxss */
+
+.command-container {
+  padding: 20rpx 10rpx;
+}

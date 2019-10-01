@@ -50,6 +50,8 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 import Tinymce from "@/components/Tinymce";
 import Upload from "@/components/Upload/SingleImage3";
 
@@ -68,7 +70,6 @@ import {
   PlatformDropdown,
   SourceUrlDropdown
 } from "./Dropdown";
-import { mapGetters } from "vuex";
 
 import {
   GetCategoryIdByItems,
@@ -103,6 +104,7 @@ export default {
       default: false
     }
   },
+ 
   filters: {
     statusFilter(status) {
       const statusMap = {

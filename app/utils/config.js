@@ -1,5 +1,5 @@
 const config = {
-  api_blink_url: 'http://127.0.0.1:8000/api/app/',
+  api_blink_url: 'https://hhh.10huisp.com/api/app/',
   api_images_url: 'https://www.youtirp.com/',
 }
 

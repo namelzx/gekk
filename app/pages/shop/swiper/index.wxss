@@ -13,7 +13,7 @@
   top: 0;
   left: 0;
   width: 30%;
-  height: 10%;
+  height: 30px;
   z-index: 40;
 }
 
@@ -30,7 +30,7 @@
 }
 
 .read-swiper  swiper {
-  height: 480rpx;
+  height: 576rpx;
   background: #e5e5e5;
 }
 

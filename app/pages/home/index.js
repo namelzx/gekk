@@ -15,6 +15,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    userinfo:{},
 
   },
   // 前往我的积分
@@ -22,6 +23,13 @@ Page({
     wx.navigateTo({
       url: './score/index',
     })
+  },
+  onShow(){
+    let userinfo = wx.getStorageSync('userinfo')
+    this.setData({
+      userinfo
+    })
+    console.log(userinfo)
   },
   // 前往分销中心
   goRetail() {

@@ -24,7 +24,16 @@ Route::group('api/admin/', function () {
      */
     Route::get('dist/GetDataByList', 'admin/Dist/GetDataByList'); /* 获取数据列表*/
 
-    Route::post('dist/PostDataBySave', 'admin/Dist/PostDataBySave'); /* 更新数据*/
+
+    /**
+     * 商品管理
+     */
+    Route::rule('IntGoods/GetDataByList', 'admin/IntGoods/GetDataByList'); /* 获取列表*/
+    Route::rule('IntGoods/PostDataBySave', 'admin/IntGoods/PostDataBySave'); /* 更新或保存数据*/
+    Route::rule('IntGoods/GetIdByDel', 'admin/IntGoods/GetIdByDel'); /* 删除数据*/
+    Route::rule('IntGoods/GetIdByDetails', 'admin/IntGoods/GetIdByDetails'); /* 商品详情*/
+    Route::rule('IntGoods/PostDataByUp', 'admin/IntGoods/PostDataByUp'); /* 更新商品状态*/
+    Route::rule('IntGoods/GetGoodsByUp', 'admin/IntGoods/GetGoodsByUp'); /* 获取上架商品*/
 
 
 });

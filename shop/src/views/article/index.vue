@@ -100,6 +100,7 @@
   import Pagination from '@/components/Pagination' // secondary package based on el-pagination
 
   import {GetCategory} from '@/api/brand'
+import { mapGetters } from "vuex";
 
 
   export default {
@@ -130,6 +131,10 @@
         return statusMap[status]
       }
     },
+        computed: {
+ 
+    ...mapGetters(["shop_id"])
+  },
     data() {
       return {
         opstatus:[
@@ -187,6 +192,7 @@
     methods: {
       getList() {
         this.listLoading = true
+        this.listQuery.shop_id=this.shop_id
         GetDataByList(this.listQuery).then(response => {
           this.list = response.data.data
           this.total = response.data.total

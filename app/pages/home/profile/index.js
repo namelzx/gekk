@@ -1,5 +1,11 @@
 // pages/home/profile/index.js
+let app=getApp();
 
+import {
+  UserModel
+} from './../../../api/user.js'
+
+let userModel = new UserModel();
 
 import Dialog from './../../../vant-weapp/dist/dialog/dialog';
 Page({
@@ -20,6 +26,14 @@ Page({
       address: '广州白云区coco大院',
       sex: '男'
     }
+  },
+  onShow(){
+    let that=this;
+    userModel.GetUserByInfo(app.globalData.user_id,res=>{
+      that.setData({
+        userInfo:res
+      })
+    })
   },
   onToggleDialog(e) {
     this.setData({
@@ -53,6 +67,10 @@ Page({
         })
         break
     }
+    userModel.PostUserByData(this.data.userInfo,res=>{
+      this.onShow();
+    })
+    
   },
   onChangename(event) {
     let temp = "userInfo.name"

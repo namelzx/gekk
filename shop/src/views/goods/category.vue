@@ -135,6 +135,8 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
   import {PostDataBySave, GetIdByDel, GetDataByList,GetCategory} from '@/api/category'
   import waves from '@/directive/waves' // waves directive
   import {parseTime} from '@/utils'
@@ -228,12 +230,17 @@
         console.log(res)
       })
     },
+       computed: {
+ 
+    ...mapGetters(["shop_id"])
+  },
     methods: {
       handelIco(e) {
         this.temp.ico = e
       },
       getList() {
         this.listLoading = true
+        this.listQuery.shop_id=this.shop_id;
         GetDataByList(this.listQuery).then(response => {
           this.list = response.data.data
           console.log(this.list)
@@ -270,6 +277,7 @@
       createData() {
         this.$refs['dataForm'].validate((valid) => {
           if (valid) {
+            this.temp.shop_id=this.shop_id
             PostDataBySave(this.temp).then(res => {
               this.list.unshift(res.data)
               this.dialogFormVisible = false

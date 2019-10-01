@@ -5,12 +5,12 @@
     <view class="user-info-wrapper">
       <view class="user-info">
         <view class="user-avatar" bindtap="goProfile">
-          <image src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1568441257&di=51141b3beb9703bba100f9cbb63439e4&imgtype=jpg&er=1&src=http%3A%2F%2Fimg.qqzhi.com%2Fuploads%2F2019-01-31%2F214531458.png"></image>
+          <image src="{{userinfo.avatarUrl}}"></image>
         </view>
         <view class="user-name-level">
-          <view class="user-name" bindtap="goProfile">我就是狗剩先生啊</view>
+          <view class="user-name" bindtap="goProfile">{{userinfo.nickName}}</view>
           <view class="user-level" >
-            <image src="./../../static/images/vip-level-2.png" bindtap="goVip"></image>
+            <image src="./../../static/images/vip-level-1.png" bindtap="goVip"></image>
           </view>
         </view>
       </view>

@@ -4,6 +4,9 @@
 
 .container .locate-item {
   padding-left: 40rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .container .locate-item .shop-name {
@@ -11,6 +14,8 @@
   font-size: 28rpx;
   font-weight: 400;
   margin: 8rpx 0;
+  padding-left: 10rpx;
+  padding-right: 10rpx;
 }
 
 .container .locate-item .distance {

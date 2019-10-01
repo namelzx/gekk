@@ -25,7 +25,7 @@ class OrderGoodsModel extends BaseModel
     {
 
 
-        return self::insertAll($data);
+        return self:: insertAll($data);
     }
 
 }

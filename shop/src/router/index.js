@@ -71,33 +71,33 @@ export const constantRoutes = [
       }
     ]
   },
-  {
-    path: '/apps',
-    component: Layout,
-    redirect: 'apps',
-    meta: { title: '商铺管理', icon: 'international' },
-    children: [
-      {
-        path: 'apps',
-        component: () => import('@/views/apps/index'),
-        name: 'apps',
-        meta: { title: '商铺管理', icon: 'international' }
-      },
-      {
-        path: 'createapps',
-        component: () => import('@/views/apps/createapps'),
-        name: 'createapps',
-        meta: { title: '添加商铺', icon: 'international' }
-      },
-      {
-        path: 'edit/:id(\\d+)',
-        component: () => import('@/views/apps/editapps'),
-        name: 'editapps',
-        hidden: true,
-        meta: { title: '编辑商铺', icon: 'international' }
-      }
-    ]
-  },
+  // {
+  //   path: '/apps',
+  //   component: Layout,
+  //   redirect: 'apps',
+  //   meta: { title: '商铺管理', icon: 'international' },
+  //   children: [
+  //     {
+  //       path: 'apps',
+  //       component: () => import('@/views/apps/index'),
+  //       name: 'apps',
+  //       meta: { title: '商铺管理', icon: 'international' }
+  //     },
+  //     {
+  //       path: 'createapps',
+  //       component: () => import('@/views/apps/createapps'),
+  //       name: 'createapps',
+  //       meta: { title: '添加商铺', icon: 'international' }
+  //     },
+  //     {
+  //       path: 'edit/:id(\\d+)',
+  //       component: () => import('@/views/apps/editapps'),
+  //       name: 'editapps',
+  //       hidden: true,
+  //       meta: { title: '编辑商铺', icon: 'international' }
+  //     }
+  //   ]
+  // },
 /**
  * 商品
  */
@@ -215,77 +215,77 @@ export const constantRoutes = [
  * the routes that need to be dynamically loaded based on user roles
  */
 export const asyncRoutes = [
-  {
-    path: '/permission',
-    component: Layout,
-    redirect: '/permission/page',
-    alwaysShow: true, // will always show the root menu
-    name: 'Permission',
-    meta: {
-      title: 'permission',
-      icon: 'lock',
-      roles: ['admin', 'editor'] // you can set roles in root nav
-    },
-    children: [
-      {
-        path: 'page',
-        component: () => import('@/views/permission/page'),
-        name: 'PagePermission',
-        meta: {
-          title: 'pagePermission',
-          roles: ['admin'] // or you can only set roles in sub nav
-        }
-      },
-      {
-        path: 'directive',
-        component: () => import('@/views/permission/directive'),
-        name: 'DirectivePermission',
-        meta: {
-          title: 'directivePermission'
-          // if do not set roles, means: this page does not require permission
-        }
-      },
-      {
-        path: 'role',
-        component: () => import('@/views/permission/role'),
-        name: 'RolePermission',
-        meta: {
-          title: 'rolePermission',
-          roles: ['admin']
-        }
-      }
-    ]
-  },
+  // {
+  //   path: '/permission',
+  //   component: Layout,
+  //   redirect: '/permission/page',
+  //   alwaysShow: true, // will always show the root menu
+  //   name: 'Permission',
+  //   meta: {
+  //     title: 'permission',
+  //     icon: 'lock',
+  //     roles: ['admin', 'editor'] // you can set roles in root nav
+  //   },
+  //   children: [
+  //     {
+  //       path: 'page',
+  //       component: () => import('@/views/permission/page'),
+  //       name: 'PagePermission',
+  //       meta: {
+  //         title: 'pagePermission',
+  //         roles: ['admin'] // or you can only set roles in sub nav
+  //       }
+  //     },
+  //     {
+  //       path: 'directive',
+  //       component: () => import('@/views/permission/directive'),
+  //       name: 'DirectivePermission',
+  //       meta: {
+  //         title: 'directivePermission'
+  //         // if do not set roles, means: this page does not require permission
+  //       }
+  //     },
+  //     {
+  //       path: 'role',
+  //       component: () => import('@/views/permission/role'),
+  //       name: 'RolePermission',
+  //       meta: {
+  //         title: 'rolePermission',
+  //         roles: ['admin']
+  //       }
+  //     }
+  //   ]
+  // },
 
-  {
-    path: '/icon',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/icons/index'),
-        name: 'Icons',
-        meta: { title: 'icons', icon: 'icon', noCache: true }
-      }
-    ]
-  },
+  // {
+  //   path: '/icon',
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: 'index',
+  //       component: () => import('@/views/icons/index'),
+  //       name: 'Icons',
+  //       meta: { title: 'icons', icon: 'icon', noCache: true }
+  //     }
+  //   ]
+  // },
 
   /** when your routing map is too long, you can split it into small modules **/
 
-  tableRouter,
+  // tableRouter,
 
-  {
-    path: '/i18n',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/i18n-demo/index'),
-        name: 'I18n',
-        meta: { title: 'i18n', icon: 'international' }
-      }
-    ]
-  },
+  // {
+  //   path: '/i18n',
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: 'index',
+  //       component: () => import('@/views/i18n-demo/index'),
+  //       name: 'I18n',
+  //       meta: { title: 'i18n', icon: 'international' }
+  //     }
+  //   ]
+  // },
 
   { path: '*', redirect: '/404', hidden: true }
 ]

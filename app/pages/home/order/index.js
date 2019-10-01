@@ -1,4 +1,5 @@
 // pages/home/order/index.js
+import Toast from './../../../vant-weapp/dist/toast/toast';
 
 let app = getApp();
 import {
@@ -83,18 +84,19 @@ Page({
       status: 4,
     }
     orderModel.GetIdByCancel(temp, res => {
-      console.log(res)
+      that.getOrder();
     })
   },
   // 取消订单
   clickToCancel(e) {
+    let that=this;
     let id=e.detail
     var temp={
       id,
       status:5,
     }
     orderModel.GetIdByCancel(temp,res=>{
-      console.log(res)
+      that.getOrder();
     })
   },
   // 去支付

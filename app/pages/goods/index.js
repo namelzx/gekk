@@ -277,6 +277,7 @@ Page({
   },
   // 加入购物车
   addToCart() {
+    Toast('添加成功');
     this.addCart();
   },
   // 立即购买

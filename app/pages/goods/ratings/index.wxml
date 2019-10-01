@@ -1,5 +1,5 @@
 <!--pages/goods/ratings/index.wxml-->
-<view class="ratings">
+<view class="ratings" wx:if="{{ratings.length>0}}">
       <view class="ratings-title">
         <view class="title-left">
           <text>评论</text>
@@ -35,5 +35,5 @@
           </view>
         </view>
       </view>
-      <view class="more-ratings" bindtap="openAllRatings">查看全部评价</view>
+      <view  class="more-ratings" bindtap="openAllRatings">查看全部评价</view>
     </view>

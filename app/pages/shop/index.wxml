@@ -63,23 +63,15 @@
   <view>
     <view>
       <view class="shopCart">
-        <view class="content" bindtap="toggleList">
-          <view class="content-left">
-            <view class="logo-wrapper">
-              <view class="logo highlight">
-                <view class="iconfont icon-gouwuche highlight"></view>
-              </view>
-              <view class="num" wx:if="{{totalCount> 0}}">{{totalCount}}</view>
-            </view>
-            <view class="price highlight">￥{{totalPrice}}</view>
-            <view class="desc">另需配送费￥{{deliveryPrice}}元</view>
+          <view class="content-left" catchtap="ToCart">
+              购物车
           </view>
+          <view class="jh">　</view>
           <view class="content-right" catchtap="pay">
             <view class="pay enough" :class="payClass">
-              {{payDesc}}
+              立即购买
             </view>
           </view>
-        </view>
         <view class="shopcart-list" style="display:{{cartShow}}">
           <view class="list-header">
             <view class="title">购物车</view>
@@ -102,8 +94,7 @@
   </view>
 </view>
 
-  <van-popup show="{{ tarnShow }}" bind:close="onClose">
-      
+<van-popup show="{{ tarnShow }}" bind:close="onClose"> 
 <view class="card-item">
   <view class="card-wrapper">
 

@@ -61,12 +61,11 @@ class User extends Base
     /**
      * 绑定用户信息
      */
-    public function postBind()
+    public function PostUserByData()
     {
         $data = input('param.');
-        $res = UserModel::where('openid', $data['openid'])->update($data);
-        $user = UserModel::with(['getReal'])->where(['openid' => $data['openid']])->find();
-        return json($user);
+        $res = UserModel::where('id', $data['id'])->update($data);
+        return json($res);
     }
 
 
@@ -83,8 +82,8 @@ class User extends Base
     public function PostDataByDist()
     {
         $data = input('param.');
-        $cheuser=UserDistModel::where('phone',$data['phone'])->count();
-        if($cheuser>0){
+        $cheuser = UserDistModel::where('phone', $data['phone'])->count();
+        if ($cheuser > 0) {
             return json(msg(204, $cheuser, '该用户信息已存在'));
 
         }

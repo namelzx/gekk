@@ -74,6 +74,14 @@ Page({
     totalPrice:'',//总价
   },
 
+  onShow(){
+    var that=this;
+    addressModel.GetNewsByItems(app.globalData.user_id, res => {
+      that.setData({
+        addressRadioList: res.data
+      })
+    })
+  },
   onLoad(e){
   
     var that=this;
@@ -83,12 +91,7 @@ Page({
         selfRadioList:res
       })
     })
-    addressModel.GetNewsByItems(app.globalData.user_id,res=>{
-      that.setData({
-        addressRadioList:res.data
-      })
-      that.calTotalPrice();
-    })
+   
    
     if(e.type==='buy'){
      var goods=wx.getStorageSync('buy');
@@ -197,8 +200,17 @@ Page({
   },
   // 选择送货上门地址
   onChoiseAddress(event) {
+    console.log(event.detail)
+    var that=this;
+    let addressRadio=1;
+    for (let i = 0; i < that.data.addressRadioList.length;i++){
+      if (that.data.addressRadioList[i].id = event.detail){
+        addressRadio=i+1;
+        break;
+      }
+    }
     this.setData({
-      addressRadio: event.detail,
+      addressRadio: addressRadio,
       showAddress: !this.data.showAddress,
       selfRadio:'',
       address_id: event.detail,
@@ -311,6 +323,12 @@ Page({
     }
     ordermodel.PostOrderByData(temp,res=>{
       console.log(res)
+      wx.navigateTo({
+        url: '/pages/home/order/index',
+        success: function(res) {},
+        fail: function(res) {},
+        complete: function(res) {},
+      })
     })
   },
   //计算总价
@@ -330,5 +348,10 @@ Page({
       //payDesc: this.payDesc()
     });
   },
+  addMoreAddress() {
+    wx.navigateTo({
+      url: '/pages/component/new/index',
+    })
+  }
 
 })

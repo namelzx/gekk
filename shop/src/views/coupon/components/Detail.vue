@@ -154,7 +154,7 @@ import {
 import ListImage from "@/components/Upload/ListImage";
   import {GetDataByList, GetIdByDel, PostDataBySave,GetIdByDetails} from '@/api/coupon'
 
-import { GetCategory } from "@/api/brand";
+// import { GetCategory } from "@/api/brand";
 import { GetGoodsByUp } from "@/api/goods";
 
 
@@ -269,6 +269,7 @@ export default {
     } else {
       this.postForm = Object.assign({}, defaultForm);
     }
+    console.log(this.shop_id)
     GetGoodsByUp(this.shop_id).then(res => {
       this.tableData = res.data;
     });

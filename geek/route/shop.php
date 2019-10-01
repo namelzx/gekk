@@ -33,7 +33,6 @@ Route::group('api/shop/', function () {
     Route::rule('goods/GetIdByDel', 'shop/goods/GetIdByDel'); /* 删除数据*/
     Route::rule('goods/GetIdByDetails', 'shop/goods/GetIdByDetails'); /* 商品详情*/
     Route::rule('goods/PostDataByUp', 'shop/goods/PostDataByUp'); /* 更新商品状态*/
-
     Route::rule('goods/GetGoodsByUp', 'shop/goods/GetGoodsByUp'); /* 获取上架商品*/
 
     /**

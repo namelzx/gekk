@@ -137,11 +137,15 @@
         <van-tab title="送货上门">
           <view class="address-list">
             <view class="list-title">我的收货地址</view>
-            <view class="list-wrapper">
+            <view class="list-wrapper" wx:if="{{addressRadioList.length>0}}">
               <van-radio-group value="{{ addressRadio }}" bind:change="onChoiseAddress">
                 <van-radio name="{{item.id}}" wx:for="{{addressRadioList}}" wx:key="{{index}}" class="choise-addr-item">{{item.areaMsg}} {{item.posterAddr}}</van-radio>
               </van-radio-group>
             </view>
+             <view class="ddadd-more-address" bindtap="addMoreAddress" wx:else>
+    <view class="add-more"><van-icon name="plus" class="plus-icon" />新建地址</view>
+  </view>
+
           </view>
         </van-tab>
       </van-tabs>

@@ -80,7 +80,7 @@
       <!-- 信息 -->
       <view class="goods-info">
         <view class="goods-img">
-          <image src="./../../static/images/rate-img-1.png"></image>
+          <image src="{{detailed.images_url}}"></image>
         </view>
         <view class="number">
           <view class="goods-price">
@@ -196,7 +196,7 @@
       </view>
     </view>
     <view class="sub-btn">
-      <view class="sub add-to-cart" bindtap="addToCart">加入购物车</view>
+      <view class="sub add-to-cart" bindtap="moreItem">加入购物车</view>
       <view class="sub purchase" bindtap="purchase" >立即购买</view>
     </view>
   </view>

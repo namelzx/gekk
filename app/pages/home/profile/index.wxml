@@ -3,16 +3,16 @@
 <view class="profile-container">
   <view class="user-info">
     <view class="avatar">
-      <image src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1568441257&di=51141b3beb9703bba100f9cbb63439e4&imgtype=jpg&er=1&src=http%3A%2F%2Fimg.qqzhi.com%2Fuploads%2F2019-01-31%2F214531458.png"></image>
+      <image src="{{userInfo.avatarUrl}}"></image>
     </view>
-    <view class="name">我就是狗剩先生啊</view>
+    <view class="name">{{userInfo.nickName}}</view>
     <view class="level">
       <image src="./../../../static/images/lv-1.png"></image>
     </view>
   </view>
   <view class="user-detail">
     <van-cell-group border="{{ false }}">
-      <van-cell title="姓名" is-link clickable bind:click="onToggleDialog" value="{{userInfo.name}}" data-title="name" />
+      <van-cell title="姓名" is-link clickable bind:click="onToggleDialog" value="{{userInfo.nickName}}" data-title="nickName" />
       <van-cell title="手机号码" is-link clickable bind:click="onToggleDialog" value="{{userInfo.phone}}" data-title="phone" />
       <van-cell title="邮箱" is-link clickable bind:click="onToggleDialog" value="{{userInfo.email}}" data-title="email" />
       <van-cell title="地址" is-link clickable bind:click="onToggleDialog" value="{{userInfo.address}}" data-title="address" />

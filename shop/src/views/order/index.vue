@@ -149,6 +149,7 @@ import { GetDataByList, PostDataByCancel, PostDataBySave } from "@/api/order";
 import waves from "@/directive/waves"; // waves directive
 import { parseTime } from "@/utils";
 import Pagination from "@/components/Pagination"; // secondary package based on el-pagination
+import { mapGetters } from "vuex";
 
 export default {
   name: "ComplexTable",
@@ -173,6 +174,10 @@ export default {
       };
       return statusMap[status];
     }
+  },
+    computed: {
+  
+    ...mapGetters(["shop_id"])
   },
   data() {
     return {
@@ -256,6 +261,7 @@ export default {
   methods: {
     getList() {
       this.listLoading = true;
+      this.listQuery.shop_id=this.shop_id
       GetDataByList(this.listQuery).then(response => {
         this.list = response.data.data;
         this.total = response.data.total;

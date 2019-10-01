@@ -27,6 +27,9 @@ class CouponModel extends BaseModel
         if (!empty($data['title'])) {
             $where[] = ['name', '=', $data['title']];
         }
+        if (!empty($data['shop_id'])) {
+            $where = ['shop_id', '=', $data['shop_id']];
+        }
         $res = self::where($where)->paginate($data['limit'], false, ['query' => $data['page']]);
         return $res;
 

@@ -115,6 +115,7 @@
   import waves from '@/directive/waves' // waves directive
   import {parseTime} from '@/utils'
   import Pagination from '@/components/Pagination' // secondary package based on el-pagination
+import { mapGetters } from "vuex";
 
   import {GetCategory} from '@/api/brand'
 
@@ -123,6 +124,10 @@
     name: 'ComplexTable',
     components: {Pagination},
     directives: {waves},
+      computed: {
+ 
+    ...mapGetters(["shop_id"])
+  },
     filters: {
       statusFilter(status) {
         const statusMap = {
@@ -204,6 +209,7 @@
     methods: {
       getList() {
         this.listLoading = true
+        this.listQuery.shop_id=this.shop_id
         GetDataByList(this.listQuery).then(response => {
           this.list = response.data.data
           this.total = response.data.total

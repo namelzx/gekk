@@ -5,6 +5,11 @@ import { ShopModel } from '../../api/shop.js'
 
 let shopmodel = new ShopModel();
 
+
+import { UserModel } from '../../api/user.js'
+
+let usermodel = new UserModel();
+
 Page({
   data: {
     motto: 'Hello World',
@@ -26,6 +31,20 @@ Page({
   },
   onShow(){
     var that=this;
+
+    wx.login({
+      success: res => {
+        usermodel.postRegistered(res,res=>{
+          this.setData({
+            userInfo:res
+          })
+          app.globalData.user_id=res.id
+          wx.setStorageSync('userinfo', res)
+        })
+        console.log(res)
+        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+      }
+    })
     wx.getLocation({
       success: function (locatlres) {
         wx.setStorageSync('loca', locatlres)

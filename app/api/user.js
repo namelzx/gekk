@@ -23,6 +23,17 @@ class UserModel extends HTTP {
     }
     this.request(params)
   }
+
+  PostUserByData(data, res) {
+    var params = {
+      url: 'user/PostUserByData',//接口路径
+      method: 'post', //请求方式
+      data: data,
+      success: res
+    }
+    this.request(params)
+  }
+  
   //房源列表数据(根据所属城市id获取)
   GetUserByOenid(temp, res) {
     var params = {

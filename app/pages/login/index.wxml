@@ -16,7 +16,7 @@
     <view class="bg-mask-bottom"></view>
     <!-- 背景图 -->
     <view class="bg">
-      <image src="/static/images/bg.png"></image>
+      <image src="https://hhh.10huisp.com/uploads/bg.png"></image>
     </view>
   </view>
   <view class="login-choose" wx:if="{{isPhoneLogin===1}}">
@@ -27,9 +27,9 @@
         <text>微信一键登录</text>
       </view>
     </button>
-    <view class="option phone-login" bindtap="handlePhoneLogin">
+    <!-- <view class="option phone-login" bindtap="handlePhoneLogin">
       <text>手机验证码登录</text>
-    </view>
+    </view> -->
   </view>
 
   <view class="login-choose phone-login" wx:if="{{isPhoneLogin===2}}">

@@ -9,14 +9,7 @@ Page({
   data: {
     goods: [],
     myList: [
-      {
-        id: '1',
-        imgUrl: './../../../static/images/luckin.png',
-        title: '海苔肉松牛角',
-        desc: '酥脆的海苔肉松铺满整只牛角包，芝士奶油醇香柔滑',
-        temper: [{ id: '1', type: '加热(推荐)' }, { id: '2', type: '常温' }],
-        price: '12'
-      }
+   
     ],
     imgUrls: [
       'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640',
@@ -279,15 +272,23 @@ Page({
   },
   //結算
   pay() {
-    if (this.data.totalPrice < this.data.minPrice) {
-      return;
-    }
     // window.alert('支付' + this.totalPrice + '元');
     //确认支付逻辑
     var resultType = "success";
     wx.redirectTo({
       url: '/pages/shop/pay/index?type=cart'
     })
+  },
+  /**
+   * 去购物车
+   */
+  ToCart(){
+   wx.navigateTo({
+     url: '/pages/cart/index',
+     success: function(res) {},
+     fail: function(res) {},
+     complete: function(res) {},
+   })
   },
   //彈起購物車
   toggleList: function() {

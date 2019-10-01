@@ -17,6 +17,12 @@ Route::group('api/app/', function () {
     Route::get('shop/GetIdGoodsByInfo', 'api/shop/GetIdGoodsByInfo'); /* 根据店铺id获取店铺所有的数据*/
 
 
+    Route::get('shop/GetShopListGoodsByCategory', 'api/shop/GetShopListGoodsByCategory'); /* 根据店铺店铺展示2*/
+    Route::get('shop/GetShopListGoodsByList', 'api/shop/GetShopListGoodsByList'); /* 根据分类得到商品id*/
+
+
+
+
     Route::get('city/getProvinces', 'api/shop/getProvinces'); /* 获取省份*/
     Route::get('city/getCity', 'api/shop/getCity'); /* 获取城市*/
     Route::get('city/getArea', 'api/shop/getArea'); /* 获取区域*/
@@ -37,7 +43,7 @@ Route::group('api/app/', function () {
     Route::post('user/postUserByRegistered', 'api/user/postUserByRegistered');//用户注册
     Route::get('user/GetUserByInfo', 'api/user/GetUserByInfo');//绑定用户信息
     Route::post('user/PostDataByDist', 'api/user/PostDataByDist');//收藏房间
-//    Route::post('postMake', 'api/Housing/postMake');//提交预约
+    Route::post('user/PostUserByData', 'api/user/PostUserByData');//提交预约
 
 
     /**
@@ -67,9 +73,23 @@ Route::group('api/app/', function () {
     Route::rule('Article/GetDataByDetailed', 'api/Article/GetDataByDetailed'); /* 获取用户订单*/
     Route::rule('Article/PostDataByEav', 'api/Article/PostDataByEav'); /* 文章评价*/
     Route::rule('Article/GetIdByEav', 'api/Article/GetIdByEav'); /* 获取文章评论*/
-
     Route::rule('Article/GetEavIdByLike', 'api/Article/GetEavIdByLike'); /* 用户评论点赞*/
     Route::rule('Article/GetArticleIdByLike', 'api/Article/GetArticleIdByLike'); /* 用户评论点赞*/
+
+    /**
+     * 签到
+     */
+    Route::rule('Dist/GetUserDistLog', 'api/Dist/GetUserDistLog'); /* 获取用户订单*/
+    Route::rule('Dist/PostUserByIntegral', 'api/Dist/PostUserByIntegral'); /* 获取用户订单*/
+
+    Route::rule('IntGoods/GetIntegralByGoods', 'api/IntGoods/GetIntegralByGoods'); /* 获取用户订单*/
+
+
+    Route::rule('IntOrder/PostOrderByData', 'api/IntOrder/PostOrderByData'); /* 提交用户订单*/
+    Route::rule('IntOrder/GetUserByOrder', 'api/IntOrder/GetUserByOrder'); /* 获取用户订单*/
+    Route::rule('IntOrder/GetIdByCancel', 'api/IntOrder/GetIdByCancel'); /* 取消订单*/
+    Route::rule('IntOrder/PostDataByEva', 'api/IntOrder/PostDataByEva'); /* 取消订单*/
+    Route::rule('IntOrder/GetOrderIdByFind', 'api/IntOrder/GetOrderIdByFind'); /* 订单详细*/
 
 
 });

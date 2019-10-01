@@ -18,7 +18,7 @@ class CategoryModel extends BaseModel
 
     public function foods()
     {
-        return $this->hasMany('GoodsModel','category_id','id');
+        return $this->hasMany('GoodsModel', 'category_id', 'id');
     }
 
     public static function GetDataByList($data)
@@ -28,7 +28,8 @@ class CategoryModel extends BaseModel
         if (!empty($data['title'])) {
             $where[] = ['name', '=', $data['title']];
         }
-        $res = self::where($where)->paginate($data['limit'], false, ['query' => $data['page']]);
+
+        $res = self::where($where)->where('shop_id',$data['shop_id'])->paginate($data['limit'], false, ['query' => $data['page']]);
         return $res;
 
     }

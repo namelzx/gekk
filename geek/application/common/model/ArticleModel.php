@@ -32,6 +32,9 @@ class ArticleModel extends BaseModel
         if (!empty($data['category_id'])) {
             $where[] = ['category_id', '=', $data['category_id']];
         }
+        if (!empty($data['shop_id'])) {
+            $where[] = ['shop_id', 'eq', $data['shop_id']];
+        }
         $res = self::with('shop')->where($where)->where('status', 'neq', 3)->paginate($data['limit'], false, ['query' => $data['page']]);
         return $res;
     }

@@ -5,6 +5,20 @@
     "pages/goods/index",
     "pages/goods/swiper/index",
     "pages/reads/index",
+    "pages/home/order/index",
+    "pages/home/address/index",
+    "pages/home/ticket/myTicket/index",
+    "pages/home/ticket/index",
+    "pages/home/distributor/index",
+    "pages/home/score/index",
+    "pages/shop/swiper/index",
+    "pages/home/profile/index",
+    "pages/component/edit/index",
+    "pages/component/new/index",
+    "pages/home/score/detail/index",
+    "pages/home/score/exchange/index",
+    "pages/home/distributor/apply/index",
+    "pages/home/order/detail/index",
     "pages/reads/swiper/index",
     "pages/goods/fee/index",
     "pages/goods/ratings/index",
@@ -16,7 +30,10 @@
     "pages/home/order/evaluate/index",
     "pages/home/map/index",
     "pages/test/index",
-    "pages/home/distributor/buffer/index"
+    "pages/home/distributor/buffer/index",
+    "pages/home/score/pay/index",
+    "pages/cart/index",
+    "pages/shoplist/index"
   ],
   "permission": {
     "scope.userLocation": {
@@ -31,25 +48,33 @@
   },
   "sitemapLocation": "sitemap.json",
   "tabBar": {
-    "color": "#a9b7b7",
-    "selectedColor": "#11cd6e",
+    "color": "#000",
+    "selectedColor": "#000",
     "borderStyle": "black",
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "首页"
+        "text": "首页",
+        "iconPath": "/static/images/home.png",
+        "selectedIconPath": "/static/images/home-sel.png"
       },
       {
         "pagePath": "pages/home/map/index",
-        "text": "好店"
+        "text": "好店",
+        "iconPath": "/static/images/shop.png",
+        "selectedIconPath": "/static/images/shop-sel.png"
       },
       {
         "pagePath": "pages/reads/index",
-        "text": "文化"
+        "text": "文化",
+        "iconPath": "/static/images/wh.png",
+        "selectedIconPath": "/static/images/wh-sel.png"
       },
       {
         "pagePath": "pages/home/index",
-        "text": "我的"
+        "text": "我的",
+        "iconPath": "/static/images/my.png",
+        "selectedIconPath": "/static/images/my-sel.png"
       }
     ]
   }

@@ -20,60 +20,13 @@ Page({
    *    shopList的下标(页面中写法"{{shopList[currentBtnId-1].code}}")，显示对应    *    id的商铺
    */
   data: {
-    currentBtnId: '1', //  下标
+    currentBtnId: 0, //  下标
     showType: true, // 决定门店以列表/地图形式展示
-    shopCard: [{
-        id: '1',
-        shop_banner: './../../../static/images/starbuck.png',
-        area: '顺德',
-        shop_name: '极客瑞幸清晖园店',
-        distance: '300'
-      },
-
-      {
-        id: '2',
-        shop_banner: './../../../static/images/luckin.png',
-        area: '顺德',
-        shop_name: '极客瑞幸清晖园店',
-        distance: '3000'
-      },
-      {
-        id: '3',
-        shop_banner: './../../../static/images/starbuck.png',
-        area: '顺德',
-        shop_name: '极客瑞幸清晖园店',
-        distance: '300'
-      },
-
-      {
-        id: '4',
-        shop_banner: './../../../static/images/luckin.png',
-        area: '顺德',
-        shop_name: '极客瑞幸清晖园店',
-        distance: '3000'
-      },
+    shopCard: [
+      
     ], //视图为列表时的商铺列表
-    shopList: [{
-        id: '1',
-        shop_banner: './../../../static/images/starbuck.png',
-        name: '极客联盟清晖园星巴克店',
-        on_sale: '08:00-22:00',
-        address: '地址：佛山市顺德区清晖路146号（新世界商城4楼 402）'
-      },
-      {
-        id: '2',
-        shop_banner: './../../../static/images/luckin.png',
-        name: '极客联盟清晖园瑞幸咖啡店',
-        on_sale: '08:00-22:00',
-        address: '地址：佛山市顺德区清晖路145号（新世界商城4楼 402）'
-      },
-      {
-        id: '3',
-        shop_banner: './../../../static/images/starbuck.png',
-        name: '极客联盟清晖园星巴克2店',
-        on_sale: '08:00-22:00',
-        address: '地址：佛山市顺德区清晖路148号（新世界商城4楼 402）'
-      },
+    shopList: [
+      
     ], // 视图为地图时的店铺列表
     areaList: areaList, //地区列表
     showCityPop: false, //城市弹出层
@@ -97,161 +50,19 @@ Page({
     // 地图
     latitude: 21.4486600000, //地图初始经度
     longitude: 109.1742200000, //地图初始纬度
-    markers: [{
-        id: 1,
-        latitude: 21.4486600000,
-        longitude: 109.1742200000,
-        width: 35,
-        height: 35,
-        iconPath: './../../../static/images/shop-logo-1.png',
-        label: {
-          content: '瑞幸33咖啡',
-          color: '#666',
-          fontSize: '10',
-          padding: 2,
-          anchorX: 10,
-          anchorY: -28,
-          borderWidth: 1,
-          bgColor: '#fff',
-          textAlign: 'right',
-          borderColor: '#000',
-          borderRadius: 20,
-          display: 'ALWAYS'
-        },
-      },
-      {
-        id: 2,
-        latitude: 21.4518100000,
-        longitude: 109.1734000000,
-        width: 35,
-        height: 35,
-        iconPath: './../../../static/images/shop-logo-2.png',
-        label: {
-          content: '星巴克咖啡',
-          color: '#666',
-          fontSize: '10',
-          padding: 2,
-          anchorX: 10,
-          anchorY: -28,
-          borderWidth: 1,
-          bgColor: '#fff',
-          textAlign: 'right',
-          borderColor: '#000',
-          borderRadius: 20,
-          display: 'ALWAYS'
-        }
-      },
-      {
-        id: 3,
-        latitude: 21.4503126049,
-        longitude: 109.1670227051,
-        width: 35,
-        height: 35,
-        iconPath: './../../../static/images/shop-logo-1.png',
-        label: {
-          content: '瑞幸咖啡',
-          color: '#666',
-          fontSize: '10',
-          padding: 2,
-          anchorX: 10,
-          anchorY: -28,
-          borderWidth: 1,
-          bgColor: '#fff',
-          textAlign: 'right',
-          borderColor: '#000',
-          borderRadius: 20,
-          display: 'ALWAYS'
-        },
-      },
-      {
-        id: 4,
-        latitude: 21.4438816699,
-        longitude: 109.1725587845,
-        width: 35,
-        height: 35,
-        iconPath: './../../../static/images/shop-logo-3.png',
-        label: {
-          content: '瑞幸咖啡',
-          color: '#666',
-          fontSize: '10',
-          padding: 2,
-          anchorX: 10,
-          anchorY: -28,
-          borderWidth: 1,
-          bgColor: '#fff',
-          textAlign: 'right',
-          borderColor: '#000',
-          borderRadius: 20,
-          display: 'ALWAYS'
-        },
-      },
-      {
-        id: 5,
-        latitude: 21.4483154505,
-        longitude: 109.1825151443,
-        width: 35,
-        height: 35,
-        iconPath: './../../../static/images/shop-logo-3.png',
-        label: {
-          content: '瑞幸咖啡',
-          color: '#666',
-          fontSize: '10',
-          padding: 2,
-          anchorX: 10,
-          anchorY: -28,
-          borderWidth: 1,
-          bgColor: '#fff',
-          textAlign: 'right',
-          borderColor: '#000',
-          borderRadius: 20,
-          display: 'ALWAYS'
-        },
-      },
-      {
-        id: 6,
-        latitude: 21.4459587731,
-        longitude: 109.1655635834,
-        width: 35,
-        height: 35,
-        iconPath: './../../../static/images/shop-logo-3.png',
-        label: {
-          content: '瑞幸咖啡',
-          color: '#666',
-          fontSize: '10',
-          padding: 2,
-          anchorX: 10,
-          anchorY: -28,
-          borderWidth: 1,
-          bgColor: '#fff',
-          textAlign: 'right',
-          borderColor: '#000',
-          borderRadius: 20,
-          display: 'ALWAYS'
-        },
-      },
-      {
-        id: 7,
-        latitude: 21.4411654134,
-        longitude: 109.1692972183,
-        width: 35,
-        height: 35,
-        iconPath: './../../../static/images/shop-logo-2.png',
-        label: {
-          content: '瑞幸咖啡',
-          color: '#666',
-          fontSize: '10',
-          padding: 2,
-          anchorX: 10,
-          anchorY: -28,
-          borderWidth: 1,
-          bgColor: '#fff',
-          textAlign: 'right',
-          borderColor: '#000',
-          borderRadius: 20,
-          display: 'ALWAYS'
-        },
-      },
+    markers: [
+      
     ] // 地图标注
+  },
+  handeShop(e){
+    let { id } = e.currentTarget.dataset
+    wx.navigateTo({
+      url: '/pages/shoplist/index?id='+id,
+      success: function(res) {},
+      fail: function(res) {},
+      complete: function(res) {},
+    })
+    
   },
   onShow() {
     var that = this;

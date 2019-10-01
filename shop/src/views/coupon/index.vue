@@ -132,11 +132,16 @@
   import {parseTime} from '@/utils'
   import Pagination from '@/components/Pagination' // secondary package based on el-pagination
   import Upload from '@/components/Upload/UploadImage' // secondary package based on el-pagination
+import { mapGetters } from "vuex";
 
   export default {
     name: 'ComplexTable',
     components: {Pagination, Upload},
     directives: {waves},
+        computed: {
+ 
+    ...mapGetters(["shop_id"])
+  },
     filters: {
       statusFilter(status) {
         const statusMap = {
@@ -221,6 +226,7 @@
       },
       getList() {
         this.listLoading = true
+        this.listQuery.shop_id=this.shop_id
         GetDataByList(this.listQuery).then(response => {
           this.list = response.data.data
           console.log(this.list)

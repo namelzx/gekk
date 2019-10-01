@@ -11,6 +11,6 @@ namespace app\common\model;
 
 class GoodsSukModel extends BaseModel
 {
-    protected $table='ee_goods_suk';
+    protected $table = 'ee_goods_suk';
 
 }

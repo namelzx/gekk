@@ -219,11 +219,11 @@
 }
 
 .col-m {
-  color: #ff495e !important;
+  color: black !important;
 }
 
 .col-s {
-  color: #be0117 !important;
+  color: black !important;
 }
 
 .col-green {

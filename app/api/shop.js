@@ -14,12 +14,34 @@ class ShopModel extends HTTP {
     this.request(params)
   }
 
-  //首页轮播图
+  
+
   GetShopGoodsByList(shop_id, res) {
     var params = {
       url: 'shop/GetShopGoodsByList',//接口路径
       method: 'get', //请求方式
+      data: { shop_id },
+      success: res
+    }
+    this.request(params)
+  }
+
+  //获取店铺所有的商品分类
+  GetShopListGoodsByCategory(shop_id, res) {
+    var params = {
+      url: 'shop/GetShopListGoodsByCategory',//接口路径
+      method: 'get', //请求方式
       data: { shop_id},
+      success: res
+    }
+    this.request(params)
+  }
+
+  GetShopListGoodsByList(category_id, res) {
+    var params = {
+      url: 'shop/GetShopListGoodsByList',//接口路径
+      method: 'get', //请求方式
+      data: { category_id },
       success: res
     }
     this.request(params)
