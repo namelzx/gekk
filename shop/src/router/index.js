@@ -141,13 +141,19 @@ export const constantRoutes = [
     path: '/article',
     component: Layout,
     redirect: 'article',
-    meta: { title: '文章管理', icon: 'international' },
+    meta: { title: '内容管理', icon: 'international' },
     children: [
       {
         path: 'article',
         component: () => import('@/views/article/index'),
         name: 'article',
         meta: { title: '文章管理', icon: 'international' }
+      },
+      {
+        path: 'banner',
+        component: () => import('@/views/article/banner'),
+        name: 'banner',
+        meta: { title: '店铺轮播', icon: 'international' }
       },
       {
         path: 'create',

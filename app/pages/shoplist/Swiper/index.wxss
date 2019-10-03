@@ -107,6 +107,7 @@ swiper .wx-swiper-dot-active::before {
   top: 0;
   left: 0;
   right: 0;
+  background: -webkit-linear-gradient(-2deg, transparent 30rpx, #fff 33rpx);
   background: linear-gradient(-2deg, transparent 30rpx, #fff 33rpx);
   height: 86rpx;
   z-index: 30;
@@ -117,8 +118,10 @@ swiper .wx-swiper-dot-active::before {
   bottom: -1rpx;
   left: 0;
   right: 0;
+  background: -webkit-linear-gradient(-2deg, transparent 30rpx, #fff 33rpx);
   background: linear-gradient(-2deg, transparent 30rpx, #fff 33rpx);
   height: 60rpx;
-  rotate: 180deg;
+  -webkit-transform: rotate(180reg);
+  transform: rotate(180deg);
   z-index: 30;
 }

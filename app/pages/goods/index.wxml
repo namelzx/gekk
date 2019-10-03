@@ -190,7 +190,7 @@
         <view class="shop-text">商铺</view>
       </view>
       <view class="shop-icon" bindtap="openCart">
-        <van-tag plain round type="danger">{{cart}}</van-tag>
+        <van-tag plain round type="danger">{{totalCount}}</van-tag>
         <van-icon name="shopping-cart-o" />
         <view class="shop-text">购物车</view>
       </view>

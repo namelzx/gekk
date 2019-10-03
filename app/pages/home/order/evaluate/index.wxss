@@ -95,7 +95,7 @@ page {
   padding-top: 20rpx;
 }
 .picture .right {
-  width: 610rpx;
+  /* width: 610rpx; */
   font-size: 24rpx;
   float: left;
   color: #888;

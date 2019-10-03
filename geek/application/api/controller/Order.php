@@ -11,6 +11,7 @@ namespace app\api\controller;
 
 use app\common\model\EvaluateImgModel;
 use app\common\model\EvaluateModel;
+use app\common\model\GoodsModel;
 use app\common\model\IntegralLogModel;
 use app\common\model\OrderGoodsModel;
 use app\common\model\OrderInvoiceModel;
@@ -27,7 +28,7 @@ class Order extends Base
 
         $data = input('param.');
         $data['order']['order_no'] = 'BSBN' . time() . mt_rand(100, 1000000);
-        $data['order']['status']=2;
+        $data['order']['status'] = 2;
         $res = OrderModel::create($data['order']);
         if (!empty($data['order']['isInvoice'])) {
             if ($data['order']['isInvoice'] == 1) {//开发票
@@ -35,16 +36,16 @@ class Order extends Base
                 OrderInvoiceModel::create($data['invoice']);
             }
         }
-        $arr=[];
+        $arr = [];
         foreach ($data['goods'] as $i => $item) {
-          $arr[$i]['goods_id']=$item['goods_id'];
-            $arr[$i]['order_id']=$res['id'];
-            $arr[$i]['images_url']=$item['images_url'];
-            $arr[$i]['name']=$item['name'];
-            $arr[$i]['num']=$item['num'];
-            $arr[$i]['price']=$item['price'];
-            $arr[$i]['suk_id']=$item['suk_id'];
-            $arr[$i]['suk_name']=$item['suk_name'];
+            $arr[$i]['goods_id'] = $item['goods_id'];
+            $arr[$i]['order_id'] = $res['id'];
+            $arr[$i]['images_url'] = $item['images_url'];
+            $arr[$i]['name'] = $item['name'];
+            $arr[$i]['num'] = $item['num'];
+            $arr[$i]['price'] = $item['price'];
+            $arr[$i]['suk_id'] = $item['suk_id'];
+            $arr[$i]['suk_name'] = $item['suk_name'];
         }
         OrderGoodsModel::PostByData($arr);
         return json(msg(200, $res, '3'));
@@ -75,6 +76,9 @@ class Order extends Base
         return json($res);
     }
 
+    /**
+     * 确认收货
+     */
     public function GetIdByCancel()
     {
         $data = input('param.');
@@ -91,6 +95,9 @@ class Order extends Base
             if ($item['goods']['integral'] > 0) {
                 IntegralLogModel::create($instdata);
             }
+            GoodsModel::where('id', $item['goods']['id'])->setInc('sales',$item['num']);
+            //进行分销操作
+            $this->distribution($order['user_id'], $order['id'], $item['id'], 3, $item['goods']['integral'], $item['goods']['price']);
         }
         return json(msg(200, $res, $goodsall));
     }

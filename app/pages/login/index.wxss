@@ -58,7 +58,8 @@
   right: 0;
   background: linear-gradient(-2deg, transparent 30rpx, #fff 33rpx);
   height: 36rpx;
-  rotate: 180deg;
+  transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
 }
 
 .bg {
@@ -127,7 +128,6 @@
   flex-direction: row;
 }
 
-
 .valid-input input {
   width: 45%;
 }
@@ -143,6 +143,7 @@
   margin-left: 2%;
   /* position: relative; */
 }
+
 /* .valid-mask {
   position: absolute;
   top: 0;
@@ -153,7 +154,6 @@
   z-index: 20;
 } */
 
-
 /* 60s 后获取验证码 */
 
 .get-code-later {
@@ -161,10 +161,10 @@
 }
 
 .bottom {
-     background: linear-gradient(to right, #fe6b68, #ff6b8f);
-    border-radius: 20rpx;
-    margin: 70rpx 50rpx;
-    font-size: 35rpx;
+  background: linear-gradient(to right, #fe6b68, #ff6b8f);
+  border-radius: 20rpx;
+  margin: 70rpx 50rpx;
+  font-size: 35rpx;
 }
 
 button {
@@ -174,14 +174,14 @@ button {
   /* padding: 20rpx 30rpx; */
   margin-bottom: 10rpx;
   background: #fff;
-
-}
-button .wx-login {
-  margin:0;
- margin-left: 50rpx;
- width: 70%;
 }
 
+button.wx-login {
+  margin: 140rpx auto;
+  width: 70%;
+  font-size: 32rpx;
+  padding: 14rpx 20rpx;
+}
 
 button::after {
   border: none;

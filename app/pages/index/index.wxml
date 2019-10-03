@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="locate-item">
+  <view class="locate-item"  data-id="{{avatarList[0].id}}" bindtap="toShop">
     <van-icon name="location-o" class="locate-icon"/>
     <view class="shop-name">
       <text>{{avatarList[0].name}}</text>

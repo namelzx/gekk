@@ -36,31 +36,9 @@ Page({
     images_url:'',
     user_id: 1,
     // 评论数据
-    ratings: [{
-        id: "01",
-        username: "李先生",
-        avatar: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1568441257&di=51141b3beb9703bba100f9cbb63439e4&imgtype=jpg&er=1&src=http%3A%2F%2Fimg.qqzhi.com%2Fuploads%2F2019-01-31%2F214531458.png",
-        star: 4,
-        content: "一分价钱一分货，不变的真理。一周前买了个500的玩具机，号称20Bar压力，实际用的是51㎜增压粉碗，造成假油脂的假象，用两天就退货了！",
-        rateImg: [
-          '../../../static/images/rate-img-1.png',
-          '../../../static/images/rate-img-2.png',
-          '../../../static/images/rate-img-3.png',
-        ]
-      },
-      {
-        id: "02",
-        username: "林小姐",
-        avatar: "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=437857768,3973195470&fm=26&gp=0.jpg",
-        star: 5,
-        content: "店家送的咖啡豆味道和油脂都很好，也很香。咖啡机也很给力，有一种以前在咖啡馆做吧台的感觉，就是对蒸汽喷头的出气量还不太熟悉...",
-        rateImg: [
-          '../../../static/images/rate-img-1.png',
-          '../../../static/images/rate-img-2.png',
-          '../../../static/images/rate-img-3.png',
-        ]
-      }
+    ratings: [
     ],
+    totalCount:0,
     indicatorDots: false,
     autoplay: true,
     interval: 2000,
@@ -97,6 +75,8 @@ Page({
   onLoad(option) {
 
     var that = this;
+    that.calTotalPrice();
+   
     shopmodel.GetIdGoodsByInfo(option.id, res => {
       res.suk_name = res.suk[0].name
       res.price = res.suk[0].price
@@ -269,11 +249,15 @@ Page({
 
   // 打开商铺
   openShop() {
-    Toast.success("打开商铺")
+    wx.navigateBack({
+      
+    })
   },
   // 打开购物车 
   openCart() {
-    Toast.success("打开购物车")
+    wx.navigateTo({
+      url: '/pages/cart/index',
+    })
   },
   // 加入购物车
   addToCart() {
@@ -322,6 +306,7 @@ Page({
     var suk_name = that.data.detailed.suk_name //选择的suk信息
     var images_url = that.data.images_url
     var name = that.data.detailed.name;
+    var mark = 'a' + goods_id + 'b' + suk_id
     var obj = {
       goods_id: goods_id,
       num: num,
@@ -329,9 +314,10 @@ Page({
       suk_name: suk_name,
       suk_id: suk_id,
       price,
-      images_url
+      images_url,
+      mark
     };
-    var carArray1 = this.data.carArray.filter(item => item.suk_id != suk_id)
+    var carArray1 = this.data.carArray.filter(item => item.mark != mark)
     carArray1.push(obj)
     wx.setStorageSync('cart', carArray1)
     this.setData({
@@ -339,5 +325,26 @@ Page({
     })
   
 
-  }
+  },
+  calTotalPrice: function () {
+
+    var carArray = this.data.carArray;
+    if (carArray.length < 1) {
+      carArray = wx.getStorageSync('cart')
+    }
+    var totalPrice = 0;
+    var totalCount = 0;
+    for (var i = 0; i < carArray.length; i++) {
+      totalPrice += carArray[i].price * carArray[i].num;
+      totalCount += carArray[i].num
+    }
+    console.log(totalCount)
+    this.setData({
+      totalPrice: totalPrice,
+      totalCount: totalCount,
+      carArray
+
+      //payDesc: this.payDesc()
+    });
+  },
 })

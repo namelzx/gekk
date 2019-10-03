@@ -87,13 +87,15 @@ Page({
   onChangeemail(event) {
     let email = "userInfo.email"
     this.setData({
-      [temp]: event.detail
+      [email]: event.detail
     })
+
   },
   onChangeaddress(event) {
-    let email = "userInfo.email"
+    let address = "userInfo.address"
+    
     this.setData({
-      [temp]: event.detail
+      [address]: event.detail
     })
   },
   onChangesex(event) {

@@ -9,8 +9,11 @@
 namespace app\api\controller;
 
 
+use app\common\model\DistModel;
 use app\common\model\PositionModel;
+use app\common\model\UserModel;
 use think\Controller;
+use think\Db;
 
 
 header('Access-Control-Allow-Origin:*');
@@ -82,6 +85,46 @@ class Base extends Controller
         }
     }
 
+    /**
+     * @param int $user_id 购买人id
+     * @param int $dis 分销层次
+     * @param int $to 商品积分
+     * @param int $oder_id 订单id
+     * @param int $goods_id 购买商品id
+     *
+     * @return array
+     * 计算分销公式
+     */
+    public function distribution($user_id = 1, $oder_id = 1, $goods_id = 1, $dis = 3, $to = 100, $price = 0)
+    {
+        /**
+         * 自定义上级查询
+         */
+        //先获取下单用户
+        $user = UserModel::where('id', $user_id)->find();
+        $arr = [];
+        $p_id = $user['p_id'];
+        $create_time = time();
+        for ($i = 0; $i < $dis; $i++) {// 循环查询下级用户
+            $res = UserModel::where('id', $p_id)->find();
+            if (empty($res)) {//当查询为空的时候结束。
+                break;
+            }
+            $p_id = $res['p_id'];
+            $level = $i + 1;
+            $dist = DistModel::where('level', $level)->find();
+            $arr[$i] = [
+                'integral' => $to * $dist['dist'],
+                'd_id' => $user_id,
+                'user_id' => $res['id'],
+                'goods_id' => $goods_id,
+                'order_id' => $oder_id,
+                'create_time' => $create_time,
+                'price' => $price
+            ];
+        }
+        Db::name('dist_order')->insertAll($arr);
+    }
 
 
 }

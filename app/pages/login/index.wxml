@@ -21,11 +21,11 @@
   </view>
   <view class="login-choose" wx:if="{{isPhoneLogin===1}}">
 
-    <button open-type="getUserInfo" bindgetuserinfo="onwxLogin">
+    <button class="wx-login" open-type="getUserInfo" bindgetuserinfo="onwxLogin">
 
-      <view class="option wx-login">
+      <!-- <view class="option wx-login"> -->
         <text>微信一键登录</text>
-      </view>
+      <!-- </view> -->
     </button>
     <!-- <view class="option phone-login" bindtap="handlePhoneLogin">
       <text>手机验证码登录</text>

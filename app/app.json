@@ -33,7 +33,8 @@
     "pages/home/distributor/buffer/index",
     "pages/home/score/pay/index",
     "pages/cart/index",
-    "pages/shoplist/index"
+    "pages/shoplist/index",
+    "pages/home/distributor/distributor/index"
   ],
   "permission": {
     "scope.userLocation": {

@@ -8,6 +8,8 @@ Route::group('api/admin/', function () {
     Route::rule('upload', 'admin/Base/upload'); /*文件上传*/
 
 
+    Route::post('dist/PostDataBySave', 'admin/Dist/PostDataBySave'); /* 分销管理*/
+
     Route::get('city/getProvinces', 'admin/shop/getProvinces'); /* 获取省份*/
     Route::get('city/getCity', 'admin/shop/getCity'); /* 获取城市*/
     Route::get('city/getArea', 'admin/shop/getArea'); /* 获取区域*/

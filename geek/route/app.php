@@ -10,6 +10,10 @@ Route::group('api/app/', function () {
 
     Route::rule('upload', 'api/Base/upload'); /*文件上传*/
 
+    Route::rule('distribution', 'api/Base/distribution'); /*文件上传*/
+
+
+    Route::rule('GetBannerByList', 'api/Banner/GetBannerByList'); /*文件上传*/
 
     Route::post('shop/GetShopByList', 'api/shop/GetShopByList'); /* 登陆*/
     Route::get('shop/GetShopGoodsByList', 'api/shop/GetShopGoodsByList'); /* 根据店铺id获取店铺所有的数据*/
@@ -19,8 +23,6 @@ Route::group('api/app/', function () {
 
     Route::get('shop/GetShopListGoodsByCategory', 'api/shop/GetShopListGoodsByCategory'); /* 根据店铺店铺展示2*/
     Route::get('shop/GetShopListGoodsByList', 'api/shop/GetShopListGoodsByList'); /* 根据分类得到商品id*/
-
-
 
 
     Route::get('city/getProvinces', 'api/shop/getProvinces'); /* 获取省份*/

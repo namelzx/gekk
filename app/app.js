@@ -39,6 +39,6 @@ App({
     user_id: 1,//当前用户id
     isLogin: false,//是否登陆
     integral:3,
-    base_url:'http://127.0.0.1:8000/api/app/'
+    base_url:'https://hhh.10huisp.com/api/app/'
   }
 })

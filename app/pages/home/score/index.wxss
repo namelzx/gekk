@@ -63,11 +63,10 @@
 }
 
 .img-wrapper image {
-  width: 150rpx;
-  height: 168rpx;
-  max-width: 150rpx;
-  max-height: 170rpx;
-  margin: 30rpx 67rpx;
+  width: 284rpx;
+  height: 230rpx;
+  max-width: 284rpx;
+  max-height: 230rpx;
 }
 
 .item-info {

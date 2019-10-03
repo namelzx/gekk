@@ -32,8 +32,6 @@ Page({
   },
   // 分销订单
   clickToOrder() {
-    Toast('体验版暂无法使用')
-    return;
     wx.navigateTo({
       url: './order/index'
     })

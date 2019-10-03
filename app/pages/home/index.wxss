@@ -52,8 +52,8 @@
 }
 
 .user-name-level .user-level image {
-  width: 35%;
-  height: 40%;
+  width: 30%;
+  height: 45%;
 }
 
 .user-info-wrapper .icon {
@@ -153,5 +153,4 @@
   font-size: 40rpx;
   margin-right: 30rpx;
   color: #333;
-
 }

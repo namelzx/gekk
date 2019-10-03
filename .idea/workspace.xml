@@ -2,92 +2,35 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="01f06058-1e1a-4f57-b129-c0d3a0c29f53" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/webServers.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geek/application/admin/controller/IntGoods.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geek/application/api/controller/IntGoods.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geek/application/api/controller/IntOrder.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geek/application/common/model/IntegralGoodsImagesModel.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geek/application/common/model/IntegralGoodsModel.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geek/application/common/model/IntegralGoodsSukModel.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geek/application/common/model/IntegralOrderCourierModel.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geek/application/common/model/IntegralOrderGoodsModel.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geek/application/common/model/IntegralOrderModel.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/geek/application/shop/controller/IntGoods.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/geek/application/api/controller/Banner.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/geek/application/common/model/BannerModel.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/geek/application/common/model/DistModel.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/geek/application/shop/controller/Banner.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/shop.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/shop.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/common.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/pages/goods/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/goods/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/pages/goods/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/goods/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/pages/goods/ratings/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/goods/ratings/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/pages/home/distributor/buffer/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/home/distributor/buffer/index.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/pages/home/distributor/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/home/distributor/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/pages/home/distributor/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/home/distributor/index.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/pages/home/distributor/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/home/distributor/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/pages/home/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/home/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/pages/home/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/home/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/pages/home/map/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/home/map/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/pages/home/map/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/home/map/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/pages/home/order/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/home/order/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/pages/home/profile/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/home/profile/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/pages/home/profile/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/home/profile/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/pages/home/score/detail/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/home/score/detail/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/pages/home/score/detail/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/home/score/detail/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/pages/home/score/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/home/score/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/pages/home/score/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/home/score/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/pages/index/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/index/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/pages/index/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/index/index.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/pages/home/score/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/home/score/index.wxss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/pages/index/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/index/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/pages/index/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/index/index.wxss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/pages/login/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/login/index.wxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/pages/login/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/login/index.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/pages/reads/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/reads/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/pages/reads/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/reads/index.wxss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/pages/shop/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/shop/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/pages/shop/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/shop/index.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/pages/shop/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/shop/index.wxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/pages/shop/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/shop/index.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/pages/shop/pay/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/shop/pay/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/pages/shop/pay/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/shop/pay/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/pages/shop/pay/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/shop/pay/index.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/pages/shop/swiper/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/shop/swiper/index.wxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/pages/shop/swiper/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/shop/swiper/index.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/pages/shoplist/Swiper/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/shoplist/Swiper/index.wxss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/project.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/project.config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/images/mall-img-1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/images/mall-img-2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/utils/common/common.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/common/common.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/utils/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/utils/util.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils/util.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/geek/application/api/controller/Dist.php" beforeDir="false" afterPath="$PROJECT_DIR$/geek/application/api/controller/Dist.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/geek/application/api/controller/Order.php" beforeDir="false" afterPath="$PROJECT_DIR$/geek/application/api/controller/Order.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/geek/application/api/controller/Shop.php" beforeDir="false" afterPath="$PROJECT_DIR$/geek/application/api/controller/Shop.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/geek/application/api/controller/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/geek/application/api/controller/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/geek/application/common/model/ArticleModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/geek/application/common/model/ArticleModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/geek/application/common/model/CategoryModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/geek/application/common/model/CategoryModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/geek/application/common/model/CouponModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/geek/application/common/model/CouponModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/geek/application/common/model/GoodsModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/geek/application/common/model/GoodsModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/geek/application/common/model/GoodsSukModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/geek/application/common/model/GoodsSukModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/geek/application/common/model/OrderGoodsModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/geek/application/common/model/OrderGoodsModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/geek/application/common/model/OrderModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/geek/application/common/model/OrderModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/geek/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/geek/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/geek/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/geek/config/database.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/geek/route/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/geek/route/admin.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/geek/route/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/geek/route/app.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/geek/route/shop.php" beforeDir="false" afterPath="$PROJECT_DIR$/geek/route/shop.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop/.env.development" beforeDir="false" afterPath="$PROJECT_DIR$/shop/.env.development" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop/.env.production" beforeDir="false" afterPath="$PROJECT_DIR$/shop/.env.production" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/shop/src/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shop/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/shop/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop/src/router/modules/order.js" beforeDir="false" afterPath="$PROJECT_DIR$/shop/src/router/modules/order.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop/src/store/modules/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/shop/src/store/modules/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop/src/views/article/components/Detail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/shop/src/views/article/components/Detail.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop/src/views/article/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/shop/src/views/article/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop/src/views/coupon/components/Detail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/shop/src/views/coupon/components/Detail.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop/src/views/coupon/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/shop/src/views/coupon/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop/src/views/goods/category.vue" beforeDir="false" afterPath="$PROJECT_DIR$/shop/src/views/goods/category.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop/src/views/goods/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/shop/src/views/goods/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop/src/views/order/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/shop/src/views/order/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop/src/views/order/orders.vue" beforeDir="false" afterPath="$PROJECT_DIR$/shop/src/views/order/orders.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop/vue.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/shop/vue.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop/src/views/goods/components/Detail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/shop/src/views/goods/components/Detail.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -101,97 +44,82 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/geek/application/common/model/GoodsModel.php">
+        <entry file="file://$PROJECT_DIR$/geek/application/common/model/BannerModel.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="29" column="27" selection-start-line="29" selection-start-column="27" selection-end-line="29" selection-end-column="27" />
+            <state relative-caret-position="330">
+              <caret line="27" selection-start-line="27" selection-end-line="27" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/geek/application/shop/controller/Order.php">
+        <entry file="file://$PROJECT_DIR$/geek/route/admin.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="22" column="40" selection-start-line="22" selection-start-column="27" selection-end-line="22" selection-end-column="40" />
+            <state relative-caret-position="161">
+              <caret line="13" column="34" lean-forward="true" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/geek/route/app.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="191">
+              <caret line="71" column="11" lean-forward="true" selection-start-line="71" selection-start-column="11" selection-end-line="71" selection-end-column="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/geek/application/api/controller/Banner.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="286">
+              <caret line="33" column="5" lean-forward="true" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
               <folding>
-                <element signature="e#120#159#0#PHP" expanded="true" />
+                <element signature="e#119#152#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/geek/application/common/model/OrderModel.php">
+        <entry file="file://$PROJECT_DIR$/geek/application/api/controller/Base.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1185">
-              <caret line="84" column="20" selection-start-line="84" selection-start-column="20" selection-end-line="84" selection-end-column="20" />
+            <state relative-caret-position="286">
+              <caret line="125" column="28" selection-start-line="125" selection-start-column="28" selection-end-line="125" selection-end-column="28" />
+              <folding>
+                <element signature="e#119#150#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/geek/application/shop/controller/Coupon.php">
+        <entry file="file://$PROJECT_DIR$/geek/application/common/model/DistOrderModel.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="22" column="41" selection-start-line="22" selection-start-column="28" selection-end-line="22" selection-end-column="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/geek/application/common/model/CouponModel.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="29" column="6" selection-start-line="29" selection-start-column="6" selection-end-line="31" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/geek/application/shop/controller/Category.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="22" column="43" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="43" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/geek/application/common/model/CategoryModel.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="31" column="36" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/geek/application/shop/controller/Article.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="23" column="42" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="42" />
+            <state relative-caret-position="135">
+              <caret line="14" column="40" selection-start-line="14" selection-start-column="40" selection-end-line="14" selection-end-column="40" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/geek/application/common/model/ArticleModel.php">
+        <entry file="file://$PROJECT_DIR$/geek/application/api/controller/Order.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="271">
-              <caret line="36" column="9" selection-start-line="36" selection-start-column="9" selection-end-line="36" selection-end-column="9" />
+            <state relative-caret-position="298">
+              <caret line="97" column="84" selection-start-line="97" selection-start-column="84" selection-end-line="97" selection-end-column="84" />
+              <folding>
+                <element signature="e#119#157#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/geek/application/shop/controller/Goods.php">
+        <entry file="file://$PROJECT_DIR$/geek/application/shop/controller/Banner.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="23" column="40" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="40" />
-              <folding>
-                <element signature="e#120#158#0#PHP" expanded="true" />
-              </folding>
+            <state relative-caret-position="402">
+              <caret line="53" selection-start-line="53" selection-end-line="53" />
             </state>
           </provider>
         </entry>
@@ -208,10 +136,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>validUsername</find>
-      <find>validateUsername</find>
-      <find>goods/GetDataByList</find>
-      <find>ParameterModel</find>
       <find>GetIdGoodsByInfo</find>
       <find>GetUserByCoupons</find>
       <find>getAddress</find>
@@ -238,6 +162,10 @@
       <find>商品SUK</find>
       <find>checked</find>
       <find>GetShopGoodsByList</find>
+      <find>dist/PostDataBySave</find>
+      <find>PostDataBySave</find>
+      <find>order/GetIdByCancel</find>
+      <find>GetIdByCancel</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -246,12 +174,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/geek/application/api/controller/Article.php" />
-        <option value="$PROJECT_DIR$/geek/application/admin/controller/Base.php" />
-        <option value="$PROJECT_DIR$/admin/src/api/city.js" />
-        <option value="$PROJECT_DIR$/admin/src/views/apps/components/AppsDetail.vue" />
-        <option value="$PROJECT_DIR$/admin/src/views/distribution/index.vue" />
-        <option value="$PROJECT_DIR$/admin/src/views/distribution/order.vue" />
         <option value="$PROJECT_DIR$/admin/src/views/distribution/withdrawal.vue" />
         <option value="$PROJECT_DIR$/admin/src/router/modules/distribution.js" />
         <option value="$PROJECT_DIR$/geek/application/common/model/UserDistModel.php" />
@@ -267,9 +189,7 @@
         <option value="$PROJECT_DIR$/geek/application/common/model/IntegralGoodsSukModel.php" />
         <option value="$PROJECT_DIR$/geek/application/common/model/GoodsSukModel.php" />
         <option value="$PROJECT_DIR$/geek/application/shop/controller/IntGoods.php" />
-        <option value="$PROJECT_DIR$/geek/route/shop.php" />
         <option value="$PROJECT_DIR$/geek/application/admin/controller/IntGoods.php" />
-        <option value="$PROJECT_DIR$/geek/route/admin.php" />
         <option value="$PROJECT_DIR$/admin/src/api/goods.js" />
         <option value="$PROJECT_DIR$/admin/src/views/integral/index.vue" />
         <option value="$PROJECT_DIR$/geek/application/api/controller/IntGoods.php" />
@@ -279,12 +199,9 @@
         <option value="$PROJECT_DIR$/geek/application/common/model/IntegralOrderGoodsModel.php" />
         <option value="$PROJECT_DIR$/geek/application/api/controller/IntOrder.php" />
         <option value="$PROJECT_DIR$/geek/application/api/controller/User.php" />
-        <option value="$PROJECT_DIR$/geek/route/app.php" />
         <option value="$PROJECT_DIR$/geek/application/common/model/OrderGoodsModel.php" />
-        <option value="$PROJECT_DIR$/geek/application/api/controller/Order.php" />
         <option value="$PROJECT_DIR$/geek/application/common/model/GoodsModel.php" />
         <option value="$PROJECT_DIR$/geek/application/api/controller/Shop.php" />
-        <option value="$PROJECT_DIR$/geek/config/database.php" />
         <option value="$PROJECT_DIR$/geek/config/app.php" />
         <option value="$PROJECT_DIR$/app/app.json" />
         <option value="$PROJECT_DIR$/admin/.env.development" />
@@ -297,6 +214,17 @@
         <option value="$PROJECT_DIR$/geek/application/common/model/CouponModel.php" />
         <option value="$PROJECT_DIR$/geek/application/common/model/CategoryModel.php" />
         <option value="$PROJECT_DIR$/geek/application/common/model/ArticleModel.php" />
+        <option value="$PROJECT_DIR$/geek/config/database.php" />
+        <option value="$PROJECT_DIR$/geek/application/common/model/BannerModel.php" />
+        <option value="$PROJECT_DIR$/geek/application/shop/controller/Banner.php" />
+        <option value="$PROJECT_DIR$/geek/route/shop.php" />
+        <option value="$PROJECT_DIR$/geek/route/app.php" />
+        <option value="$PROJECT_DIR$/geek/application/common/model/DistModel.php" />
+        <option value="$PROJECT_DIR$/geek/route/admin.php" />
+        <option value="$PROJECT_DIR$/geek/application/api/controller/Banner.php" />
+        <option value="$PROJECT_DIR$/geek/application/common/model/DistOrderModel.php" />
+        <option value="$PROJECT_DIR$/geek/application/api/controller/Base.php" />
+        <option value="$PROJECT_DIR$/geek/application/api/controller/Order.php" />
       </list>
     </option>
   </component>
@@ -378,6 +306,12 @@
               <item name="common" type="462c0819:PsiDirectoryNode" />
               <item name="model" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="极客联盟" type="b2602c69:ProjectViewProjectNode" />
+              <item name="极客联盟" type="462c0819:PsiDirectoryNode" />
+              <item name="geek" type="462c0819:PsiDirectoryNode" />
+              <item name="route" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -427,18 +361,19 @@
       <workItem from="1569477838361" duration="14480000" />
       <workItem from="1569645619427" duration="19255000" />
       <workItem from="1569803708212" duration="7975000" />
-      <workItem from="1569843133605" duration="654000" />
+      <workItem from="1569843133605" duration="3624000" />
+      <workItem from="1570000477527" duration="9201000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="133579000" />
+    <option name="totallyTimeSpent" value="145750000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="726" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49882352" visible="true" weight="0.2819063" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49882352" visible="true" weight="0.28594506" />
       <window_info id="Structure" order="1" sideWeight="0.5011765" side_tool="true" weight="0.24959612" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -451,9 +386,9 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.329653" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.329653" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
-      <window_info anchor="bottom" id="File Transfer" order="12" weight="0.329653" />
+      <window_info anchor="bottom" id="File Transfer" order="12" weight="0.5" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -476,68 +411,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/admin/src/api/shop.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" selection-start-line="1" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/src/api/dist.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="30" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/geek/application/admin/controller/Dist.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
-          <folding>
-            <element signature="e#121#156#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin/src/views/distribution/apply.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="168" column="22" selection-start-line="168" selection-start-column="22" selection-end-line="168" selection-end-column="22" />
-          <folding>
-            <element signature="e#2773#2806#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/geek/application/common/model/IntegralLogModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="14" column="40" selection-start-line="14" selection-start-column="40" selection-end-line="14" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/geek/application/common/model/IntegralGoodsImagesModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/geek/application/common/model/IntegralGoodsSukModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="13" column="43" selection-start-line="13" selection-start-column="43" selection-end-line="13" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/geek/application/common/model/GoodsSukModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/geek/application/common/model/IntegralGoodsModel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
@@ -565,13 +438,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/geek/route/admin.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="32" column="25" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/admin/src/api/goods.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -590,16 +456,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
           <caret line="44" column="70" selection-start-line="44" selection-start-column="70" selection-end-line="44" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/geek/application/admin/controller/IntGoods.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="20" column="14" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="14" />
-          <folding>
-            <element signature="e#121#167#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -653,20 +509,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/geek/route/app.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="20" column="43" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/geek/route/shop.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="27" column="3" selection-start-line="27" selection-start-column="3" selection-end-line="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/geek/application/api/controller/Coupon.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="690">
@@ -701,13 +543,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/geek/config/database.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="29" column="24" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/app.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="283">
@@ -728,16 +563,6 @@
           <caret line="85" column="29" selection-start-line="85" selection-start-column="29" selection-end-line="85" selection-end-column="29" />
           <folding>
             <element signature="e#119#154#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/geek/application/api/controller/Order.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="32" column="47" selection-start-line="32" selection-start-column="47" selection-end-line="32" selection-end-column="47" />
-          <folding>
-            <element signature="e#119#157#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -842,20 +667,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/geek/application/shop/controller/Category.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="22" column="43" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/geek/application/common/model/CategoryModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="31" column="36" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/geek/application/shop/controller/Article.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -877,6 +688,129 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="271">
           <caret line="36" column="9" selection-start-line="36" selection-start-column="9" selection-end-line="36" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/geek/config/template.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/geek/config/database.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="30" column="13" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/geek/route/shop.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1245">
+          <caret line="88" column="50" selection-start-line="88" selection-start-column="50" selection-end-line="88" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/geek/application/shop/controller/Category.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="870">
+          <caret line="63" column="5" selection-start-line="16" selection-start-column="1" selection-end-line="63" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/geek/application/shop/controller/Banner.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="402">
+          <caret line="53" selection-start-line="53" selection-end-line="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/geek/application/common/model/DistModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="13" column="31" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/geek/application/common/model/CategoryModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="23" column="2" selection-start-line="23" selection-start-column="2" selection-end-line="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/geek/application/admin/controller/Dist.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="27" column="34" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="34" />
+          <folding>
+            <element signature="e#121#156#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/geek/application/admin/controller/IntGoods.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="20" column="14" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="14" />
+          <folding>
+            <element signature="e#121#167#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/geek/application/common/model/BannerModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/geek/route/admin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="13" column="34" lean-forward="true" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/geek/route/app.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="71" column="11" lean-forward="true" selection-start-line="71" selection-start-column="11" selection-end-line="71" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/geek/application/api/controller/Banner.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="33" column="5" lean-forward="true" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
+          <folding>
+            <element signature="e#119#152#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/geek/application/common/model/DistOrderModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="14" column="40" selection-start-line="14" selection-start-column="40" selection-end-line="14" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/geek/application/api/controller/Base.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="125" column="28" selection-start-line="125" selection-start-column="28" selection-end-line="125" selection-end-column="28" />
+          <folding>
+            <element signature="e#119#150#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/geek/application/api/controller/Order.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="97" column="84" selection-start-line="97" selection-start-column="84" selection-end-line="97" selection-end-column="84" />
+          <folding>
+            <element signature="e#119#157#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
