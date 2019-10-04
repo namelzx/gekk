@@ -26,9 +26,9 @@ class Dist extends Base
         $cheLog = IntegralLogModel::where('user_id', $data['user_id'])
             ->whereTime('create_time', 'd')
             ->count();
-        $user = UserModel::get($data['user_id']);
-
-        return json(['data' => $res, 'count' => $cheLog, 'integral' => $user['integral']]);
+        $integral = IntegralLogModel::where('user_id', $data['user_id'])->where('type_', 1)->sum('integral');
+        $useintegral= IntegralLogModel::where('user_id', $data['user_id'])->where('type_', 2)->sum('integral');
+        return json(['data' => $res, 'count' => $cheLog, 'integral' => $integral-$useintegral]);
     }
 
     public function PostUserByIntegral()
@@ -63,14 +63,23 @@ class Dist extends Base
 
     public function GrugTeam($data)
     {
-
         $arr = [];
         foreach ($data as $i => $item) {
             $arr[$i] = $item;
             $arr[$i]['totalPrice'] = OrderModel::where('user_id', $item['id'])->sum('totalPrice');
         }
         return $arr;
+    }
 
+    /**
+     * 获取用户积分使用情况
+     */
+    public function GetUserByIntegral()
+    {
+        $data = input('param.');
+        $sum = IntegralLogModel::where('user_id', $data['user_id'])->sum('integral');
+        $usesum = IntegralLogModel::where('user_id', $data['user_id'])->where('type_', 2)->sum('integral');
+        return json(['sum' => $sum, 'usersum' => $usesum]);
     }
 
 }

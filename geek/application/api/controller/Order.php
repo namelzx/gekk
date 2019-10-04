@@ -90,12 +90,13 @@ class Order extends Base
             $instdata = [
                 'title' => '购买商品',
                 'type' => 2,
-                'integral' => $item['goods']['integral']//积分数量
+                'integral' => $item['goods']['integral'],//积分数量
+                'user_id' => $data['order']['user_id']
             ];
             if ($item['goods']['integral'] > 0) {
                 IntegralLogModel::create($instdata);
             }
-            GoodsModel::where('id', $item['goods']['id'])->setInc('sales',$item['num']);
+            GoodsModel::where('id', $item['goods']['id'])->setInc('sales', $item['num']);
             //进行分销操作
             $this->distribution($order['user_id'], $order['id'], $item['id'], 3, $item['goods']['integral'], $item['goods']['price']);
         }

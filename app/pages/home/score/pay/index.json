@@ -13,6 +13,7 @@
     "van-tab": "./../vant-weapp/dist/tab/index",
     "van-tabs": "./../vant-weapp/dist/tabs/index",
     "van-switch": "./../vant-weapp/dist/switch/index",
-    "van-toast": "./../vant-weapp/dist/toast/index"
+    "van-toast": "./../vant-weapp/dist/toast/index",
+      "van-dialog": "./../vant-weapp/dist/dialog/index"
   }
 }

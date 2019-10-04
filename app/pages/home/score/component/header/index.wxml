@@ -9,7 +9,7 @@
       <van-icon name="question-o" bindtap="clickToInstruction" class="ques-icon" />
     </view>
     
-    <view class="integral-num">{{userInfo.integral}}</view>
+    <view class="integral-num">{{integral}}</view>
     <view class="integral-category">
       <view class="exchange" bindtap="clickToExchange">
         <van-icon name="point-gift-o" class="exchange-icon" />我的兑换

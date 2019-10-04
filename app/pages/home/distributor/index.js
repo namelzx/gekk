@@ -1,6 +1,11 @@
 // pages/home/distributor/index.js
 import Toast from './../../../vant-weapp/dist/toast/toast';
+import {
+  DistModel
+} from './../../../api/dist.js'
 
+let distModel = new DistModel();
+let app = getApp();
 Page({
 
   /**
@@ -11,6 +16,7 @@ Page({
     distributor: true, //是否为经销商
     showBanner: false, 
     userinfo:{},
+    integral:{},
   },
   onClose(){
     this.setData({
@@ -30,6 +36,14 @@ Page({
     this.setData({
       userinfo
     })
+    var tmep={
+      user_id: app.globalData.user_id
+    }
+    distModel.GetUserByIntegral(tmep,res=>{
+      this.setData({
+        integral:res
+      })
+    })
   },
   previewImg: function (e) {
     var imgArr =[this.data.userinfo.bg];
@@ -43,8 +57,9 @@ Page({
   },
   // 提现明细
   clickToBill() {
-    Toast('体验版暂无法使用')
-    return;
+    wx.navigateTo({
+      url: '/pages/home/score/detail/index',
+    })
   },
   // 分销订单
   clickToOrder() {

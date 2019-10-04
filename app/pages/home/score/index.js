@@ -30,6 +30,7 @@ Page({
     listQuery:{
 
     },
+    integral:0,
     signIn: false,
     // mall:[]
     userinfo:{},
@@ -51,6 +52,9 @@ Page({
           signIn:true
         })
       }
+      that.setData({
+        integral: res.integral
+      })
     })
     userModel.GetUserByInfo(app.globalData.user_id,res=>{
       that.setData({
@@ -75,7 +79,7 @@ Page({
       distModel.PostUserByIntegral(temp,res=>{
         console.log(res)
         that.setData({
-          signIn:true,
+          signIn:true
         })
 
       })

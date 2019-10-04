@@ -34,10 +34,10 @@
         <view class="item-detail">
           <!-- type='1' 签到 -->
           <view class="detail-consume" >{{item.title}}</view>
-        
           <view class="detail-time">{{item.create_time}}</view>
         </view>
-        <view class="item-change">+{{item.integral}}</view>
+        <view class="item-change" wx:if="{{item.type_==1}}">+{{item.integral}}</view>
+    <view class="item-change red"  wx:if="{{item.type_==2}}">-{{item.integral}}</view>
       </view>
     </scroll-view>
   </view>

@@ -7,7 +7,11 @@ Component({
    */
   properties: {
     userInfo:{
-      type:Object
+      type:Object,
+     
+    },
+    integral:{
+      type:Number,
     }
   },
 

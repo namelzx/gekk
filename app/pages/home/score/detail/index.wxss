@@ -128,3 +128,7 @@
 .had-sign-in {
   background: -webkit-linear-gradient(left, #807f7f, #d8d7d6);
 }
+
+.red{
+  color: red;
+}

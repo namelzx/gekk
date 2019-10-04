@@ -9,6 +9,7 @@
 namespace app\api\controller;
 
 
+use app\common\model\IntegralLogModel;
 use app\common\model\IntegralOrderGoodsModel;
 use app\common\model\IntegralOrderModel;
 
@@ -23,13 +24,20 @@ class IntOrder extends Base
         $data['order']['order_no'] = 'BSBN' . time() . mt_rand(100, 1000000);
         $res = IntegralOrderModel::create($data['order']);
 
-
         $temp = [
-            'goods_id' => $res['id'],
+            'goods_id' => $data['goods_id'],
+            'order_id' => $res['id'],
             'images_url' => $data['goods']['images_url'],
             'integral' => $data['goods']['integral']
         ];
-
+        $instdata = [
+            'title' => '兑换商品',
+            'type' => 3,//对话商品
+            'integral' => $data['goods']['integral'],//积分数量
+            'type_' => 2,//减少
+            ''
+        ];
+        IntegralLogModel::create($instdata);
         IntegralOrderGoodsModel::create($temp);
         return json(msg(200, $res, '3'));
     }
@@ -41,7 +49,7 @@ class IntOrder extends Base
         if (!empty($data['status'])) {
             $where[] = ['status', '=', $data['status']];
         }
-        $res = OrderModel::with('goods')->where('user_id', $data['user_id'])->where($where)->order('id desc')
+        $res = IntegralOrderModel::with('goods')->where('user_id', $data['user_id'])->where($where)->order('id desc')
             ->paginate($data['limit'], false, ['query' => $data['page']]);
         return json($res);
     }

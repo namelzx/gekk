@@ -47,6 +47,17 @@ class DistModel extends HTTP {
     this.request(params)
   }
 
+  GetUserByIntegral(data, res) {
+    var params = {
+      url: 'dist/GetUserByIntegral',//接口路径
+      method: 'get', //请求方式
+      data,
+      success: res
+    }
+    this.request(params)
+  }
+
+
 
   
 

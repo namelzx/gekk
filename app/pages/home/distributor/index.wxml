@@ -38,19 +38,15 @@
         <view class="deposit-item">
           <view class="deposit-left">
             <view class="can-deposit">总积分：
-              <text>0.00元</text>
+              <text>{{integral.sum}}</text>
             </view>
             <view class="ready-deposit">已使用：
-              <text>0.00元</text>
+              <text>{{integral.usersum}}</text>
             </view>
           </view>
           <view class="deposit-right">
             <view class="go-deposit">去换购</view>
           </view>
-        </view>
-        <view class="already-deposit">
-          <text>已提现金额</text>
-          <text>0.00元</text>
         </view>
       </view>
     </view>

@@ -87,6 +87,8 @@ Route::group('api/app/', function () {
      */
     Route::rule('Dist/GetUserDistLog', 'api/Dist/GetUserDistLog'); /* 获取用户订单*/
     Route::rule('Dist/PostUserByIntegral', 'api/Dist/PostUserByIntegral'); /* 获取用户订单*/
+    Route::rule('Dist/GetUserByIntegral', 'api/Dist/GetUserByIntegral'); /* 统计用户的积分*/
+
 
     Route::rule('IntGoods/GetIntegralByGoods', 'api/IntGoods/GetIntegralByGoods'); /* 获取用户订单*/
 
