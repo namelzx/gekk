@@ -27,7 +27,7 @@ class Order extends Base
     {
 
         $data = input('param.');
-        $data['order']['order_no'] = 'BSBN' . time() . mt_rand(100, 1000000);
+        $data['order']['order_no'] = time() . mt_rand(100, 1000000);
         $data['order']['status'] = 2;
         $res = OrderModel::create($data['order']);
         if (!empty($data['order']['isInvoice'])) {

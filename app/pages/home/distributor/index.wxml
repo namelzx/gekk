@@ -1,5 +1,9 @@
 <!--pages/home/distributor/index.wxml-->
-  <van-toast id="van-toast" />
+<van-toast id="van-toast" />
+<van-popup show="{{ show }}" bind:close="onClose">
+  <image class="bg" src="{{userinfo.bg}}" bindtap='previewImg'></image>
+  <view></view>
+</van-popup>
 
 <!-- 不是经销商 -->
 <view class="distrib-container" wx:if="{{distributor===fasle}}">
@@ -55,7 +59,7 @@
         <view class="icon-img">
           <image src="./../../../static/images/bills.png"></image>
         </view>
-        <view class="category-title">提现明细</view>
+        <view class="category-title">积分明细</view>
       </view>
       <view class="category-item" bindtap="clickToOrder">
         <view class="icon-img">

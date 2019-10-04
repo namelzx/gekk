@@ -1,5 +1,11 @@
 /* pages/home/distributor/index.wxss */
-
+.van-popup{
+  top: 40% !important;
+}
+.bg{
+  width: 300px;
+  height: 450px;
+}
 .banner-item {
   position: fixed;
   top: 0;

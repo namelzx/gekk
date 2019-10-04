@@ -1,29 +1,15 @@
 <!--pages/home/distributor/order/index.wxml-->
 
 <view class="distrib-order-container">
-  <van-tabs active="{{ active }}" bind:change="onChange">
+  <van-tabs active="{{ active }}" bind:change="onChangeTabs">
     <van-tab title="全部">
-      <view class="order-tabs">
-        <view class="order-item" wx:for="{{detailList}}" wx:key="{{index}}">
-          <view class="order-avatar">
-            <image src="{{item.user_avatar}}"></image>
-          </view>
-          <view class="order-detail">
-            <view class="order-num">订单编号：{{item.order_num}}</view>
-            <view class="order-person">{{item.user}}</view>
-            <view class="order-cash">消费金额：¥ {{item.cash}}</view>
-          </view>
-          <view class="order-status">
-            <view class="status" wx:if="{{item.status==='1'||item.status==='3'}}">已完成</view>
-            <view class="status" wx:if="{{item.status==='2'}}">未结算</view>
-            
-            <view class="done-money" wx:if="{{item.status==='1'||item.status==='3'}}">+ 200.00</view>
-            <view class="done-date">2019-6-15 14:20:30</view>
-          </view>
-        </view>
-      </view>
+     <component-order-list detailList="{{detailList}}"/>
     </van-tab>
-    <van-tab title="未结算">内容 2</van-tab>
-    <van-tab title="已结算">内容 3</van-tab>
+    <van-tab title="未结算">
+       <component-order-list detailList="{{detailList}}"/>
+    </van-tab>
+    <van-tab title="已结算">
+       <component-order-list detailList="{{detailList}}"/>
+    </van-tab>
   </van-tabs>
 </view>

@@ -10,7 +10,11 @@ Route::group('api/app/', function () {
 
     Route::rule('upload', 'api/Base/upload'); /*文件上传*/
 
-    Route::rule('distribution', 'api/Base/distribution'); /*文件上传*/
+    Route::rule('distribution', 'api/Base/distribution'); /*进行分销操作*/
+
+    Route::rule('buildBg', 'api/Base/buildBg'); /*生成海报*/
+
+    Route::rule('BuildCode', 'api/Base/BuildCode'); /*生成二维码*/
 
 
     Route::rule('GetBannerByList', 'api/Banner/GetBannerByList'); /*文件上传*/
@@ -93,5 +97,11 @@ Route::group('api/app/', function () {
     Route::rule('IntOrder/PostDataByEva', 'api/IntOrder/PostDataByEva'); /* 取消订单*/
     Route::rule('IntOrder/GetOrderIdByFind', 'api/IntOrder/GetOrderIdByFind'); /* 订单详细*/
 
+
+    /**
+     * 分销模块管理
+     */
+    Route::rule('Dist/GetUserByDist', 'api/Dist/GetUserByDist'); /* 获取分销订单*/
+    Route::rule('Dist/GetUserByTeam', 'api/Dist/GetUserByTeam'); /* 获取我的团队*/
 
 });

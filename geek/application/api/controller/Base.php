@@ -12,6 +12,7 @@ namespace app\api\controller;
 use app\common\model\DistModel;
 use app\common\model\PositionModel;
 use app\common\model\UserModel;
+use EasyWeChat\Factory;
 use think\Controller;
 use think\Db;
 
@@ -97,6 +98,9 @@ class Base extends Controller
      */
     public function distribution($user_id = 1, $oder_id = 1, $goods_id = 1, $dis = 3, $to = 100, $price = 0)
     {
+
+        $isfile = file_exists('https://hhh.10huisp.com/uploads/20190930/1cc7989fe9828dbaf314065c575a0f99.png');
+        return json($isfile);
         /**
          * 自定义上级查询
          */
@@ -127,4 +131,47 @@ class Base extends Controller
     }
 
 
+    public function buildBg($url)
+    {
+        $imageDefault = array(
+            'left' => 130,
+            'top' => 320,
+            'right' => 0,
+            'bottom' => 0,
+            'width' => 180,
+            'height' => 200,
+            'opacity' => 100
+        );
+        $textDefault = array(
+            'text' => '',
+            'left' => 0,
+            'top' => 0,
+            'fontSize' => 32,       //字号
+            'fontColor' => '255,255,255', //字体颜色
+            'angle' => 0,
+        );
+
+        $background = './static/bg.jpg';//海报最底层得背景
+        $config['image'][]['url'] = $url;
+        $time = time();
+        $filename = './code/' . $time . '.jpg';
+        getbgqrcode($imageDefault, $textDefault, $background, $filename, $config);
+        return '/code/' . $time . '.jpg';;
+    }
+
+    public function BuildCode($user_id)
+    {
+
+        $app = Factory::miniProgram($this->config);
+        $response = $app->app_code->getUnlimit('scene-value', [
+            'scene' => $user_id,
+            'page' => 'pages/index/index',
+        ]);
+        $comm = config('common');
+        if ($response instanceof \EasyWeChat\Kernel\Http\StreamResponse) {
+            $filename = $response->saveAs('./code/', time() . '.png');
+            return $comm['url'] . '/code/' . $filename;
+        }
+
+    }
 }

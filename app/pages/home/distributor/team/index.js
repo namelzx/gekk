@@ -1,4 +1,10 @@
 // pages/home/distributor/team/index.js
+import {
+  DistModel
+} from './../../../../api/dist.js'
+
+let distModel = new DistModel();
+let app = getApp();
 Page({
 
   /**
@@ -43,6 +49,17 @@ Page({
         order_amount: '99' //订单数
       }
     ]
+  },
+  onShow(){
+    var temp={
+      user_id: app.globalData.user_id
+
+    }
+    distModel.GetUserByTeam(temp,res=>{
+        this.setData({
+          teamList:res
+        })
+    })
   },
   clickToOrder () {
     wx.navigateTo({

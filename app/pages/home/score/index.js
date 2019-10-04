@@ -65,6 +65,7 @@ Page({
     })
   },
   signIn() {
+    var that=this;
     var temp={
         type:1,
       integral: app.globalData.integral,
@@ -73,6 +74,10 @@ Page({
     }
       distModel.PostUserByIntegral(temp,res=>{
         console.log(res)
+        that.setData({
+          signIn:true,
+        })
+
       })
     // if (!this.data.signIn) {
     //   Toast('签到成功，积分+1');
