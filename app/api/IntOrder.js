@@ -1,6 +1,6 @@
 import { HTTP } from '../utils/http.js'
 
-class OrderModel extends HTTP {
+class IntOrderModel extends HTTP {
   constructor() {
     super()
   }
@@ -39,7 +39,7 @@ class OrderModel extends HTTP {
 
 
 
-  //修改默认地址
+  //获取用户订单列表
   GetUserByOrder(data, res) {
     var params = {
       url: 'IntOrder/GetUserByOrder',//接口路径
@@ -78,4 +78,4 @@ class OrderModel extends HTTP {
 
 
 }
-export { OrderModel }
+export { IntOrderModel }

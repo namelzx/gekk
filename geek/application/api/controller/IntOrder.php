@@ -28,7 +28,8 @@ class IntOrder extends Base
             'goods_id' => $data['goods_id'],
             'order_id' => $res['id'],
             'images_url' => $data['goods']['images_url'],
-            'integral' => $data['goods']['integral']
+            'integral' => $data['goods']['integral'],
+            'name'=>$data['goods']['name']
         ];
         $instdata = [
             'title' => '兑换商品',

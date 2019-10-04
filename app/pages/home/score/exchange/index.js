@@ -1,5 +1,12 @@
 // pages/home/score/exchange/index.js
 import Toast from './../../../../vant-weapp/dist/toast/toast';
+let app=getApp();
+
+import {
+  IntOrderModel
+} from './../../../../api/IntOrder.js';
+
+let intOrderModel = new IntOrderModel();
 
 Page({
 
@@ -9,47 +16,13 @@ Page({
   data: {
     signIn: false,
     active: 0, //选项卡初始位置（下标)
+    listQuery:{
+      limit:20,
+      page:1,
+
+    },
     orderList: [
-      {
-      id: '1',
-      img_url: './../../../../static/images/rate-img-2.png',
-      name: '格米莱（GEMILAI）咖啡机家用意式半自动 泵压式 不锈钢',
-      amount: '1',
-      price: '1499.00',
-      status: 1
-    },
-    {
-      id: '2',
-      img_url: './../../../../static/images/rate-img-2.png',
-      name: '格米莱（GEMILAI）咖啡机家用意式半自动 泵压式 不锈钢',
-      amount: '1',
-      price: '1499.00',
-      status: 3
-    },
-    {
-      id: '3',
-      img_url: './../../../../static/images/rate-img-2.png',
-      name: '格米莱（GEMILAI）咖啡机家用意式半自动 泵压式 不锈钢',
-      amount: '1',
-      price: '1499.00',
-      status: 2
-    },
-    {
-      id: '4',
-      img_url: './../../../../static/images/rate-img-2.png',
-      name: '格米莱（GEMILAI）咖啡机家用意式半自动 泵压式 不锈钢',
-      amount: '2',
-      price: '1499.00',
-      status: 4
-    },
-      {
-        id: '5',
-        img_url: './../../../../static/images/rate-img-2.png',
-        name: '格米莱（GEMILAI）咖啡机家用意式半自动 泵压式 不锈钢',
-        amount: '2',
-        price: '1499.00',
-        status: 4
-      },
+      
     ]
   },
   signIn() {
@@ -61,6 +34,19 @@ Page({
     } else {
       Toast('今天已经签到过啦！明天再来把～');
     }
+  },
+  onShow(){
+    var temp={
+      user_id: app.globalData.user_id
+    }
+    var that=this;
+    that.data.listQuery.user_id=app.globalData.user_id
+    intOrderModel.GetUserByOrder(that.data.listQuery,res=>{
+      console.log(res)
+      that.setData({
+        orderList:res.data
+      })
+    })
   },
   // 切换选项卡
   onChange(event) {
@@ -96,8 +82,8 @@ Page({
 
   },
   // 取消订单
-  clickToCancel() {
-
+  clickToCancel(e) {
+    console.log(e)
   },
   // 去支付
   clickToPay() {

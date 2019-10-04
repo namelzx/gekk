@@ -2,18 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="01f06058-1e1a-4f57-b129-c0d3a0c29f53" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/api/dist.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/dist.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/pages/home/distributor/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/home/distributor/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/pages/home/distributor/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/home/distributor/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/pages/home/score/component/header/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/home/score/component/header/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/pages/home/score/component/header/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/home/score/component/header/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/pages/home/score/detail/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/home/score/detail/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/pages/home/score/detail/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/home/score/detail/index.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/pages/home/score/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/home/score/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/pages/home/score/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/home/score/index.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/api/IntOrder.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/IntOrder.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/pages/home/score/exchange/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/home/score/exchange/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/pages/home/score/exchange/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/home/score/exchange/index.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/pages/home/score/exchange/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/home/score/exchange/index.wxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/pages/home/score/pay/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/home/score/pay/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/pages/home/score/pay/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/home/score/pay/index.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/pages/home/score/pay/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/home/score/pay/index.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/project.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/project.config.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,8 +23,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/geek/route/app.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="164">
-              <caret line="89" column="39" selection-start-line="89" selection-start-column="22" selection-end-line="89" selection-end-column="39" />
+            <state relative-caret-position="80">
+              <caret line="96" column="40" selection-start-line="96" selection-start-column="26" selection-end-line="96" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -84,8 +78,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/geek/application/api/controller/IntOrder.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="50" column="9" selection-start-line="50" selection-start-column="9" selection-end-line="50" selection-end-column="9" />
+            <state relative-caret-position="212">
+              <caret line="31" column="42" lean-forward="true" selection-start-line="31" selection-start-column="42" selection-end-line="31" selection-end-column="42" />
               <folding>
                 <element signature="e#119#157#0#PHP" expanded="true" />
               </folding>
@@ -96,8 +90,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/geek/application/common/model/IntegralOrderModel.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="61">
-              <caret line="45" selection-start-line="45" selection-end-line="45" />
+            <state relative-caret-position="113">
+              <caret line="20" column="53" selection-start-line="20" selection-start-column="53" selection-end-line="20" selection-end-column="53" />
             </state>
           </provider>
         </entry>
@@ -228,9 +222,9 @@
         <option value="$PROJECT_DIR$/geek/application/common.php" />
         <option value="$PROJECT_DIR$/geek/application/api/controller/User.php" />
         <option value="$PROJECT_DIR$/geek/application/api/controller/Base.php" />
-        <option value="$PROJECT_DIR$/geek/route/app.php" />
         <option value="$PROJECT_DIR$/geek/application/api/controller/Order.php" />
         <option value="$PROJECT_DIR$/geek/application/api/controller/Dist.php" />
+        <option value="$PROJECT_DIR$/geek/route/app.php" />
         <option value="$PROJECT_DIR$/geek/application/common/model/IntegralOrderModel.php" />
         <option value="$PROJECT_DIR$/geek/application/api/controller/IntOrder.php" />
       </list>
@@ -303,37 +297,7 @@
               <item name="极客联盟" type="b2602c69:ProjectViewProjectNode" />
               <item name="极客联盟" type="462c0819:PsiDirectoryNode" />
               <item name="geek" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="api" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="极客联盟" type="b2602c69:ProjectViewProjectNode" />
-              <item name="极客联盟" type="462c0819:PsiDirectoryNode" />
-              <item name="geek" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="api" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="极客联盟" type="b2602c69:ProjectViewProjectNode" />
-              <item name="极客联盟" type="462c0819:PsiDirectoryNode" />
-              <item name="geek" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="极客联盟" type="b2602c69:ProjectViewProjectNode" />
-              <item name="极客联盟" type="462c0819:PsiDirectoryNode" />
-              <item name="geek" type="462c0819:PsiDirectoryNode" />
-              <item name="application" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="极客联盟" type="b2602c69:ProjectViewProjectNode" />
-              <item name="极客联盟" type="462c0819:PsiDirectoryNode" />
-              <item name="geek" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="route" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -385,12 +349,12 @@
       <workItem from="1569645619427" duration="19255000" />
       <workItem from="1569803708212" duration="7975000" />
       <workItem from="1569843133605" duration="3624000" />
-      <workItem from="1570000477527" duration="20587000" />
+      <workItem from="1570000477527" duration="21619000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="157136000" />
+    <option name="totallyTimeSpent" value="158168000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="726" extended-state="0" />
@@ -770,13 +734,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/geek/route/app.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="89" column="39" selection-start-line="89" selection-start-column="22" selection-end-line="89" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/geek/application/api/controller/Dist.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="237">
@@ -811,17 +768,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/geek/route/app.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="96" column="40" selection-start-line="96" selection-start-column="26" selection-end-line="96" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/geek/application/common/model/IntegralOrderModel.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="61">
-          <caret line="45" selection-start-line="45" selection-end-line="45" />
+        <state relative-caret-position="113">
+          <caret line="20" column="53" selection-start-line="20" selection-start-column="53" selection-end-line="20" selection-end-column="53" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/geek/application/api/controller/IntOrder.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="50" column="9" selection-start-line="50" selection-start-column="9" selection-end-line="50" selection-end-column="9" />
+        <state relative-caret-position="212">
+          <caret line="31" column="42" lean-forward="true" selection-start-line="31" selection-start-column="42" selection-end-line="31" selection-end-column="42" />
           <folding>
             <element signature="e#119#157#0#PHP" expanded="true" />
           </folding>

@@ -12,9 +12,9 @@ import { ShopModel } from './../../../../api/shop.js'
 let shopmodel = new ShopModel();
 
 
-import { OrderModel } from './../../../../api/IntOrder.js'
+import { IntOrderModel } from './../../../../api/IntOrder.js'
 
-let ordermodel = new OrderModel();
+let ordermodel = new IntOrderModel();
 
 
 let app=getApp();

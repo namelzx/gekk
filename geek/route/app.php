@@ -99,11 +99,11 @@ Route::group('api/app/', function () {
     Route::rule('IntOrder/PostDataByEva', 'api/IntOrder/PostDataByEva'); /* 取消订单*/
     Route::rule('IntOrder/GetOrderIdByFind', 'api/IntOrder/GetOrderIdByFind'); /* 订单详细*/
 
-
     /**
      * 分销模块管理
      */
     Route::rule('Dist/GetUserByDist', 'api/Dist/GetUserByDist'); /* 获取分销订单*/
     Route::rule('Dist/GetUserByTeam', 'api/Dist/GetUserByTeam'); /* 获取我的团队*/
+
 
 });

@@ -18,7 +18,7 @@ class IntegralOrderModel extends BaseModel
 
     public function goods()
     {
-        return $this->hasOne('OrderGoodsModel', 'order_id', 'id');
+        return $this->hasOne('IntegralOrderGoodsModel', 'order_id', 'id');
     }
 
     /**
