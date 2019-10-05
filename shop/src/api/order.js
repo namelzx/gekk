@@ -50,8 +50,20 @@ export function postCourier(data) {
     method: 'post',
     data
   })
-
 }
+
+
+
+export function GetOrderByDownload(query) {
+  return request({
+    url: '/order/GetOrderByDownload',
+    method: 'get',
+    params: query
+  })
+}
+
+
+
 
 
 export function postOrderClose(data) {

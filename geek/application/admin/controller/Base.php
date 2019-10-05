@@ -9,6 +9,7 @@
 namespace app\admin\controller;
 
 use app\common\model\PositionModel;
+use app\common\model\ShopModel;
 use think\Controller;
 
 
@@ -16,7 +17,6 @@ header('Access-Control-Allow-Origin:*');
 header('Access-Control-Allow-Credentials: true');
 header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
 header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, authKey, sessionId, Access-Token, X-Token,x-token");
-
 
 
 //电商ID
@@ -58,7 +58,7 @@ class Base extends Controller
 
     public function getDistance($distance)
     {
-        $url = 'https://apis.map.qq.com/ws/distance/v1/?mode=driving&from=24.25465,109.32672&to='.$distance.'&key=XB2BZ-J7PW3-DIZ3P-YC34A-BWFW7-ELBOI';
+        $url = 'https://apis.map.qq.com/ws/distance/v1/?mode=driving&from=24.25465,109.32672&to=' . $distance . '&key=XB2BZ-J7PW3-DIZ3P-YC34A-BWFW7-ELBOI';
         $res = curlSend($url);
         return $res;
     }
@@ -66,7 +66,7 @@ class Base extends Controller
     public function getProvinces()
     {
         $res = PositionModel::where('level', 1)->select();
-        return json(['data' =>$res, 'code' => 20000]);
+        return json(['data' => $res, 'code' => 20000]);
     }
 
     public function getCity()
@@ -74,7 +74,7 @@ class Base extends Controller
         $data = input('param.');
         $res = PositionModel::where('level', 2)
             ->where('area_index', 'like', $data['index'])->select();
-        return json(['data' =>$res, 'code' => 20000]);
+        return json(['data' => $res, 'code' => 20000]);
     }
 
     public function getArea()
@@ -83,7 +83,7 @@ class Base extends Controller
         $res = PositionModel::where('level', 3)
             ->where('area_index', 'like', '%' . $data['index'] . '%')->select();
 
-        return json(['data' =>$res, 'code' => 20000]);
+        return json(['data' => $res, 'code' => 20000]);
     }
 
 
@@ -157,6 +157,13 @@ class Base extends Controller
     public function encrypt($data, $appkey)
     {
         return urlencode(base64_encode(md5($data . $appkey)));
+    }
+
+
+    public function GetShopByList()
+    {
+        $res = ShopModel::all();
+        return json(['msg' => '获取店铺成功', 'data' => $res, 'code' => 20000]);
     }
 
 }

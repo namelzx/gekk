@@ -71,33 +71,7 @@ export const constantRoutes = [
       }
     ]
   },
-  // {
-  //   path: '/apps',
-  //   component: Layout,
-  //   redirect: 'apps',
-  //   meta: { title: '商铺管理', icon: 'international' },
-  //   children: [
-  //     {
-  //       path: 'apps',
-  //       component: () => import('@/views/apps/index'),
-  //       name: 'apps',
-  //       meta: { title: '商铺管理', icon: 'international' }
-  //     },
-  //     {
-  //       path: 'createapps',
-  //       component: () => import('@/views/apps/createapps'),
-  //       name: 'createapps',
-  //       meta: { title: '添加商铺', icon: 'international' }
-  //     },
-  //     {
-  //       path: 'edit/:id(\\d+)',
-  //       component: () => import('@/views/apps/editapps'),
-  //       name: 'editapps',
-  //       hidden: true,
-  //       meta: { title: '编辑商铺', icon: 'international' }
-  //     }
-  //   ]
-  // },
+
 /**
  * 商品
  */

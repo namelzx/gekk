@@ -11,6 +11,7 @@ namespace app\shop\controller;
 
 use app\common\model\OrderCourierModel;
 use app\common\model\OrderModel;
+use think\Db;
 
 class Order extends Base
 {
@@ -41,11 +42,9 @@ class Order extends Base
      */
     public function PostDataByCancel()
     {
-
         $data = input('param.');
         $res = OrderModel::where('id', $data['id'])->data($data)->update();
         return json(['msg' => '订单取消成功', 'data' => $res, 'code' => 20000], 200);
-
     }
 
 
@@ -55,7 +54,7 @@ class Order extends Base
     public function GetIdByDetails()
     {
         $data = input('param.');
-        $res = OrderModel::with(['goods','getGoods', 'address', 'getUserCoupon' => ['getCounpon'],   'getCourier' => ['Courier'], 'getUser'
+        $res = OrderModel::with(['goods', 'getGoods', 'address', 'getUserCoupon' => ['getCounpon'], 'getCourier' => ['Courier'], 'getUser'
         ])->where('id', $data['id'])->find();
         $logistics = "";
         if (!empty($res['get_courier'])) {
@@ -92,6 +91,40 @@ class Order extends Base
         $res = OrderModel::where('id', $data['id'])->data($data)->update();
         return json(['msg' => '结算成功', 'data' => $res, 'code' => 20000]);
 
+    }
+
+
+    public function GetOrderByDownload()
+    {
+
+        $data = input('param.');
+        $where = [];
+
+
+        if (!empty($data['time'])) {
+            $where[] = ['o.create_time', 'between time', $data['time']];
+        }
+
+        if (!empty($data['order_no'])) {
+            $where[] = ['o.out_trade_no', 'eq', $data['order_no']];
+        }
+
+        if (!empty($data['status'])) {
+            $where[] = ['o.status', 'eq', $data['status']];
+        }
+        if (!empty($data['shop_id'])) {
+            $where[] = ['o.shop_id', 'eq', $data['shop_id']];
+        }
+        $res = Db::name('order')->alias('o')
+            ->join('shop s', 'o.shop_id=s.id')
+            ->join('order_goods g', 'g.order_id=o.id')
+            ->join('user u', 'u.id=o.user_id')
+            ->field('o.id,o.order_no,o.create_time,s.name as shopname,g.name,g.suk_name,g.price,g.num')
+            ->where($where)
+            ->group('o.id')
+            ->select();
+
+        return json(['msg' => '结算成功', 'data' => $res, 'code' => 20000]);
     }
 
 }

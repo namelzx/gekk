@@ -54,6 +54,16 @@
             @click="handleFilter"
           >搜索</el-button>
         </el-col>
+
+           <el-col :span="2">
+          <el-button
+            v-waves
+            class="filter-item"
+            type="primary"
+            icon="el-icon-download"
+            @click="handleDownload"
+          >导出订单</el-button>
+        </el-col>
       </el-form>
     </div>
     <el-table
@@ -115,7 +125,7 @@
       </el-table-column>
       <el-table-column label="买家" min-width="120px" align="center">
         <template slot-scope="scope">
-          <!-- <span>{{scope.row.get_user.nickName}}</span> -->
+          <span>{{scope.row.get_user.nickName}}</span>
         </template>
       </el-table-column>
 
@@ -145,7 +155,7 @@
 </template>
 
 <script>
-import { GetDataByList, PostDataByCancel, PostDataBySave } from "@/api/order";
+import { GetDataByList, PostDataByCancel, PostDataBySave,GetOrderByDownload} from "@/api/order";
 import waves from "@/directive/waves"; // waves directive
 import { parseTime } from "@/utils";
 import Pagination from "@/components/Pagination"; // secondary package based on el-pagination
@@ -181,48 +191,27 @@ export default {
   },
   data() {
     return {
-      options: [
-        {
-          value: "0",
-          label: "全部"
+       options: [{
+          value: '0',
+          label: '全部'
+        }, {
+          value: '1',
+          label: '待付款'
+        }, {
+          value: '2',
+          label: '待发货'
+        }, {
+          value: '3',
+          label: '待收货'
+        }, {
+          value: '4',
+          label: '已完成'
         },
-        {
-          value: "1",
-          label: "待付款"
-        },
-        {
-          value: "2",
-          label: "待发货"
-        },
-        {
-          value: "3",
-          label: "待收货"
-        },
-        {
-          value: "4",
-          label: "租用中"
-        },
-        {
-          value: "5",
-          label: "待结算"
-        },
-        {
-          value: "6",
-          label: "已预期"
-        },
-        {
-          value: "8",
-          label: "已归还"
-        },
-        {
-          value: "9",
-          label: "已取消"
-        },
-        {
-          value: "10",
-          label: "已退款"
-        }
-      ],
+          {
+            value: '5',
+            label: '已取消'
+          },
+        ],
       value: "",
       tableKey: 0,
       list: null,
@@ -265,8 +254,6 @@ export default {
       GetDataByList(this.listQuery).then(response => {
         this.list = response.data.data;
         this.total = response.data.total;
-
-        // Just to simulate the time of the request
         setTimeout(() => {
           this.listLoading = false;
         }, 1.5 * 1000);
@@ -309,33 +296,41 @@ export default {
         this.list.splice(index, 1);
       });
     },
-    //订单取消
-    handleCancel(row) {
-      console.log(row);
-      var temp = {
-        id: row.id,
-        status: 9
-      };
-      if (row.status === 9) {
-        this.$notify({
-          title: "信息提示",
-          message: "订单已取消",
-          type: "success",
-          duration: 2000
-        });
-        return false;
-      }
-      row.status = 9;
 
-      PostDataByCancel(temp).then(res => {
-        this.$notify({
-          title: "信息提示",
-          message: res.msg,
-          type: "success",
-          duration: 2000
-        });
-      });
+    handleDownload() {
+      
+      this.downloadLoading = true
+      GetOrderByDownload(this.listQuery).then(res=>{
+          this.downLoad(res.data)
+      })
+     
+    },
+    downLoad(list){
+       import('@/vendor/Export2Excel').then(excel => {
+        const tHeader = ['Id', '下单时间', '下单店铺', '商品名称', '属性','价格','数量']
+        const filterVal = ['id', 'create_time', 'shopname', 'name', 'suk_name','price','num']
+        const data = this.formatJson(filterVal, list)
+        excel.export_json_to_excel({
+          header: tHeader,
+          data,
+          filename: this.filename,
+          autoWidth: this.autoWidth,
+          bookType: this.bookType
+        })
+        this.downloadLoading = false
+      })
+    },
+    formatJson(filterVal, jsonData) {
+      return jsonData.map(v => filterVal.map(j => {
+        console.log(j)
+        if (j === 'create_time') {
+          return parseTime(v[j])
+        } else {
+          return v[j]
+        }
+      }))
     }
+   
   }
 };
 </script>

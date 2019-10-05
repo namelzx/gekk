@@ -16,7 +16,6 @@ class CouponModel extends BaseModel
     protected $createTime = 'create_time';
     protected $updateTime = 'create_time';
 
-
     public function lingqu()
     {
         return $this->hasMany('CouponReceiveModel', 'coupon_id', 'id');
@@ -32,14 +31,13 @@ class CouponModel extends BaseModel
     {
         $where = [];
         if (!empty($data['title'])) {
-            $where[] = ['name', '=', $data['title']];
+            $where[] = ['name', 'eq', $data['title']];
         }
         if (!empty($data['shop_id'])) {
-            $where = ['shop_id', '=', $data['shop_id']];
+            $where[] = ['shop_id', 'eq', $data['shop_id']];
         }
         $res = self::where($where)->paginate($data['limit'], false, ['query' => $data['page']]);
         return $res;
-
     }
 
 }

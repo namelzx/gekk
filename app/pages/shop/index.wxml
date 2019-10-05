@@ -3,7 +3,7 @@
 <view class="header">
   <van-toast id="van-toast" />
 
-  <my-swiper swiper-img="{{imgUrls}}"></my-swiper>
+  <my-swiper swiperImg="{{imgUrls}}" shop_name="{{shop_name}}" shop_distance="{{shop_distance}}"></my-swiper>
 
 </view>
 <!--head -->
@@ -48,8 +48,8 @@
           <view class="cartControl-wrapper">
             <view class="cartControl">
               <view name="fade">
-                <view class=" iconfont  " style="color:black;font-size: 28rpx;" data-item-index="{{index}}" data-info="{{food}}" data-parentIndex="{{parentIndex}}" catchtap="addSuk">
-                  选规格{{food.Count}}
+                <view class="iconfont choose-tag" style="color:black;font-size: 28rpx;" data-item-index="{{index}}" data-info="{{food}}" data-parentIndex="{{parentIndex}}" catchtap="addSuk">
+                  选规格 <text wx:if="{{food.Count}}">{{food.Count}}</text>
                 </view>
               </view>
             </view>
@@ -101,9 +101,8 @@
 <van-popup show="{{ tarnShow }}" bind:close="onClose">
   <view class="card-item">
     <view class="card-wrapper">
-
       <view class="btn-group">
-        <van-icon name="close" class="close-btn" catchtap="toggleShowCard" />
+        <van-icon name="close" class="close-btn" catchtap="onClose" />
       </view>
       <view class="container">
         <view class="img-item">

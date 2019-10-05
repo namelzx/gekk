@@ -17,21 +17,26 @@ let commonModel = new CommonModel();
 Page({
   data: {
     goods: [],
-    myList: [
-    ],
-    totalCount:0,
-    
+    myList: [],
+    totalCount: 0,
+
     imgUrls: [
+      'https://hhh.10huisp.com/uploads/article-img-1.png',
+      'https://hhh.10huisp.com/uploads/article-img-2.png',
+      'https://hhh.10huisp.com/uploads/article-img-3.png'
     ],
+    shop_logo: './../../../static/images/shop-logo-1.png',
+    shop_name: '极客清晖园星巴克店',
+    shop_distance: '2.4',
     sukindex: 0, //所选商品
     goods_index: 0, //所选分类
     cheindex: 0, //所选suk
     suk_id: 2,
-    suk_price:undefined,//所选suk价格
+    suk_price: undefined, //所选suk价格
     count: 0,
     suk_name: '',
     goodsinfo: {}, //选择规格商品
-    tarnShow: false,
+    c: false,
     toView: '0',
     scrollTop: 100,
     foodCounts: 0,
@@ -108,7 +113,7 @@ Page({
     let goodsinfo = this.data.goodsinfo
     goodsinfo.Count = num
     this.setData({
-    
+
       goodsinfo,
     })
     //关闭弹起
@@ -140,7 +145,7 @@ Page({
 
 
     let goodsinfo = this.data.goods[parentindex].foods[itemIndex]
-    
+
     if (goodsinfo.suk == null) {
       console.log('商品没有suk')
       return;
@@ -164,10 +169,8 @@ Page({
       tarnShow: false,
     })
   },
-
   handelsuk(e) {
     var that = this;
-
     var {
       id,
       name,
@@ -177,13 +180,13 @@ Page({
     var sukindex = this.data.sukindex
     var cou = this.data.goods[sukindex].foods[goods_index].suk[index].Count;
 
-    var price = this.data.goods[sukindex].foods[goods_index].suk[index].price;    if (isNaN(cou)) {
+    var price = this.data.goods[sukindex].foods[goods_index].suk[index].price;
+    if (isNaN(cou)) {
       this.data.goods[sukindex].foods[goods_index].suk[index].Count = 0;
     }
     let goodsinfo = that.data.goodsinfo
     goodsinfo.images_url = this.data.goods[sukindex].foods[goods_index].suk[index].images_url
     goodsinfo.Count = cou;
-
     that.setData({
       suk_id: id,
       suk_name: name,
@@ -207,7 +210,7 @@ Page({
       this.data.goods[parentIndex].foods[index].Count = 0;
     }
     this.data.goods[parentIndex].foods[index].Count++
-    this.data.goods[parentIndex].foods[index].suk[cheindex].Count++;
+      this.data.goods[parentIndex].foods[index].suk[cheindex].Count++;
     var mark = 'a' + this.data.goods[parentIndex].foods[index].id + 'b' + this.data.goods[parentIndex].foods[index].suk[cheindex].id
     var suk_id = this.data.suk_id
     var suk_name = this.data.suk_name
@@ -217,7 +220,7 @@ Page({
     var num = this.data.goods[parentIndex].foods[index].suk[cheindex].Count;
     var goods_id = this.data.goods[parentIndex].foods[index].id
     var integral = this.data.goods[parentIndex].foods[index].integral
-   if (isNaN(num)) {
+    if (isNaN(num)) {
       num = 1;
     }
 
@@ -245,31 +248,31 @@ Page({
     let goodsinfo = this.data.goodsinfo
     goodsinfo.Count = num
     this.setData({
-    
+
       goodsinfo,
     })
   },
   //添加到购物车
   addCart(e) {
-  
+
     var index = e.currentTarget.dataset.itemIndex;
     var cheindex = this.data.cheindex;
     var parentIndex = e.currentTarget.dataset.parentindex;
     var cou = this.data.goods[parentIndex].foods[index].suk[cheindex].Count;
     var goodscount = this.data.goods[parentIndex].foods[index].Count
     if (isNaN(cou)) {
-     Toast('最少添加一个商品进入购物车');
+      Toast('最少添加一个商品进入购物车');
       return
       this.data.goods[parentIndex].foods[index].suk[cheindex].Count = 0;
     }
-    if (cou=0){
+    if (cou = 0) {
       Toast('最少添加一个商品进入购物车');
       return
     }
     if (isNaN(goodscount)) {
       this.data.goods[parentIndex].foods[index].Count = 0;
     }
-      // this.data.goods[parentIndex].foods[index].suk[cheindex].Count++;
+    // this.data.goods[parentIndex].foods[index].suk[cheindex].Count++;
     var mark = 'a' + this.data.goods[parentIndex].foods[index].id + 'b' + this.data.goods[parentIndex].foods[index].suk[cheindex].id
     var suk_id = this.data.suk_id
     var suk_name = this.data.suk_name
@@ -278,12 +281,13 @@ Page({
 
     var num = this.data.goods[parentIndex].foods[index].suk[cheindex].Count;
     var goods_id = this.data.goods[parentIndex].foods[index].id
-   
+
     var integral = this.data.goods[parentIndex].foods[index].integral
     if (isNaN(num)) {
       num = 1;
     }
     Toast('已添加购物车');
+    this.onClose();
     if (isNaN(price)) {
       price = 1;
     }
@@ -299,8 +303,7 @@ Page({
       mark: mark,
       integral: integral
     };
-   
-    
+
     var carArray1 = this.data.carArray.filter(item => item.mark != mark)
     carArray1.push(obj)
     wx.setStorageSync('cart', carArray1)
@@ -312,7 +315,6 @@ Page({
     let goodsinfo = this.data.goodsinfo
     goodsinfo.Count = num
     this.setData({
-     
       goodsinfo,
     })
   },
@@ -322,15 +324,15 @@ Page({
   },
   //计算总价
   calTotalPrice: function() {
-  
+
 
     var carArray = this.data.carArray;
-  
-    if(carArray.length<1){
+
+    if (carArray.length < 1) {
       carArray = wx.getStorageSync('cart')
     }
-    if (carArray.length<1){
-      carArray=[]
+    if (carArray.length < 1) {
+      carArray = []
     }
     var totalPrice = 0;
     var totalCount = 0;
@@ -342,21 +344,21 @@ Page({
       totalPrice: totalPrice,
       totalCount: totalCount,
       carArray
-      
+
       //payDesc: this.payDesc()
     });
   },
   //差几元起送
- 
+
   //結算
   pay() {
     // window.alert('支付' + this.totalPrice + '元');
     //确认支付逻辑
-   let cart= wx.getStorageSync('cart');
-   if(cart.length<1){
-     Toast('请先选择商品');
-     return;
-   }
+    let cart = wx.getStorageSync('cart');
+    if (cart.length < 1) {
+      Toast('请先选择商品');
+      return;
+    }
     var resultType = "success";
     wx.redirectTo({
       url: '/pages/shop/pay/index?type=cart'
@@ -365,13 +367,13 @@ Page({
   /**
    * 去购物车
    */
-  ToCart(){
-   wx.navigateTo({
-     url: '/pages/cart/index',
-     success: function(res) {},
-     fail: function(res) {},
-     complete: function(res) {},
-   })
+  ToCart() {
+    wx.navigateTo({
+      url: '/pages/cart/index',
+      success: function(res) {},
+      fail: function(res) {},
+      complete: function(res) {},
+    })
   },
   //彈起購物車
   toggleList: function() {
@@ -414,12 +416,12 @@ Page({
         goods: res
       })
     })
-    commonModel.GetBannerByList(id,res=>{
+    commonModel.GetBannerByList(id, res => {
       that.setData({
-        imgUrls:res.banner
+        imgUrls: res.banner
       })
     })
-   
+
   },
   onReady: function() {
     // 页面渲染完成

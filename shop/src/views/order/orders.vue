@@ -46,7 +46,7 @@
       </el-table-column>
       <el-table-column label="商品名称" min-width="200px">
         <template slot-scope="scope">
-          <span>{{scope.row.goods.name}}</span>
+          <span v-if="scope.row.goods">{{scope.row.goods.name}}</span>
         </template>
       </el-table-column>
 
@@ -87,14 +87,19 @@
       </el-table-column>
       <el-table-column label="买家" min-width="120px" align="center">
         <template slot-scope="scope">
-          <!-- <span>{{scope.row.get_user.nickName}}</span> -->
+          <span v-if="scope.row.get_user">{{scope.row.get_user.nickName}}</span>
         </template>
       </el-table-column>
 
        <el-table-column label="收货地址/商铺" min-width="180px" align="center">
         <template slot-scope="scope">
           <div v-if="scope.row.isadd===1">{{scope.row.address.areaMsg}}</div>
-          <div v-else>{{scope.row.shop.name}}</div>
+          <div v-else>
+            <span v-if="scope.row.shop">
+{{scope.row.shop.name}}
+
+            </span>
+          </div>
         </template>
       </el-table-column>
 
@@ -198,27 +203,11 @@ import { mapGetters } from "vuex";
           label: '待收货'
         }, {
           value: '4',
-          label: '租用中'
+          label: '已完成'
         },
           {
             value: '5',
-            label: '待结算'
-          },
-          {
-            value: '6',
-            label: '已预期'
-          },
-          {
-            value: '8',
-            label: '已归还'
-          },
-          {
-            value: '9',
             label: '已取消'
-          },
-          {
-            value: '10',
-            label: '已退款'
           },
         ],
         value: '',

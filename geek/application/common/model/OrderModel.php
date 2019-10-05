@@ -65,7 +65,7 @@ class OrderModel extends BaseModel
     public static function GetDataByList($data)
     {
 
-        $res = self::with(['goods', 'address', 'shop']);
+        $res = self::with(['goods', 'address', 'shop','getUser']);
 
         if (!empty($data['time'])) {
             $res = $res->where('create_time', 'between time', $data['time']);

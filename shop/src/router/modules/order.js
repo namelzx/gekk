@@ -30,41 +30,14 @@ const orderRouter = {
         path: 'orders/4',
         component: () => import('@/views/order/orders'),
         name: 'order',
-        meta: {title: '租用中', icon: 'dashboard'}
+        meta: {title: '已完成', icon: 'dashboard'}
       },
       {
         path: 'orders/5',
         component: () => import('@/views/order/orders'),
         name: 'order',
-        meta: {title: '待结算', icon: 'dashboard'}
-      },
-      {
-        path: 'orders/6',
-        component: () => import('@/views/order/orders'),
-        name: 'order',
-        meta: {title: '已完成', icon: 'dashboard'}
-      },
-      {
-        path: 'orders/9',
-        component: () => import('@/views/order/orders'),
-        name: 'order',
         meta: {title: '已取消', icon: 'dashboard'}
       },
-
-      {
-        path: 'orders/11',
-        component: () => import('@/views/order/orders'),
-        name: 'order',
-        meta: {title: '续租订单', icon: 'dashboard'}
-      },
-
-      {
-        path: 'buyout',
-        component: () => import('@/views/order/buyout'),
-        name: 'buyout',
-        meta: {title: '买断订单', icon: 'dashboard'}
-      },
-
       {
         path: 'detail/:id(\\d+)',
         component: () => import('@/views/order/detail'),

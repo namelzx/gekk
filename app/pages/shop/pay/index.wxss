@@ -1,9 +1,9 @@
 /* pages/pay/index.wxss */
 
-page{
-  font-family: "微软雅黑"
-  
+page {
+  font-family: "微软雅黑";
 }
+
 /* 头部bar */
 
 .post-address {
@@ -233,6 +233,8 @@ page{
   border-top: 1px solid #f5f5f5;
   display: flex;
   font-size: 28rpx;
+  z-index: 9;
+  background: #fff;
 }
 
 .pay-left {
@@ -526,12 +528,9 @@ page{
 
 /* 发票信息弹出层结束 */
 
-.self-list{
+.self-list {
   width: 750rpx;
-
 }
-
-
 
 .ddadd-more-address {
   bottom: 50rpx;
@@ -542,9 +541,7 @@ page{
   padding: 20rpx 0;
   border-radius: 60rpx;
   margin: 0 15%;
- 
 }
-
 
 .add-more .plus-icon {
   position: absolute;

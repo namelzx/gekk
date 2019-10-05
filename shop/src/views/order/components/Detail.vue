@@ -1,10 +1,5 @@
 <template>
   <div class="createPost-container">
-    <!-- <sticky :z-index="10" :class-name="'sub-navbar '+postForm.status">
-        <el-button v-loading="loading" style="margin-left: 10px;" type="success" @click="submitForm">
-          保存
-        </el-button>
-      </sticky> -->
     <div class="createPost-main-container">
       <divider title="订单信息" />
       <!--订单基本信息-->

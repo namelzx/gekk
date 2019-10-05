@@ -13,7 +13,7 @@
       <view class="goods-title">{{list[0].title}}</view>
 
       <view class="goods-desc">
-        <view class="desc-title">产品描述</view>
+        <view class="desc-title">产品描述11</view>
         <view class="desc-content">{{list[0].desc}}</view>
       </view>
       <view class="goods-temper">

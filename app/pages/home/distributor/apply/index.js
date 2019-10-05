@@ -51,20 +51,23 @@ Page({
     let data = {
       ruleChecked: this.data.ruleChecked,
       invitor: this.data.invitor,
-    
     }
     if(data.ruleChecked===true){
       var temp={
         user_id: app.globalData.user_id,
         username: this.data.username,
         phone: this.data.phone
-
-      }
-      
+      } 
       userModel.PostDataByDist(temp,res=>{
         console.log(res)
         if(res.code!==200){
           Toast(res.message)
+        }
+        if (res.code === 200) {
+          Toast("提交成功，请等待平台审核")
+          wx.switchTab({
+            url: '/pages/home/index',
+          })
         }
       })
     }else{

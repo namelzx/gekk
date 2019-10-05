@@ -128,3 +128,8 @@ page {
   border-color: #8e84fc;
   color: white;
 }
+
+.no-submit {
+  width: 80%;
+  margin: 0 auto;
+}

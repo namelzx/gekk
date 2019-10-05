@@ -6,6 +6,9 @@ Route::group('api/admin/', function () {
     Route::get('user/info', 'admin/Login/info'); /* 获取当前登陆信息*/
     Route::get('user/logout', 'admin/Login/logout'); /* 退出登录*/
     Route::rule('upload', 'admin/Base/upload'); /*文件上传*/
+    Route::rule('GetShopByList', 'admin/Base/GetShopByList'); /*获取店铺列表*/
+
+    Route::rule('GetHomeByData', 'admin/Home/GetHomeByData'); /*获取后台主页数据*/
 
 
     Route::post('dist/PostDataBySave', 'admin/Dist/PostDataBySave'); /* 分销管理*/
@@ -56,5 +59,17 @@ Route::group('api/admin/', function () {
     Route::get('/courier/all', 'shop/courier/getall');//获取所有的快递
     Route::rule('order/postCourier', 'admin/IntOrder/postCourier'); /* 提交订单快递信息*/
 
+
+    /**
+     * 订单板块
+     */
+
+    Route::rule('order/GetDataByList', 'admin/order/GetDataByList'); /* 获取列表*/
+    Route::rule('order/PostDataByCancel', 'admin/order/PostDataByCancel'); /* 更新或保存数据*/
+    Route::rule('order/GetIdByDetails', 'admin/order/GetIdByDetails'); /* 商品详情*/
+    Route::rule('order/postCourier', 'admin/order/postCourier'); /* 提交订单快递信息*/
+    Route::rule('order/postOrderClose', 'admin/order/postOrderClose'); /* 订单结算*/
+    Route::rule('order/GetBuyoutByList', 'admin/order/GetBuyoutByList'); /* 买断订单*/
+    Route::rule('order/GetOrderByDownload', 'admin/order/GetOrderByDownload'); /*  条件 导出数据*/
 
 });

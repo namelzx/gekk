@@ -76,6 +76,10 @@
 
 .item-info .name, .item-info .condition {
   margin-bottom: 6rpx;
+  width: 260rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .item-info .condition {

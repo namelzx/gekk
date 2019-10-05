@@ -12,7 +12,7 @@
   </view>
   <view class="user-detail">
     <van-cell-group border="{{ false }}">
-      <van-cell title="姓名" is-link clickable bind:click="onToggleDialog" value="{{userInfo.nickName}}" data-title="nickName" />
+      <van-cell title="姓名" is-link clickable bind:click="onToggleDialog" value="{{userInfo.nickName}}" data-title="name" />
       <van-cell title="手机号码" is-link clickable bind:click="onToggleDialog" value="{{userInfo.phone}}" data-title="phone" />
       <van-cell title="邮箱" is-link clickable bind:click="onToggleDialog" value="{{userInfo.email}}" data-title="email" />
       <van-cell title="地址" is-link clickable bind:click="onToggleDialog" value="{{userInfo.address}}" data-title="address" />

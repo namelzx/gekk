@@ -94,6 +94,25 @@
   margin-bottom: 0px;
 }
 
+.cartControl .choose-tag {
+  position: relative;
+  padding-right: 20rpx;
+}
+
+.cartControl .choose-tag text {
+  position: absolute;
+  display: inline-block;
+  padding: 2rpx 10rpx;
+  background: red;
+  font-size: 20rpx;
+  color: #fff;
+  border-radius: 16rpx;
+  line-height: 28rpx;
+  position: absolute;
+  top: -8rpx;
+  right: 0;
+}
+
 .goods .foods-wrapper .food-list .food-item .icon {
   flex: 0 0 57px;
   /* margin-right: 10px; */
@@ -128,8 +147,9 @@
   padding-right: 20rpx;
   width: 262rpx;
   overflow: hidden;
-  text-overflow: ellipsis;
-  /* white-space: nowrap; */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .goods .foods-wrapper .food-list .food-item .content .desc, .extra {
@@ -152,7 +172,6 @@
 .goods .foods-wrapper .food-list .food-item .content .price {
   font-weight: 700px;
   line-height: 24px;
- 
 }
 
 .goods .foods-wrapper .food-list .food-item .content .price .now {
@@ -283,18 +302,20 @@
   justify-content: center;
   position: relative;
 }
-.content-left  .to{
-position: absolute;
-color: red;
-top: -17rpx;
-right: 105rpx;
-/* font-size: 28rpx;
-height: 25rpx;
-background: black;
-border: 1rpx solid red;
-padding-left: 7rpx;
-padding-right: 5rpx;
-border-radius: 14rpx; */
+
+.content-left  .to {
+  position: absolute;
+  color: red;
+  top: -16rpx;
+  right: 90rpx;
+  /* font-size: 28rpx;
+  height: 25rpx;
+  background: black;
+  border: 1rpx solid red;
+  padding-left: 7rpx;
+  padding-right: 5rpx;
+  border-radius: 14rpx; 
+  */
 }
 
 .shopCart .jh {
@@ -1009,11 +1030,12 @@ van-transition image {
   border-radius: 16rpx;
 }
 
-.line_price{
-  text-decoration:line-through ;
+.line_price {
+  text-decoration: line-through;
   color: #999;
 }
-.line_price text{
+
+.line_price text {
   padding-left: 10rpx;
   padding-right: 10rpx;
 }

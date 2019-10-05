@@ -38,6 +38,7 @@ Page({
     // 评论数据
     ratings: [
     ],
+    integral:0,
     totalCount:0,
     indicatorDots: false,
     autoplay: true,
@@ -279,7 +280,7 @@ Page({
     var suk_id = that.data.suk_id //选择的suk
     var suk_name = that.data.detailed.suk_name //选择的suk信息
     var images_url = that.data.images_url
-
+    var integral = that.data.detailed.integral
     var name = that.data.detailed.name;
     var obj = {
       goods_id: goods_id,
@@ -288,7 +289,8 @@ Page({
       suk_name: suk_name,
       suk_id: suk_id,
       price,
-      images_url
+      images_url,
+      integral
     };
     var carArray1 =[];
     carArray1.push(obj);
@@ -307,6 +309,7 @@ Page({
     var images_url = that.data.images_url
     var name = that.data.detailed.name;
     var mark = 'a' + goods_id + 'b' + suk_id
+    var integral = that.data.detailed.integral
     var obj = {
       goods_id: goods_id,
       num: num,
@@ -315,7 +318,8 @@ Page({
       suk_id: suk_id,
       price,
       images_url,
-      mark
+      mark,
+      integral
     };
     var carArray1 = this.data.carArray.filter(item => item.mark != mark)
     carArray1.push(obj)
@@ -332,13 +336,15 @@ Page({
     if (carArray.length < 1) {
       carArray = wx.getStorageSync('cart')
     }
+    if (carArray.length < 1){
+      carArray = []
+    }
     var totalPrice = 0;
     var totalCount = 0;
     for (var i = 0; i < carArray.length; i++) {
       totalPrice += carArray[i].price * carArray[i].num;
       totalCount += carArray[i].num
     }
-    console.log(totalCount)
     this.setData({
       totalPrice: totalPrice,
       totalCount: totalCount,

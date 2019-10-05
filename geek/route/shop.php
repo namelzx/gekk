@@ -15,6 +15,9 @@ Route::group('api/shop/', function () {
     Route::rule('upload', 'admin/Base/upload'); /*文件上传*/
 
 
+    Route::rule('GetHomeByData', 'shop/Home/GetHomeByData'); /*文件上传*/
+
+
     /**
      * 分类模块管理
      */
@@ -49,14 +52,11 @@ Route::group('api/shop/', function () {
 
     Route::rule('order/GetDataByList', 'shop/order/GetDataByList'); /* 获取列表*/
     Route::rule('order/PostDataByCancel', 'shop/order/PostDataByCancel'); /* 更新或保存数据*/
-//    Route::rule('goods/getOrderIdByData', 'order/order/getOrderIdByData'); /* 删除数据*/
     Route::rule('order/GetIdByDetails', 'shop/order/GetIdByDetails'); /* 商品详情*/
-
     Route::rule('order/postCourier', 'shop/order/postCourier'); /* 提交订单快递信息*/
-
     Route::rule('order/postOrderClose', 'shop/order/postOrderClose'); /* 订单结算*/
-
     Route::rule('order/GetBuyoutByList', 'shop/order/GetBuyoutByList'); /* 买断订单*/
+    Route::rule('order/GetOrderByDownload', 'shop/order/GetOrderByDownload'); /*  条件 导出数据*/
 
 
     /**

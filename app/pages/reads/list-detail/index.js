@@ -1,7 +1,9 @@
 // pages/reads/list-detail/index.js
 // pages/reads/index.js
-let app=getApp();
-import { ArticleModel } from '../../../api/article.js'
+let app = getApp();
+import {
+  ArticleModel
+} from '../../../api/article.js'
 
 let articleModel = new ArticleModel();
 var WxParse = require('../../../wxParse/wxParse.js');
@@ -12,45 +14,41 @@ Page({
    * 页面的初始数据
    */
   data: {
-    Detailed:{},
-    user_id:0,
-    article_id:0,
-    eav:[],
+    Detailed: {},
+    user_id: 0,
+    article_id: 0,
+    eav: [],
 
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  
+
   onLoad: function(options) {
-    var that=this;
+    var that = this;
     var id = options.id
     this.setData({
       article_id: options.id
     })
-    articleModel.GetDataByDetailed(id,res=>{
-
+    articleModel.GetDataByDetailed(id, res => {
       that.setData({
         Detailed: res
       })
       that.geteav();
       WxParse.wxParse('article', 'html', res.content, that, 5);
-
     })
-
-
   },
   /**
    * 提交评论
    */
-  postsend(e){
-    var that=this;
-    var temp={
+  postsend(e) {
+    var that = this;
+    var temp = {
       user_id: app.globalData.user_id,
-      article_id:that.data.article_id,
+      article_id: that.data.article_id,
       content: e.detail.value
     }
-    articleModel.PostDataByEav(temp,res=>{
+    articleModel.PostDataByEav(temp, res => {
       that.geteav();
     })
 
@@ -58,21 +56,21 @@ Page({
   /**
    * 文章点赞
    */
-  userEav(e){
-     console.log(e)
-    articleModel.GetEavIdByLike(e.currentTarget.dataset.id,res=>{
+  userEav(e) {
+    console.log(e)
+    articleModel.GetEavIdByLike(e.currentTarget.dataset.id, res => {
       this.geteav();
     })
   },
   /**
    * 获取评价列表
    */
-  geteav(){
-    var that=this;
-    articleModel.GetIdByEav(that.data.article_id,res=>{
+  geteav() {
+    var that = this;
+    articleModel.GetIdByEav(that.data.article_id, res => {
       console.log(res)
       that.setData({
-        eav:res
+        eav: res
       })
     })
   },
@@ -84,8 +82,8 @@ Page({
 
   },
 
-  ArticleLike(){
-    articleModel.GetArticleIdByLike(this.data.Detailed.id,res=>{
+  ArticleLike() {
+    articleModel.GetArticleIdByLike(this.data.Detailed.id, res => {
       console.log(res)
     })
   },

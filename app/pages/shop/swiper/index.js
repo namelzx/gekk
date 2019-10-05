@@ -12,6 +12,12 @@ Component({
   properties:{
     swiperImg:{
       type: Array
+    },
+    shop_distance: {
+      type: String
+    },
+    shop_name: {
+      type: String
     }
   }
 })

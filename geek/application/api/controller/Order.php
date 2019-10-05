@@ -33,7 +33,9 @@ class Order extends Base
         $data['order']['status'] = 2;
         $res = OrderModel::create($data['order']);
         //优惠卷状态
-        CouponReceiveModel::where('id', $data['order']['coupons_id'])->data(['status' => 1])->update();
+        if (!empty($data['order']['coupons_id'])) {
+            CouponReceiveModel::where('id', $data['order']['coupons_id'])->data(['status' => 1])->update();
+        }
         if (!empty($data['order']['isInvoice'])) {
             if ($data['order']['isInvoice'] == 1) {//开发票
                 $data['invoice']['order_id'] = $res['id'];
@@ -52,9 +54,7 @@ class Order extends Base
             $arr[$i]['suk_name'] = $item['suk_name'];
             $arr[$i]['integral'] = $item['integral'];
             $goods = OrderGoodsModel::create($arr[$i]);
-
             $this->distribution($data['order']['user_id'], $res['id'], $goods['id'], 3, $item['integral'], $item['price']);
-
         }
 
         OrderGoodsModel::PostByData($arr);

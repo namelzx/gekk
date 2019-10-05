@@ -6,7 +6,7 @@
   </view>
   <!-- 订单收件人信息 -->
   <view class="deliver-owner">
-    <view class="locate-icon-wrapper">
+    <view class="locate-icon-wrapper" wx:if="{{details.isadd==2}}">
       <van-icon name="location" class="location-o-icon" />
     </view>
     <view class="owner-info-wrapper">

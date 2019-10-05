@@ -269,7 +269,6 @@ export default {
     } else {
       this.postForm = Object.assign({}, defaultForm);
     }
-    console.log(this.shop_id)
     GetGoodsByUp(this.shop_id).then(res => {
       this.tableData = res.data;
     });
@@ -325,6 +324,7 @@ export default {
               return;
             }
           }
+          this.postForm.shop_id=this.shop_id
          
           PostDataBySave(this.postForm).then(res => {
             this.$notify({
