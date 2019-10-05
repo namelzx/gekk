@@ -74,5 +74,14 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  OnDelete(){
+    var that=this;
+    orderModel.GetIdByDelete(that.data.details.id,res=>{
+        wx.redirectTo({
+          url: '/pages/home/order/index',
+        })
+    })
   }
 })

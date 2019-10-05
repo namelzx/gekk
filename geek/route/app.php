@@ -64,13 +64,15 @@ Route::group('api/app/', function () {
     Route::rule('address/getUserAddressCount', 'api/Address/getUserAddressCount'); /* 查看地址数量*/
 
     /**
-     * 提交订单
+     * 订单管理模块
      */
     Route::rule('order/PostOrderByData', 'api/order/PostOrderByData'); /* 提交用户订单*/
     Route::rule('order/GetUserByOrder', 'api/order/GetUserByOrder'); /* 获取用户订单*/
     Route::rule('order/GetIdByCancel', 'api/order/GetIdByCancel'); /* 取消订单*/
     Route::rule('order/PostDataByEva', 'api/order/PostDataByEva'); /* 取消订单*/
     Route::rule('order/GetOrderIdByFind', 'api/order/GetOrderIdByFind'); /* 订单详细*/
+    Route::rule('order/GetIdByDelete', 'api/order/GetIdByDelete'); /* s删除订单*/
+
 
     /**
      * 文章管理

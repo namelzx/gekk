@@ -1,4 +1,6 @@
 <!--pages/home/ticket/myTicket/index.wxml-->
+<wxs module="dateUtil" src="../../../../wxs/timeUtil.wxs"></wxs>
+
 <view class="ticket-container">
   <van-toast id="van-toast" />
   <view class="ticket-wrapper" wx:for="{{ticketList}}" wx:key="{{index}}">
@@ -13,7 +15,13 @@
       </view>
     </view>
     <view class="ticket-text">
-      <text>店铺优惠券 \n  {{item.get_counpon.start_time}}-{{item.get_counpon.end_time}}</text>
+      <text>店铺优惠券 \n  
+       {{
+      dateUtil.getDateTime(item.get_counpon.start_time)
+}}-{{
+    dateUtil.getDateTime(item.get_counpon.end_time) 
+}}
+      </text>
     </view>
   </view>
 </view>

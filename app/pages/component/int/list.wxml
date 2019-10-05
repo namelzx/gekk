@@ -19,7 +19,7 @@
             </view>
           </view>
           <view class="item-btn-group">
-            <view class="lv-btn normal-lv-btn" bindtap="clickToCheckDeliver" wx:if="{{item.status===2}}">查看物流</view>
+            <view class="lv-btn normal-lv-btn" bindtap="clickToCheckDeliver" wx:if="{{item.status===3}}">查看物流</view>
             <view class="lv-btn normal-lv-btn" bindtap="clickToRefund" wx:if="{{item.status===4}}">申请退款</view>
             <view class="lv-btn super-lv-btn" bindtap="clickToConfirm" data-id="{{item.id}}" wx:if="{{item.status===3}}">确认收货</view>
             <view class="lv-btn normal-btn" data-order_id="{{item.id}}" 

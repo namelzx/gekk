@@ -45,7 +45,7 @@
   min-width: 80rpx;
   width: 130rpx;
   text-align: right;
-  margin-top: 40rpx;
+  /* margin-top: 40rpx; */
   color: #ee0c0c;
   position: relative;
 }

@@ -13,5 +13,9 @@ class IntegralOrderCourierModel extends BaseModel
 {
     protected $table = 'ee_integral_order_courier';
 
+    public function Courier()
+    {
+        return $this->hasOne('CourierModel', 'id', 'courier_id');
+    }
 
 }

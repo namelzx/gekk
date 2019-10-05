@@ -49,7 +49,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 28,
+			"current": 29,
 			"list": [
 				{
 					"id": -1,
@@ -97,7 +97,7 @@
 					"id": 6,
 					"name": "订单提交",
 					"pathName": "pages/shop/pay/index",
-					"query": "type=buy",
+					"query": "type=cart",
 					"scene": null
 				},
 				{
@@ -252,6 +252,13 @@
 					"name": "积分订单",
 					"pathName": "pages/home/score/exchange/index",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "订单详情",
+					"pathName": "pages/home/order/detail/index",
+					"query": "id=6",
 					"scene": null
 				}
 			]

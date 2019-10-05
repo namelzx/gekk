@@ -16,8 +16,15 @@ class CouponModel extends BaseModel
     protected $createTime = 'create_time';
     protected $updateTime = 'create_time';
 
-    public function getUserCoupon(){
-        return $this->hasOne('CouponReceiveModel','coupon_id','id');
+
+    public function lingqu()
+    {
+        return $this->hasMany('CouponReceiveModel', 'coupon_id', 'id');
+    }
+
+    public function getUserCoupon()
+    {
+        return $this->hasOne('CouponReceiveModel', 'coupon_id', 'id');
     }
 
     //获取数据列表

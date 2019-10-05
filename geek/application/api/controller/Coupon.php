@@ -14,9 +14,15 @@ use app\common\model\CouponReceiveModel;
 
 class Coupon extends Base
 {
+    /**
+     * 获取用户优惠卷
+     */
     public function GetUserByCoupons()
     {
+
+
         $data = input('param.');
+
         $coupon = CouponReceiveModel::with(['getCounpon' => function ($query) use ($data) {
             if (!empty($data['id'])) {
                 $query->where('scope', 1)->whereOr('goods_id', $data['id']);
@@ -50,7 +56,7 @@ class Coupon extends Base
     public function GetCounpn()
     {
         $data = input('param.');
-        $Counpn = CouponModel::order('id desc')-> all();
+        $Counpn = CouponModel::order('id desc')->all();
         return json($this->ReinstallCoupon($Counpn, $data['user_id']));
     }
 
@@ -77,9 +83,9 @@ class Coupon extends Base
     {
 
         $data = input('param.');
-        $res=CouponReceiveModel::where($data)->count();
-        if($res>0){
-            return json(msg(200,$res,'已领取'));
+        $res = CouponReceiveModel::where($data)->count();
+        if ($res > 0) {
+            return json(msg(200, $res, '已领取'));
         }
 
     }

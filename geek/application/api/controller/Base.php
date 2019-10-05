@@ -99,8 +99,7 @@ class Base extends Controller
     public function distribution($user_id = 1, $oder_id = 1, $goods_id = 1, $dis = 3, $to = 100, $price = 0)
     {
 
-        $isfile = file_exists('https://hhh.10huisp.com/uploads/20190930/1cc7989fe9828dbaf314065c575a0f99.png');
-        return json($isfile);
+
         /**
          * 自定义上级查询
          */

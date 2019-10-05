@@ -75,7 +75,7 @@
       </view>
       <view class="all-fee">
         <text class="fee-left">合计</text>
-        <text class="fee-right">¥ {{totalPrice}}</text>
+        <text class="fee-right">¥ {{actualPrice}}</text>
       </view>
     </view>
 
@@ -95,7 +95,7 @@
     <view class="go-pay">
       <view class="pay-left">
         <text>应付金额:</text>
-        <text>¥ {{totalPrice}}</text>
+        <text>¥ {{actualPrice}}</text>
       </view>
       <view class="pay-right" bindtap="onPay">去支付</view>
     </view>
@@ -119,7 +119,7 @@
                       <view class="shop-detail-name">{{item.name}}</view>
                       <view class="shop-on-sale">
                         <van-icon name="clock-o" class="on-sale-icon" />
-                        <text>{{item.lat}}-{{item.lng}}</text>
+                        <text>{{item.startTime}}-{{item.endTime}}</text>
                       </view>
                       <view class="shop-detail-locate">
                         <van-icon name="location-o" class="detail-locate-icon" />

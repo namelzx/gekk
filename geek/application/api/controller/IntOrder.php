@@ -29,7 +29,7 @@ class IntOrder extends Base
             'order_id' => $res['id'],
             'images_url' => $data['goods']['images_url'],
             'integral' => $data['goods']['integral'],
-            'name'=>$data['goods']['name']
+            'name' => $data['goods']['name']
         ];
         $instdata = [
             'title' => '兑换商品',
@@ -68,23 +68,27 @@ class IntOrder extends Base
         return json($res);
     }
 
+    /**
+     * @return \think\response\Jsong
+     * 更新订单状态
+     */
     public function GetIdByCancel()
     {
         $data = input('param.');
-        $res = OrderModel::where('id', $data['id'])->data(['status' => $data['status']])->update();
-        $goodsall = OrderGoodsModel::with(['goods'])->where('order_id', $data['id'])->select();
-        $order = OrderModel::where('id', $data['id'])->find();
-        foreach ($goodsall as $i => $item) {
-            UserModel::where('id', $order['user_id'])->setInc('integral', $item['goods']['integral']);
+        $res = IntegralOrderModel::where('id', $data['order_id'])->data(['status' => $data['status']])->update();
+        $goods = IntegralOrderGoodsModel::where('order_id', $data['order_id'])->find();
+        $goodsall = IntegralOrderModel::with(['goods'])->where('user_id', $data['user_id'])->select();
+
+        if ($data['status'] == '5') {
             $instdata = [
-                'title' => '购买商品',
-                'type' => 2,
-                'integral' => $item['goods']['integral']//积分数量
+                'title' => '取消兑换',
+                'type' => 3,//兑换商品
+                'integral' => $goods['integral'],//积分数量
+                'type_' => 1,//增加
             ];
-            if ($item['goods']['integral'] > 0) {
-                IntegralLogModel::create($instdata);
-            }
+            IntegralLogModel::create($instdata);
         }
+
         return json(msg(200, $res, $goodsall));
     }
 

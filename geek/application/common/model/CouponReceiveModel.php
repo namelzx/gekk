@@ -21,4 +21,9 @@ class CouponReceiveModel extends Model
         return $this->hasOne('CouponModel', 'id', 'coupon_id');
     }
 
+    public function user()
+    {
+        return $this->hasOne('UserModel', 'id', 'user_id');
+    }
+
 }

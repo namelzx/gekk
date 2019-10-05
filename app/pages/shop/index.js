@@ -71,13 +71,14 @@ Page({
       this.data.goods[parentIndex].foods[index].suk[cheindex].Count = 0;
     }
     this.data.goods[parentIndex].foods[index].suk[cheindex].Count--;
-    var mark = 'a' + index + 'b' + parentIndex
+    var mark = 'a' + this.data.goods[parentIndex].foods[index].id + 'b' + this.data.goods[parentIndex].foods[index].suk[cheindex].id
     var suk_id = this.data.suk_id
     var suk_name = this.data.suk_name
     var price = parseFloat(this.data.goods[parentIndex].foods[index].suk[cheindex].price);
     var num = this.data.goods[parentIndex].foods[index].suk[cheindex].Count;
     var images_url = this.data.goods[parentIndex].foods[index].suk[cheindex].price
     var goods_id = this.data.goods[parentIndex].foods[index].id
+    var integral = this.data.goods[parentIndex].foods[index].integral
     if (isNaN(num)) {
       num = 1;
     }
@@ -93,9 +94,11 @@ Page({
       goods_id: goods_id,
       suk_id,
       suk_name,
-      images_url: images_url
+      images_url: images_url,
+      integral: integral,
+      mark: mark
     };
-    var carArray1 = this.data.carArray.filter(item => item.suk_id != suk_id)
+    var carArray1 = this.data.carArray.filter(item => item.mark != mark)
     carArray1.push(obj)
     this.setData({
       carArray: carArray1,
@@ -205,7 +208,7 @@ Page({
     }
     this.data.goods[parentIndex].foods[index].Count++
     this.data.goods[parentIndex].foods[index].suk[cheindex].Count++;
-    var mark = 'a' + index + 'b' + parentIndex
+    var mark = 'a' + this.data.goods[parentIndex].foods[index].id + 'b' + this.data.goods[parentIndex].foods[index].suk[cheindex].id
     var suk_id = this.data.suk_id
     var suk_name = this.data.suk_name
     var price = parseFloat(this.data.goods[parentIndex].foods[index].suk[cheindex].price);
@@ -213,7 +216,8 @@ Page({
 
     var num = this.data.goods[parentIndex].foods[index].suk[cheindex].Count;
     var goods_id = this.data.goods[parentIndex].foods[index].id
-    if (isNaN(num)) {
+    var integral = this.data.goods[parentIndex].foods[index].integral
+   if (isNaN(num)) {
       num = 1;
     }
 
@@ -228,9 +232,10 @@ Page({
       goods_id: goods_id,
       suk_id,
       suk_name,
-      images_url: images_url
+      images_url: images_url,
+      integral: integral
     };
-    var carArray1 = this.data.carArray.filter(item => item.suk_id != suk_id)
+    var carArray1 = this.data.carArray.filter(item => item.mark != mark)
     carArray1.push(obj)
     this.setData({
       // carArray: carArray1,
@@ -273,6 +278,8 @@ Page({
 
     var num = this.data.goods[parentIndex].foods[index].suk[cheindex].Count;
     var goods_id = this.data.goods[parentIndex].foods[index].id
+   
+    var integral = this.data.goods[parentIndex].foods[index].integral
     if (isNaN(num)) {
       num = 1;
     }
@@ -289,7 +296,8 @@ Page({
       suk_id,
       suk_name,
       images_url: images_url,
-      mark: mark
+      mark: mark,
+      integral: integral
     };
    
     
@@ -315,9 +323,14 @@ Page({
   //计算总价
   calTotalPrice: function() {
   
+
     var carArray = this.data.carArray;
+  
     if(carArray.length<1){
       carArray = wx.getStorageSync('cart')
+    }
+    if (carArray.length<1){
+      carArray=[]
     }
     var totalPrice = 0;
     var totalCount = 0;
@@ -325,7 +338,6 @@ Page({
       totalPrice += carArray[i].price * carArray[i].num;
       totalCount += carArray[i].num
     }
-    console.log(totalCount)
     this.setData({
       totalPrice: totalPrice,
       totalCount: totalCount,

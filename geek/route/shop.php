@@ -62,10 +62,10 @@ Route::group('api/shop/', function () {
     /**
      * 快递板块
      */
-    Route::get('/courier/getDataByDetail', 'shop/courier/getDataByDetail');//获取商品分类
-    Route::post('/courier/postDataByAdd', 'shop/courier/postDataByAdd');//获取商品分类
-    Route::get('/courier/getIdByDel', 'shop/courier/getIdByDel');//获取商品分类
-    Route::get('/courier/all', 'shop/courier/getall');//获取商品分类
+    Route::get('/courier/getDataByDetail', 'shop/courier/getDataByDetail');//获取快递
+    Route::post('/courier/postDataByAdd', 'shop/courier/postDataByAdd');//添加快递
+    Route::get('/courier/getIdByDel', 'shop/courier/getIdByDel');//删除快递
+    Route::get('/courier/all', 'shop/courier/getall');//获取所有的快递
 
 
     /**

@@ -39,7 +39,7 @@ class OrderModel extends HTTP {
 
   
 
-  //修改默认地址
+  //获取订单
   GetUserByOrder(data, res) {
     var params = {
       url: 'order/GetUserByOrder',//接口路径
@@ -60,6 +60,20 @@ class OrderModel extends HTTP {
     }
     this.request(params)
   }
+  /**
+   * 删除订单
+   */
+  GetIdByDelete(id, res) {
+    var params = {
+      url: 'order/GetIdByDelete',//接口路径
+      method: 'get', //请求方式
+      success: res,
+      data: { id }
+    }
+    this.request(params)
+  }
+
+  
 
   //取消订单
   GetIdByCancel(temp, res) {

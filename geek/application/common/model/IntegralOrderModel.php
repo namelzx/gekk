@@ -53,10 +53,31 @@ class IntegralOrderModel extends BaseModel
     //快递订单
     public function getCourier()
     {
-        return $this->hasOne('OrderCourierModel', 'order_id', 'id');
+        return $this->hasOne('IntegralOrderCourierModel', 'order_id', 'id');
     }
-    public function invoice(){
-        return $this->hasOne('OrderInvoiceModel', 'order_id', 'id');
 
+    public function invoice()
+    {
+        return $this->hasOne('OrderInvoiceModel', 'order_id', 'id');
+    }
+
+
+    public static function GetDataByList($data)
+    {
+        $where = [];
+        if (!empty($data['title'])) {
+            $where[] = ['name', '=', $data['title']];
+        }
+        if (!empty($data['status'])) {
+            $where[] = ['status', '=', $data['status']];
+        }
+        if (!empty($data['category_id'])) {
+            $where[] = ['category_id', '=', $data['category_id']];
+        }
+        if (!empty($data['shop_id'])) {
+            $where[] = ['shop_id', '=', $data['shop_id']];
+        }
+        $res = self::with(['shop', 'goods', 'address', 'getUser'])->where($where)->where('status', 'neq', 3)->paginate($data['limit'], false, ['query' => $data['page']]);
+        return $res;
     }
 }

@@ -38,4 +38,23 @@ Route::group('api/admin/', function () {
     Route::rule('IntGoods/GetGoodsByUp', 'admin/IntGoods/GetGoodsByUp'); /* 获取上架商品*/
 
 
+    /**
+     * 积分订单
+     */
+
+    Route::rule('IntOrder/GetDataByList', 'admin/IntOrder/GetDataByList'); /* 获取列表*/
+    Route::rule('IntOrder/PostDataBySave', 'admin/IntOrder/PostDataBySave'); /* 更新或保存数据*/
+    Route::rule('IntOrder/GetIdByDel', 'admin/IntOrder/GetIdByDel'); /* 删除数据*/
+    Route::rule('IntOrder/GetIdByDetails', 'admin/IntOrder/GetIdByDetails'); /* 商品详情*/
+    Route::rule('IntOrder/PostDataByUp', 'admin/IntOrder/PostDataByUp'); /* 更新商品状态*/
+    Route::rule('IntOrder/GetGoodsByUp', 'admin/IntOrder/GetGoodsByUp'); /* 获取上架商品*/
+
+
+    /**
+     * 管理快递
+     */
+    Route::get('/courier/all', 'shop/courier/getall');//获取所有的快递
+    Route::rule('order/postCourier', 'admin/IntOrder/postCourier'); /* 提交订单快递信息*/
+
+
 });

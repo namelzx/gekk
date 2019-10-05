@@ -10,10 +10,20 @@
     <van-tab title="全部">
         <component-order-name bind:traCheckedNum="clickToPay" bind:clickToCancel="clickToCancel"  bind:clickToConfirm="clickToConfirm" list="{{orderList}}" ></component-order-name>
     </van-tab>
-    <van-tab title="待付款">内容 2</van-tab>
-    <van-tab title="待收货">内容 3</van-tab>
-    <van-tab title="已完成">内容 4</van-tab>
-    <van-tab title="已取消">已取消</van-tab>
+
+       <van-tab title="待发货">
+     <component-order-name bind:traCheckedNum="clickToPay" bind:clickToCancel="clickToCancel"  bind:clickToConfirm="clickToConfirm" list="{{orderList}}" ></component-order-name>
+    </van-tab>
+    <van-tab title="待收货">
+     <component-order-name bind:traCheckedNum="clickToPay" bind:clickToCancel="clickToCancel"  bind:clickToConfirm="clickToConfirm" list="{{orderList}}" ></component-order-name>
+    </van-tab>
+    <van-tab title="已完成">
+     <component-order-name bind:traCheckedNum="clickToPay" bind:clickToCancel="clickToCancel"  bind:clickToConfirm="clickToConfirm" list="{{orderList}}" ></component-order-name>
+    </van-tab>
+    <van-tab title="已取消">
+    
+     <component-order-name bind:traCheckedNum="clickToPay" bind:clickToCancel="clickToCancel"  bind:clickToConfirm="clickToConfirm" list="{{orderList}}" ></component-order-name>
+    </van-tab>
   </van-tabs>
 
 </view>

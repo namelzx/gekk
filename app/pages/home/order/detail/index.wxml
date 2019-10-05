@@ -84,7 +84,7 @@
 
 <!-- 底部 -->
   <view class="footer-btn">
-    <view class="del-btn">删除订单</view>
+    <view class="del-btn" bindtap="OnDelete">删除订单</view>
     <view class="right-btn">
       <view class="refund">申请退款</view>
       <view class="rate">评价晒单</view>

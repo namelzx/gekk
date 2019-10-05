@@ -55,6 +55,7 @@ Page({
     totalPrice:0,//总价
     ticketList: [     // 优惠券列表
     ],
+    actualPrice:0,//实际付款
     ticketRadio:undefined,  //优惠券默认结果
     coun:{
       isShow:false
@@ -103,7 +104,7 @@ Page({
        id:goods[0].id
      }
       couponsModel.GetUserByCoupons(temp,res=>{
-        console.log(res)
+     
         that.setData({
           ticketList:res.data
         })
@@ -121,7 +122,7 @@ Page({
         id: goods[0].id
       }
       couponsModel.GetUserByCoupons(temp, res => {
-        console.log(res)
+       
         that.setData({
           ticketList: res.data
         })
@@ -152,7 +153,7 @@ Page({
     this.setData({
       taxResult: event.detail
     });
-    console.log(event.detail)
+  
   },
   // 发票抬头
   onChangeInvoise (event) {
@@ -166,7 +167,7 @@ Page({
     this.setData({
       info: event.detail
     });
-    console.log(event.detail)
+
   },
   // 优惠券选择
   onChangeTicket(event) {
@@ -179,7 +180,7 @@ Page({
     var that=this;
     that.calTotalPrice();
     const { name, info} = event.currentTarget.dataset;
-    if (that.data.totalPrice > info.get_counpon.low_price){
+    if (that.data.totalPrice < info.get_counpon.low_price){
       Toast('该商品不可用');
         return;
     }
@@ -191,7 +192,7 @@ Page({
     this.setData({
       ticketRadio: name,
       coun: info,
-      totalPrice:sum,
+      actualPrice:sum,//实际付款
       iscoun:true,
       showTicket: !this.data.showTicket
     });
@@ -200,7 +201,7 @@ Page({
   },
   // 选择送货上门地址
   onChoiseAddress(event) {
-    console.log(event.detail)
+  
     var that=this;
     let addressRadio=1;
     for (let i = 0; i < that.data.addressRadioList.length;i++){
@@ -243,10 +244,11 @@ Page({
     var totalCount = 0;
     for (var i = 0; i < carArray.length; i++) {
       totalPrice += parseFloat(carArray[i].price) * carArray[i].num;
-      console.log(totalPrice)
+   
     }
     this.setData({
       totalPrice: totalPrice,
+      actualPrice: totalPrice
     });
   },
   handelunit(e){
@@ -321,14 +323,12 @@ Page({
       temp.order.isadd = 2
       temp.order.shop_id = that.data.shop_id
     }
+    temp.order.actualPrice = that.data.actualPrice
     ordermodel.PostOrderByData(temp,res=>{
-      console.log(res)
-      wx.navigateTo({
+      wx.redirectTo({
         url: '/pages/home/order/index',
-        success: function(res) {},
-        fail: function(res) {},
-        complete: function(res) {},
       })
+      wx.setStorageSync('cart', [])
     })
   },
   //计算总价
@@ -340,11 +340,10 @@ Page({
       totalPrice += carArray[i].price * carArray[i].num;
       totalCount += carArray[i].num
     }
-    console.log(totalPrice)
-    console.log(totalCount)
+ 
     this.setData({
       totalPrice: totalPrice,
-      // totalCount: totalCount,
+      actualPrice: totalPrice,
       //payDesc: this.payDesc()
     });
   },

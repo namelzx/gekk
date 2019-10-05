@@ -50,10 +50,22 @@ Page({
   },
   // 切换选项卡
   onChange(event) {
-    wx.showToast({
-      title: `切换到标签 ${event.detail.index + 1}`,
-      icon: 'none'
-    });
+
+    var that = this;
+    var index = event.detail.index;
+
+    that.data.listQuery.user_id = app.globalData.user_id
+    that.data.listQuery.status = index+1
+    if (that.data.listQuery.status==1){
+      that.data.listQuery.status=0
+    }
+    intOrderModel.GetUserByOrder(that.data.listQuery, res => {
+      console.log(res)
+      that.setData({
+        orderList: res.data
+      })
+    })
+ 
   },
   // 订单详情
   goOrderDetail() {
@@ -78,12 +90,26 @@ Page({
 
   },
   // 确认收货
-  clickToConfirm() {
-
+  clickToConfirm(e) {
+    var temp = {
+      order_id: e.detail,
+      user_id: app.globalData.user_id,
+      status: 4
+    }
+    intOrderModel.GetIdByCancel(temp, res => {
+      console.log(res)
+    })
   },
   // 取消订单
   clickToCancel(e) {
-    console.log(e)
+    var temp={
+        order_id:e.detail,
+        user_id:app.globalData.user_id,
+        status:5
+    }
+    intOrderModel.GetIdByCancel(temp,res=>{
+      console.log(res)
+    })
   },
   // 去支付
   clickToPay() {

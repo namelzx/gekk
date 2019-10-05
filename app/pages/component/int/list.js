@@ -42,7 +42,7 @@ Component({
     },
     // 确认收货
     clickToConfirm(e) {
-      console.log(e)
+     
       this.triggerEvent("clickToConfirm", e.currentTarget.dataset.id)
     },
     // 取消订单

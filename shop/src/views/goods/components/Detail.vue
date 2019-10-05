@@ -180,6 +180,7 @@ import {
 import ListImage from "@/components/Upload/ListImage";
 
 import { GetCategory } from "@/api/brand";
+import { mapGetters } from "vuex";
 
 import {
   GetCategoryIdByItems,
@@ -199,7 +200,7 @@ const defaultForm = {
   is_renew: 1, //是否可续租 默认可续租
   is_op: 1, //是否可续租 默认可续租
   sukindx: 0, //所选择的suk 这个用于选择图库
-
+  
   goods_suk: [
     {
       tag: "", //规格
@@ -241,6 +242,7 @@ export default {
       return statusMap[status];
     }
   },
+ 
   data() {
     const validateRequire = (rule, value, callback) => {
       console.log(value);
@@ -300,14 +302,7 @@ export default {
     };
   },
   computed: {
-    displayTime: {
-      get() {
-        return +new Date(this.postForm.display_time);
-      },
-      set(val) {
-        this.postForm.display_time = new Date(val);
-      }
-    }
+    ...mapGetters(["shop_id"])
   },
   created() {
     if (this.isEdit) {
@@ -319,7 +314,6 @@ export default {
     GetCategory().then(res => {
       this.category = res.data;
     });
-
     this.tempRoute = Object.assign({}, this.$route);
   },
   methods: {
@@ -412,6 +406,7 @@ export default {
       document.title = `${title} - ${this.postForm.id}`;
     },
     submitForm() {
+      this.postForm.shop_id=this.shop_id
       this.$refs.postForm.validate(valid => {
         if (valid) {
           var temp = {
