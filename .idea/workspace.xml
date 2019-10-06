@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="01f06058-1e1a-4f57-b129-c0d3a0c29f53" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/pages/shop/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/shop/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/pages/shop/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/shop/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/pages/shop/pay/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/shop/pay/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/pages/shop/swiper/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/shop/swiper/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/pages/shop/swiper/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/app/pages/shop/swiper/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shop/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/shop/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop/shop.zip" beforeDir="false" afterPath="$PROJECT_DIR$/shop/shop.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop/src/views/order/components/Detail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/shop/src/views/order/components/Detail.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,20 +16,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/admin/src/views/apps/components/AppsDetail.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3277">
-              <caret line="10" lean-forward="true" selection-end-line="349" />
-              <folding>
-                <element signature="e#4822#4864#0" expanded="true" />
-                <element signature="e#5025#5066#0" expanded="true" />
-                <element signature="e#5287#5344#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/geek/route/admin.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -52,13 +34,25 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/geek/application/api/controller/Banner.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+            <state relative-caret-position="238">
+              <caret line="28" column="9" selection-start-line="28" selection-start-column="9" selection-end-line="28" selection-end-column="9" />
               <folding>
                 <element signature="e#119#152#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/geek/application/shop/controller/Order.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="258">
+              <caret line="57" column="14" selection-start-line="57" selection-start-column="14" selection-end-line="57" selection-end-column="14" />
+              <folding>
+                <element signature="e#120#159#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -92,7 +86,7 @@
         <entry file="file://$PROJECT_DIR$/geek/application/api/controller/Shop.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="251">
-              <caret line="27" column="73" lean-forward="true" selection-start-line="26" selection-start-column="6" selection-end-line="27" selection-end-column="73" />
+              <caret line="27" column="73" selection-start-line="26" selection-start-column="6" selection-end-line="27" selection-end-column="73" />
               <folding>
                 <element signature="e#119#154#0#PHP" expanded="true" />
               </folding>
@@ -104,7 +98,7 @@
         <entry file="file://$PROJECT_DIR$/geek/application/common/model/ShopModel.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="330">
-              <caret line="45" column="16" lean-forward="true" selection-start-line="45" selection-start-column="16" selection-end-line="45" selection-end-column="16" />
+              <caret line="45" column="16" selection-start-line="45" selection-start-column="16" selection-end-line="45" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -197,7 +191,6 @@
         <option value="$PROJECT_DIR$/geek/application/common/model/CouponReceiveModel.php" />
         <option value="$PROJECT_DIR$/geek/application/api/controller/Coupon.php" />
         <option value="$PROJECT_DIR$/geek/route/app.php" />
-        <option value="$PROJECT_DIR$/geek/application/shop/controller/Order.php" />
         <option value="$PROJECT_DIR$/geek/application/common/model/OrderModel.php" />
         <option value="$PROJECT_DIR$/geek/application/common/model/CouponModel.php" />
         <option value="$PROJECT_DIR$/admin/src/router/index.js" />
@@ -224,6 +217,7 @@
         <option value="$PROJECT_DIR$/geek/application/api/controller/Shop.php" />
         <option value="$PROJECT_DIR$/geek/application/common.php" />
         <option value="$PROJECT_DIR$/geek/application/api/controller/Banner.php" />
+        <option value="$PROJECT_DIR$/geek/application/shop/controller/Order.php" />
       </list>
     </option>
   </component>
@@ -277,6 +271,11 @@
             <path>
               <item name="极客联盟" type="b2602c69:ProjectViewProjectNode" />
               <item name="极客联盟" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="极客联盟" type="b2602c69:ProjectViewProjectNode" />
+              <item name="极客联盟" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="极客联盟" type="b2602c69:ProjectViewProjectNode" />
@@ -392,16 +391,15 @@
       <workItem from="1569803708212" duration="7975000" />
       <workItem from="1569843133605" duration="3624000" />
       <workItem from="1570000477527" duration="38576000" />
-      <workItem from="1570262817263" duration="19775000" />
+      <workItem from="1570262817263" duration="20897000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="194900000" />
+    <option name="totallyTimeSpent" value="196022000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="726" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49882352" visible="true" weight="0.2907916" />
       <window_info id="Structure" order="1" sideWeight="0.5011765" side_tool="true" weight="0.24959612" />
@@ -684,16 +682,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/geek/application/shop/controller/Order.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="128" selection-start-line="95" selection-end-line="128" />
-          <folding>
-            <element signature="e#120#159#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/geek/application/admin/controller/Order.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="185">
@@ -784,7 +772,7 @@
     <entry file="file://$PROJECT_DIR$/geek/application/common/model/ShopModel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
-          <caret line="45" column="16" lean-forward="true" selection-start-line="45" selection-start-column="16" selection-end-line="45" selection-end-column="16" />
+          <caret line="45" column="16" selection-start-line="45" selection-start-column="16" selection-end-line="45" selection-end-column="16" />
         </state>
       </provider>
     </entry>
@@ -794,7 +782,7 @@
     <entry file="file://$PROJECT_DIR$/geek/application/api/controller/Shop.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="251">
-          <caret line="27" column="73" lean-forward="true" selection-start-line="26" selection-start-column="6" selection-end-line="27" selection-end-column="73" />
+          <caret line="27" column="73" selection-start-line="26" selection-start-column="6" selection-end-line="27" selection-end-column="73" />
           <folding>
             <element signature="e#119#154#0#PHP" expanded="true" />
           </folding>
@@ -803,10 +791,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/geek/application/api/controller/Banner.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+        <state relative-caret-position="238">
+          <caret line="28" column="9" selection-start-line="28" selection-start-column="9" selection-end-line="28" selection-end-column="9" />
           <folding>
             <element signature="e#119#152#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/geek/application/shop/controller/Order.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="57" column="14" selection-start-line="57" selection-start-column="14" selection-end-line="57" selection-end-column="14" />
+          <folding>
+            <element signature="e#120#159#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

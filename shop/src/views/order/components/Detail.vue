@@ -22,10 +22,6 @@
                 <div class="detail">未发货</div>
               </div>
               <div class="ant-col-md-8">
-                <div class="term">租用时间:</div>
-                <div class="detail">1000001503297560</div>
-              </div>
-              <div class="ant-col-md-8">
                 <div class="term">下单时间:</div>
                 <div class="detail">{{postForm.create_time}}</div>
               </div>
@@ -61,7 +57,7 @@
             <div class="ant-row" v-else>
                 <div class="ant-col-md-8">
                 <div class="term">取货店铺:</div>
-                <div class="detail" >11</div>
+                <div class="detail" >{{postForm.shop.name}}<br/>{{postForm.shop.location}}</div>
               </div>
             </div>
           </div>
@@ -139,7 +135,7 @@
       </div>
       <!--订单信息-->
       <div class="goods-info">
-        <div class="head-info" >{{postForm.totalPrice}}</div>
+        <div class="head-info" >{{postForm.actualPrice}}</div>
         <div class="head-info">{{postForm.freight}}</div>
 
         <div class="head-info">
@@ -157,43 +153,6 @@
       </div>
 
 
-      <div v-if="postForm.status>4">
-        <divider title="结算信息" />
-        <div class="goods-heade">
-          <div class="head-info">结算状态</div>
-          <div class="head-info">损坏金额</div>
-          <div class="head-info">赔偿金额</div>
-          <div class="head-info">结算时间</div>
-          <div class="head-info">备注</div>
-        </div>
-        <!--订单信息-->
-        <div class="goods-info">
-          <div class="head-info">
-            <span v-if="postForm.status===5">等待结算</span>
-
-            <span v-if="postForm.status===6">结算成功</span>
-          </div>
-          <div class="head-info">
-            <el-input
-              v-if="postForm.status===5"
-              v-model="postForm.default_price"
-              placeholder="请输入违约金额"
-            ></el-input>
-            <span v-else>{{postForm.default_price}}</span>
-          </div>
-          <div class="head-info">
-            <el-input v-if="postForm.status===5" v-model="postForm.com_price" placeholder="请输入赔偿金额"></el-input>
-
-            <span v-else>{{postForm.com_price}}</span>
-          </div>
-
-          <div class="head-info">
-            <span v-if="postForm.close_time">{{postForm.close_time|parseTime('{y}-{m}-{d}')}}</span>
-          </div>
-          <div class="head-info">*若出具赔偿金额和违约金额为0时，平台将自动推进该订单至完结，并立即退还用户全部押金！</div>
-        </div>
-        <el-button plain size="medium" v-if="postForm.status===5" @click="Settlement">确认结算</el-button>
-      </div>
     </div>
   </div>
 </template>

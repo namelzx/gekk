@@ -55,7 +55,7 @@ class Order extends Base
     {
         $data = input('param.');
         $res = OrderModel::with(['goods', 'getGoods', 'address', 'getUserCoupon' => ['getCounpon'], 'getCourier' => ['Courier'], 'getUser'
-        ])->where('id', $data['id'])->find();
+        ,'shop'])->where('id', $data['id'])->find();
         $logistics = "";
         if (!empty($res['get_courier'])) {
             $requestData = "{'OrderCode':'" . $res['get_courier']['out_courier_no'] . "','ShipperCode':'" . $res['get_courier']['courier']['value'] . "','LogisticCode':'" . $res['get_courier']['out_courier_no'] . "'}";
