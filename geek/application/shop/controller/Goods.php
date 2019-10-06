@@ -12,6 +12,7 @@ namespace app\shop\controller;
 use app\common\model\GoodsImagesModel;
 use app\common\model\GoodsModel;
 use app\common\model\GoodsSukModel;
+use app\common\model\ShopModel;
 
 class Goods extends Base
 {
@@ -107,6 +108,13 @@ class Goods extends Base
     {
         $data = input('param.');
         $res = GoodsModel::where('id', $data['id'])->data($data)->update();
+
+
+        $goods = GoodsModel::where('id', $data['id'])->find();
+        $count = GoodsModel::where('shop_id', $goods['shop_id'])->where(['status' => 1])->count();
+        if ($count < 1) {//如果上架商品为空时。那么店铺为关闭状态
+            ShopModel::where('id', $goods['shop_id'])->data(['status' => 2])->update();
+        }
         return json(['msg' => '更新成功', 'data' => $res, 'code' => 20000], 200);
     }
 
@@ -115,8 +123,8 @@ class Goods extends Base
      */
     public function GetGoodsByUp()
     {
-        $data=input('param.');
-        $res= GoodsModel::where('status',1)->where('shop_id',$data['shop_id'])->select();
+        $data = input('param.');
+        $res = GoodsModel::where('status', 1)->where('shop_id', $data['shop_id'])->select();
         return json(['msg' => '获取上架商品', 'data' => $res, 'code' => 20000], 200);
 
     }

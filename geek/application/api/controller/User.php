@@ -94,8 +94,7 @@ class User extends Base
         $data = input('param.');
         $cheuser = UserDistModel::where('phone', $data['phone'])->count();
         if ($cheuser > 0) {
-            return json(msg(204, $cheuser, '该用户信息已存在'));
-
+            return json(msg(204, $cheuser, '正在审核中'));
         }
         $res = UserDistModel::create($data);
         return json(msg(200, $res, '提交成功'));

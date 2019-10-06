@@ -23,7 +23,7 @@ class Home extends Base
 //        $where[] = ['shop_id', 'eq', $data['shop_id']];
         $temp = [];
         $temp['goods'] = GoodsModel::where($where)->count();//商品总数
-        $temp['order'] = GoodsModel::where($where)->count();//订单总数
+        $temp['order'] = OrderModel::where($where)->count();//订单总数
 
         $temp['user'] = UserModel::where($where)->count();//总用户
 
@@ -50,7 +50,7 @@ class Home extends Base
         $temp['dayuser'] = UserModel::where($where)
             ->whereTime('create_time', 'd')
             ->count();//获取今日用户
-        $temp['yesteruser'] = OrderModel::where($where)
+        $temp['yesteruser'] = UserModel::where($where)
             ->whereTime('create_time', 'yesterday')
             ->count();//获取昨日新增用户
 

@@ -1,12 +1,12 @@
 <!--pages/reads/swiper/index.wxml-->
 
 <view class="logo">
-  <image src="{{logo}}"></image>
+  <image src="{{shop.logo}}"></image>
 </view>
 <view class="locate-item" bindtap="clickToMap">
   <van-icon name="location-o" class="locate-icon" />
   <view class="shop-name">
-    <text>{{shop_name}}</text>
+    <text>{{shop.name}}</text>
     <view class="distance">
       <text>距离你{{shop_distance}}km</text>
     </view>

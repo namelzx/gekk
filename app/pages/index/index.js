@@ -58,9 +58,9 @@ Page({
     })
   },
   toShop(e){
-  
+    let km = e.currentTarget.dataset.km;
    wx.navigateTo({
-     url: '/pages/shop/index?id=' + e.currentTarget.dataset.id,
+     url: '/pages/shop/index?id=' + e.currentTarget.dataset.id+'&km='+km,
    })
   },
   getUserInfo: function(e) {

@@ -13,7 +13,7 @@
 
   <view class="mask">
     <view style="position:relative;">
-      <view class="shop-avatar" wx:for="{{avatarList}}" wx:key="item.id" style="left:{{item.xRadius}}rpx;top:{{item.yRadius}}rpx;" data-id="{{item.id}}" bindtap="toShop">
+      <view class="shop-avatar" wx:for="{{avatarList}}" wx:key="item.id" style="left:{{item.xRadius}}rpx;top:{{item.yRadius}}rpx;" data-km="{{item.km}}" data-id="{{item.id}}" bindtap="toShop">
         <view class="info-item">
           <image src="{{item.logo}}">
           </image>

@@ -23,7 +23,7 @@ class Shop extends Base
     public function GetShopByList()
     {
         $data = input('param.');
-        $res = ShopModel::all();
+        $res = ShopModel::where('status', 1)->all();
         $model = new ShopModel();
         $dd = $model->range($data['latitude'], $data['longitude'], $res);
         return json($dd);
@@ -80,9 +80,9 @@ class Shop extends Base
         $res['coupon'] = $coupon;
         $res['eva'] = $eav->items();
         $res['eavcout'] = $eav->total();
-        if($res['eavcout']===0){
-            $res['eavnumber'] =100;
-        }else{
+        if ($res['eavcout'] === 0) {
+            $res['eavnumber'] = 100;
+        } else {
             $res['eavnumber'] = round($stcount / ($res['eavcout'] * 5) * 100, 2);
 
         }

@@ -185,7 +185,19 @@ export const constantRoutes = [
         name: 'courier',
         meta: {title: '快递管理', icon: 'dashboard', affix: true}
       },
-
+    ]
+  },
+  {
+    path: '/config',
+    component: Layout,
+    redirect: '/config',
+    children: [
+      {
+        path: 'config',
+        component: () => import('@/views/config/index'),
+        name: 'config',
+        meta: {title: '店铺配置', icon: 'dashboard', affix: true}
+      },
     ]
   },
 ]

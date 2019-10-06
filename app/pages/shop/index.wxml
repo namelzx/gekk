@@ -3,7 +3,7 @@
 <view class="header">
   <van-toast id="van-toast" />
 
-  <my-swiper swiperImg="{{imgUrls}}" shop_name="{{shop_name}}" shop_distance="{{shop_distance}}"></my-swiper>
+  <my-swiper swiperImg="{{imgUrls}}" shop_name="{{shop_name}}" shop_distance="{{shop_distance}}" shop="{{shop}}"></my-swiper>
 
 </view>
 <!--head -->

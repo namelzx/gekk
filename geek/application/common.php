@@ -18,9 +18,9 @@
  * @param $msg
  * @return array
  */
-function msg($code, $data = '', $message = '')
+function msg($code, $data = '', $message = '',$status=20000)
 {
-    return compact('code', 'data', 'message');
+    return compact('code', 'data', 'message','status');
 }
 
 //调用获取路径
@@ -106,3 +106,6 @@ function getbgqrcode($imageDefault,$textDefault,$background,$filename="",$config
         imagedestroy($imageRes);
     }
 }
+
+
+

@@ -56,8 +56,6 @@ class Order extends Base
             $goods = OrderGoodsModel::create($arr[$i]);
             $this->distribution($data['order']['user_id'], $res['id'], $goods['id'], 3, $item['integral'], $item['price']);
         }
-
-        OrderGoodsModel::PostByData($arr);
         return json(msg(200, $res, '3'));
     }
 

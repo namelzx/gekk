@@ -324,6 +324,7 @@ Page({
       temp.order.shop_id = that.data.shop_id
     }
     temp.order.actualPrice = that.data.actualPrice
+    temp.order.totalPrice = that.data.totalPrice
     ordermodel.PostOrderByData(temp,res=>{
       wx.redirectTo({
         url: '/pages/home/order/index',
