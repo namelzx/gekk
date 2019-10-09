@@ -1,0 +1,24 @@
+var filter = {
+  getStatus: function (value) {
+    //不能使用 new Date()
+      if(value==1){
+        return '待付款';
+      }
+    if (value == 2) {
+      return '待发货';
+    }
+    if (value == 3) {
+      return '待收货';
+    }
+    if (value == 4) {
+      return '已完成';
+    }
+    if (value == 5) {
+      return '已取消';
+    }
+  }
+}
+// 导出对外暴露的属性
+module.exports = {
+  getStatus: filter.getStatus
+}

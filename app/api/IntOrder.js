@@ -11,7 +11,6 @@ class IntOrderModel extends HTTP {
       method: 'get', //请求方式
       success: res,
       data: { user_id }
-
     }
     this.request(params)
   }
@@ -36,9 +35,6 @@ class IntOrderModel extends HTTP {
     }
     this.request(params)
   }
-
-
-
   //获取用户订单列表
   GetUserByOrder(data, res) {
     var params = {
@@ -71,11 +67,5 @@ class IntOrderModel extends HTTP {
     }
     this.request(params)
   }
-
-
-
-
-
-
 }
 export { IntOrderModel }

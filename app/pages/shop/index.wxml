@@ -23,7 +23,7 @@
     <view wx:for="{{goods}}" class="food-list food-list-hook" wx:for-index="parentIndex">
       <view id="order{{parentIndex}}" class="title">{{item.name}}</view>
       <view wx:for="{{item.foods}}" class="food-item" wx:for-item="food" data-food="{{food}}" data-id='{{food.id}}'>
-        <view class="icon">
+        <view class="icon" bindtap="toGoods" data-id='{{food.id}}'>
           <image src="{{food.images_url}}"></image>
         </view>
         <view class="content">

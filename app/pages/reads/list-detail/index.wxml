@@ -46,10 +46,7 @@
           <van-icon name="good-job-o" class="icon-good" />
           <text class="num">{{item.like}}</text>
         </view>
-        <!-- <view class="comments">
-          <van-icon name="comment-o" class="icon-comment" />
-          <text class="num">1223</text>
-        </view> -->
+       
       </view>
       <view class="icon-right">{{item.create_time}}</view>
     </view>
@@ -60,7 +57,7 @@
   <view class="social">
     <view class="rate-input">
       <van-icon name="edit"  class="eidt-icon"/>
-      <input adjust-position  confirm-type="send" bindconfirm="postsend" auto-focus/>
+      <input adjust-position value="{{content}}"  confirm-type="send" bindconfirm="postsend" auto-focus/>
     </view>
     <view class="social-btn">
       <view class="good-btn" bindtap="ArticleLike">
@@ -68,8 +65,10 @@
         <view class="btn-text">点赞</view>
       </view>
       <view class="share-btn">
+      <button open-type="share">
         <van-icon name="share" class="s-btn"/>
         <view class="btn-text">分享</view>
+        </button>
       </view>
     </view>
   </view>

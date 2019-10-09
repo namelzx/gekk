@@ -4,7 +4,7 @@ Route::group('api/admin/', function () {
 
     Route::post('user/login', 'admin/Login/login'); /* 登陆*/
     Route::get('user/info', 'admin/Login/info'); /* 获取当前登陆信息*/
-    Route::get('user/logout', 'admin/Login/logout'); /* 退出登录*/
+    Route::post('user/logout', 'admin/Login/logout'); /* 退出登录*/
     Route::rule('upload', 'admin/Base/upload'); /*文件上传*/
     Route::rule('GetShopByList', 'admin/Base/GetShopByList'); /*获取店铺列表*/
 

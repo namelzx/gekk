@@ -36,9 +36,6 @@ class OrderModel extends HTTP {
     }
     this.request(params)
   }
-
-  
-
   //获取订单
   GetUserByOrder(data, res) {
     var params = {
@@ -72,9 +69,6 @@ class OrderModel extends HTTP {
     }
     this.request(params)
   }
-
-  
-
   //取消订单
   GetIdByCancel(temp, res) {
     var params = {

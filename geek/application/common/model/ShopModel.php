@@ -59,7 +59,7 @@ class ShopModel extends BaseModel
             ],
             [
                 'xRadius' => 200,
-                'yRadius' => 200
+                'yRadius' => 160
             ],
             [
                 'xRadius' => 460,

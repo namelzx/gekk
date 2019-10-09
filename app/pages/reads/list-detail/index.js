@@ -18,7 +18,7 @@ Page({
     user_id: 0,
     article_id: 0,
     eav: [],
-
+    content: ''
   },
   /**
    * 生命周期函数--监听页面加载
@@ -48,6 +48,13 @@ Page({
       article_id: that.data.article_id,
       content: e.detail.value
     }
+    that.setData({
+      content:''
+    })
+    wx.showToast({
+      title: '评论成功',
+      // icon:'none'
+    })
     articleModel.PostDataByEav(temp, res => {
       that.geteav();
     })
@@ -83,10 +90,17 @@ Page({
   },
 
   ArticleLike() {
+    var that=this;
     articleModel.GetArticleIdByLike(this.data.Detailed.id, res => {
-      console.log(res)
+      var data=that.data.Detailed;
+      data.like = data.like+1;
+      that.setData({
+        Detailed: data
+      })
+      
     })
   },
+ 
 
   /**
    * 生命周期函数--监听页面显示

@@ -29,6 +29,7 @@ defined('ReqURL') or define('ReqURL', 'http://api.kdniao.com/Ebusiness/Ebusiness
 class Base extends Controller
 {
 
+
     public function upload()
     {
 

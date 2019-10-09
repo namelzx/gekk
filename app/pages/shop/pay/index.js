@@ -113,7 +113,17 @@ Page({
     }
 
     if (e.type === 'cart') {
-      var goods = wx.getStorageSync('cart');
+    
+      var goods = [];
+      var cart = wx.getStorageSync('cart');
+      for(let i=0;i<cart.length;i++){
+        if(cart[i].checked===true){
+          if(cart[i].num>0){
+            goods.push(cart[i])
+          }
+        }
+      }
+      console.log(goods)
       that.setData({
         goods
       })
@@ -306,7 +316,7 @@ Page({
         return
       }
     }
-    temp.order.user_id=that.data.user_id
+    temp.order.user_id=app.globalData.user_id
     if (that.data.iscoun===true){//使用优惠卷
       temp.order.coupons_id = that.data.coun.id
     }

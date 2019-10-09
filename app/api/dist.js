@@ -56,10 +56,5 @@ class DistModel extends HTTP {
     }
     this.request(params)
   }
-
-
-
-  
-
 }
 export { DistModel }

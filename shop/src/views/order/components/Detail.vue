@@ -21,6 +21,7 @@
                 <div class="term">发货方式:</div>
                 <div class="detail">未发货</div>
               </div>
+             
               <div class="ant-col-md-8">
                 <div class="term">下单时间:</div>
                 <div class="detail">{{postForm.create_time}}</div>
@@ -188,8 +189,8 @@ export default {
         1: "未支付",
         2: "待商家发货",
         3: "已发货",
-        4: "已取消",
-        5: "已收货"
+        4: "已收货",
+        5: "已取消"
       };
       return statusMap[status];
     }

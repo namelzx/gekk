@@ -52,7 +52,7 @@
 
       <el-table-column label="付款状态" min-width="100px" align="center">
         <template slot-scope="scope">
-          <div v-if="scope.row.status<9">
+          <div v-if="scope.row.status<5">
             <el-tag type="success" v-if="scope.row.status>1">已付款</el-tag>
             <el-tag type="info" v-else>未付款</el-tag>
           </div>
@@ -63,7 +63,7 @@
       </el-table-column>
       <el-table-column label="发货状态" min-width="100px" align="center">
         <template slot-scope="scope">
-          <div v-if="scope.row.status<9">
+          <div v-if="scope.row.status<5">
             <el-tag type="info" v-if="scope.row.status<3">待发货</el-tag>
             <el-tag type="success" v-else>已发货</el-tag>
           </div>

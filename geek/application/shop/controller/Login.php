@@ -33,11 +33,10 @@ class Login extends Base
             return json(['message' => '密码错误', 'code' => 50000]);
 
         }
-
-        if ($hasUser['status'] !== 1) {
-            return json(['message' => '审核中请耐心等待', 'code' => 50000]);
-
-        }
+//        if ($hasUser['status'] !== 1) {
+//            return json(['message' => '审核中请耐心等待', 'code' => 50000]);
+//
+//        }
         $token = [
             'iss' => '梁泽祥', //签发者
             'aud' => '梁泽祥', //jwt所面向的用户

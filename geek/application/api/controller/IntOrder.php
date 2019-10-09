@@ -63,7 +63,7 @@ class IntOrder extends Base
             $where[] = ['id', '=', $data['id']];
         }
 
-        $res = OrderModel::with(['getGoods', 'shop', 'address', 'invoice'])->where($where)
+        $res = IntegralOrderModel::with(['getGoods', 'shop', 'address', 'invoice'])->where($where)
             ->find();
         return json($res);
     }

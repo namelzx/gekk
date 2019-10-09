@@ -1,12 +1,23 @@
 // pages/home/score/exchange/index.js
 import Toast from './../../../../vant-weapp/dist/toast/toast';
-let app=getApp();
+let app = getApp();
+
+import {
+  UserModel
+} from './../../../../api/user.js';
+
+let userModel = new UserModel();
 
 import {
   IntOrderModel
 } from './../../../../api/IntOrder.js';
 
 let intOrderModel = new IntOrderModel();
+import {
+  DistModel
+} from '../../../../api/dist.js';
+
+let distModel = new DistModel();
 
 Page({
 
@@ -16,35 +27,68 @@ Page({
   data: {
     signIn: false,
     active: 0, //选项卡初始位置（下标)
-    listQuery:{
-      limit:20,
-      page:1,
-
+    listQuery: {
+      limit: 20,
+      page: 1,
     },
     orderList: [
-      
-    ]
+    ],
+    integral: 0,
+    userInfo: {}
   },
   signIn() {
-    if (!this.data.signIn) {
-      Toast('签到成功，积分+1');
-      this.setData({
-        signIn: true
-      })
-    } else {
-      Toast('今天已经签到过啦！明天再来把～');
+    var that = this;
+    var temp = {
+      type: 1,
+      integral: app.globalData.integral,
+      user_id: app.globalData.user_id,
+      title: '签到',
     }
-  },
-  onShow(){
-    var temp={
-      user_id: app.globalData.user_id
-    }
-    var that=this;
-    that.data.listQuery.user_id=app.globalData.user_id
-    intOrderModel.GetUserByOrder(that.data.listQuery,res=>{
+    distModel.PostUserByIntegral(temp, res => {
       console.log(res)
       that.setData({
-        orderList:res.data
+        signIn: true
+      })
+      wx.showToast({
+        title: '签到成功',
+        icon: 'none'
+      })
+    })
+    // if (!this.data.signIn) {
+    //   Toast('签到成功，积分+1');
+    //   this.setData({
+    //     signIn: true
+    //   })
+    // } else {
+    //   Toast('今天已经签到过啦！明天再来把～');
+    // }
+  },
+  onShow() {
+    var temp = {
+      user_id: app.globalData.user_id
+    }
+    var that = this;
+    that.data.listQuery.user_id = app.globalData.user_id
+    intOrderModel.GetUserByOrder(that.data.listQuery, res => {
+      console.log(res)
+      that.setData({
+        orderList: res.data
+      })
+    })
+    var that = this;
+    distModel.GetUserDistLog(app.globalData.user_id, res => {
+      if (res.count > 0) {
+        that.setData({
+          signIn: true
+        })
+      }
+      that.setData({
+        integral: res.integral
+      })
+    })
+    userModel.GetUserByInfo(app.globalData.user_id, res => {
+      that.setData({
+        userinfo: res
       })
     })
   },
@@ -55,9 +99,9 @@ Page({
     var index = event.detail.index;
 
     that.data.listQuery.user_id = app.globalData.user_id
-    that.data.listQuery.status = index+1
-    if (that.data.listQuery.status==1){
-      that.data.listQuery.status=0
+    that.data.listQuery.status = index + 1
+    if (that.data.listQuery.status == 1) {
+      that.data.listQuery.status = 0
     }
     intOrderModel.GetUserByOrder(that.data.listQuery, res => {
       console.log(res)
@@ -65,7 +109,7 @@ Page({
         orderList: res.data
       })
     })
- 
+
   },
   // 订单详情
   goOrderDetail() {
@@ -102,12 +146,12 @@ Page({
   },
   // 取消订单
   clickToCancel(e) {
-    var temp={
-        order_id:e.detail,
-        user_id:app.globalData.user_id,
-        status:5
+    var temp = {
+      order_id: e.detail,
+      user_id: app.globalData.user_id,
+      status: 5
     }
-    intOrderModel.GetIdByCancel(temp,res=>{
+    intOrderModel.GetIdByCancel(temp, res => {
       console.log(res)
     })
   },

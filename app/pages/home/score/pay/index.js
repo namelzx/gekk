@@ -79,11 +79,16 @@ Page({
   onLoad(e){
   
     var that=this;
-    var loca = wx.getStorageSync('score')
-   
+    var score = wx.getStorageSync('score')
+    var loca = wx.getStorageSync('loca')
+    shopmodel.GetShopByList(loca, res => {
+      that.setData({
+        selfRadioList: res
+      })
+    })
     addressModel.GetNewsByItems(app.globalData.user_id,res=>{
       that.setData({
-        goodsinfo:loca,
+        goodsinfo: score,
         addressRadioList:res.data
       })
     })

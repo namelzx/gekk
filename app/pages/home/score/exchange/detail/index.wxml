@@ -1,32 +1,42 @@
 <!--pages/home/order/detail/index.wxml-->
+<wxs module="dateUtil" src="../../../../../wxs/statusUtil.wxs"></wxs>
 
 <view class="oreder-detail-container">
   <view class="order-status">
-    <view class="status-text">订单已完成</view>
+    <view class="status-text">
+    {{ dateUtil.getStatus(details.status)}}</view>
   </view>
   <!-- 订单收件人信息 -->
   <view class="deliver-owner">
-    <view class="locate-icon-wrapper">
+    <view class="locate-icon-wrapper" wx:if="{{details.isadd==2}}">
       <van-icon name="location" class="location-o-icon" />
     </view>
     <view class="owner-info-wrapper">
-      <view class="owner-name-phone">
-        <text>我就是狗剩先生啊</text>
-        <text>15226530478</text>
+      <view class="owner-name-phone" wx:if="{{details.isadd==1}}">
+        <text>{{details.address.userName}}</text>
+        <text>{{details.address.phone}}</text>
       </view>
-      <view class="owner-addr">广东省广州市白云区coco大院七栋二楼</view>
+       <view class="owner-name-phone" wx:if="{{details.isadd==2}}">
+        <text>{{details.shop.name}}</text>
+        <text>{{details.shop.phone}}</text>
+      </view>
+      <view class="owner-addr" wx:if="{{details.isadd==1}}">
+      {{details.address.areaMsg}}-  {{details.address.posterAddr}}
+      </view>
+
+<view class="owner-addr" wx:if="{{details.isadd==2}}">{{details.shop.location}}</view>
     </view>
   </view>
   <!-- 订单物品 -->
   <view class="order-info">
-    <view class="order-item">
+    <view class="order-item" wx:for="{{details.get_goods}}">
       <view class="img-item">
-        <image src="./../../../../../static/images/rate-img-2.png"></image>
+        <image src="{{item.images_url}}"></image>
       </view>
       <view class="detail-item">
-        <view class="detail-name">格米莱（GEMILAI）咖啡机家用意式半自动泵压式 不锈钢</view>
+        <view class="detail-name">{{item.name}} {{item.suk_name}}</view>
         <view class="detail-amount">X 1件</view>
-        <view class="detail-price">¥ 1499.00</view>
+        <view class="detail-price">¥ {{item.integral}}</view>
       </view>
     </view>
   </view>
@@ -34,33 +44,34 @@
   <view class="order-number-time">
     <view class="order-number">
       <text>订单编码：</text>
-      <text>9996520190713215</text>
+      <text>{{details.order_no}}</text>
     </view>
     <view class="order-time">
       <text>下单时间：</text>
-      <text>2019-09-15</text>
+      <text>{{details.create_time}}</text>
     </view>
   </view>
   <!-- 支付方式 -->
   <view class="pay-way-time">
     <view class="pay-way">
       <text>支付方式：</text>
-      <text>微信支付</text>
+      <text>积分兑换</text>
     </view>
     <view class="pay-time">
       <text>支付时间：</text>
-      <text>2019-09-15</text>
+      <text>{{details.create_time}}</text>
     </view>
   </view>
   <!-- 发票详情 -->
-  <view class="invoice">
+  <view class="invoice" wx:if="{{details.isinvoice===1}}">
     <view class="invoice-type">
       <text>发票类型：</text>
       <text>电子普通发票</text>
     </view>
     <view class="invoice-title">
       <text>发票抬头：</text>
-      <text>个人</text>
+      <text wx:if="{{details.invoice.isinv==1}}">个人</text>
+      <text wx:else>单位</text>
     </view>
     <view class="invoice-content">
       <text>发票内容：</text>
@@ -70,12 +81,14 @@
       <van-icon name="info-o" class="info-o-icon" />电子发票将在订单完成之后1-2内开具
     </view>
   </view>
-  <!-- 底部 -->
-  <view class="footer-btn">
-    <view class="del-btn">删除订单</view>
+  
+</view>
+
+<!-- 底部 -->
+  <!-- <view class="footer-btn">
+    <view class="del-btn" bindtap="OnDelete">删除订单</view>
     <view class="right-btn">
       <view class="refund">申请退款</view>
       <view class="rate">评价晒单</view>
     </view>
-  </view>
-</view>
+  </view> -->

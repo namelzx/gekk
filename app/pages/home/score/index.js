@@ -81,7 +81,6 @@ Page({
         that.setData({
           signIn:true
         })
-
       })
     // if (!this.data.signIn) {
     //   Toast('签到成功，积分+1');

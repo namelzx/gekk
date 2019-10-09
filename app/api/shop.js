@@ -13,9 +13,6 @@ class ShopModel extends HTTP {
     }
     this.request(params)
   }
-
-  
-
   GetShopGoodsByList(shop_id, res) {
     var params = {
       url: 'shop/GetShopGoodsByList',//接口路径
@@ -56,10 +53,5 @@ class ShopModel extends HTTP {
     }
     this.request(params)
   }
-
-  
-  
-  
-
 }
 export { ShopModel }

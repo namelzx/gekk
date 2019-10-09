@@ -1,8 +1,10 @@
 <!--pages/home/order/detail/index.wxml-->
+<wxs module="dateUtil" src="../../../../wxs/statusUtil.wxs"></wxs>
 
 <view class="oreder-detail-container">
   <view class="order-status">
-    <view class="status-text">订单已完成</view>
+    <view class="status-text">
+    {{dateUtil.getStatus(details.status)}}</view>
   </view>
   <!-- 订单收件人信息 -->
   <view class="deliver-owner">
@@ -86,7 +88,6 @@
   <view class="footer-btn">
     <view class="del-btn" bindtap="OnDelete">删除订单</view>
     <view class="right-btn">
-      <view class="refund">申请退款</view>
-      <view class="rate">评价晒单</view>
+     
     </view>
   </view>
