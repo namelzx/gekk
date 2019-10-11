@@ -11,7 +11,6 @@ class AddressModel extends HTTP {
       method: 'get', //请求方式
       success: res,
       data: { user_id }
-
     }
     this.request(params)
   }

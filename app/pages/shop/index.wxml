@@ -3,7 +3,7 @@
 <view class="header">
   <van-toast id="van-toast" />
 
-  <my-swiper swiperImg="{{imgUrls}}" shop_name="{{shop_name}}" shop_distance="{{shop_distance}}" shop="{{shop}}"></my-swiper>
+  <my-swiper swiperImg="{{imgUrls}}" shop_name="{{shop_name}}" shop_distance="{{shop_distance}}"></my-swiper>
 
 </view>
 <!--head -->
@@ -23,7 +23,7 @@
     <view wx:for="{{goods}}" class="food-list food-list-hook" wx:for-index="parentIndex">
       <view id="order{{parentIndex}}" class="title">{{item.name}}</view>
       <view wx:for="{{item.foods}}" class="food-item" wx:for-item="food" data-food="{{food}}" data-id='{{food.id}}'>
-        <view class="icon" bindtap="toGoods" data-id='{{food.id}}'>
+        <view class="icon">
           <image src="{{food.images_url}}"></image>
         </view>
         <view class="content">

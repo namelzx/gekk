@@ -24,5 +24,9 @@ class CommonModel extends HTTP {
     }
     this.request(params)
   }
+  
+  
+
+
 }
 export { CommonModel }

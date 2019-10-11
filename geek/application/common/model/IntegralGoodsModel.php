@@ -21,19 +21,26 @@ class IntegralGoodsModel extends BaseModel
 
     protected $createTime = 'create_time';
 
-    public function category(){
-        return $this->hasOne('CategoryModel','id','category_id');
-    }
-    public function suk(){
-        return $this->hasMany('GoodsSukModel','goods_id','id');
-    }
-    public function banner(){
-        return $this->hasMany('GoodsImagesModel','goods_id','id');
+    public function category()
+    {
+        return $this->hasOne('CategoryModel', 'id', 'category_id');
     }
 
-    public function eva(){
-        return $this->hasMany('EvaluateModel','goods_id','id');
+    public function suk()
+    {
+        return $this->hasMany('GoodsSukModel', 'goods_id', 'id');
     }
+
+    public function banner()
+    {
+        return $this->hasMany('GoodsImagesModel', 'goods_id', 'id');
+    }
+
+    public function eva()
+    {
+        return $this->hasMany('EvaluateModel', 'goods_id', 'id');
+    }
+
     public static function GetDataByList($data)
     {
         $where = [];
@@ -46,7 +53,10 @@ class IntegralGoodsModel extends BaseModel
         if (!empty($data['category_id'])) {
             $where[] = ['category_id', '=', $data['category_id']];
         }
-        $res = self::with('category')-> where($where)->where('status','neq',3)->paginate($data['limit'], false, ['query' => $data['page']]);
+        if (!empty($data['shop_id'])) {
+            $where[] = ['shop_id', '=', $data['shop_id']];
+        }
+        $res = self::with('category')->where($where)->where('status', 'neq', 3)->paginate($data['limit'], false, ['query' => $data['page']]);
         return $res;
     }
 

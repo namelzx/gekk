@@ -27,8 +27,13 @@
     <view class="bargin-item">
       <view class="bargin bargin-title">促销</view>
       <view class="bargin bargin-tag" wx:if="{{isBargin}}">店铺满减</view>
-      <view class="bargin bargin-detail" bindtap="moreBargin" wx:if="{{isBargin}}">
-        满3000元减300，满5000减800
+      <view class="bargin bargin-detail" bindtap="moreBargin" wx:if="{{goods_sub_price!==''}}">
+        ¥{{goods_sub_price}} 优惠券,
+        <text wx:if="{{low_price>0}}">满{{low_price}}使用</text>
+        <text wx:else>无门槛使用</text>
+      </view>
+      <view class="bargin bargin-detail" bindtap="moreBargin" wx:if="{{goods_sub_price===''}}">
+        选择优惠券
       </view>
       <view class="bargin bargin-detail" wx:if="{{!isBargin}}">商家暂无促销活动</view>
       <view class="more-icon" bindtap="moreBargin" wx:if="{{isBargin}}">
@@ -42,19 +47,19 @@
         <van-icon name="close" />
       </view>
       <view class="ticket">
-        <view class="ticket-item" wx:for="{{detailed.coupon}}" data-id="{{item.id}}" bindtap="chosedTicket">
+        <view class="ticket-item" wx:for="{{detailed.coupon}}" data-id="{{item.id}}" data-info="{{item.sub_price}}" bindtap="chosedTicket">
           <image src="../../static/images/bargin-bg-2.png"></image>
-          <view class="ticket-content"  >
+          <view class="ticket-content">
             <text>¥</text>
             <text class="ti-price">{{item.sub_price}}</text>
             <view class="need">
               <view>优惠券</view>
               <view wx:if="{{low_price>0}}">满{{low_price}}使用</view>
-               <view wx:else>无门槛使用</view>
+              <view wx:else>无门槛使用</view>
             </view>
           </view>
         </view>
-     
+
       </view>
     </van-popup>
 
@@ -127,20 +132,20 @@
     <!-- 配送地址弹出层 -->
     <van-popup show="{{ showAddress }}" bind:close="onCloseAddress" position="bottom">
       <view class="tab">
-         <text class="provinces">{{provinces}}</text>
-         <text bindtap="handeCity">{{city}}</text>
-          <text bindtap="handeArea">{{area}}</text>
+        <text class="provinces">{{provinces}}</text>
+        <text bindtap="handeCity">{{city}}</text>
+        <text bindtap="handeArea">{{area}}</text>
       </view>
       <view class="city_list">
-        <text wx:for="{{city_list}}" data-id="{{item.id}}" data-name='{{item.area_name}}' data-level="{{item.level}}" data-area_code= '{{item.area_code}}'  bindtap="handelProvinces">
+        <text wx:for="{{city_list}}" data-id="{{item.id}}" data-name='{{item.area_name}}' data-level="{{item.level}}" data-area_code='{{item.area_code}}' bindtap="handelProvinces">
           {{item.area_name}}
         </text>
-          <view class="addres-detailed" wx:if="{{isArea}}">
-          <textarea placeholder="这个只有在按钮点击的时候才聚焦"/>
+        <view class="addres-detailed" wx:if="{{isArea}}">
+          <textarea placeholder="这个只有在按钮点击的时候才聚焦" />
 
+        </view>
       </view>
-      </view>
-    
+
       <view class="area-other">
         <text class="other">选择其他地址</text>
       </view>
@@ -197,9 +202,9 @@
     </view>
     <view class="sub-btn">
       <view class="sub add-to-cart" bindtap="moreItem">加入购物车</view>
-      <view class="sub purchase" bindtap="purchase" >立即购买</view>
+      <view class="sub purchase" bindtap="purchase">立即购买</view>
     </view>
   </view>
-<!--   
+  <!--   
   <good-footer cart="{{cart}}"></good-footer> -->
 </view>

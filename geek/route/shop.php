@@ -100,9 +100,41 @@ Route::group('api/shop/', function () {
     Route::get('shop/GetIdBydetailed', 'admin/Shop/GetIdBydetailed'); /* 获取数据列表*/
 
 
-
     Route::get('city/getProvinces', 'admin/shop/getProvinces'); /* 获取省份*/
     Route::get('city/getCity', 'admin/shop/getCity'); /* 获取城市*/
     Route::get('city/getArea', 'admin/shop/getArea'); /* 获取区域*/
+
+
+    /**
+     * 商品管理
+     */
+    Route::rule('IntGoods/GetDataByList', 'shop/IntGoods/GetDataByList'); /* 获取列表*/
+    Route::rule('IntGoods/PostDataBySave', 'shop/IntGoods/PostDataBySave'); /* 更新或保存数据*/
+    Route::rule('IntGoods/GetIdByDel', 'shop/IntGoods/GetIdByDel'); /* 删除数据*/
+    Route::rule('IntGoods/GetIdByDetails', 'shop/IntGoods/GetIdByDetails'); /* 商品详情*/
+    Route::rule('IntGoods/PostDataByUp', 'shop/IntGoods/PostDataByUp'); /* 更新商品状态*/
+    Route::rule('IntGoods/GetGoodsByUp', 'shop/IntGoods/GetGoodsByUp'); /* 获取上架商品*/
+
+
+    /**
+     * 积分管理
+     */
+
+
+    Route::rule('IntOrder/GetDataByList', 'shop/IntOrder/GetDataByList'); /* 获取列表*/
+    Route::rule('IntOrder/PostDataBySave', 'shop/IntOrder/PostDataBySave'); /* 更新或保存数据*/
+    Route::rule('IntOrder/GetIdByDel', 'shop/IntOrder/GetIdByDel'); /* 删除数据*/
+    Route::rule('IntOrder/GetIdByDetails', 'shop/IntOrder/GetIdByDetails'); /* 商品详情*/
+    Route::rule('IntOrder/PostDataByUp', 'shop/IntOrder/PostDataByUp'); /* 更新商品状态*/
+    Route::rule('IntOrder/GetGoodsByUp', 'shop/IntOrder/GetGoodsByUp'); /* 获取上架商品*/
+
+
+    /**
+     * 商品规则
+     */
+
+    Route::get('pack/GetDataByList', 'shop/pack/GetDataByList');//获取商品分类
+    Route::post('pack/PostDataBySave', 'shop/pack/PostDataBySave');//获取商品分类
+    Route::get('pack/GetIdByDetails', 'shop/pack/getDataByDetail');//获取商品分类
 
 });

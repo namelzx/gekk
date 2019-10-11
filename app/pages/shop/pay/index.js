@@ -16,6 +16,12 @@ import { OrderModel } from '../../../api/order.js'
 let ordermodel = new OrderModel();
 
 
+
+import { PayModel } from '../../../api/pay.js'
+
+let payModel = new PayModel();
+
+
 let app=getApp();
 
 
@@ -89,11 +95,9 @@ Page({
     var loca = wx.getStorageSync('loca')
     shopmodel.GetShopByList(loca, res => {
       that.setData({
-        selfRadioList:res
+        selfRadioList:res.data 
       })
     })
-   
-   
     if(e.type==='buy'){
      var goods=wx.getStorageSync('buy');
      that.setData({
@@ -111,19 +115,8 @@ Page({
       })
       that.calTotalPrice();
     }
-
     if (e.type === 'cart') {
-    
-      var goods = [];
-      var cart = wx.getStorageSync('cart');
-      for(let i=0;i<cart.length;i++){
-        if(cart[i].checked===true){
-          if(cart[i].num>0){
-            goods.push(cart[i])
-          }
-        }
-      }
-      console.log(goods)
+      var goods = wx.getStorageSync('cart');
       that.setData({
         goods
       })
@@ -283,10 +276,13 @@ Page({
    */
   onPay(){
     var that=this;
+  var user=wx.getStorageSync('user')
+  
     if(that.data.isadd===0){
       Toast('请先选择收货方式');
       return ;
     }
+    
     var temp={
       goods: that.data.goods,//当前购买商品
       order:{},//订单基本信息
@@ -316,7 +312,7 @@ Page({
         return
       }
     }
-    temp.order.user_id=app.globalData.user_id
+    temp.order.user_id=that.data.user_id
     if (that.data.iscoun===true){//使用优惠卷
       temp.order.coupons_id = that.data.coun.id
     }
@@ -334,13 +330,42 @@ Page({
       temp.order.shop_id = that.data.shop_id
     }
     temp.order.actualPrice = that.data.actualPrice
-    temp.order.totalPrice = that.data.totalPrice
-    ordermodel.PostOrderByData(temp,res=>{
-      wx.redirectTo({
-        url: '/pages/home/order/index',
+
+    var paytemp = {
+      openid: user.openid,
+      actualPrice: that.data.actualPrice
+    }
+    payModel.toPay(paytemp, res => {
+      wx.requestPayment({
+        timeStamp: res.timeStamp,
+        nonceStr: res.nonceStr,
+        package: res.package,
+        signType: 'MD5',
+        paySign: res.paySign,
+        success(res) {
+          temp.order.status=2
+          ordermodel.PostOrderByData(temp, res => {
+            wx.redirectTo({
+              url: '/pages/home/order/index',
+            })
+            wx.setStorageSync('cart', [])
+          })
+        },
+        fail(res) {
+          temp.order.status = 1
+          ordermodel.PostOrderByData(temp, res => {
+            wx.redirectTo({
+              url: '/pages/home/order/index',
+            })
+            wx.setStorageSync('cart', [])
+          })
+         }
       })
-      wx.setStorageSync('cart', [])
+      return;
     })
+
+
+  
   },
   //计算总价
   calTotalPrice: function () {

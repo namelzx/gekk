@@ -99,7 +99,7 @@ Page({
             res[i]['longitude'] = res[i]['lng']
           }
           that.setData({
-            markers: res
+            markers: res.data
           })
 
         })

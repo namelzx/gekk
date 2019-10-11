@@ -24,6 +24,7 @@ Page({
   
   onLoad(opt) {
     var that=this;
+    console.log(opt)
     let data = JSON.parse(opt.addrData)
     console.log(data)
     var is_default=true;

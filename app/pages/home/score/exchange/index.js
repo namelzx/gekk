@@ -3,16 +3,16 @@ import Toast from './../../../../vant-weapp/dist/toast/toast';
 let app = getApp();
 
 import {
+  IntOrderModel
+} from './../../../../api/IntOrder.js';
+import {
   UserModel
 } from './../../../../api/user.js';
 
 let userModel = new UserModel();
 
-import {
-  IntOrderModel
-} from './../../../../api/IntOrder.js';
-
 let intOrderModel = new IntOrderModel();
+
 import {
   DistModel
 } from '../../../../api/dist.js';
@@ -25,17 +25,40 @@ Page({
    * 页面的初始数据
    */
   data: {
+    integral: 0,
     signIn: false,
     active: 0, //选项卡初始位置（下标)
     listQuery: {
       limit: 20,
       page: 1,
     },
-    orderList: [
-    ],
-    integral: 0,
-    userInfo: {}
+    orderList: [],
+    userinfo: {},
   },
+  // onShow() {
+  //   var that = this;
+  //   distModel.GetUserDistLog(app.globalData.user_id, res => {
+  //     if (res.count > 0) {
+  //       that.setData({
+  //         signIn: true
+  //       })
+  //     }
+  //     that.setData({
+  //       integral: res.integral
+  //     })
+  //   })
+  //   userModel.GetUserByInfo(app.globalData.user_id, res => {
+  //     that.setData({
+  //       userinfo: res
+  //     })
+  //   })
+  //   intGoodsModel.GetIntegralByGoods(that.data.listQuery, res => {
+  //     console.log(res)
+  //     that.setData({
+  //       mall: res
+  //     })
+  //   })
+  // },
   signIn() {
     var that = this;
     var temp = {
@@ -49,10 +72,7 @@ Page({
       that.setData({
         signIn: true
       })
-      wx.showToast({
-        title: '签到成功',
-        icon: 'none'
-      })
+      Toast('签到成功');
     })
     // if (!this.data.signIn) {
     //   Toast('签到成功，积分+1');
@@ -75,7 +95,6 @@ Page({
         orderList: res.data
       })
     })
-    var that = this;
     distModel.GetUserDistLog(app.globalData.user_id, res => {
       if (res.count > 0) {
         that.setData({
@@ -94,10 +113,8 @@ Page({
   },
   // 切换选项卡
   onChange(event) {
-
     var that = this;
     var index = event.detail.index;
-
     that.data.listQuery.user_id = app.globalData.user_id
     that.data.listQuery.status = index + 1
     if (that.data.listQuery.status == 1) {

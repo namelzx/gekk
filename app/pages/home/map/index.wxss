@@ -49,13 +49,13 @@ page {
 }
 
 .shop-item {
-  margin-top: 100rpx;
+  margin-top: 120rpx;
 }
 
 .shop-banner {
   margin: 50rpx 30rpx;
   background: #fff;
-  box-shadow: 10rpx 10rpx 10rpx 4rpx #d1d1d1;
+  box-shadow: 10rpx 10rpx 16rpx 2rpx #d1d1d1;
 }
 
 .shop-banner image {
@@ -84,16 +84,16 @@ page {
   width: 30%;
   position: relative;
   line-height: 60rpx;
-  color: #777;
-  font-size: 24rpx;
+  color: #333;
+  font-size: 26rpx;
   padding-left: 26rpx;
 }
 
 .shop-distance .locate-icon {
   position: absolute;
-  top: 4rpx;
-  left: 0;
-  font-size: 26rpx;
+  left: -6rpx;
+  font-size: 30rpx;
+  color: #000;
 }
 
 /* 地图 */

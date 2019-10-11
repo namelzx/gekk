@@ -23,7 +23,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.8.1",
-	"appid": "wx5b41a56038e8ec76",
+	"appid": "wxee354b762521b2ad",
 	"projectname": "app",
 	"debugOptions": {
 		"hidedInDevtools": []
@@ -262,10 +262,9 @@
 					"scene": null
 				},
 				{
-					"id": 30,
-					"name": "积分商品详情",
-					"pathName": "pages/home/score/exchange/detail/index",
-					"query": "id=32",
+					"id": -1,
+					"name": "pages/login/index",
+					"pathName": "pages/login/index",
 					"scene": null
 				}
 			]

@@ -1,19 +1,10 @@
 // pages/home/order/detail/index.js
-
-
-import {
-  IntOrderModel
-} from '../../../../../api/IntOrder.js'
-
-let orderModel = new IntOrderModel();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    details: {}
-
 
   },
 
@@ -21,12 +12,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that=this;
-    orderModel.GetOrderIdByFind(options.id,res=>{
-      that.setData({
-        details: res
-      })
-    })
+
   },
 
   /**

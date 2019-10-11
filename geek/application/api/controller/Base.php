@@ -12,6 +12,7 @@ namespace app\api\controller;
 use app\common\model\DistModel;
 use app\common\model\PositionModel;
 use app\common\model\UserModel;
+use app\common\model\WxModel;
 use EasyWeChat\Factory;
 use think\Controller;
 use think\Db;
@@ -32,9 +33,10 @@ class Base extends Controller
     {
         parent::__construct();
 
+        $wx = WxModel::find();
         $this->config = [
-            'app_id' => 'wx5b41a56038e8ec76',
-            'secret' => 'e8dedad2705f30a4e9ff9e16dabe915f',
+            'app_id' =>$wx['app_id'],
+            'secret' => $wx['secret'],
             // 指定 API 调用返回结果的类型：array(default)/collection/object/raw/自定义类名
             'response_type' => 'array',
 

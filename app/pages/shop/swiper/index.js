@@ -18,9 +18,6 @@ Component({
     },
     shop_name: {
       type: String
-    },
-    shop:{
-      type:Object
     }
   }
 })

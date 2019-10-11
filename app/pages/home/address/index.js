@@ -12,7 +12,6 @@ import {
 
 let addressModel = new AddressModel();
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -56,7 +55,9 @@ Page({
       that.setData({
         addrList: res.data
       })
+      console.log(res + '哈哈哈')
     })
+    
   },
   // 编辑
   onEdit(e) {

@@ -33,13 +33,11 @@ Page({
     // 轮播图
     detailed: {},
     imgUrls: [],
-    images_url:'',
+    images_url: '',
     user_id: 1,
     // 评论数据
-    ratings: [
-    ],
-    integral:0,
-    totalCount:0,
+    ratings: [],
+    totalCount: 0,
     indicatorDots: false,
     autoplay: true,
     interval: 2000,
@@ -49,7 +47,6 @@ Page({
     showBargin: false, // 隐藏/显示促销方式
     showItem: false, // 隐藏/显示商品属性
     showAddres: false, // 隐藏/显示地址选项
-
     isBargin: true, // 是否有促销活动
     isChoosed: false, // 用户是否选择了商品
     isAddress: false, // 用户是否选择了地址
@@ -66,18 +63,17 @@ Page({
     pr_code: '',
     areainfo: '', //详细地址
     carArray: [], //购物车商品
-
     city: '',
     city_code: '',
     area: '',
     city_list: [],
-
+    goods_sub_price: ''
   },
   onLoad(option) {
 
     var that = this;
     that.calTotalPrice();
-   
+
     shopmodel.GetIdGoodsByInfo(option.id, res => {
       res.suk_name = res.suk[0].name
       res.price = res.suk[0].price
@@ -87,10 +83,10 @@ Page({
         imgUrls: res.banner,
         suk: res.suk,
         images_url: res.suk[0].images_url,
-        
+
         suk_id: res.suk[0].id
       })
-      that.data.detailed.count=0;
+      that.data.detailed.count = 0;
       WxParse.wxParse('article', 'html', res.content, that, 5);
     })
     citymodel.getProvinces(res => {
@@ -113,11 +109,11 @@ Page({
     data.suk_name = data.suk[index].name
     data.price = data.suk[index].price
     images_url: data.suk[index].images_url,
-    that.setData({
-      suk_id: e.currentTarget.dataset.id,
-      num: 1,
-      detailed: data
-    })
+      that.setData({
+        suk_id: e.currentTarget.dataset.id,
+        num: 1,
+        detailed: data
+      })
 
   },
   onCloseBargin() {
@@ -156,16 +152,16 @@ Page({
   // 选择优惠券
   chosedTicket(e) {
     var that = this;
+    that.setData({
+      goods_sub_price: e.currentTarget.dataset.info
+    })
     var temp = {
       coupon_id: e.currentTarget.dataset.id,
       user_id: that.data.user_id,
     }
-
     couponsModel.PostUserCoupon(temp, res => {
       Toast(res.message)
     })
-
-
     this.onCloseBargin()
   },
   // 数量步进器
@@ -251,7 +247,7 @@ Page({
   // 打开商铺
   openShop() {
     wx.navigateBack({
-      
+
     })
   },
   // 打开购物车 
@@ -268,11 +264,11 @@ Page({
   // 立即购买
   purchase() {
     this.addBuy();
-      wx.navigateTo({
-        url: '/pages/shop/pay/index?type=buy',
-      })
+    wx.navigateTo({
+      url: '/pages/shop/pay/index?type=buy',
+    })
   },
-  addBuy(){
+  addBuy() {
     var that = this;
     var num = that.data.num; //数量
     var price = this.data.detailed.price; //当前商品价格
@@ -280,7 +276,7 @@ Page({
     var suk_id = that.data.suk_id //选择的suk
     var suk_name = that.data.detailed.suk_name //选择的suk信息
     var images_url = that.data.images_url
-    var integral = that.data.detailed.integral
+
     var name = that.data.detailed.name;
     var obj = {
       goods_id: goods_id,
@@ -289,19 +285,18 @@ Page({
       suk_name: suk_name,
       suk_id: suk_id,
       price,
-      images_url,
-      integral
+      images_url
     };
-    var carArray1 =[];
+    var carArray1 = [];
     carArray1.push(obj);
     wx.setStorageSync('buy', carArray1)
     this.setData({
       carArray: carArray1,
     })
   },
-  addCart(){
+  addCart() {
     var that = this;
-    var num =  that.data.num; //数量
+    var num = that.data.num; //数量
     var price = this.data.detailed.price; //当前商品价格
     var goods_id = that.data.detailed.id; //当前商品id
     var suk_id = that.data.suk_id //选择的suk
@@ -309,7 +304,6 @@ Page({
     var images_url = that.data.images_url
     var name = that.data.detailed.name;
     var mark = 'a' + goods_id + 'b' + suk_id
-    var integral = that.data.detailed.integral
     var obj = {
       goods_id: goods_id,
       num: num,
@@ -318,8 +312,7 @@ Page({
       suk_id: suk_id,
       price,
       images_url,
-      mark,
-      integral
+      mark
     };
     var carArray1 = this.data.carArray.filter(item => item.mark != mark)
     carArray1.push(obj)
@@ -327,17 +320,14 @@ Page({
     this.setData({
       carArray: carArray1,
     })
-  
+
 
   },
-  calTotalPrice: function () {
+  calTotalPrice: function() {
 
     var carArray = this.data.carArray;
     if (carArray.length < 1) {
       carArray = wx.getStorageSync('cart')
-    }
-    if (carArray.length < 1){
-      carArray = []
     }
     var totalPrice = 0;
     var totalCount = 0;
@@ -345,6 +335,7 @@ Page({
       totalPrice += carArray[i].price * carArray[i].num;
       totalCount += carArray[i].num
     }
+    console.log(totalCount)
     this.setData({
       totalPrice: totalPrice,
       totalCount: totalCount,

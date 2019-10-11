@@ -33,5 +33,10 @@ class CityModel extends HTTP {
     }
     this.request(params)
   }
+
+
+
+
+
 }
 export { CityModel }

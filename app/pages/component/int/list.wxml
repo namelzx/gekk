@@ -7,7 +7,7 @@
             <view class="detail-item">
               <view class="detail-name">{{item.goods.name}}</view>
               <view class="detail-amount">X 1件</view>
-              <view class="detail-price"> {{item.goods.integral}}</view>
+              <view class="detail-price"> {{item.goods.integral}}积分</view>
             </view>
             <view class="detail-status">
 <image src="./../../../static/images/done.png" wx:if="{{item.status===4}}"></image>

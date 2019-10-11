@@ -10,6 +10,12 @@ Route::group('api/app/', function () {
 
     Route::rule('upload', 'api/Base/upload'); /*文件上传*/
 
+
+    Route::rule('Send', 'api/SendSms/Send'); /*文件上传*/
+
+    Route::rule('toPay', 'api/pay/toPay'); /*支付*/
+
+
     Route::rule('distribution', 'api/Base/distribution'); /*进行分销操作*/
 
     Route::rule('buildBg', 'api/Base/buildBg'); /*生成海报*/

@@ -25,9 +25,6 @@ Page({
       'https://hhh.10huisp.com/uploads/article-img-2.png',
       'https://hhh.10huisp.com/uploads/article-img-3.png'
     ],
-    shop:{
-
-    },
     shop_logo: './../../../static/images/shop-logo-1.png',
     shop_name: '极客清晖园星巴克店',
     shop_distance: '2.4',
@@ -421,9 +418,7 @@ Page({
     })
     commonModel.GetBannerByList(id, res => {
       that.setData({
-        imgUrls: res.banner,
-        shop: res.shop,
-        shop_distance:options.km
+        imgUrls: res.banner
       })
     })
 

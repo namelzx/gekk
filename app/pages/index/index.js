@@ -18,7 +18,8 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     avatarList: [
-    ]
+    ],
+    dist:'',
   },
   //事件处理函数
   bindViewTap: function() {
@@ -50,7 +51,8 @@ Page({
         wx.setStorageSync('loca', locatlres)
         shopmodel.GetShopByList(locatlres,res=>{
           that.setData({
-            avatarList:res
+            avatarList:res.data,
+            dist:res.dist
           })
           
         })
@@ -58,9 +60,9 @@ Page({
     })
   },
   toShop(e){
-    let km = e.currentTarget.dataset.km;
+  
    wx.navigateTo({
-     url: '/pages/shop/index?id=' + e.currentTarget.dataset.id+'&km='+km,
+     url: '/pages/shop/index?id=' + e.currentTarget.dataset.id,
    })
   },
   getUserInfo: function(e) {

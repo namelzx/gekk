@@ -73,5 +73,12 @@ class Shop extends Base
 
     }
 
+    public function GetShopByAll()
+    {
+        $res = ShopModel::all();
+        return json(msg(20000, $res, '请求成功'));
+
+    }
+
 
 }

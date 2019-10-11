@@ -6,7 +6,7 @@ const IntegralRouter =   {
     path: '/integral',
     component: Layout,
     redirect: 'integral',
-    meta: { title: '积分商品管理', icon: 'international' },
+    meta: { title: '积分管理', icon: 'international' },
     children: [
       {
         path: 'integral',
@@ -26,7 +26,23 @@ const IntegralRouter =   {
         component: () => import('@/views/integral/edit'),
         name: 'editintegral',
         hidden: true,
-        meta: { title: '编辑商品', icon: 'international' }
+        meta: { title: '积分订单', icon: 'international' }
+      },
+
+
+      {
+        path: 'orderedit/:id(\\d+)',
+        component: () => import('@/views/integral/OrderDetail'),
+        name: 'orderedit',
+        hidden: true,
+        meta: { title: '查看订单', icon: 'international' }
+      },
+
+      {
+        path: 'order',
+        component: () => import('@/views/integral/order'),
+        name: 'orderintegral',
+        meta: { title: '积分订单', icon: 'international' }
       }
     ]
   }

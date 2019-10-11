@@ -28,6 +28,9 @@ class ArticleModel extends HTTP {
     this.request(params)
   }
 
+  
+
+
   //查看文章详细
   GetDataByDetailed(id, res) {
     var params = {

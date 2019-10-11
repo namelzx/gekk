@@ -1,3 +1,4 @@
+<!--pages/reads/index.wxml-->
 
 <view class="read-container" style="background:url('./../../static/images/article-bg.png');">
   <!-- 轮播图 -->

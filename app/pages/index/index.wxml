@@ -3,17 +3,17 @@
   <view class="locate-item"  data-id="{{avatarList[0].id}}" bindtap="toShop">
     <van-icon name="location-o" class="locate-icon"/>
     <view class="shop-name">
-      <text>{{avatarList[0].name}}</text>
-      <view class="distance">
+      <text>{{dist}}</text>
+      <!-- <view class="distance">
         <text>距离你{{avatarList[0].km}}km</text>
-      </view>
+      </view> -->
     </view>
     <van-icon name="arrow" class="arrow-icon" />
   </view>
 
   <view class="mask">
     <view style="position:relative;">
-      <view class="shop-avatar" wx:for="{{avatarList}}" wx:key="item.id" style="left:{{item.xRadius}}rpx;top:{{item.yRadius}}rpx;" data-km="{{item.km}}" data-id="{{item.id}}" bindtap="toShop">
+      <view class="shop-avatar" wx:for="{{avatarList}}" wx:key="item.id" style="left:{{item.xRadius}}rpx;top:{{item.yRadius}}rpx;" data-id="{{item.id}}" bindtap="toShop">
         <view class="info-item">
           <image src="{{item.logo}}">
           </image>

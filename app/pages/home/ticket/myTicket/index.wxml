@@ -1,6 +1,6 @@
 <!--pages/home/ticket/myTicket/index.wxml-->
 <wxs module="dateUtil" src="../../../../wxs/timeUtil.wxs"></wxs>
-
+<!-- <view>111</view> -->
 <view class="ticket-container">
   <van-toast id="van-toast" />
   <view class="ticket-wrapper" wx:for="{{ticketList}}" wx:key="{{index}}">

@@ -30,7 +30,7 @@ Page({
         })
     })
   },
-  
+
   // 立即领取按钮
   getTicket(e) {
     /**
@@ -48,8 +48,9 @@ Page({
     couponsModel.PostUserCoupon(temp,res=>{
       Toast(res.message)
     })
-    this.onShow();
-   
+    setTimeout(()=>{
+      this.onShow();
+    },400)
     // Todo
   }
 })

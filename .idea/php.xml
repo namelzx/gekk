@@ -31,6 +31,11 @@
       <path value="$PROJECT_DIR$/geek/vendor/symfony/cache" />
       <path value="$PROJECT_DIR$/geek/vendor/symfony/service-contracts" />
       <path value="$PROJECT_DIR$/geek/vendor/symfony/mime" />
+      <path value="$PROJECT_DIR$/geek/vendor/adbario/php-dot-notation" />
+      <path value="$PROJECT_DIR$/geek/vendor/alibabacloud/client" />
+      <path value="$PROJECT_DIR$/geek/vendor/danielstjules/stringy" />
+      <path value="$PROJECT_DIR$/geek/vendor/clagiordano/weblibs-configmanager" />
+      <path value="$PROJECT_DIR$/geek/vendor/mtdowling/jmespath.php" />
     </include_path>
   </component>
 </project>

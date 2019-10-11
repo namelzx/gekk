@@ -13,6 +13,7 @@ use app\common\model\CategoryModel;
 use app\common\model\CouponModel;
 use app\common\model\EvaluateModel;
 use app\common\model\GoodsModel;
+use app\common\model\PositionModel;
 use app\common\model\ShopModel;
 
 class Shop extends Base
@@ -23,10 +24,18 @@ class Shop extends Base
     public function GetShopByList()
     {
         $data = input('param.');
-        $res = ShopModel::where('status', 1)->all();
+        $url = 'https://apis.map.qq.com/ws/geocoder/v1/?location='
+            . $data['latitude'] . ','
+            . $data['longitude'] .
+            '&get_poi=1&key=XB2BZ-J7PW3-DIZ3P-YC34A-BWFW7-ELBOI';
+        $jx = curlSend($url);
+        $district = $jx['result']['address_component']['district'];//获取当前所在区
+        $get_code = PositionModel::where('area_name', 'like', '%' . $district . '%')->find();
+        $res = ShopModel::where('status', 1)->where('area_code', $get_code['area_code'])->all();
+
         $model = new ShopModel();
         $dd = $model->range($data['latitude'], $data['longitude'], $res);
-        return json($dd);
+        return json(['data'=>$dd,'dist'=>$jx['result']['ad_info']['city'].$jx['result']['ad_info']['district']]);
     }
 
     /**

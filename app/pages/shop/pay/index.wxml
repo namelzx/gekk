@@ -66,7 +66,7 @@
         <text class="fee-right">¥ {{totalPrice}}</text>
       </view>
         <view class="good-fee">
-        <text class="fee-left">优惠卷</text>
+        <text class="fee-left">优惠券</text>
         <text class="fee-right"> -{{coun.get_counpon.sub_price}}</text>
       </view>
       <view class="poster-fee">
@@ -164,7 +164,7 @@
           <van-cell value-class="value-class" clickable data-name="{{item.id}}" data-info="{{item}}" class="ticket-cell" checked-color="#07c160" bind:click="onClickTicket" wx:for="{{ticketList}}" wx:key="{{index}}">
             <view class="ticket-wrapper">
               <view class="ticket-img">
-                <image src="./../../static/images/ticket-bg.png"></image>
+                <!-- <image src="./../../static/images/ticket-bg.png"></image> -->
                 <view class="ticket-img-text">
                   <view class="img-text-top">
                     <text>¥</text>{{item.get_counpon.sub_price}}</view>

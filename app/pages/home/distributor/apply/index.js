@@ -1,6 +1,6 @@
 // pages/home/distributor/apply/index.js
 import Toast from './../../../../vant-weapp/dist/toast/toast';
-let app = getApp();
+let  app=getApp();
 
 import {
   UserModel
@@ -16,7 +16,15 @@ Page({
     ruleChecked: false,
     invitor: '平台(请核对)',
     username: '',
-    phone: ''
+    phone: '',
+    userinfo:{}
+  },
+
+  onShow () {
+    let userinfo = wx.getStorageSync('userinfo')
+    this.setData({
+      userinfo
+    })
   },
   // 是否确认阅读协议
   onChange(event) {
@@ -25,7 +33,7 @@ Page({
     });
   },
   // 邀请人输入框
-  onChangeUser(event) {
+  onChangeUser (event) {
     this.setData({
       invitor: event.detail
     });
@@ -39,38 +47,38 @@ Page({
     console.log(event.detail)
   },
   // 手机号码输入框
-  onChangePhone(event) {
+  onChangePhone(event){
     this.setData({
       phone: event.detail
     });
     console.log(event.detail)
   },
   // 申请成为经销商
-  onApply() {
-    var that = this;
+  onApply () {
+    var that=this;
     let data = {
       ruleChecked: this.data.ruleChecked,
       invitor: this.data.invitor,
     }
-    if (data.ruleChecked === true) {
-      var temp = {
+    if(data.ruleChecked===true){
+      var temp={
         user_id: app.globalData.user_id,
         username: this.data.username,
         phone: this.data.phone
-      }
-      userModel.PostDataByDist(temp, res => {
-        console.log(res.code)
-        if (res.code !== 200) {
+      } 
+      userModel.PostDataByDist(temp,res=>{
+        console.log(res)
+        if(res.code!==200){
           Toast(res.message)
         }
-        wx.switchTab({
-          url: '/pages/home/index',
-        })
-        setTimeout(() => {
+        if (res.code === 200) {
           Toast("提交成功，请等待平台审核")
-        }, 1000)
+          wx.switchTab({
+            url: '/pages/home/index',
+          })
+        }
       })
-    } else {
+    }else{
       Toast("请先阅读分销商申请协议")
     }
   }

@@ -50,7 +50,6 @@ Page({
         integra: res.integral,
         integral:res.data
       })
-
       if (res.count > 0) {
         that.setData({
           signIn: true

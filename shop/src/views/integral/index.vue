@@ -12,15 +12,6 @@
         </el-option>
       </el-select>
 
-      <el-select
-        prod="category_id"
-        v-model="listQuery.category_id"
-        class="filter-item"
-        placeholder="选择所属分类"
-        @change="handleFilter"
-      >
-        <el-option v-for="(item,index) in category" :key="item.id" :label="item.name" :value="item.id"/>
-      </el-select>
       <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">
         搜索
       </el-button>
@@ -51,14 +42,9 @@
        <img :src=" scope.row.images_url">
         </template>
       </el-table-column>
-      <el-table-column label="商品名称" min-width="150px">
+      <el-table-column label="商品名称" min-width="150px"   align="center">
         <template slot-scope="scope">
           <span>{{scope.row.name}}</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="商品分类" width="110px" align="center">
-        <template slot-scope="scope">
-          <span v-if="scope.row.category">{{ scope.row.category.name }}</span>
         </template>
       </el-table-column>
       <el-table-column label="实际销量" width="110px" align="center">
@@ -88,7 +74,7 @@
       <el-table-column label="操作" fixed="right"
                        align="center" min-width="150">
         <template slot-scope="{row}">
-          <router-link :to="'/goods/edit/'+row.id">
+          <router-link :to="'/integral/edit/'+row.id">
 
             <el-button type="text" size="mini">
               修改
@@ -111,12 +97,12 @@
 </template>
 
 <script>
-  import {GetDataByList, GetIdByDel, PostDataBySave,PostDataByUp} from '@/api/goods'
+  import {GetDataByList, GetIdByDel, PostDataBySave,PostDataByUp} from '@/api/intGoods'
   import waves from '@/directive/waves' // waves directive
   import {parseTime} from '@/utils'
   import Pagination from '@/components/Pagination' // secondary package based on el-pagination
+import { mapGetters } from "vuex";
 
-  import {GetCategory} from '@/api/brand'
 
 
   export default {
@@ -147,6 +133,11 @@
         return statusMap[status]
       }
     },
+     computed: {
+    ...mapGetters([
+      'shop_id'
+    ])
+  },
     data() {
       return {
         opstatus:[
@@ -197,13 +188,12 @@
     created() {
       this.getList()
 
-      GetCategory().then(res => {
-        this.category = res.data
-      })
+
     },
     methods: {
       getList() {
         this.listLoading = true
+        this.listQuery.shop_id=this.shop_id
         GetDataByList(this.listQuery).then(response => {
           this.list = response.data.data
           this.total = response.data.total

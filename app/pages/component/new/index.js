@@ -9,8 +9,6 @@ import {
 
 let citymodel = new CityModel();
 
-
-
 import {
   AddressModel
 } from '../../../api/address.js'
@@ -30,14 +28,16 @@ Page({
     phone: '',
     posterAddr: '',
     is_default: false,
-    city_list:[],
+    city_list: [],
     provinces: '',
     city: '',
     area: '',
-    area_code: ''
+    city_code: '',
+    area_code: '',
+    special_city: false
   },
-  onLoad(){
-    var that=this;
+  onLoad() {
+    var that = this;
     citymodel.getProvinces(res => {
       that.setData({
         city_list: res
@@ -92,6 +92,7 @@ Page({
       is_default: event.detail
     });
   },
+  // 保存
   onSave() {
     let data = this.data
     let dataset = {
@@ -104,7 +105,7 @@ Page({
       area_code: data.city_code,
       user_id: app.globalData.user_id
     }
-    addressModel.postAddress(dataset,res=>{
+    addressModel.postAddress(dataset, res => {
       console.log(res)
     })
     wx.navigateBack({
@@ -120,6 +121,17 @@ Page({
     }
     if (level == 2) {
       that.getArea(e);
+      // 执行 getArea() 方法中，给this.data.city赋值需要一点时间
+      // 所以需要setTimeout
+      setTimeout(() => {
+        if (that.data.city === '东莞市' || that.data.city === '中山市' || that.data.city === '儋州市') {
+          that.setData({
+            showArea: false,
+            areaMsg: that.data.provinces + '-' + that.data.city,
+            special_city: true
+          })
+        }
+      }, 200)
     }
     if (level == 3) {
       that.setData({
@@ -132,14 +144,16 @@ Page({
     }
 
   },
-  getCity(e) {
-    var that = this;
-    var area_code = e.currentTarget.dataset.area_code
-    citymodel.getCity(area_code, res => {
+
+  // 点击省份
+  handeProvince() {
+    var that = this
+    citymodel.getProvinces(res => {
       that.setData({
-        provinces: e.currentTarget.dataset.name,
         city_list: res,
-        pr_code: area_code
+        provinces: '请选择',
+        city: '',
+        area: ''
       })
     })
   },
@@ -164,11 +178,22 @@ Page({
       that.setData({
         city_list: res,
         area: '请选择',
-
-
       })
     })
   },
+
+  getCity(e) {
+    var that = this;
+    var area_code = e.currentTarget.dataset.area_code
+    citymodel.getCity(area_code, res => {
+      that.setData({
+        provinces: e.currentTarget.dataset.name,
+        city_list: res,
+        pr_code: area_code
+      })
+    })
+  },
+
   getArea(e) {
     var that = this;
     var area_code = e.currentTarget.dataset.area_code
@@ -178,7 +203,8 @@ Page({
         city_list: res,
         city_code: area_code,
       })
+      // console.log(this.data.city, this.data.city_code, area_code, '123124')
     })
-  },
 
+  }
 })

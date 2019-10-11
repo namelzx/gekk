@@ -7,8 +7,8 @@ Vue.use(Router)
 import Layout from '@/layout'
 
 /* Router Modules */
-import tableRouter from './modules/table'
 import orderRouter from './modules/order'
+import IntegralRouter from './modules/Integral'
 
 /**
  * Note: sub-menu only appear when route children.length >= 1
@@ -99,13 +99,35 @@ export const constantRoutes = [
         name: 'category',
         meta: { title: '商品分类', icon: 'international' }
       },
+
+      
       {
         path: 'edit/:id(\\d+)',
         component: () => import('@/views/goods/edit'),
         name: 'editgoods',
         hidden: true,
         meta: { title: '编辑商品', icon: 'international' }
-      }
+      },
+      {
+        path: 'pack/create',
+        component: () => import('@/views/pack/create'),
+        name: 'Creatererule',
+        hidden: true,
+        meta: {title: '添加售后规则', icon: 'edit'}
+      },
+      {
+        path: 'pack/edit/:id(\\d+)',
+        component: () => import('@/views/pack/edit'),
+        name: 'Editrule',
+        meta: {title: '编辑售后规则', noCache: true, activeMenu: '/recruit/list'},
+        hidden: true
+      },
+      {
+        path: 'lease',
+        component: () => import('@/views/pack/lease'),
+        name: 'lease',
+        meta: {title: '包装售后模版', icon: 'list'}
+      },
     ]
   },
 /**
@@ -173,7 +195,7 @@ export const constantRoutes = [
     ]
   },
   orderRouter,
-
+  IntegralRouter,
   {
     path: '/courier',
     component: Layout,

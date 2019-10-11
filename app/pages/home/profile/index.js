@@ -41,11 +41,11 @@ Page({
       role: e.currentTarget.dataset.title
     })
     switch (this.data.role) {
-      case 'name':
-        this.setData({
-          title: '修改名字'
-        })
-        break
+      // case 'name':
+      //   this.setData({
+      //     title: '修改名字'
+      //   })
+      //   break
       case 'phone':
         this.setData({
           title: '修改手机号码'
@@ -72,12 +72,12 @@ Page({
     })
     
   },
-  onChangename(event) {
-    let temp = "userInfo.name"
-    this.setData({
-      [temp]: event.detail
-    })
-  },
+  // onChangename(event) {
+  //   let temp = "userInfo.name"
+  //   this.setData({
+  //     [temp]: event.detail
+  //   })
+  // },
   onChangephone(event) {
     let temp = "userInfo.phone"
     this.setData({

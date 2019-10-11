@@ -30,16 +30,19 @@ Component({
       wx.navigateTo({
         url: '/pages/home/score/exchange/index',
       })
+      console.log("01")
     },
     clickToDetail() {
       wx.navigateTo({
         url: '/pages/home/score/detail/index',
       })
+      console.log("02")
     },
     clickToInstruction() {
       wx.navigateTo({
         url: '/pages/home/score/instruction/index',
       })
+      console.log("03")
     },
     // 签到
     signIn() {

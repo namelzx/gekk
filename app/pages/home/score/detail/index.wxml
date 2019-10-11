@@ -3,7 +3,7 @@
 <view class="detail-container">
   <van-toast id="van-toast" />
  <!--pages/home/score/component/header/index.wxml-->
-<view class="integral-header">
+<!-- <view class="integral-header">
   <van-toast id="van-toast" />
   <view class="header-bg">
     <image src="../../../../static/images/bg-1.png"></image>
@@ -23,9 +23,9 @@
       </view>
     </view>
   </view>
-</view>
+</view> -->
 
-
+  <my-header integral="{{integra}}"></my-header>
   <view class="sign-in" bindtap="signIn" wx:if="{{signIn===false}}">立即签到赚积分</view>
   <view bindtap="signIn" class="sign-in {{signIn?'had-sign-in':''}}" wx:if="{{signIn===true}}">已签到</view>
   <view class="integral-area">

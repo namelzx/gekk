@@ -74,8 +74,11 @@ class IntegralOrderModel extends BaseModel
         if (!empty($data['category_id'])) {
             $where[] = ['category_id', '=', $data['category_id']];
         }
-        if (!empty($data['shop_id'])) {
-            $where[] = ['shop_id', '=', $data['shop_id']];
+        /**
+         * 判断商铺是否属于当前商铺
+         */
+        if (!empty($data['shop_goods_id'])) {
+            $where[] = ['shop_goods_id', '=', $data['shop_goods_id']];
         }
         $res = self::with(['shop', 'goods', 'address', 'getUser'])->where($where)->where('status', 'neq', 3)->paginate($data['limit'], false, ['query' => $data['page']]);
         return $res;

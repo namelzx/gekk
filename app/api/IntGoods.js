@@ -34,5 +34,10 @@ class IntGoodsModel extends HTTP {
     }
     this.request(params)
   }
+
+
+
+
+
 }
 export { IntGoodsModel }

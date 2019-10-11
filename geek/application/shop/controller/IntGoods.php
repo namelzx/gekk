@@ -75,7 +75,6 @@ class IntGoods extends Base
             $banner['url'] = $item['url'];
             $banner['name'] = $item['name'];
             $banner['status'] = $item['status'];
-//            $banner['shop_id'] = $item['shop_id']?'1';
             $banner['goods_id'] = $id;
             IntegralGoodsImagesModel::create($banner);
         }

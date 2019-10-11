@@ -30,8 +30,13 @@ class Order extends Base
 
         $data = input('param.');
         $data['order']['order_no'] = time() . mt_rand(100, 1000000);
-        $data['order']['status'] = 2;
+//        $data['order']['status'] = 2;
+        if ($data['order']['isadd'] === 2) {
+            $data['order']['claim_code'] = mt_rand(100, 1000000);
+        }
         $res = OrderModel::create($data['order']);
+
+
         //优惠卷状态
         if (!empty($data['order']['coupons_id'])) {
             CouponReceiveModel::where('id', $data['order']['coupons_id'])->data(['status' => 1])->update();
@@ -64,7 +69,7 @@ class Order extends Base
         $data = input('param.');
         $where = [];
         if (!empty($data['status'])) {
-            $where[] = ['status', '=', $data['status']];
+            $where[] = ['status', 'eq', $data['status']];
         }
         $where[] = ['status', 'neq', 99];
         $res = OrderModel::with('goods')->where('user_id', $data['user_id'])->where($where)->order('id desc')

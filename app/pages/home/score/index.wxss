@@ -97,6 +97,6 @@
   font-size: 18rpx;
 }
 
-.rate text:last-child {
+.rate text:last-child,.rate text:nth-child(2) {
   text-align: right;
 }

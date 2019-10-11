@@ -1,3 +1,4 @@
+// pages/reads/index.js
 
 import { ArticleModel } from '../../api/article.js'
 

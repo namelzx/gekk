@@ -10,6 +10,8 @@
   line-height: 10rpx;
   font-size: 24rpx;
   display: inline-block;
+  color: #444;
+  letter-spacing: 2rpx;
 }
 
 .deliver-owner {

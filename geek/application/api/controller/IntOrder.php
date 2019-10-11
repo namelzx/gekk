@@ -60,9 +60,8 @@ class IntOrder extends Base
         $data = input('param.');
         $where = [];
         if (!empty($data['id'])) {
-            $where[] = ['id', '=', $data['id']];
+            $where[] = ['id', 'eq', $data['id']];
         }
-
         $res = IntegralOrderModel::with(['getGoods', 'shop', 'address', 'invoice'])->where($where)
             ->find();
         return json($res);

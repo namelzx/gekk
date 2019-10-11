@@ -7,11 +7,16 @@ Route::group('api/admin/', function () {
     Route::post('user/logout', 'admin/Login/logout'); /* 退出登录*/
     Route::rule('upload', 'admin/Base/upload'); /*文件上传*/
     Route::rule('GetShopByList', 'admin/Base/GetShopByList'); /*获取店铺列表*/
-
     Route::rule('GetHomeByData', 'admin/Home/GetHomeByData'); /*获取后台主页数据*/
-
-
     Route::post('dist/PostDataBySave', 'admin/Dist/PostDataBySave'); /* 分销管理*/
+    Route::get('Sms/GetSmsByInfo', 'admin/Sms/GetSmsByInfo'); /*  短信 */
+
+    Route::post('Sms/PostDataBySave', 'admin/Sms/PostDataBySave'); /*  保存短信设置 */
+
+
+    Route::get('wx/GetWxByInfo', 'admin/Wx/GetWxByInfo'); /*  获取微信配置 */
+    Route::post('wx/PostDataBySave', 'admin/Wx/PostDataBySave'); /*  保存微信配置 */
+
 
     Route::get('city/getProvinces', 'admin/shop/getProvinces'); /* 获取省份*/
     Route::get('city/getCity', 'admin/shop/getCity'); /* 获取城市*/
@@ -19,7 +24,6 @@ Route::group('api/admin/', function () {
     /*
      * 商铺管理
      */
-
     Route::post('shop/PostDataByAdd', 'admin/Shop/PostDataByAdd'); /* 添加数据*/
     Route::get('shop/GetDataByList', 'admin/Shop/GetDataByList'); /* 获取数据列表*/
     Route::get('shop/GetIdBydetailed', 'admin/Shop/GetIdBydetailed'); /* 获取数据列表*/
