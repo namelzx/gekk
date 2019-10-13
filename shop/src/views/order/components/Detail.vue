@@ -15,13 +15,16 @@
 
               <div class="ant-col-md-8">
                 <div class="term">订单状态:</div>
-                <div class="detail">{{postForm.status|statusText}}</div>
+                <div class="detail" v-if="postForm.isadd==1">{{postForm.status|statusText}}</div>
+                <div class="detail" v-if="postForm.isadd==2">{{postForm.status|statusShop}}</div>
               </div>
               <div class="ant-col-md-8">
                 <div class="term">发货方式:</div>
-                <div class="detail">未发货</div>
+                <div class="detail" v-if="postForm.isadd==1">物流</div>
+                <div class="detail" v-if="postForm.isadd==2">门店自取</div>
+
               </div>
-             
+
               <div class="ant-col-md-8">
                 <div class="term">下单时间:</div>
                 <div class="detail">{{postForm.create_time}}</div>
@@ -49,16 +52,17 @@
               </div>
               <div class="ant-col-md-8">
                 <div class="term">收货地址:</div>
-                <div
-                  class="detail"
-                  v-if="postForm.address"
-                >{{postForm.address.areaMsg}}</div>
+                <div class="detail" v-if="postForm.address">{{postForm.address.areaMsg}}</div>
               </div>
             </div>
             <div class="ant-row" v-else>
-                <div class="ant-col-md-8">
+              <div class="ant-col-md-8">
                 <div class="term">取货店铺:</div>
-                <div class="detail" >{{postForm.shop.name}}<br/>{{postForm.shop.location}}</div>
+                <div class="detail">
+                  {{postForm.shop.name}}
+                  <br />
+                  {{postForm.shop.location}}
+                </div>
               </div>
             </div>
           </div>
@@ -66,7 +70,7 @@
       </div>
 
       <!--物流信息-->
-      <div class="ant-card">
+      <div class="ant-card" v-if="postForm.isadd===1">
         <div class="ant-card-body">
           <div class="descriptionList">
             <div class="title">发货物流信息</div>
@@ -104,23 +108,39 @@
           </div>
         </div>
       </div>
+      <div class="ant-card" v-if="postForm.isadd===2">
+        <div class="ant-card-body" v-if="postForm.status!==4">
+          <div class="descriptionList">
+            <div class="title">输入取货码</div>
+            <div class="ant-row">
+              <div>
+                <el-col :span="6">
+                  <el-input v-model="claim_code" placeholder="输入取货码"></el-input>
+                </el-col>
+                <el-col :span="6">
+                  <el-button style="margin-left: 30px" type="primary" @click="onCode">保存</el-button>
+                </el-col>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <divider title="商品信息" />
 
       <!--订单信息-->
       <div class="goods-info" v-if="postForm.get_goods">
         <el-table :data="postForm.get_goods" border stripe style="width: 100%">
-          <el-table-column prop label="商品图片" width="180"  align="center">
+          <el-table-column prop label="商品图片" width="180" align="center">
             <template slot-scope="scope">
-
               <img class="img" :src="scope.row.images_url" />
             </template>
           </el-table-column>
-          <el-table-column prop="name"  align="center" label="商品名称" width="180"></el-table-column>
-          <el-table-column prop="price"  align="center" label="商品价格"></el-table-column>
-          <el-table-column prop="num"  align="center" label="商品数量"></el-table-column>
-         
-          <el-table-column prop="suk_name"  align="center" label="商品属性"></el-table-column>
+          <el-table-column prop="name" align="center" label="商品名称" width="180"></el-table-column>
+          <el-table-column prop="price" align="center" label="商品价格"></el-table-column>
+          <el-table-column prop="num" align="center" label="商品数量"></el-table-column>
+
+          <el-table-column prop="suk_name" align="center" label="商品属性"></el-table-column>
         </el-table>
       </div>
 
@@ -136,7 +156,7 @@
       </div>
       <!--订单信息-->
       <div class="goods-info">
-        <div class="head-info" >{{postForm.actualPrice}}</div>
+        <div class="head-info">{{postForm.actualPrice}}</div>
         <div class="head-info">{{postForm.freight}}</div>
 
         <div class="head-info">
@@ -144,7 +164,8 @@
           <span v-else>未使用优惠卷</span>
         </div>
         <div class="head-info">
-          <span v-if="postForm.get_user_coupon"
+          <span
+            v-if="postForm.get_user_coupon"
           >{{postForm.get_user_coupon.get_counpon.sub_price}}元优惠卷</span>
           <span v-else>未使用优惠卷</span>
         </div>
@@ -152,19 +173,22 @@
 
         <div class="head-info">{{postForm.status|statusText}}</div>
       </div>
-
-
     </div>
   </div>
 </template>
 
 
 <script>
-  import Sticky from '@/components/Sticky' // 粘性header组件
+import Sticky from "@/components/Sticky"; // 粘性header组件
 
 import Divider from "./Divider";
 import logis from "./logis";
-import { GetIdByDetails, postCourier, postOrderClose } from "@/api/order";
+import {
+  GetIdByDetails,
+  postCourier,
+  postOrderClose,
+  PostDataByCancel
+} from "@/api/order";
 import { parseTime } from "@/utils";
 
 export default {
@@ -193,6 +217,16 @@ export default {
         5: "已取消"
       };
       return statusMap[status];
+    },
+    statusShop(status) {
+      const statusMap = {
+        1: "未支付",
+        2: "等待客户取货",
+        3: "已发货",
+        4: "已取货",
+        5: "已取消"
+      };
+      return statusMap[status];
     }
   },
   data() {
@@ -211,7 +245,8 @@ export default {
           label: "安捷物流"
         }
       ],
-      postForm: {}
+      postForm: {},
+      claim_code: ""
     };
   },
   created() {
@@ -223,6 +258,26 @@ export default {
     }
   },
   methods: {
+    onCode() {
+      if (this.claim_code === this.postForm.claim_code) {
+        var temp = {
+          id: this.postForm.id,
+          status: 4
+        };
+        PostDataByCancel(temp, res => {
+          this.postForm.status = 5;
+              this.$message({
+          message: '取货成功',
+          type: 'success'
+        });
+        });
+      }else{
+         this.$message({
+          message: '取货码错误',
+          type: 'warning'
+        });
+      }
+    },
     Settlement() {
       const h = this.$createElement;
       var price =
@@ -283,7 +338,7 @@ export default {
     fetchData(id) {
       GetIdByDetails(id).then(res => {
         this.postForm = res.data;
-        console.log(    this.postForm )
+        console.log(this.postForm);
       });
     }
   }
@@ -359,10 +414,10 @@ export default {
       margin-left: 10px;
     }
   }
-   img {
-        width: 80px;
-        height: 80px;
-      }
+  img {
+    width: 80px;
+    height: 80px;
+  }
 
   .head-info {
     width: 20%;

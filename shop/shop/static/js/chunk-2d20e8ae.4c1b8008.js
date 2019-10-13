@@ -1,0 +1,1 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d20e8ae"],{b08b:function(e,t,n){"use strict";n.r(t);var a=function(){var e=this,t=e.$createElement,n=e._self._c||t;return n("Detail",{attrs:{"is-edit":!1}})},c=[],r=n("281c"),s={name:"CreateForm",components:{Detail:r["a"]}},i=s,o=n("2877"),l=Object(o["a"])(i,a,c,!1,null,"0858d675",null);t["default"]=l.exports}}]);

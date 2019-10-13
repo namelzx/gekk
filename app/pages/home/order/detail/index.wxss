@@ -159,3 +159,10 @@
 .oreder-detail-container{
   margin-bottom: 150rpx;
 }
+
+.tocode{
+  position: absolute;
+  top: 3.5%;
+  left: 30%;
+  
+}

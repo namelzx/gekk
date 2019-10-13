@@ -79,12 +79,19 @@ Page({
   onLoad(e){
   
     var that=this;
-    var loca = wx.getStorageSync('score')
+    var score = wx.getStorageSync('score')
    
     addressModel.GetNewsByItems(app.globalData.user_id,res=>{
       that.setData({
-        goodsinfo:loca,
+        goodsinfo: score,
         addressRadioList:res.data
+      })
+    })
+
+    var loca = wx.getStorageSync('loca')
+    shopmodel.GetShopByList(loca, res => {
+      that.setData({
+        selfRadioList: res.data
       })
     })
    
@@ -166,7 +173,7 @@ Page({
     temp.order.user_id=app.globalData.user_id,
     temp.goods_id=that.data.goodsinfo.id
     temp.goods_id = that.data.goodsinfo.id
-    temp.shop_goods_id=that.data.goodsinfo.shop_id
+    temp.order.shop_goods_id=that.data.goodsinfo.shop_id
     ordermodel.PostOrderByData(temp,res=>{
       wx.redirectTo({
         url: '/pages/home/score/exchange/index',

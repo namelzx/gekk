@@ -16,7 +16,7 @@
         商品暂时全部售罄，敬请期待上新。
       </view>
       <scroll-view scroll-y="true" class="mall-scroll" wx:if="{{mall.length!==0}}">
-        <view class="scroll-item" wx:for="{{mall}}" wx:key="index" data-info="{{item}}" bindtap="handelDe">
+        <view class="scroll-item" wx:for="{{mall}}" wx:key="index"  data-info="{{item}}" bindtap="handelDe">
           <view class="img-wrapper">
             <image src="{{item.images_url}}"></image>
           </view>

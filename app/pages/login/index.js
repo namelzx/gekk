@@ -90,8 +90,11 @@ Page({
                 wx.setStorageSync('user', reres)
               app.globalData.isLogin=true
               app.globalData.user_id = reres.id
-              wx.reLaunch({
-                url: '/pages/index/index',
+              // wx.reLaunch({
+              //   url: '/pages/index/index',
+              // })
+              wx.navigateBack({
+                delta: 1,
               })
             })
           }

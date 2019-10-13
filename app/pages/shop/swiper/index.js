@@ -13,6 +13,7 @@ Component({
     swiperImg:{
       type: Array
     },
+    logo:String,
     shop_distance: {
       type: String
     },

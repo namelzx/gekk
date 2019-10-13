@@ -35,30 +35,6 @@ Page({
     orderList: [],
     userinfo: {},
   },
-  // onShow() {
-  //   var that = this;
-  //   distModel.GetUserDistLog(app.globalData.user_id, res => {
-  //     if (res.count > 0) {
-  //       that.setData({
-  //         signIn: true
-  //       })
-  //     }
-  //     that.setData({
-  //       integral: res.integral
-  //     })
-  //   })
-  //   userModel.GetUserByInfo(app.globalData.user_id, res => {
-  //     that.setData({
-  //       userinfo: res
-  //     })
-  //   })
-  //   intGoodsModel.GetIntegralByGoods(that.data.listQuery, res => {
-  //     console.log(res)
-  //     that.setData({
-  //       mall: res
-  //     })
-  //   })
-  // },
   signIn() {
     var that = this;
     var temp = {
@@ -163,12 +139,16 @@ Page({
   },
   // 取消订单
   clickToCancel(e) {
+    var that=this;
     var temp = {
       order_id: e.detail,
       user_id: app.globalData.user_id,
       status: 5
     }
     intOrderModel.GetIdByCancel(temp, res => {
+      that.setData({
+        orderList:res.message
+      })
       console.log(res)
     })
   },

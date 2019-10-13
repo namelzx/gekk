@@ -10,7 +10,9 @@ namespace app\shop\controller;
 
 
 use app\common\model\GoodsModel;
+use app\common\model\IntegralOrderModel;
 use app\common\model\OrderModel;
+use app\common\model\UserModel;
 
 /**
  * Class Home
@@ -42,6 +44,22 @@ class Home extends Base
         $temp['yesterprice'] = OrderModel::where($where)
             ->whereTime('create_time', 'yesterday')
             ->sum('actualPrice');//获取昨日销售额
+
+
+        $temp['dayintorder'] = IntegralOrderModel::where($where)
+            ->whereTime('create_time', 'd')
+            ->count();//今日订单总量
+        $temp['yesterintorder'] = IntegralOrderModel::where($where)
+            ->whereTime('create_time', 'yesterday')
+            ->count();//昨日订单总量
+
+
+        $temp['dayuser'] = UserModel::where($where)
+            ->whereTime('create_time', 'd')
+            ->count();//今日订单总量
+        $temp['yesteruser'] = UserModel::where($where)
+            ->whereTime('create_time', 'yesterday')
+            ->count();//昨日订单总量
 
         return json(['msg' => '获取成功', 'data' => $temp, 'code' => 20000], 200);
 

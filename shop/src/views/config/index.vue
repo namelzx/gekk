@@ -98,6 +98,14 @@
                 </el-col>
               </el-row>
 
+                 <el-row>
+                <el-col :span="10">
+                  <el-form-item label-width="120px" label="店铺首页Logo:" prop="logo">
+                    <LoginImages :logo="postForm.shop_logo " @handelImages="handelShopLogo"></LoginImages>
+                  </el-form-item>
+                </el-col>
+              </el-row>
+
               <el-row>
                 <el-col :span="10">
                   <el-form-item label-width="120px" label="店铺是否开启:">
@@ -230,6 +238,10 @@ export default {
     },
     handelLogin(e) {
       this.postForm.logo = e;
+    },
+    handelShopLogo(e){
+      this.postForm.shop_logo = e;
+
     },
     fetchData(id) {
       var that = this;

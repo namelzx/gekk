@@ -45,7 +45,7 @@ class Pay extends Base
                 'out_trade_no' => time() . rand(1000, 9999),
                 'total_fee' => $total_money * 100, // 单位：分
                 'notify_url' => '/', // 支付结果通知网址，如果不设置则会使用配置里的默认地址
-                'openid' => 'oCaMR5RW2ULiWeRuDwfvET6b9CO0', // trade_type=JSAPI，此参数必传，用户在商户appid下的唯一标识，
+                'openid' => $post['openid'], // trade_type=JSAPI，此参数必传，用户在商户appid下的唯一标识，
             ];
             $result = $app->order->unify($attributes);
             $config = array();

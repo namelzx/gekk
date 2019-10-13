@@ -27,6 +27,7 @@
     "pages/shop/index",
     "pages/shop/pay/index",
     "pages/login/index",
+    "pages/home/score/exchange/detail/index",
     "pages/home/order/evaluate/index",
     "pages/home/map/index",
     "pages/test/index",
@@ -60,7 +61,7 @@
         "selectedIconPath": "/static/images/home-sel.png"
       },
       {
-        "pagePath": "pages/home/map/index",
+        "pagePath": "pages/shoplist/index",
         "text": "好店",
         "iconPath": "/static/images/shop.png",
         "selectedIconPath": "/static/images/shop-sel.png"

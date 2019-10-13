@@ -26,3 +26,13 @@ export function GetIdByDetails(id) {
     params: {id}
   })
 }
+
+
+
+export function GetPack() {
+  return request({
+    url: '/GetPack',
+    method: 'get',
+  })
+}
+

@@ -12,7 +12,7 @@
 
 .locate-item .locate-icon {
   font-size: 40rpx;
-  margin: 24rpx 24rpx 0 0;
+  margin: 24rpx 0rpx 0 0;
   color: #333;
 }
 
@@ -21,6 +21,7 @@
   font-size: 28rpx;
   font-weight: 400;
   margin: 8rpx 0;
+  line-height: 75rpx;
 }
 
 .locate-item .distance {

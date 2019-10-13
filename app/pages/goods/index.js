@@ -88,6 +88,10 @@ Page({
       })
       that.data.detailed.count = 0;
       WxParse.wxParse('article', 'html', res.content, that, 5);
+
+      WxParse.wxParse('pack', 'html', res.pack.content, that, 5);
+      WxParse.wxParse('spec', 'html', res.spec.content, that, 5);
+
     })
     citymodel.getProvinces(res => {
       that.setData({
@@ -246,8 +250,8 @@ Page({
 
   // 打开商铺
   openShop() {
-    wx.navigateBack({
-
+    wx.navigateTo({
+      url: '/pages/shop/index?id=' + this.data.detailed.shop_id
     })
   },
   // 打开购物车 
@@ -265,7 +269,7 @@ Page({
   purchase() {
     this.addBuy();
     wx.navigateTo({
-      url: '/pages/shop/pay/index?type=buy',
+      url: '/pages/shop/pay/index?type=buy&freight=' + this.data.detailed.freight,
     })
   },
   addBuy() {
@@ -276,7 +280,7 @@ Page({
     var suk_id = that.data.suk_id //选择的suk
     var suk_name = that.data.detailed.suk_name //选择的suk信息
     var images_url = that.data.images_url
-
+    var integral = that.data.detailed.integral
     var name = that.data.detailed.name;
     var obj = {
       goods_id: goods_id,
@@ -285,7 +289,8 @@ Page({
       suk_name: suk_name,
       suk_id: suk_id,
       price,
-      images_url
+      images_url,
+      integral
     };
     var carArray1 = [];
     carArray1.push(obj);
@@ -303,6 +308,8 @@ Page({
     var suk_name = that.data.detailed.suk_name //选择的suk信息
     var images_url = that.data.images_url
     var name = that.data.detailed.name;
+    var integral = that.data.detailed.integral
+
     var mark = 'a' + goods_id + 'b' + suk_id
     var obj = {
       goods_id: goods_id,
@@ -312,7 +319,8 @@ Page({
       suk_id: suk_id,
       price,
       images_url,
-      mark
+      mark,
+      integral
     };
     var carArray1 = this.data.carArray.filter(item => item.mark != mark)
     carArray1.push(obj)
@@ -320,6 +328,7 @@ Page({
     this.setData({
       carArray: carArray1,
     })
+    this.calTotalPrice();
 
 
   },
@@ -335,7 +344,8 @@ Page({
       totalPrice += carArray[i].price * carArray[i].num;
       totalCount += carArray[i].num
     }
-    console.log(totalCount)
+    // this.calTotalPrice();
+
     this.setData({
       totalPrice: totalPrice,
       totalCount: totalCount,

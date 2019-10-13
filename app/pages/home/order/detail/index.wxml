@@ -1,6 +1,9 @@
 <!--pages/home/order/detail/index.wxml-->
 
 <wxs module="dateUtil" src="./price.wxs"></wxs>
+<view class="tocode" wx:if="{{details.isadd===2}}">
+  取货码<text> {{details.claim_code}}</text>
+</view>
 
 <view class="oreder-detail-container">
   <view class="order-status">

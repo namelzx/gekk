@@ -69,10 +69,10 @@
         <text class="fee-left">优惠券</text>
         <text class="fee-right"> -{{coun.get_counpon.sub_price}}</text>
       </view>
-      <view class="poster-fee">
+      <!-- <view class="poster-fee">
         <text class="fee-left">运费</text>
         <text class="fee-right">¥ 0.00</text>
-      </view>
+      </view> -->
       <view class="all-fee">
         <text class="fee-left">合计</text>
         <text class="fee-right">¥ {{actualPrice}}</text>

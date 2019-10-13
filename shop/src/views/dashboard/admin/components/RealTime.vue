@@ -21,21 +21,21 @@
           <p>昨日： {{homeinfo.yesterorder}}</p>
         </div>
       </div>
-      <!-- <div class="real-right">
+      <div class="real-right">
         <div class="icon-wrap">
           <i class="el-icon-user"></i>
         </div>
         <div class="sell-cash">
           <p>新增用户数</p>
-          <p>0</p>
-          <p>昨日： 0</p>
+          <p>{{homeinfo.dayuser}}</p>
+          <p>昨日： {{homeinfo.yesteruser}}</p>
         </div>
         <div class="sell-order">
-          <p>下单用户数</p>
-          <p>0</p>
-          <p>昨日： 0</p>
+          <p>积分订单</p>
+          <p>{{homeinfo.dayintorder}}</p>
+          <p>昨日： {{homeinfo.yesterintorder}}</p>
         </div>
-      </div> -->
+      </div>
     </el-col>
   </el-row>
 </template>

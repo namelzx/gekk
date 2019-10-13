@@ -14,6 +14,8 @@ Route::group('api/shop/', function () {
     Route::get('user/logout', 'shop/Login/logout'); /* 退出登录*/
     Route::rule('upload', 'admin/Base/upload'); /*文件上传*/
 
+    Route::rule('GetPack', 'shop/Base/GetPack'); /*获取售后和配置*/
+
 
     Route::rule('GetHomeByData', 'shop/Home/GetHomeByData'); /*文件上传*/
 

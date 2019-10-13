@@ -21,10 +21,9 @@ Page({
     totalCount: 0,
 
     imgUrls: [
-      'https://hhh.10huisp.com/uploads/article-img-1.png',
-      'https://hhh.10huisp.com/uploads/article-img-2.png',
-      'https://hhh.10huisp.com/uploads/article-img-3.png'
+    
     ],
+    shopinfo:{},
     shop_logo: './../../../static/images/shop-logo-1.png',
     shop_name: '极客清晖园星巴克店',
     shop_distance: '2.4',
@@ -92,6 +91,7 @@ Page({
       price = 1;
     }
     var name = this.data.goods[parentIndex].foods[index].name;
+    var shop_id=this.data.shopinfo.id
     var obj = {
       price: price,
       num: num,
@@ -99,6 +99,7 @@ Page({
       goods_id: goods_id,
       suk_id,
       suk_name,
+      shop_id,
       images_url: images_url,
       integral: integral,
       mark: mark
@@ -273,7 +274,7 @@ Page({
       this.data.goods[parentIndex].foods[index].Count = 0;
     }
     // this.data.goods[parentIndex].foods[index].suk[cheindex].Count++;
-    var mark = 'a' + this.data.goods[parentIndex].foods[index].id + 'b' + this.data.goods[parentIndex].foods[index].suk[cheindex].id
+    var mark = 'a' + this.data.goods[parentIndex].foods[index].id + 'b' + this.data.goods[parentIndex].foods[index].suk[cheindex].id + 'c' + this.data.goods[parentIndex].foods[index].shop_id
     var suk_id = this.data.suk_id
     var suk_name = this.data.suk_name
     var price = parseFloat(this.data.goods[parentIndex].foods[index].suk[cheindex].price);
@@ -292,6 +293,11 @@ Page({
       price = 1;
     }
     var name = this.data.goods[parentIndex].foods[index].name;
+    var shop_id = this.data.shopinfo.id
+
+    /**
+     * 商品信息
+     */
     var obj = {
       price: price,
       num: num,
@@ -299,12 +305,14 @@ Page({
       goods_id: goods_id,
       suk_id,
       suk_name,
+      shop_id,
       images_url: images_url,
       mark: mark,
       integral: integral
     };
 
     var carArray1 = this.data.carArray.filter(item => item.mark != mark)
+    
     carArray1.push(obj)
     wx.setStorageSync('cart', carArray1)
     this.setData({
@@ -408,7 +416,6 @@ Page({
   },
   onLoad: function(options) {
     // 页面初始化 options为页面跳转所带来的参数
-    this.calTotalPrice();
     var that = this;
     var id = options.id
     shopmodel.GetShopGoodsByList(id, res => {
@@ -417,9 +424,14 @@ Page({
       })
     })
     commonModel.GetBannerByList(id, res => {
+      
       that.setData({
-        imgUrls: res.banner
+        imgUrls: res.banner,
+        shopinfo:res.shop,
+        shop_name:res.shop.name,
+        logo:res.shop.shop_logo
       })
+      
     })
 
   },
@@ -427,6 +439,8 @@ Page({
     // 页面渲染完成
   },
   onShow: function() {
+    this.calTotalPrice();
+
     // 页面显示
   },
   onHide: function() {

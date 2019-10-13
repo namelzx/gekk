@@ -54,6 +54,46 @@
             </el-col>
           </el-row>
 
+          <el-row>
+             <el-col :span="7">
+              <el-form-item label-width="100px" label="包装售后:">
+                <el-select
+                  prod="category_id"
+                  v-model="postForm.pack_id"
+                  class="filter-item"
+                  placeholder="选择售后"
+                >
+                  <el-option
+                    v-for="(item,index) in pack"
+                    :key="index"
+                    :label="item.title"
+                    :value="item.id"
+                  />
+                </el-select>
+              </el-form-item>
+            </el-col>
+          </el-row>
+
+
+   <el-row>
+             <el-col :span="7">
+              <el-form-item label-width="100px" label="商品规格:">
+                <el-select
+                  prod="category_id"
+                  v-model="postForm.spec_id"
+                  class="filter-item"
+                  placeholder="选择规格"
+                >
+                  <el-option
+                    v-for="(item,index) in spec"
+                    :key="index"
+                    :label="item.title"
+                    :value="item.id"
+                  />
+                </el-select>
+              </el-form-item>
+            </el-col>
+          </el-row>
           <el-row :gutter="20">
             <el-col :span="7">
               <el-form-item label-width="100px" label="商品主图:">
@@ -180,6 +220,9 @@ import {
 import ListImage from "@/components/Upload/ListImage";
 
 import { GetCategory } from "@/api/brand";
+import { GetPack } from "@/api/pack";
+
+
 import { mapGetters } from "vuex";
 
 import {
@@ -297,7 +340,8 @@ export default {
         image_uri: [{ validator: validateRequire }]
       },
       tempRoute: {},
-
+    pack:[],
+    spec:[],
       photo: []
     };
   },
@@ -311,6 +355,10 @@ export default {
     } else {
       this.postForm = Object.assign({}, defaultForm);
     }
+    GetPack().then(res=>{
+      this.pack=res.data.pack
+        this.spec=res.data.sepc
+    })
     GetCategory().then(res => {
       this.category = res.data;
     });

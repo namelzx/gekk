@@ -37,6 +37,10 @@ Page({
   },
   handelDe(e) {
     var data = e.currentTarget.dataset.info
+    if (this.data.integral < data.integral){
+      Toast('兑换该商品积分不足');
+        return ;
+    }
     wx.setStorageSync('score', data)
     wx.navigateTo({
       url: '/pages/home/score/pay/index',

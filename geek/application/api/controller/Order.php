@@ -29,11 +29,44 @@ class Order extends Base
     {
 
         $data = input('param.');
+        $arr = [];
+        foreach ($data['dorder'] as $i => $item) {
+            $arr[$i] = $data['order'];
+            $arr[$i]['goods'] = $item;
+            $arr[$i]['shop_id'] = $item[0]['shop_id'];
+            $arr[$i]['order_no'] = time() . mt_rand(100, 1000000);
+            if ($data['order']['isadd'] === 2) {
+                $arr[$i]['claim_code'] = mt_rand(100, 1000000);
+            }
+            $res = OrderModel::create($arr[$i]);
+
+            if (!empty($data['order']['isInvoice'])) {
+                if ($data['order']['isInvoice'] == 1) {//开发票
+                    $data['invoice']['order_id'] = $res['id'];
+                    OrderInvoiceModel::create($data['invoice']);
+                }
+            }
+            $garr = [];
+            foreach ($arr[$i]['goods'] as $g => $gitem) {
+                $garr[$i]['goods_id'] = $gitem['goods_id'];
+                $garr[$i]['order_id'] = $res['id'];
+                $garr[$i]['images_url'] = $gitem['images_url'];
+                $garr[$i]['name'] = $gitem['name'];
+                $garr[$i]['num'] = $gitem['num'];
+                $garr[$i]['price'] = $gitem['price'];
+                $garr[$i]['suk_id'] = $gitem['suk_id'];
+                $garr[$i]['suk_name'] = $gitem['suk_name'];
+                $garr[$i]['integral'] = $gitem['integral'];
+                $goods = OrderGoodsModel::create($garr[$i]);
+                $this->distribution($data['order']['user_id'], $res['id'], $goods['id'], 3, $gitem['integral'], $gitem['price']);
+            }
+        }
+        return json(msg(200, $res, '3'));
+
+        return json($arr);
         $data['order']['order_no'] = time() . mt_rand(100, 1000000);
 //        $data['order']['status'] = 2;
-        if ($data['order']['isadd'] === 2) {
-            $data['order']['claim_code'] = mt_rand(100, 1000000);
-        }
+
         $res = OrderModel::create($data['order']);
 
 
@@ -82,7 +115,7 @@ class Order extends Base
         $data = input('param.');
         $where = [];
         if (!empty($data['id'])) {
-            $where[] = ['id', '=', $data['id']];
+            $where[] = ['id', 'eq', $data['id']];
         }
 
         $res = OrderModel::with(['getGoods', 'shop', 'address', 'invoice'])->where($where)
@@ -97,14 +130,19 @@ class Order extends Base
     {
         $data = input('param.');
         $res = OrderModel::where('id', $data['id'])->data(['status' => $data['status']])->update();
+
+
         $goodsall = OrderGoodsModel::with(['goods'])->where('order_id', $data['id'])->select();
+        if ($data['status'] == 5) {
+            return json(msg(200, $res, $goodsall));
+        }
         $order = OrderModel::where('id', $data['id'])->find();
         foreach ($goodsall as $i => $item) {
             UserModel::where('id', $order['user_id'])->setInc('integral', $item['goods']['integral']);
             $instdata = [
                 'title' => '购买商品',
                 'type' => 2,
-                'integral' => $item['goods']['integral'],//积分数量
+                'integral' => $item['goods']['integral'] * $item['goods']['num'],//积分数量
                 'user_id' => $order['user_id']
             ];
             if ($item['goods']['integral'] > 0) {

@@ -29,7 +29,7 @@ class IntOrder extends Base
     public function GetIdByDetails()
     {
         $data = input('param.');
-        $res = IntegralOrderModel::with(['goods', 'getGoods', 'address', 'getCourier' => ['Courier'], 'getUser'
+        $res = IntegralOrderModel::with(['goods','intshop', 'getGoods', 'address', 'getCourier' => ['Courier'], 'getUser'
         ])->where('id', $data['id'])->find();
         if (!empty($res['get_courier'])) {
             $requestData = "{'OrderCode':'" . $res['get_courier']['out_courier_no'] . "','ShipperCode':'" . $res['get_courier']['courier']['value'] . "','LogisticCode':'" . $res['get_courier']['out_courier_no'] . "'}";

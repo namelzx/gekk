@@ -10,6 +10,8 @@
   line-height: 10rpx;
   font-size: 24rpx;
   display: inline-block;
+  color: #444;
+  letter-spacing: 2rpx;
 }
 
 .deliver-owner {
@@ -128,6 +130,7 @@
   bottom: 0;
   width: 100%;
   padding: 35rpx 0;
+  background: #fff;
   border-top: 10rpx solid #f5f5f5;
   color: #333;
   
@@ -152,4 +155,14 @@
   font-size: 28rpx;
   margin: 0 30rpx 0 0;
   border-radius: 30rpx;
+}
+.oreder-detail-container{
+  margin-bottom: 150rpx;
+}
+
+.tocode{
+  position: absolute;
+  top: 3.5%;
+  left: 30%;
+  
 }

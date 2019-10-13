@@ -15,7 +15,7 @@
       <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">
         搜索
       </el-button>
-      <router-link :to="'/goods/create'">
+      <router-link :to="'/integral/create'">
         <el-button v-waves class="filter-item" type="primary" icon="el-icon-plus" >
           创建商品
         </el-button>

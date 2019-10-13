@@ -583,3 +583,6 @@
 .addres-detailed {
   margin-top: 30rpx;
 }
+.wxParse-p image{
+  width: 100% !important;
+}

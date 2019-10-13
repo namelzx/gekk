@@ -8,9 +8,9 @@
   <van-icon name="location-o" class="locate-icon" />
   <view class="shop-name">
     <text>{{shop_name}}</text>
-    <view class="distance">
+    <!-- <view class="distance">
       <text>距离你{{shop_distance}}km</text>
-    </view>
+    </view> -->
   </view>
   <van-icon name="arrow" class="arrow-icon" />
 </view>

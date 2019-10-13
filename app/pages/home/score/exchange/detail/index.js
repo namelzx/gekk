@@ -1,10 +1,17 @@
 // pages/home/order/detail/index.js
+
+import {
+  IntOrderModel
+} from '../../../../../api/IntOrder.js';
+
+let intOrderModel = new IntOrderModel();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    details: {}
 
   },
 
@@ -12,7 +19,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this;
+    intOrderModel.GetOrderIdByFind(options.id, res => {
+      that.setData({
+        details: res
+      })
+      console.log(that.data.details)
+    })
   },
 
   /**
@@ -62,5 +75,14 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  OnDelete() {
+    var that = this;
+    intOrderModel.GetIdByDelete(that.data.details.id, res => {
+      wx.redirectTo({
+        url: '/pages/home/order/index',
+      })
+    })
   }
 })

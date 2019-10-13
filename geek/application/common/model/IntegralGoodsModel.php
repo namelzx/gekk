@@ -45,16 +45,16 @@ class IntegralGoodsModel extends BaseModel
     {
         $where = [];
         if (!empty($data['title'])) {
-            $where[] = ['name', '=', $data['title']];
+            $where[] = ['name', 'eq', $data['title']];
         }
         if (!empty($data['status'])) {
-            $where[] = ['status', '=', $data['status']];
+            $where[] = ['status', 'eq', $data['status']];
         }
         if (!empty($data['category_id'])) {
-            $where[] = ['category_id', '=', $data['category_id']];
+            $where[] = ['category_id', 'eq', $data['category_id']];
         }
         if (!empty($data['shop_id'])) {
-            $where[] = ['shop_id', '=', $data['shop_id']];
+            $where[] = ['shop_id', 'eq', $data['shop_id']];
         }
         $res = self::with('category')->where($where)->where('status', 'neq', 3)->paginate($data['limit'], false, ['query' => $data['page']]);
         return $res;

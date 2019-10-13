@@ -50,6 +50,8 @@ Page({
       success: function (locatlres) {
         wx.setStorageSync('loca', locatlres)
         shopmodel.GetShopByList(locatlres,res=>{
+          wx.setStorageSync('dist',res.dist)
+
           that.setData({
             avatarList:res.data,
             dist:res.dist

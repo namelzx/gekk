@@ -52,7 +52,7 @@ class Goods extends Base
         $model = new GoodsModel();
         $model->allowField(true)->save($data['temp'], ['id' => $data['temp']['id']]);
         $id = $data['temp']['id'];
-        GoodsSukModel::where('goods_id', $id)->data(['status' => 2])->update();
+        GoodsSukModel::where('goods_id', $id)->delete();
         $goodssuk = $data['temp']['goods_suk'];
         foreach ($goodssuk as $i => $item) {
             $temp['name'] = $item['name'];

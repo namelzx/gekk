@@ -28,6 +28,7 @@
   font-size: 28rpx;
   font-weight: 400;
   margin: 8rpx 0;
+  line-height: 75rpx;
 }
 
 .locate-item .distance {

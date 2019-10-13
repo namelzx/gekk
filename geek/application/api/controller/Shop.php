@@ -13,6 +13,7 @@ use app\common\model\CategoryModel;
 use app\common\model\CouponModel;
 use app\common\model\EvaluateModel;
 use app\common\model\GoodsModel;
+use app\common\model\GoodsSukModel;
 use app\common\model\PositionModel;
 use app\common\model\ShopModel;
 
@@ -31,11 +32,12 @@ class Shop extends Base
         $jx = curlSend($url);
         $district = $jx['result']['address_component']['district'];//获取当前所在区
         $get_code = PositionModel::where('area_name', 'like', '%' . $district . '%')->find();
-        $res = ShopModel::where('status', 1)->where('area_code', $get_code['area_code'])->all();
-
+        $res = ShopModel::where('status', 1)
+            ->where('area_code', $get_code['area_code'])
+            ->all();
         $model = new ShopModel();
         $dd = $model->range($data['latitude'], $data['longitude'], $res);
-        return json(['data'=>$dd,'dist'=>$jx['result']['ad_info']['city'].$jx['result']['ad_info']['district']]);
+        return json(['data' => $dd, 'dist' => $jx['result']['ad_info']['city'] . $jx['result']['ad_info']['district']]);
     }
 
     /**
@@ -44,10 +46,24 @@ class Shop extends Base
     public function GetShopGoodsByList()
     {
         $data = input('param.');
-        $res = CategoryModel::with(['foods' => ['suk' => function ($query) {
-            $query->where('status', 1);
-        }]])->where('shop_id', $data['shop_id'])->all();
-        return json($res);
+        $res = CategoryModel::with(['foods' => function ($query) use ($data) {
+            $query->where('shop_id', $data['shop_id']);
+        }])->all();
+        return json($this->suk($res));
+    }
+
+    public function suk($data)
+    {
+        $arr = [];
+        foreach ($data as $i => $item) {
+            $arr[$i] = $item;
+            foreach ($item['foods'] as $fo => $foitem) {
+                $arr[$i]['foods'][$fo] = $foitem;
+                $arr[$i]['foods'][$fo] ['suk'] = GoodsSukModel::where('goods_id', $foitem['id'])->select();
+            }
+        }
+        return $arr;
+
     }
 
 
@@ -69,7 +85,7 @@ class Shop extends Base
     public function GetShopListGoodsByCategory()
     {
         $data = input('param.');
-        $res = CategoryModel::where('shop_id', $data['shop_id'])->all();
+        $res = CategoryModel::all();
         return json($res);
     }
 
@@ -81,7 +97,7 @@ class Shop extends Base
         $data = input('param.');
         $res = GoodsModel::with(['suk' => function ($query) {
             $query->where('status', 1);
-        }, 'banner'])->where('id', $data['id'])->find();
+        }, 'banner','pack','spec'])->where('id', $data['id'])->find();
         $coupon = CouponModel::where('scope', 1)->whereOr('goods_id', $data['id'])->select();
         $eav = EvaluateModel::with(['img', 'user'])->where('goods_id', $data['id'])->limit(2)->paginate(2, false);
         //获取总评论星星

@@ -22,6 +22,11 @@ class IntOrder extends Base
     {
         $data = input('param.');
         $data['order']['order_no'] = 'BSBN' . time() . mt_rand(100, 1000000);
+
+
+        if ($data['order']['isadd'] === 2) {
+            $data['order']['claim_code'] = mt_rand(100, 1000000);
+        }
         $res = IntegralOrderModel::create($data['order']);
 
         $temp = [
@@ -36,7 +41,7 @@ class IntOrder extends Base
             'type' => 3,//对话商品
             'integral' => $data['goods']['integral'],//积分数量
             'type_' => 2,//减少
-            ''
+            'user_id' => $data['order']['user_id']
         ];
         IntegralLogModel::create($instdata);
         IntegralOrderGoodsModel::create($temp);
@@ -84,6 +89,7 @@ class IntOrder extends Base
                 'type' => 3,//兑换商品
                 'integral' => $goods['integral'],//积分数量
                 'type_' => 1,//增加
+                'user_id'=>$data['user_id']
             ];
             IntegralLogModel::create($instdata);
         }

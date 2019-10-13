@@ -8,6 +8,7 @@
 
 namespace app\shop\controller;
 
+use app\common\model\PackModel;
 use app\common\model\PositionModel;
 use think\Controller;
 
@@ -16,7 +17,6 @@ header('Access-Control-Allow-Origin:*');
 header('Access-Control-Allow-Credentials: true');
 header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
 header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, authKey, sessionId, Access-Token, X-Token,x-token");
-
 
 
 //电商ID
@@ -105,6 +105,15 @@ class Base extends Controller
     public function encrypt($data, $appkey)
     {
         return urlencode(base64_encode(md5($data . $appkey)));
+    }
+
+    public function GetPack()
+    {
+        $temp['pack'] = PackModel::where('type', 1)->select();//包装售后
+        $temp['sepc'] = PackModel::where('type', 2)->select();//规格
+        return json(['msg' => '获取上架商品', 'data' => $temp, 'code' => 20000], 200);
+
+
     }
 
 }

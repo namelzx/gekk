@@ -37,6 +37,12 @@ class IntegralOrderModel extends BaseModel
 
     }
 
+    public function intshop()
+    {
+        return $this->hasOne('ShopModel', 'id', 'shop_goods_id');
+
+    }
+
     //获取订单用户的地址
     public function address()
     {

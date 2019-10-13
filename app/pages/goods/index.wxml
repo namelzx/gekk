@@ -152,7 +152,7 @@
     </van-popup>
 
     <!-- 运费 -->
-    <good-fee noPostFee="{{noPostFee}}" detailed="{{detailed}}"></good-fee>
+    <!-- <good-fee noPostFee="{{noPostFee}}" detailed="{{detailed}}"></good-fee> -->
 
     <!-- 评论 -->
     <good-ratings ratings="{{detailed.eva}}" eavcout="{{detailed.eavcout}}" eavnumber="{{detailed.eavnumber}}"></good-ratings>
@@ -161,9 +161,9 @@
     <view class="goods-intro">
       <van-tabs sticky animated swipeable color="transparent" tab-class="intro-navbar">
         <van-tab title="商品介绍">
-          <view class="des-line">
+          <!-- <view class="des-line">
             商品视频
-          </view>
+          </view> -->
           <!-- code -->
           <view class="des-line">
             商品详情
@@ -176,11 +176,11 @@
           <view style="margin-bottom:1000rpx;"></view>
         </van-tab>
         <van-tab title="商品规格">
-          商品规格
+            <template is="wxParse" data="{{wxParseData:spec.nodes}}" />
           <view style="margin-bottom:1000rpx;"></view>
         </van-tab>
         <van-tab title="包装售后">
-          包装售后
+               <template is="wxParse" data="{{wxParseData:pack.nodes}}" />
           <view style="margin-bottom:1000rpx;"></view>
         </van-tab>
       </van-tabs>

@@ -14,19 +14,38 @@ class GoodsModel extends BaseModel
     protected $table = 'ee_goods';
     protected $createTime = 'create_time';
 
-    public function category(){
-        return $this->hasOne('CategoryModel','id','category_id');
-    }
-    public function suk(){
-        return $this->hasMany('GoodsSukModel','goods_id','id');
-    }
-    public function banner(){
-        return $this->hasMany('GoodsImagesModel','goods_id','id');
+    public function category()
+    {
+        return $this->hasOne('CategoryModel', 'id', 'category_id');
     }
 
-    public function eva(){
-        return $this->hasMany('EvaluateModel','goods_id','id');
+    public function suk()
+    {
+        return $this->hasMany('GoodsSukModel', 'goods_id', 'id');
     }
+
+    public function banner()
+    {
+        return $this->hasMany('GoodsImagesModel', 'goods_id', 'id');
+    }
+
+    public function eva()
+    {
+        return $this->hasMany('EvaluateModel', 'goods_id', 'id');
+    }
+
+
+    public function pack()
+    {
+        return $this->hasOne('PackModel', 'id', 'pack_id');
+    }
+
+
+    public function spec()
+    {
+        return $this->hasOne('PackModel', 'id', 'spec_id');
+    }
+
     public static function GetDataByList($data)
     {
         $where = [];
@@ -42,7 +61,7 @@ class GoodsModel extends BaseModel
         if (!empty($data['shop_id'])) {
             $where[] = ['shop_id', '=', $data['shop_id']];
         }
-        $res = self::with('category')-> where($where)->where('status','neq',3)->paginate($data['limit'], false, ['query' => $data['page']]);
+        $res = self::with('category')->where($where)->where('status', 'neq', 3)->paginate($data['limit'], false, ['query' => $data['page']]);
         return $res;
     }
 }
