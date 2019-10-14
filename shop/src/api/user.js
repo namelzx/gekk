@@ -22,3 +22,12 @@ export function logout() {
     method: 'get'
   })
 }
+
+
+export function GetDataByList(query) {
+  return request({
+    url: '/user/GetDataByList',
+    method: 'get',
+    params: query
+  })
+}

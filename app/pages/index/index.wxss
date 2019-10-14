@@ -7,15 +7,30 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+ 
 }
+
+.container .locate-item .locate-icon {
+  position: absolute;
+  top: 14rpx;
+}
+
+.container .locate-item .link-icon {
+  position: relative;
+}
+.container .locate-item  .link-icon .arrow-icon {
+  position: absolute;
+  top: -16rpx;
+  color: #333;
+} 
 
 .container .locate-item .shop-name {
   color: #646464;
   font-size: 28rpx;
   font-weight: 400;
   margin: 8rpx 0;
-  padding-left: 10rpx;
-  padding-right: 10rpx;
+  padding-left: 34rpx;
+  padding-right: 4rpx;
 }
 
 .container .locate-item .distance {

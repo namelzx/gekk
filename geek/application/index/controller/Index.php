@@ -6,11 +6,12 @@ class Index
 {
     public function index()
     {
-        $address = '广西北海市银海区银滩镇桂林电子科技大学北海小区';
+        $address = '广西北海市银海区银滩镇';
         $url = 'https://apis.map.qq.com/ws/geocoder/v1/?address=' . $address . '&key=XB2BZ-J7PW3-DIZ3P-YC34A-BWFW7-ELBOI';
-        $res = curlSend($url);
-        return json($res);
+        return json(curlSend($url));
     }
+
+
 
     public function getJl()
     {

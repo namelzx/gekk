@@ -32,7 +32,7 @@ class Order extends Base
     public function GetIdByDetails()
     {
         $data = input('param.');
-        $res = OrderModel::with(['goods', 'getGoods', 'address', 'getUserCoupon' => ['getCounpon'], 'getCourier' => ['Courier'], 'getUser'
+        $res = OrderModel::with(['goods','shop' ,'getGoods', 'address', 'getUserCoupon' => ['getCounpon'], 'getCourier' => ['Courier'], 'getUser'
         ])->where('id', $data['id'])->find();
         $logistics = "";
         if (!empty($res['get_courier'])) {

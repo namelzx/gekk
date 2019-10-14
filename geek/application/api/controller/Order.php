@@ -134,7 +134,14 @@ class Order extends Base
 
         $goodsall = OrderGoodsModel::with(['goods'])->where('order_id', $data['id'])->select();
         if ($data['status'] == 5) {
-            return json(msg(200, $res, $goodsall));
+
+            //取消订单。判断订单是否支付
+            $chepay = OrderModel::where('id', $data['id'])->find();
+            $result=[];
+            if (!empty($chepay['out_trade_no'])) {//如果订单不等于空的时候。那么就是用户已支付退款
+                $result=   $this->refund($chepay['out_trade_no'], 10, 10);
+            }
+            return json(msg(200, $result, $goodsall));
         }
         $order = OrderModel::where('id', $data['id'])->find();
         foreach ($goodsall as $i => $item) {

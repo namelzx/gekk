@@ -10,6 +10,7 @@ namespace app\api\controller;
 
 
 use app\common\model\DistModel;
+use app\common\model\PlatModel;
 use app\common\model\PositionModel;
 use app\common\model\UserModel;
 use app\common\model\WxModel;
@@ -35,7 +36,7 @@ class Base extends Controller
 
         $wx = WxModel::find();
         $this->config = [
-            'app_id' =>$wx['app_id'],
+            'app_id' => $wx['app_id'],
             'secret' => $wx['secret'],
             // 指定 API 调用返回结果的类型：array(default)/collection/object/raw/自定义类名
             'response_type' => 'array',
@@ -173,6 +174,45 @@ class Base extends Controller
             $filename = $response->saveAs('./code/', time() . '.png');
             return $comm['url'] . '/code/' . $filename;
         }
+
+    }
+
+    public function getPlat()
+    {
+        $res = PlatModel::find();
+        return json($res);
+    }
+
+
+    /**
+     * @param $out_trade_no 退款订单号
+     * @param $totalFee 订单总金额
+     * @param $refundFee 退款金额
+     * @return \think\response\Json
+     * @throws \EasyWeChat\Kernel\Exceptions\InvalidConfigException
+     */
+    public function refund($out_trade_no, $totalFee, $refundFee)
+    {
+        $wx = WxModel::find();
+
+        $config = [
+            'app_id' => $wx['app_id'],
+            'mch_id' => $wx['mch_id'],
+            'key' => $wx['key'],   // API!操作
+            'cert_path' => getcwd() . '/cert/apiclient_cert.pem', // XXX: 绝对路径！！！！
+            'key_path' => getcwd() . '/cert/apiclient_key.pem',
+            'notify_url' => '',     // 你也可以在下单时单独设置来想覆盖它
+        ];
+        $app = Factory::payment($config);
+
+        $refundNumber = time() . mt_rand(100, 1000000);//退款商户号
+
+
+        $result = $app->refund->byOutTradeNumber($out_trade_no, $refundNumber, $totalFee, $refundFee);
+
+
+//        $result=$app->refund->queryByOutRefundNumber('121775251');
+        return $result;
 
     }
 }

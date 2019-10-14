@@ -1,6 +1,4 @@
 <!--pages/component/Swiper/index.wxml-->
-
-
 <view class="logo">
   <image src="{{logo}}"></image>
 </view>
@@ -14,7 +12,7 @@
   </view>
   <van-icon name="arrow" class="arrow-icon" />
 </view>
-<view class="container">
+<view class="read-swiper">
   <!-- 遮罩 -->
   <view class="bg-mask-top"></view>
   <view class="bg-mask-bottom"></view>
@@ -22,8 +20,9 @@
   <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular>
     <block wx:for="{{swiperImg}}" wx:key="{{index}}">
       <swiper-item>
-        <image src="{{item}}" class="slide-image" />
+        <image src="{{item.images_url}}" class="slide-image" />
       </swiper-item>
     </block>
   </swiper>
 </view>
+

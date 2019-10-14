@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -49,13 +49,20 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 1,
 			"list": [
 				{
 					"id": -1,
 					"name": "商品",
 					"pathName": "pages/goods/index",
 					"query": "id=106",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的订单详情",
+					"pathName": "pages/home/order/detail/index",
+					"query": "id=34",
 					"scene": null
 				}
 			]

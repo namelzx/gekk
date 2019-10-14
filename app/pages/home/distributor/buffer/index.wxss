@@ -114,8 +114,8 @@ page {
 
 .form-submit button {
   font-size: 30rpx;
-  background: #786cff;
-  border: 1rpx solid #786cff;
+  background: black;
+  border: 1rpx solid black;
   color: white;
   border-radius: 50rpx;
   padding: 0 80rpx;

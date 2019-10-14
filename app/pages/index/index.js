@@ -10,6 +10,14 @@ import { UserModel } from '../../api/user.js'
 
 let usermodel = new UserModel();
 
+
+
+import {
+  CommonModel
+} from '../../api/common.js'
+
+let commonModel = new CommonModel();
+
 Page({
   data: {
     motto: 'Hello World',
@@ -32,7 +40,9 @@ Page({
   },
   onShow(){
     var that=this;
-
+    commonModel.getPlat(res => {
+        wx.setStorageSync('logo', res.logo)
+    })
     wx.login({
       success: res => {
         usermodel.postRegistered(res,res=>{
@@ -51,7 +61,8 @@ Page({
         wx.setStorageSync('loca', locatlres)
         shopmodel.GetShopByList(locatlres,res=>{
           wx.setStorageSync('dist',res.dist)
-
+          wx.setStorageSync('shopbaner', res.banner)
+          wx.setStorageSync('arbaner', res.arbaner)
           that.setData({
             avatarList:res.data,
             dist:res.dist

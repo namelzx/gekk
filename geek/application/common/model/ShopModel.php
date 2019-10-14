@@ -14,12 +14,30 @@ class ShopModel extends BaseModel
     protected $table = 'ee_shop';
     protected $createTime = 'create_time';
 
+    public function order()
+    {
+        return $this->hasOne('OrderModel', 'shop_id', 'id');
+
+    }
+
+    public function user()
+    {
+        return $this->hasOne('UserModel', 'shop_id', 'id');
+    }
+
+
+    public function goods()
+    {
+        return $this->hasOne('GoodsModel', 'shop_id', 'id');
+    }
+
     public static function GetByList($data)
     {
 
         $res = self::paginate($data['limit'], false, ['query' => $data['page']]);
         return $res;
     }
+
 
     /*
      *u_lat 用户纬度

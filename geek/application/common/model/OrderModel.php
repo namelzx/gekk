@@ -81,7 +81,7 @@ class OrderModel extends BaseModel
         if (!empty($data['shop_id'])) {
             $res = $res->where('shop_id', $data['shop_id']);
         }
-        $res = $res->paginate($data['limit'], false, ['query' => $data['page']]);
+        $res = $res->order('id desc')->paginate($data['limit'], false, ['query' => $data['page']]);
         return $res;
 
     }

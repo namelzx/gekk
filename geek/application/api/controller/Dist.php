@@ -12,6 +12,7 @@ namespace app\api\controller;
 use app\common\model\DistOrderModel;
 use app\common\model\IntegralLogModel;
 use app\common\model\OrderModel;
+use app\common\model\UserDistModel;
 use app\common\model\UserModel;
 
 class Dist extends Base
@@ -27,8 +28,8 @@ class Dist extends Base
             ->whereTime('create_time', 'd')
             ->count();
         $integral = IntegralLogModel::where('user_id', $data['user_id'])->where('type_', 1)->sum('integral');
-        $useintegral= IntegralLogModel::where('user_id', $data['user_id'])->where('type_', 2)->sum('integral');
-        return json(['data' => $res, 'count' => $cheLog, 'integral' => $integral-$useintegral]);
+        $useintegral = IntegralLogModel::where('user_id', $data['user_id'])->where('type_', 2)->sum('integral');
+        return json(['data' => $res, 'count' => $cheLog, 'integral' => $integral - $useintegral]);
     }
 
     public function PostUserByIntegral()
@@ -82,4 +83,14 @@ class Dist extends Base
         return json(['sum' => $sum, 'usersum' => $usesum]);
     }
 
+
+    /**
+     * 检测用户是否审核
+     */
+    public function cheDist()
+    {
+        $data = input('param.');
+        $res = UserDistModel::where('user_id', $data['user_id'])->count();
+        return json($res);
+    }
 }

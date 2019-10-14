@@ -2,7 +2,7 @@
 
 <view class="read-container" style="background:url('./../../static/images/article-bg.png');">
   <!-- 轮播图 -->
-  <my-swiper swiper-img="{{imgUrls}}"></my-swiper>
+  <my-swiper swiper-img="{{imgUrls}}" logo="{{logo}}"></my-swiper>
   <!-- 文章列表 -->
   <my-list articleList="{{articleList}}"></my-list>
 </view>

@@ -18,10 +18,23 @@ class BannerModel extends BaseModel
 
         $where = [];
         if (!empty($data['title'])) {
-            $where[] = ['name', '=', $data['title']];
+            $where[] = ['name', 'eq', $data['title']];
         }
 
-        $res = self::where($where)->where('shop_id', $data['shop_id'])->paginate($data['limit'], false, ['query' => $data['page']]);
+        if (!empty($data['shop_id'])) {
+            $where[] = ['shop_id', 'eq', $data['shop_id']];
+        }
+
+        if (!empty($data['type_'])) {
+            $where[] = ['type_', 'eq', $data['type_']];
+        }
+
+        if (empty($data['shop_id'])) {
+            $where[] = ['shop_id', 'eq', 0];
+        }
+
+
+        $res = self::where($where)->paginate($data['limit'], false, ['query' => $data['page']]);
         return $res;
 
     }

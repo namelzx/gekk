@@ -31,18 +31,19 @@ class Pay extends Base
             ];
             $post = input('param.');
 //            $total_money = $post['money'];
-            $total_money = 0.01;
+            $total_money = 0.1;
 
             /**
              * 一键缴费
              */
 
             $app = Factory::payment($config);
+            $out_trade_no = time() . rand(1000, 9999);
             $attributes = [
                 'trade_type' => 'JSAPI', // JSAPI，NATIVE，APP...
                 'body' => '11',
-                'detail' =>'22',
-                'out_trade_no' => time() . rand(1000, 9999),
+                'detail' => '22',
+                'out_trade_no' => $out_trade_no,
                 'total_fee' => $total_money * 100, // 单位：分
                 'notify_url' => '/', // 支付结果通知网址，如果不设置则会使用配置里的默认地址
                 'openid' => $post['openid'], // trade_type=JSAPI，此参数必传，用户在商户appid下的唯一标识，
@@ -50,7 +51,6 @@ class Pay extends Base
             $result = $app->order->unify($attributes);
             $config = array();
 
-//            dump($result);
 
             if ($result['return_code'] == 'SUCCESS' && $result['result_code'] == 'SUCCESS') {
                 $prepayId = $result['prepay_id'];
@@ -63,9 +63,11 @@ class Pay extends Base
                 'package' => $config['package'],
                 'signType' => 'MD5',
                 'paySign' => $config['paySign'],
+                'out_trade_no' => $out_trade_no
             );
-            return json_encode($arr);
+            return json($arr);
         }
     }
+
 
 }

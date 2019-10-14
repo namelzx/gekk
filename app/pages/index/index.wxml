@@ -8,7 +8,8 @@
         <text>距离你{{avatarList[0].km}}km</text>
       </view> -->
     </view>
-    <van-icon name="arrow" class="arrow-icon" />
+    <view class="link-icon"><van-icon name="arrow" class="arrow-icon" /></view>
+    
   </view>
 
   <view class="mask">

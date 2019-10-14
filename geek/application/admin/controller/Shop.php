@@ -25,10 +25,12 @@ class Shop extends Base
         $data['lat'] = $load['lat'];
         $data['lng'] = $load['lng'];
 
+        $data['create_time'] = time();
         if ($data['status'] === "1") {
             $count = GoodsModel::where('shop_id', $data['id'])->where('status', 1)->count();
             if ($count < 1) {
-                return json(msg(20000, $count, '请先上架商品', 20004));
+                $res = ShopModel::where('id', $data['id'])->data($data)->update();
+                return json(msg(20000, $res, '更新成功'));
 
             }
         }

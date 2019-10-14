@@ -15,6 +15,13 @@ Route::group('api/app/', function () {
 
     Route::rule('toPay', 'api/pay/toPay'); /*支付*/
 
+    Route::rule('getPlat', 'api/Base/getPlat'); /*支付*/
+    Route::rule('cheDist', 'api/dist/cheDist'); /*检测分销用户是否提交*/
+
+    Route::rule('refund', 'api/Base/refund'); /*退款*/
+
+
+
 
     Route::rule('distribution', 'api/Base/distribution'); /*进行分销操作*/
 

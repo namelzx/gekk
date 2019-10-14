@@ -14,7 +14,7 @@ var filter = {
       return '待收货';
     }
     if (str === 4) {
-      return '交易完成';
+      return '订单已完成';
     }
     if (str === 5) {
       return '取消订单';

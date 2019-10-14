@@ -1,10 +1,18 @@
 // pages/home/distributor/buffer/index.js
+
+
+import {
+  CommonModel
+} from '../../../../api/common.js'
+
+let commonModel = new CommonModel();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    show:true,
 
   },
 
@@ -31,7 +39,20 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+      let user=wx.getStorageSync('user')
+      var that=this;
+    commonModel.cheDist(user.id,res=>{
+      console.log(res)
+      if(res===0){
+        that.setData({
+          show:false,
+        })
+      }else{
+        that.setData({
+          show: true,
+        })
+      }
+    })
   },
 
   /**

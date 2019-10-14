@@ -13,7 +13,6 @@ Route::group('api/shop/', function () {
     Route::get('user/info', 'shop/Login/info'); /* 获取当前登陆信息*/
     Route::get('user/logout', 'shop/Login/logout'); /* 退出登录*/
     Route::rule('upload', 'admin/Base/upload'); /*文件上传*/
-
     Route::rule('GetPack', 'shop/Base/GetPack'); /*获取售后和配置*/
 
 
@@ -138,5 +137,12 @@ Route::group('api/shop/', function () {
     Route::get('pack/GetDataByList', 'shop/pack/GetDataByList');//获取商品分类
     Route::post('pack/PostDataBySave', 'shop/pack/PostDataBySave');//获取商品分类
     Route::get('pack/GetIdByDetails', 'shop/pack/getDataByDetail');//获取商品分类
+
+
+    /**
+     * 用户模块
+     */
+    Route::get('user/GetDataByList', 'shop/user/GetDataByList');//获取用户
+
 
 });

@@ -11,8 +11,8 @@
 }
 
 .locate-item .locate-icon {
-  font-size: 40rpx;
-  margin: 24rpx 0rpx 0 0;
+  font-size: 36rpx;
+  margin: 28rpx 0rpx 0 0;
   color: #333;
 }
 
@@ -34,7 +34,7 @@
 .arrow-icon {
   color: #777;
   font-size: 32rpx;
-  margin: 24rpx 0 0 10rpx;
+  margin: 28rpx 0 0 10rpx;
   font-weight: 300;
 }
 
@@ -44,7 +44,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 15%;
+  width: 30%;
   height: 9%;
   z-index: 40;
 }
@@ -54,52 +54,6 @@
   height: 100%;
 }
 
-/* 轮播图 */
-
-.container {
-  position: relative;
-  margin: 50rpx 0;
-}
-
-.container  swiper {
-  height: 480rpx;
-  background: #e5e5e5;
-}
-
-.slide-image {
-  width: 100%;
-}
-
-swiper .wx-swiper-dots.wx-swiper-dots-horizontal {
-  position: absolute;
-  bottom: 50rpx;
-}
-
-/* 设置点点的样式 */
-
-swiper .wx-swiper-dot {
-  width: 16rpx;
-  height: 16rpx;
-  border-radius: 50%;
-  display: inline-flex;
-  /* 这里设置点点之间的距离 */
-  margin-left: 10rpx;
-  justify-content: space-between;
-}
-
-swiper .wx-swiper-dot::before {
-  content: '';
-  flex-grow: 1;
-  background: #fff;
-  border-radius: 50%;
-}
-
-/* 当前点点的样式 */
-
-swiper .wx-swiper-dot-active::before {
-  background: #e45265 !important;
-  border-radius: 50%;
-}
 
 /* mask */
 
@@ -121,7 +75,7 @@ swiper .wx-swiper-dot-active::before {
   right: 0;
   background: -webkit-linear-gradient(-2deg, transparent 30rpx, #fff 33rpx);
   background: linear-gradient(-2deg, transparent 30rpx, #fff 33rpx);
-  height: 60rpx;
+  height: 36rpx;
   -webkit-transform: rotate(180reg);
   transform: rotate(180deg);
   z-index: 30;

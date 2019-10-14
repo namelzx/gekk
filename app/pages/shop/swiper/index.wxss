@@ -18,8 +18,8 @@
 }
 
 .locate-item .locate-icon {
-  font-size: 40rpx;
-  margin: 24rpx 24rpx 0 0;
+  font-size: 36rpx;
+  margin: 28rpx 10rpx 0 0;
   color: #333;
 }
 
@@ -41,7 +41,7 @@
 .arrow-icon {
   color: #777;
   font-size: 32rpx;
-  margin: 24rpx 0 0 10rpx;
+  margin: 28rpx 0 0 10rpx;
   font-weight: 300;
 }
 

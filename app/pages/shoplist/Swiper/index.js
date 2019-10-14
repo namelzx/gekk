@@ -1,7 +1,9 @@
 // pages/component/Swiper/index.js
 
 Component({
-
+  options: {
+    styleIsolation: 'apply-shared'
+  },
   data: {
     indicatorDots: true,
     autoplay: false,

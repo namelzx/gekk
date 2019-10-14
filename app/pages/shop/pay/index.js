@@ -47,6 +47,7 @@ Page({
   data: {
     goods: [],
     user_id: 1,
+    pay:true,
     showAddress: false, //显示/隐藏地址弹出层
     showTicket: false, //显示/隐藏优惠券弹出层
     showTax: false, //显示/隐藏发票弹出层
@@ -367,18 +368,22 @@ Page({
       dorder.push(keyContainer[shop_id])
     }
     temp.dorder = dorder
-    
-    payModel.toPay(paytemp, res => {
+    if(that.data.pay===false){
+      return
+    }
+    that.data.pay=false
+    payModel.toPay(paytemp, dres => {
       wx.requestPayment({
-        timeStamp: res.timeStamp,
-        nonceStr: res.nonceStr,
-        package: res.package,
+        timeStamp: dres.timeStamp,
+        nonceStr: dres.nonceStr,
+        package: dres.package,
         signType: 'MD5',
-        paySign: res.paySign,
+        paySign: dres.paySign,
         success(res) {
-          console.log(res)
           temp.order.status = 2
+          temp.order.out_trade_no = dres.out_trade_no
           ordermodel.PostOrderByData(temp, res => {
+            that.data.pay = true
             wx.redirectTo({
               url: '/pages/home/order/index',
             })

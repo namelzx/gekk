@@ -9,13 +9,20 @@ Route::group('api/admin/', function () {
     Route::rule('GetShopByList', 'admin/Base/GetShopByList'); /*获取店铺列表*/
     Route::rule('GetHomeByData', 'admin/Home/GetHomeByData'); /*获取后台主页数据*/
     Route::post('dist/PostDataBySave', 'admin/Dist/PostDataBySave'); /* 分销管理*/
-    Route::get('Sms/GetSmsByInfo', 'admin/Sms/GetSmsByInfo'); /*  短信 */
 
+    Route::get('Sms/GetSmsByInfo', 'admin/Sms/GetSmsByInfo'); /*  短信 */
     Route::post('Sms/PostDataBySave', 'admin/Sms/PostDataBySave'); /*  保存短信设置 */
 
 
     Route::get('wx/GetWxByInfo', 'admin/Wx/GetWxByInfo'); /*  获取微信配置 */
     Route::post('wx/PostDataBySave', 'admin/Wx/PostDataBySave'); /*  保存微信配置 */
+
+    /**
+     * i平台配置
+     */
+
+    Route::get('plat/GetPlatByInfo', 'admin/plat/GetPlatByInfo'); /*  获取平台配置 */
+    Route::post('plat/PostDataBySave', 'admin/plat/PostDataBySave'); /*  保存配置配置 */
 
 
     Route::get('city/getProvinces', 'admin/shop/getProvinces'); /* 获取省份*/
@@ -32,6 +39,12 @@ Route::group('api/admin/', function () {
      * 分销管理
      */
     Route::get('dist/GetDataByList', 'admin/Dist/GetDataByList'); /* 获取数据列表*/
+
+    /**
+     * 用户管理
+     */
+
+    Route::get('user/GetDataByList', 'admin/user/GetDataByList'); /* 获取数据列表*/
 
 
     /**
@@ -75,5 +88,20 @@ Route::group('api/admin/', function () {
     Route::rule('order/postOrderClose', 'admin/order/postOrderClose'); /* 订单结算*/
     Route::rule('order/GetBuyoutByList', 'admin/order/GetBuyoutByList'); /* 买断订单*/
     Route::rule('order/GetOrderByDownload', 'admin/order/GetOrderByDownload'); /*  条件 导出数据*/
+
+
+    /**
+     * 轮播图分类
+     */
+    Route::rule('banner/GetDataByList', 'admin/banner/GetDataByList'); /* 获取分类列表*/
+    Route::rule('banner/PostDataBySave', 'admin/banner/PostDataBySave'); /* 更新或保存数据*/
+    Route::rule('banner/GetIdByDel', 'admin/banner/GetIdByDel'); /* 删除数据*/
+    Route::rule('banner/GetCategory', 'admin/banner/GetCategory'); /* 获取所有的一级分类*/
+
+    /**
+     * 数据统计
+     */
+    Route::rule('data/ShopInfo', 'admin/data/Shop'); /* 获取店铺信息*/
+
 
 });

@@ -24,16 +24,16 @@ class Login extends Base
 
         $hasUser = $userModel->where('username', $data['username'])->find();
         if (empty($hasUser)) {
-            return json(['message'=>'管理员不存在', 'code' => 50000]);
+            return json(['message' => '管理员不存在', 'code' => 50000]);
 
         }
         if ($data['password'] != $hasUser['password']) {
-            return json(['message'=>'密码错误', 'code' => 50000]);
+            return json(['message' => '密码错误', 'code' => 50000]);
 
         }
 
-        if ( $hasUser['status']!==1) {
-            return json(['message'=>'审核中请耐心等待', 'code' => 50000]);
+        if ($hasUser['status'] !== 1) {
+            return json(['message' => '审核中请耐心等待', 'code' => 50000]);
 
         }
         $token = [
@@ -46,9 +46,8 @@ class Login extends Base
             'roles' => [$hasUser['roles']]
         ];
         $jwt = JWT::encode($token, KEY);//加密
-        return json(['data' => ['token' => $jwt], 'code' => 20000]);
+        return json(['data' => ['token' => $jwt], 'code' => 20000, 'message' => '登陆成功']);
     }
-
 
     public function info(Request $request)
     {

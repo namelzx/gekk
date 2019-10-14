@@ -9,6 +9,7 @@
 namespace app\api\controller;
 
 
+use app\common\model\BannerModel;
 use app\common\model\CategoryModel;
 use app\common\model\CouponModel;
 use app\common\model\EvaluateModel;
@@ -37,7 +38,11 @@ class Shop extends Base
             ->all();
         $model = new ShopModel();
         $dd = $model->range($data['latitude'], $data['longitude'], $res);
-        return json(['data' => $dd, 'dist' => $jx['result']['ad_info']['city'] . $jx['result']['ad_info']['district']]);
+
+        $banner = BannerModel::where('shop_id', 0)->where('type_', 1)->select();
+        $arbaner = BannerModel::where('shop_id', 0)->where('type_', 2)->select();
+
+        return json(['data' => $dd, 'banner' => $banner,'arbaner'=>$arbaner, 'dist' => $jx['result']['ad_info']['city'] . $jx['result']['ad_info']['district']]);
     }
 
     /**
@@ -97,7 +102,7 @@ class Shop extends Base
         $data = input('param.');
         $res = GoodsModel::with(['suk' => function ($query) {
             $query->where('status', 1);
-        }, 'banner','pack','spec'])->where('id', $data['id'])->find();
+        }, 'banner', 'pack', 'spec'])->where('id', $data['id'])->find();
         $coupon = CouponModel::where('scope', 1)->whereOr('goods_id', $data['id'])->select();
         $eav = EvaluateModel::with(['img', 'user'])->where('goods_id', $data['id'])->limit(2)->paginate(2, false);
         //获取总评论星星

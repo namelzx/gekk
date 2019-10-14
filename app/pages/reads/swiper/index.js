@@ -12,6 +12,7 @@ Component({
   properties:{
     swiperImg:{
       type: Array
-    }
+    },
+    logo:String,
   }
 })
