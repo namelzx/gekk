@@ -3,18 +3,11 @@
 <view class="shop-map-container">
   <view class="control-bar">
     <view class="city-item area" bindtap="toggleShowCityPop">
-      <block wx:if="{{cityMsg===''}}">
-        <text>城市</text>
-        <van-icon name="arrow-down" class="item-icon" />
+      <block wx:if="{{areainfo===''}}">
+        <text>选择城市</text>
+        <!-- <van-icon name="arrow-down" class="item-icon" /> -->
       </block>
-      <text wx:if="{{cityMsg!==''}}">{{cityMsg}}</text>
-    </view>
-    <view class="city-item area" bindtap="toggleShowAreaPop">
-      <block wx:if="{{areaMsg===''}}">
-        <text>地区</text>
-        <van-icon name="arrow-down" class="item-icon" />
-      </block>
-      <text wx:if="{{areaMsg!==''}}">{{areaMsg}}</text>
+      <text wx:if="{{areainfo!==''}}">{{areainfo}}</text>
     </view>
     <view class="city-item exchange" bindtap="toggleShowType">
       <van-icon name="exchange" class="item-icon" />
@@ -22,11 +15,6 @@
       <text wx:if="{{showType}}">列表</text>
     </view>
   </view>
-
-  <!-- 城市弹出层 -->
-  <van-popup show="{{ showCityPop }}" position="bottom" bind:close="toggleShowCityPop">
-    <van-area area-list="{{ areaList }}" columns-num="{{ 2 }}" value="440600" bind:confirm="onSelectCity" />
-  </van-popup>
   <!-- 地区弹出层 -->
   <van-popup show="{{ showAreaPop }}" position="bottom" bind:close="toggleShowAreaPop">
     <van-area area-list="{{ areaList }}" columns-num="{{ 2 }}" value="440600" bind:confirm="onSelectArea" />
@@ -56,13 +44,35 @@
           <image src="{{markers[currentBtnId].logo}}"></image>
         </view>
         <!-- 点击地图门店显示对应的门店信息 -->
-        <view class="shop-info-wrapper">
+        <view class="shop-info-wrapper" wx:if="{{shoptrue==true}}">
           <view class="shop-name-item">{{markers[currentBtnId].name}}</view>
           <view class="shop-on-sale">营业时间：{{markers[currentBtnId].startTime}}-{{markers[currentBtnId].endTime}}</view>
           <view class="shop-address-item">地址：{{markers[currentBtnId].location}}</view>
+        </view>
+
+           <view class="shop-info-wrapper" wx:else>
+          <view class="shop-name-item">当前地区没有店铺</view>
+        
         </view>
       </view>
     </view>
   </van-transition>
 
 </view>
+
+
+ <van-popup show="{{ showAddress }}" bind:close="onCloseAddress" position="bottom">
+      <view class="tab">
+        <text bindtap="handeProvince" class="provinces">{{provinces}}</text>
+        <text bindtap="handeCity">{{city}}</text>
+        <text bindtap="handeArea">{{area}}</text>
+      </view>
+      <view class="city_list">
+        <text wx:for="{{city_list}}" data-id="{{item.id}}" data-name='{{item.area_name}}' data-level="{{item.level}}" data-area_code='{{item.area_code}}' bindtap="handelProvinces">
+          {{item.area_name}}
+        </text>
+      
+      </view>
+
+     
+    </van-popup>

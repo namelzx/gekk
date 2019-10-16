@@ -88,6 +88,7 @@ Page({
             }
             usermodel.postRegistered(temp,reres=>{
                 wx.setStorageSync('user', reres)
+              wx.setStorageSync('userinfo', reres)
               app.globalData.isLogin=true
               app.globalData.user_id = reres.id
               // wx.reLaunch({

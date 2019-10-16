@@ -368,6 +368,7 @@ Page({
       dorder.push(keyContainer[shop_id])
     }
     temp.dorder = dorder
+    console.log(temp.dorder)
     if(that.data.pay===false){
       return
     }

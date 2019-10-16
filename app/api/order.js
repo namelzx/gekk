@@ -27,6 +27,18 @@ class OrderModel extends HTTP {
     this.request(params)
   }
 
+  //提交退款
+  GetIdByRefund(data, res) {
+    var params = {
+      url: 'order/GetIdByRefund',//接口路径
+      method: 'post', //请求方式
+      success: res,
+      data
+    }
+    this.request(params)
+  }
+
+
   PostDataByEva(data, res) {
     var params = {
       url: 'order/PostDataByEva',//接口路径

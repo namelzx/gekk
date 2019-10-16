@@ -78,6 +78,7 @@ Page({
   },
   // 确认收货
   clickToConfirm(e) {
+    var that=this;
     let id = e.detail
     var temp = {
       id,

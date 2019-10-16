@@ -31,7 +31,7 @@ class Pay extends Base
             ];
             $post = input('param.');
 //            $total_money = $post['money'];
-            $total_money = 0.1;
+            $total_money = 0.01;
 
             /**
              * 一键缴费

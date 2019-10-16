@@ -10,6 +10,13 @@ import {
 
 let shopmodel = new ShopModel();
 
+import {
+  CityModel
+} from '../../../api/city.js'
+
+let citymodel = new CityModel();
+
+
 Page({
   /**
    * 页面的初始数据
@@ -33,20 +40,15 @@ Page({
     cityMsg: '', //城市选中值
     showAreaPop: false, //地区弹出层
     areaMsg: '', //地区选中值
-    icon: [{
-        id: '1',
-        name: '星巴克1店'
-      },
-      {
-        id: '2',
-        name: '瑞幸咖啡店'
-      },
-      {
-        id: '3',
-        name: '星巴克2店'
-      }
+    city_list:[],
+    shoptrue:true,
+    areainfo:'',
+    city_code:'',
+    area_code:'',//选择区域
+    icon: [
+      
     ], //模拟测试按钮
-
+    showAddress:false,
     // 地图
     latitude: 21.4486600000, //地图初始经度
     longitude: 109.1742200000, //地图初始纬度
@@ -56,16 +58,18 @@ Page({
   },
   handeShop(e){
     let { id } = e.currentTarget.dataset
+
     wx.navigateTo({
-      url: '/pages/shoplist/index?id='+id,
-      success: function(res) {},
-      fail: function(res) {},
-      complete: function(res) {},
+      url: '/pages/shop/index?id=' + id,
     })
-    
   },
   onShow() {
     var that = this;
+    if(wx.getStorageSync('dist')!=null){
+      that.setData({
+        areainfo: wx.getStorageSync('dist')
+      })
+    }
     wx.getLocation({
       success: function(locatlres) {
         wx.setStorageSync('loca', locatlres)
@@ -73,10 +77,12 @@ Page({
             latitude: locatlres.latitude,
             longitude: locatlres.longitude,
         })
+        that.data.area_code = wx.getStorageSync('area_code')
+        if(that.data.area_code!==''){
+          locatlres.area_code = that.data.area_code
+        }
         shopmodel.GetShopByList(locatlres, res => {
-          // that.setData({
-          //   shopCard: res
-          // })
+         
           for (let i = 0; i < res.length; i++) {
             res[i]['label'] = {
               'content': res[i].name,
@@ -98,14 +104,80 @@ Page({
             res[i]['latitude'] = res[i]['lat']
             res[i]['longitude'] = res[i]['lng']
           }
+       let   shoptrue=true;
+          if(res.data===false){
+              shoptrue=false
+          }
           that.setData({
-            markers: res.data
+            markers: res.data,
+            shoptrue
           })
 
+        })
+
+        citymodel.getProvinces(res => {
+          that.setData({
+            city_list: res
+          })
         })
       },
     })
   },
+
+  onCloseAddress() {
+    this.setData({
+      showAddress: false
+    })
+  },
+
+
+  //点击城市
+  handeCity() {
+    var that = this;
+    citymodel.getCity(that.data.pr_code, res => {
+      that.setData({
+        city_list: res,
+        city: '请选择',
+        area: ''
+      })
+    })
+  },
+
+  getCity(e) {
+    var that = this;
+    var area_code = e.currentTarget.dataset.area_code
+    citymodel.getCity(area_code, res => {
+      that.setData({
+        provinces: e.currentTarget.dataset.name,
+        city_list: res,
+        pr_code: area_code
+      })
+    })
+  },
+
+  //点击区域。
+  handeArea() {
+    var that = this;
+    console.log('选择大区')
+    citymodel.getArea(that.data.city_code, res => {
+      that.setData({
+        city_list: res,
+        area: '请选择',
+      })
+    })
+  },
+  getArea(e) {
+    var that = this;
+    var area_code = e.currentTarget.dataset.area_code
+    citymodel.getArea(area_code, res => {
+      that.setData({
+        city: e.currentTarget.dataset.name,
+        city_list: res,
+        city_code: area_code,
+      })
+    })
+  },
+
   // 切换列表/地图
   toggleShowType() {
     this.setData({
@@ -115,8 +187,21 @@ Page({
   // 显示/隐藏弹出层
   toggleShowCityPop() {
     this.setData({
-      showCityPop: !this.data.showCityPop
+      showAddress: !this.data.showAddress
     });
+  },
+
+  // 点击省份
+  handeProvince() {
+    var that = this
+    citymodel.getProvinces(res => {
+      that.setData({
+        city_list: res,
+        provinces: '请选择',
+        city: '',
+        area: ''
+      })
+    })
   },
   toggleShowAreaPop() {
     this.setData({
@@ -158,6 +243,34 @@ Page({
       areaMsg: text.join('-'),
       showAreaPop: false,
     })
+  },
+
+  handelProvinces(e) {
+    var that = this;
+    var level = e.currentTarget.dataset.level
+    if (level == 1) {
+      that.getCity(e);
+    }
+    if (level == 2) {
+      that.getArea(e);
+    }
+    if (level == 3) {
+
+     that.data.area_code=e.currentTarget.dataset.area_code,
+       wx.setStorageSync('area_code', e.currentTarget.dataset.area_code) //保存所选择地址
+
+      wx.setStorageSync('dist', that.data.city + e.currentTarget.dataset.name) //保存所选择地址
+      that.onShow();
+      that.setData({
+        area: e.currentTarget.dataset.name,
+        city_list: [],
+      
+        isArea: true,
+        showAddress: false,
+        areainfo: that.data.provinces + that.data.city + e.currentTarget.dataset.name
+      })
+    }
+
   },
   // 点击地图图标
   markerTap(event) {

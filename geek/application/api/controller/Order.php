@@ -18,6 +18,7 @@ use app\common\model\IntegralLogModel;
 use app\common\model\OrderGoodsModel;
 use app\common\model\OrderInvoiceModel;
 use app\common\model\OrderModel;
+use app\common\model\RefundMode;
 use app\common\model\UserModel;
 
 class Order extends Base
@@ -39,7 +40,6 @@ class Order extends Base
                 $arr[$i]['claim_code'] = mt_rand(100, 1000000);
             }
             $res = OrderModel::create($arr[$i]);
-
             if (!empty($data['order']['isInvoice'])) {
                 if ($data['order']['isInvoice'] == 1) {//开发票
                     $data['invoice']['order_id'] = $res['id'];
@@ -134,22 +134,22 @@ class Order extends Base
 
         $goodsall = OrderGoodsModel::with(['goods'])->where('order_id', $data['id'])->select();
         if ($data['status'] == 5) {
-
             //取消订单。判断订单是否支付
             $chepay = OrderModel::where('id', $data['id'])->find();
-            $result=[];
+            $result = [];
             if (!empty($chepay['out_trade_no'])) {//如果订单不等于空的时候。那么就是用户已支付退款
-                $result=   $this->refund($chepay['out_trade_no'], 10, 10);
+                $result = $this->refund($chepay['out_trade_no'], 1, 1);
             }
             return json(msg(200, $result, $goodsall));
         }
+
         $order = OrderModel::where('id', $data['id'])->find();
         foreach ($goodsall as $i => $item) {
             UserModel::where('id', $order['user_id'])->setInc('integral', $item['goods']['integral']);
             $instdata = [
                 'title' => '购买商品',
                 'type' => 2,
-                'integral' => $item['goods']['integral'] * $item['goods']['num'],//积分数量
+                'integral' => $item['goods']['integral'] * $item['num'],//积分数量
                 'user_id' => $order['user_id']
             ];
             if ($item['goods']['integral'] > 0) {
@@ -202,6 +202,19 @@ class Order extends Base
         $data = input('param.');
         $res = OrderModel::where('id', $data['id'])->data(['status' => 99])->update();
         DistOrderModel::where('order_id', $data['id'])->delete();
+        return json($res);
+    }
+
+
+    /**
+     * 申请退款
+     * 申请退款订单状态改为6
+     */
+    public function GetIdByRefund()
+    {
+        $data = input('param.');
+        $res = OrderModel::where('id', $data['order_id'])->data(['status' => 6])->update();
+        RefundMode::create($data);
         return json($res);
     }
 

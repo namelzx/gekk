@@ -23,6 +23,9 @@ Route::group('api/app/', function () {
 
 
 
+
+
+
     Route::rule('distribution', 'api/Base/distribution'); /*进行分销操作*/
 
     Route::rule('buildBg', 'api/Base/buildBg'); /*生成海报*/
@@ -85,6 +88,8 @@ Route::group('api/app/', function () {
     Route::rule('order/PostDataByEva', 'api/order/PostDataByEva'); /* 取消订单*/
     Route::rule('order/GetOrderIdByFind', 'api/order/GetOrderIdByFind'); /* 订单详细*/
     Route::rule('order/GetIdByDelete', 'api/order/GetIdByDelete'); /* s删除订单*/
+
+    Route::rule('order/GetIdByRefund', 'api/order/GetIdByRefund'); /*申请*/
 
 
     /**

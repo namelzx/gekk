@@ -1,8 +1,21 @@
 <!--pages/home/order/detail/index.wxml-->
 
+
+<van-popup show="{{ refundShow }}" bind:close="onClose">
+  <view class="tk">
+
+
+    <van-field value="{{ message }}" type="textarea" placeholder="请输入退款原因" autosize="{{true}}" bind:input="inputrefund" adjust-position  label="退款原因" border="{{ true }}" />
+  <van-button bind:click="onrefund" type="info">提交退款</van-button>
+
+  </view>
+
+</van-popup>
+
 <wxs module="dateUtil" src="./price.wxs"></wxs>
 <view class="tocode" wx:if="{{details.isadd===2}}">
-  取货码<text> {{details.claim_code}}</text>
+  取货码
+  <text> {{details.claim_code}}</text>
 </view>
 
 <view class="oreder-detail-container">
@@ -19,15 +32,15 @@
         <text>{{details.address.userName}}</text>
         <text>{{details.address.phone}}</text>
       </view>
-       <view class="owner-name-phone" wx:if="{{details.isadd==2}}">
+      <view class="owner-name-phone" wx:if="{{details.isadd==2}}">
         <text>{{details.shop.name}}</text>
         <text>{{details.shop.phone}}</text>
       </view>
       <view class="owner-addr" wx:if="{{details.isadd==1}}">
-      {{details.address.areaMsg}}-  {{details.address.posterAddr}}
+        {{details.address.areaMsg}}- {{details.address.posterAddr}}
       </view>
 
-<view class="owner-addr" wx:if="{{details.isadd==2}}">{{details.shop.location}}</view>
+      <view class="owner-addr" wx:if="{{details.isadd==2}}">{{details.shop.location}}</view>
     </view>
   </view>
   <!-- 订单物品 -->
@@ -39,9 +52,8 @@
       <view class="detail-item">
         <view class="detail-name">{{item.name}} {{item.suk_name}}</view>
         <view class="detail-amount">X {{item.num}}件</view>
-        <view class="detail-price">¥ 
-        {{dateUtil.priceSum(item.price,item.num)}}
-        <!-- {{item.price}}*{}} -->
+        <view class="detail-price">¥ {{dateUtil.priceSum(item.price,item.num)}}
+          <!-- {{item.price}}*{}} -->
         </view>
       </view>
     </view>
@@ -87,15 +99,19 @@
       <van-icon name="info-o" class="info-o-icon" />电子发票将在订单完成之后1-2内开具
     </view>
   </view>
-  
+
 </view>
 
 <!-- 底部 -->
-  <view class="footer-btn">
-    <view class="del-btn" bindtap="OnDelete">删除订单</view>
-    <view class="right-btn">
-      <view class="refund" wx:if="{{details.status<3}}">取消订单</view>
- <view class="refund" wx:if="{{details.status===3&&details.status===4}}">申请退款</view>
-      <view class="rate">评价晒单</view>
-    </view>
+<view class="footer-btn">
+  <view class="del-btn" bindtap="OnDelete">删除订单</view>
+  <view class="right-btn">
+    <view class="refund" bindtap="Cancel" wx:if="{{details.status<3}}">取消订单</view>
+    <view class="refund" wx:if="{{details.status===4}}">申请退款</view>
+
+
+    <view class="rate super-lv-btn" bindtap="clickToConfirm" data-id="{{details.id}}" wx:if="{{details.status===3}}">确认收货</view>
+
+    <view class="rate" wx:if="{{details.status===4}}">评价晒单</view>
   </view>
+</view>

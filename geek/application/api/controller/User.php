@@ -24,11 +24,14 @@ class User extends Base
 
         $app = Factory::miniProgram($this->config);
         $res = $app->auth->session($data['code']);
-//        dump($res);
         $data['temp']['openid'] = $res['openid'];
 
+        $pid = 0;
+        if (!empty($data['p_id'])) {
+            $pid = $data['p_id'];
+        }
 
-        $res = UserModel::postUserByRegistered($data['temp']);
+        $res = UserModel::postUserByRegistered($data['temp'], $pid);
 //        if (empty($res['bg'])) {//判断是否生成海报
 //            $qrcode = $this->BuildCode($res['id']);//获取二维码
 //            $bg = $this->buildBg($qrcode);//传入二维码 得到海报

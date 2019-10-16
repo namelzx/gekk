@@ -2,6 +2,6 @@
   "usingComponents": {
     "van-tab": "./../../../vant-weapp/dist/tab/index",
     "van-tabs": "./../../../vant-weapp/dist/tabs/index",
-        "component-order-name": "../../component/order/list"
+    "component-order-name": "../../component/order/list"
   }
 }

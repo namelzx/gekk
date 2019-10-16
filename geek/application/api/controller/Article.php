@@ -11,6 +11,7 @@ namespace app\api\controller;
 
 use app\common\model\ArticleEvaluationModel;
 use app\common\model\ArticleModel;
+use app\common\model\IntegralLogModel;
 
 class Article extends Base
 {
@@ -44,6 +45,18 @@ class Article extends Base
     {
         $data = input('param.');
         $res = ArticleEvaluationModel::create($data);
+
+        $temp = [
+            'integral' => 5,
+            'user_id' => $data['user_id'],
+            'type' => 7,
+            'type_' => 1
+        ];
+        $chelike = IntegralLogModel::where($temp)->whereTime('create_time', 'd')->count();
+        $temp['title'] = '文章评论';
+        if ($chelike < 1) {
+            IntegralLogModel::create($temp);
+        }
         return json($res);
     }
 
@@ -74,6 +87,19 @@ class Article extends Base
     {
         $data = input('param.');
         ArticleModel::where('id', $data['id'])->setInc('like');
+
+        $temp = [
+            'integral' => 5,
+            'user_id' => $data['user_id'],
+            'type' => 6,
+            'type_' => 1
+        ];
+        $chelike = IntegralLogModel::where($temp)->whereTime('create_time', 'd')->count();
+        $temp['title'] = '点赞';
+        if ($chelike < 1) {
+            IntegralLogModel::create($temp);
+        }
+        return json($chelike);
     }
 
 }

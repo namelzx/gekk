@@ -166,3 +166,30 @@
   left: 30%;
   
 }
+
+
+.middle-lv-btn {
+  color: #a5a5a5;
+  border-color: #dbdbdb;
+}
+
+.right-btn .super-lv-btn {
+  background: #313131;
+  border-color: #313131;
+  color: #fff;
+}
+.tk{
+  width: 300px;
+  height: 110px;
+  display: flex;
+  flex-direction: column;
+}
+
+.tk van-button{
+  text-align: center;
+}
+.tk .van-button{
+line-height: 35px;
+height: 35px;
+margin-top: 30rpx;
+}

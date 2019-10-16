@@ -17,6 +17,10 @@ Route::group('api/admin/', function () {
     Route::get('wx/GetWxByInfo', 'admin/Wx/GetWxByInfo'); /*  获取微信配置 */
     Route::post('wx/PostDataBySave', 'admin/Wx/PostDataBySave'); /*  保存微信配置 */
 
+
+    Route::rule('category/GetCategory', 'shop/Category/GetCategory'); /* 获取所有的一级分类*/
+
+
     /**
      * i平台配置
      */
@@ -102,6 +106,10 @@ Route::group('api/admin/', function () {
      * 数据统计
      */
     Route::rule('data/ShopInfo', 'admin/data/Shop'); /* 获取店铺信息*/
+
+    Route::rule('data/GetShopByOrder', 'admin/data/GetShopByOrder'); /*获取店铺订单*/
+
+    Route::rule('data/GetShopByGoods', 'admin/data/GetShopByGoods'); /*获取店铺商品*/
 
 
 });

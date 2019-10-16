@@ -239,9 +239,18 @@
 .good-btn {
   margin-left: 50rpx;
 }
-.share-btn {
+
+
+.social-btn button.on-share-btn {
   margin-right: 20rpx;
+  line-height: unset;
+  background: #fff;
+  
 }
+.social-btn button.on-share-btn::after {
+  border: none;
+}
+
 .btn-text {
   font-size: 24rpx;
   color: #444;

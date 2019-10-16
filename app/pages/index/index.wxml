@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="locate-item"  data-id="{{avatarList[0].id}}" bindtap="toShop">
+  <view class="locate-item"  data-id="{{avatarList[0].id}}" bindtap="tomap">
     <van-icon name="location-o" class="locate-icon"/>
     <view class="shop-name">
       <text>{{dist}}</text>
@@ -38,7 +38,6 @@
       <view class="md-circle">
         <view class="sm-circle">
           <view class="avatar">
-
             <image src="{{userInfo.avatarUrl}}"></image>
             <text class="username">{{userInfo.nickName}}</text>
           </view>

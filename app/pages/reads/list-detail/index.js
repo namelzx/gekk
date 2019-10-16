@@ -43,6 +43,13 @@ Page({
    */
   postsend(e) {
     var that = this;
+    let user=wx.getStorageSync('user');
+    if (app.globalData.isLogin===false){
+      wx.navigateTo({
+        url: '/pages/login/index',
+      })
+      return;
+    }
     var temp = {
       user_id: app.globalData.user_id,
       article_id: that.data.article_id,
@@ -60,7 +67,12 @@ Page({
    * 文章点赞
    */
   userEav(e) {
-    console.log(e)
+    if (app.globalData.isLogin === false) {
+      wx.navigateTo({
+        url: '/pages/login/index',
+      })
+      return;
+    }
     articleModel.GetEavIdByLike(e.currentTarget.dataset.id, res => {
       this.geteav();
     })
@@ -86,8 +98,24 @@ Page({
   },
 
   ArticleLike() {
-    articleModel.GetArticleIdByLike(this.data.Detailed.id, res => {
-      console.log(res)
+    var that=this;
+    if (app.globalData.isLogin === false) {
+      wx.navigateTo({
+        url: '/pages/login/index',
+      })
+      return;
+    }
+    var temp={
+      id: this.data.Detailed.id,
+      user_id: app.globalData.user_id
+    }
+    articleModel.GetArticleIdByLike(temp, res => {
+      let data=that.data.Detailed;
+      data.like = data.like+1;
+      console.log(data.like)
+      that.setData({
+        Detailed:data
+      })
     })
   },
 

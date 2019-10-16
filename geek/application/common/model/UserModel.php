@@ -25,12 +25,15 @@ class UserModel extends BaseModel
         return $this->hasMany('OrderModel', 'user_id', 'id');
     }
 
-    public static function postUserByRegistered($data)
+    public static function postUserByRegistered($data, $p_id = 0)
     {
         $res = self::where('openid', $data['openid'])->find();
         if (empty($res)) {
+            $data['p_id'] = $p_id;
             $user = self::create($data);
             return $user;
+        } else {
+            self::where('openid', $data['openid'])->data($data)->update();
         }
         return $res;
     }

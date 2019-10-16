@@ -1,5 +1,8 @@
 {
   "usingComponents": {
-    "van-icon": "./../../../vant-weapp/dist/icon/index"
+    "van-icon": "./../../../vant-weapp/dist/icon/index",
+      "van-popup": "./../../../vant-weapp/dist/popup/index",
+        "van-field": "./../../../vant-weapp/dist/field/index",
+          "van-button": "./../../..//vant-weapp/dist/button/index"
   }
 }

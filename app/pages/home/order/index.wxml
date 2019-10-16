@@ -21,5 +21,17 @@
     <van-tab title="已取消">
  <component-order-name bind:traCheckedNum="clickToPay" bind:clickToCancel="clickToCancel"  bind:clickToConfirm="clickToConfirm" list="{{orderList}}" ></component-order-name>
     </van-tab>
+
+      <van-tab title="申请退款">
+ <component-order-name bind:traCheckedNum="clickToPay" bind:clickToCancel="clickToCancel"  bind:clickToConfirm="clickToConfirm" list="{{orderList}}" ></component-order-name>
+    </van-tab>
+
+     <van-tab title="退款完成">
+ <component-order-name bind:traCheckedNum="clickToPay" bind:clickToCancel="clickToCancel"  bind:clickToConfirm="clickToConfirm" list="{{orderList}}" ></component-order-name>
+    </van-tab>
+
+       <van-tab title="拒绝退款">
+ <component-order-name bind:traCheckedNum="clickToPay" bind:clickToCancel="clickToCancel"  bind:clickToConfirm="clickToConfirm" list="{{orderList}}" ></component-order-name>
+    </van-tab>
   </van-tabs>
 </view>

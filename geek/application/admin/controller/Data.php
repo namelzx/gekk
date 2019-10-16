@@ -9,6 +9,8 @@
 namespace app\admin\controller;
 
 
+use app\common\model\GoodsModel;
+use app\common\model\OrderModel;
 use app\common\model\ShopModel;
 
 class Data extends Base
@@ -32,7 +34,49 @@ class Data extends Base
         $res = $res->paginate();
 
         return json(['data' => $res, 'code' => 20000]);
-
     }
 
+    public function GetShopByOrder()
+    {
+        $data = input('param.');
+
+        $where = [];
+        if (!empty($data['time'])) {
+            $where[] = ['create_time', 'between time', $data['time']];
+        }
+
+        if (!empty($data['order_no'])) {
+            $where[] = ['out_trade_no', 'eq', $data['order_no']];
+        }
+        if (!empty($data['status'])) {
+            $where[] = ['status', 'eq', $data['status']];
+        }
+        $res = OrderModel::with(['goods', 'address', 'shop', 'getUser'])
+            ->where('shop_id', $data['shop_id'])
+            ->where($where)
+            ->paginate($data['limit'], false, ['query' => $data['page']]);
+        $totalprice = OrderModel::where($where)->where('shop_id', $data['shop_id'])->sum('actualPrice');
+        return json(['data' => $res, 'code' => 20000, 'totalprice' => $totalprice]);
+    }
+
+
+    public function GetShopByGoods()
+    {
+        $data = input('param.');
+        $where = [];
+        if (!empty($data['title'])) {
+            $where[] = ['name', '=', $data['title']];
+        }
+        if (!empty($data['status'])) {
+            $where[] = ['status', '=', $data['status']];
+        }
+        if (!empty($data['category_id'])) {
+            $where[] = ['category_id', '=', $data['category_id']];
+        }
+        if (!empty($data['shop_id'])) {
+            $where[] = ['shop_id', '=', $data['shop_id']];
+        }
+        $res = GoodsModel::with('category')->where($where)->where('status', 'neq', 3)->paginate($data['limit'], false, ['query' => $data['page']]);
+        return json(['data' => $res, 'code' => 20000]);
+    }
 }

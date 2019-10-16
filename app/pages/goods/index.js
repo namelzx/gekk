@@ -214,6 +214,7 @@ Page({
       })
     })
   },
+  
   //点击城市
   handeCity() {
     var that = this;
@@ -282,6 +283,7 @@ Page({
     var images_url = that.data.images_url
     var integral = that.data.detailed.integral
     var name = that.data.detailed.name;
+    var shop_id = that.data.detailed.shop_id;
     var obj = {
       goods_id: goods_id,
       num: num,
@@ -290,7 +292,8 @@ Page({
       suk_id: suk_id,
       price,
       images_url,
-      integral
+      integral,
+      shop_id
     };
     var carArray1 = [];
     carArray1.push(obj);
@@ -309,6 +312,7 @@ Page({
     var images_url = that.data.images_url
     var name = that.data.detailed.name;
     var integral = that.data.detailed.integral
+    var shop_id = that.data.detailed.shop_id
 
     var mark = 'a' + goods_id + 'b' + suk_id
     var obj = {
@@ -320,7 +324,8 @@ Page({
       price,
       images_url,
       mark,
-      integral
+      integral,
+      shop_id
     };
     var carArray1 = this.data.carArray.filter(item => item.mark != mark)
     carArray1.push(obj)
@@ -337,6 +342,10 @@ Page({
     var carArray = this.data.carArray;
     if (carArray.length < 1) {
       carArray = wx.getStorageSync('cart')
+    }
+
+    if (carArray.length < 1){
+      carArray=[];
     }
     var totalPrice = 0;
     var totalCount = 0;

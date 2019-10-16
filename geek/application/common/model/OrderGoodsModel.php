@@ -18,9 +18,12 @@ class OrderGoodsModel extends BaseModel
 {
     protected $table = 'ee_order_goods';
 
-    public function goods(){
-        return $this->hasOne('GoodsModel','id','goods_id');
+    public function goods()
+    {
+        return $this->hasOne('GoodsModel', 'id', 'goods_id');
     }
+
+
     public static function PostByData($data)
     {
 

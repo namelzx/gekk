@@ -36,9 +36,9 @@ App({
   },
   globalData: {
     userInfo: null,
-    user_id: 1,//当前用户id
+    user_id: 0,//当前用户id
     isLogin: false,//是否登陆
-    integral:3,
+    integral:10,
     base_url:'https://hhh.10huisp.com/api/app/'
   }
 })

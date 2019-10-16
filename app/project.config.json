@@ -49,7 +49,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 4,
 			"list": [
 				{
 					"id": -1,
@@ -63,6 +63,27 @@
 					"name": "我的订单详情",
 					"pathName": "pages/home/order/detail/index",
 					"query": "id=34",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "门店列表",
+					"pathName": "pages/home/map/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "首页",
+					"pathName": "pages/index/index",
+					"query": "p_id=1",
+					"scene": null
+				},
+				{
+					"id": 4,
+					"name": "文章评论",
+					"pathName": "pages/reads/list-detail/index",
+					"query": "id=1",
 					"scene": null
 				}
 			]

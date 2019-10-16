@@ -18,7 +18,7 @@
 }
 
 .detail-item {
-  width: 65%;
+  width: 60%;
   font-size: 28rpx;
   color: #333;
   font-weight: 400;

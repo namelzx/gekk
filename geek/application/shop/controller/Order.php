@@ -9,6 +9,7 @@
 namespace app\shop\controller;
 
 
+use app\common\model\CourierModel;
 use app\common\model\OrderCourierModel;
 use app\common\model\OrderModel;
 use think\Db;
@@ -55,12 +56,12 @@ class Order extends Base
     {
         $data = input('param.');
         $res = OrderModel::with(['goods', 'getGoods', 'address', 'getUserCoupon' => ['getCounpon'], 'getCourier' => ['Courier'], 'getUser'
-        ,'shop'])->where('id', $data['id'])->find();
+            , 'shop'])->where('id', $data['id'])->find();
         $logistics = "";
         if (!empty($res['get_courier'])) {
             $requestData = "{'OrderCode':'" . $res['get_courier']['out_courier_no'] . "','ShipperCode':'" . $res['get_courier']['courier']['value'] . "','LogisticCode':'" . $res['get_courier']['out_courier_no'] . "'}";
             $logistics = json_decode($this->getOrderTracesByJson($requestData));
-
+//            dump($logistics);
             if (!empty($logistics)) {
 
                 $res['logis'] = $logistics->Traces[count($logistics->Traces) - 1];
@@ -75,6 +76,17 @@ class Order extends Base
     public function postCourier()
     {
         $data = input('param.');
+
+        $che = CourierModel::where('id', $data['courier_id'])->field('value')->find();
+
+
+        $requestData = "{'OrderCode':'" . $data['out_courier_no'] . "','ShipperCode':'" . $che['value'] . "','LogisticCode':'" . $data['out_courier_no'] . "'}";
+
+        $logistics = json_decode($this->getOrderTracesByJson($requestData));
+        if ($logistics->State === '0') {
+            return json(['msg' => '该订单号不存在,请检查订单号或者快递公司', 'data' => $logistics, 'code' => 20000, 'status' => 204]);
+        }
+
         $res = OrderCourierModel::create($data);
         OrderModel::where('id', $data['order_id'])->data(['status' => 3])->update();//更新订单状态为已发货
         return json(['msg' => '提交成功', 'data' => $res, 'code' => 20000]);

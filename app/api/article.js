@@ -67,12 +67,12 @@ class ArticleModel extends HTTP {
 /**
  * 文章点赞
  */
-  GetArticleIdByLike(id, res) {
+  GetArticleIdByLike(temp, res) {
     var params = {
       url: 'Article/GetArticleIdByLike',//接口路径
       method: 'get', //请求方式
       success: res,
-      data: { id }
+      data: temp
     }
     this.request(params)
   }

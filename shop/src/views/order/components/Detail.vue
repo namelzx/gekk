@@ -22,7 +22,6 @@
                 <div class="term">发货方式:</div>
                 <div class="detail" v-if="postForm.isadd==1">物流</div>
                 <div class="detail" v-if="postForm.isadd==2">门店自取</div>
-
               </div>
 
               <div class="ant-col-md-8">
@@ -266,15 +265,15 @@ export default {
         };
         PostDataByCancel(temp, res => {
           this.postForm.status = 5;
-              this.$message({
-          message: '取货成功',
-          type: 'success'
+          this.$message({
+            message: "取货成功",
+            type: "success"
+          });
         });
-        });
-      }else{
-         this.$message({
-          message: '取货码错误',
-          type: 'warning'
+      } else {
+        this.$message({
+          message: "取货码错误",
+          type: "warning"
         });
       }
     },
@@ -326,14 +325,16 @@ export default {
     onCourier(e) {
       e.order_id = this.postForm.id;
       postCourier(e).then(res => {
-        console.log(res);
+        if (res.status === 204) {
+          this.$message({
+            message: res.msg,
+            type: "warning"
+          });
+          return;
+        }
         this.fetchData(this.postForm.id);
       });
-      this.$notify({
-        title: "成功",
-        message: "更新订单成功",
-        type: "success"
-      });
+    
     },
     fetchData(id) {
       GetIdByDetails(id).then(res => {

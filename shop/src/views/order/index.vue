@@ -125,7 +125,8 @@
       </el-table-column>
       <el-table-column label="买家" min-width="120px" align="center">
         <template slot-scope="scope">
-          <span>{{scope.row.get_user.nickName}}</span>
+          <span v-if="scope.row.get_user">{{scope.row.get_user.nickName}}</span>
+          <span v-else>用户已被删除</span>
         </template>
       </el-table-column>
 

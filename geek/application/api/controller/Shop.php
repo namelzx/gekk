@@ -33,16 +33,19 @@ class Shop extends Base
         $jx = curlSend($url);
         $district = $jx['result']['address_component']['district'];//获取当前所在区
         $get_code = PositionModel::where('area_name', 'like', '%' . $district . '%')->find();
+        if (!empty($data['area_code'])) {
+            $get_code['area_code']=$data['area_code'];
+        }
+
         $res = ShopModel::where('status', 1)
             ->where('area_code', $get_code['area_code'])
             ->all();
         $model = new ShopModel();
         $dd = $model->range($data['latitude'], $data['longitude'], $res);
-
         $banner = BannerModel::where('shop_id', 0)->where('type_', 1)->select();
         $arbaner = BannerModel::where('shop_id', 0)->where('type_', 2)->select();
 
-        return json(['data' => $dd, 'banner' => $banner,'arbaner'=>$arbaner, 'dist' => $jx['result']['ad_info']['city'] . $jx['result']['ad_info']['district']]);
+        return json(['data' => $dd, 'banner' => $banner, 'arbaner' => $arbaner, 'dist' => $jx['result']['ad_info']['city'] . $jx['result']['ad_info']['district']]);
     }
 
     /**
