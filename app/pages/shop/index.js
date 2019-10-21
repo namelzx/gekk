@@ -13,7 +13,7 @@ import {
 } from '../../api/common.js'
 
 let commonModel = new CommonModel();
-
+let app=getApp();
 Page({
   data: {
     goods: [],
@@ -23,6 +23,7 @@ Page({
     imgUrls: [
     
     ],
+    shop_id:0,
     shopinfo:{},
     shop_logo: './../../../static/images/shop-logo-1.png',
     shop_name: '极客清晖园星巴克店',
@@ -44,6 +45,7 @@ Page({
     carArray: [],
     minPrice: 20, //起送價格
     payDesc: '',
+    collectionText:'收藏店铺',
     deliveryPrice: 4, //配送費
     fold: true,
     selectFoods: [{
@@ -53,9 +55,30 @@ Page({
     cartShow: 'none',
     status: 0,
     action: 0,
+    scene:0,
   },
 
 
+  collection(){
+    var that=this;
+    let temp={
+      user_id: app.globalData.user_id,
+      shop_id: this.data.shop_id,
+      type:1
+    }
+    commonModel.PostCollection(temp,res=>{
+      if(res.code==200){
+        that.setData({
+          collectionText:'取消收藏',
+        })
+      }else{
+        that.setData({
+          collectionText: '收藏店铺',
+        })
+      }
+    })
+    console.log(temp)
+  },
 
   selectMenu: function(e) {
     var index = e.currentTarget.dataset.itemIndex;
@@ -418,18 +441,33 @@ Page({
     // 页面初始化 options为页面跳转所带来的参数
     var that = this;
     var id = options.id
+    var scene = decodeURIComponent(options.scene)
+    if (options.scene!=undefined) {
+      app.globalData.shop_id = scene
+    }else{
+      scene=0;
+    }
+ 
     shopmodel.GetShopGoodsByList(id, res => {
       that.setData({
-        goods: res
+        goods: res,
+        shop_id:id,
+        scene,
       })
     })
-    commonModel.GetBannerByList(id, res => {
+    var temb={
+      shop_id:id,
+      user_id: app.globalData.user_id,
+      type:1,
+    }
+    commonModel.GetBannerByList(temb, res => {
       
       that.setData({
         imgUrls: res.banner,
         shopinfo:res.shop,
         shop_name:res.shop.name,
-        logo:res.shop.shop_logo
+        logo:res.shop.shop_logo,
+        collectionText:res.text
       })
       
     })

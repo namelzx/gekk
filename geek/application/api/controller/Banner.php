@@ -10,6 +10,7 @@ namespace app\api\controller;
 
 
 use app\common\model\BannerModel;
+use app\common\model\CollectionModel;
 use app\common\model\ShopModel;
 
 class Banner extends Base
@@ -25,12 +26,16 @@ class Banner extends Base
         } else {
             //如果没有那么就是查询平台轮播图
             $where[] = ['type', 'eq', 2];
-
         }
+        $checoll = CollectionModel::where(['shop_id' => $data['shop_id'], 'user_id' => $data['user_id'], 'type' => $data['type']])->count();
 
+        $text = '收藏店铺';
+        if ($checoll > 0) {
+            $text = '取消收藏';
+        }
         $shop = ShopModel::where($shwhere)->find();
         $res = BannerModel::where($where)->limit(3)->select();
-        return json(['banner' => $res, 'shop' => $shop]);
+        return json(['banner' => $res, 'shop' => $shop, 'text' => $text]);
     }
 
 }

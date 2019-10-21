@@ -116,4 +116,18 @@ class Base extends Controller
 
     }
 
+    public function getCoord($address)
+    {
+//        $address = '广东省佛山市顺德区桂峰路国创商贸大厦6号铺';
+        $url = 'https://apis.map.qq.com/ws/geocoder/v1/?address=' . $address . '&key=XB2BZ-J7PW3-DIZ3P-YC34A-BWFW7-ELBOI';
+//        $url ='https://apis.map.qq.com/ws/geocoder/v1/?address='. $address .'&key=XB2BZ-J7PW3-DIZ3P-YC34A-BWFW7-ELBOI';
+        $res = curlSend($url);
+
+        if ($res['message'] !== 'query ok') {
+            return $res['message'];
+        }
+        return $res['result']['location'];
+    }
+
+
 }

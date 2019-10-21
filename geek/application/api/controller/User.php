@@ -32,12 +32,12 @@ class User extends Base
         }
 
         $res = UserModel::postUserByRegistered($data['temp'], $pid);
-//        if (empty($res['bg'])) {//判断是否生成海报
-//            $qrcode = $this->BuildCode($res['id']);//获取二维码
-//            $bg = $this->buildBg($qrcode);//传入二维码 得到海报
-//            UserModel::where('id', $res['id'])->data(['bg' => $comm['url'] . $bg])->update();//更新海报内容
-//            $res = UserModel::where('id', $res['id'])->find();//重新获取数据
-//        }
+        if (empty($res['bg'])) {//判断是否生成海报
+            $qrcode = $this->BuildCode($res['id']);//获取二维码
+            $bg = $this->buildBg($qrcode);//传入二维码 得到海报
+            UserModel::where('id', $res['id'])->data(['bg' => $comm['url'] . $bg])->update();//更新海报内容
+            $res = UserModel::where('id', $res['id'])->find();//重新获取数据
+        }
 
         $res = UserModel::where('id', $res['id'])->find();//重新获取数据
 

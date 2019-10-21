@@ -1,5 +1,5 @@
 // pages/goods/index.js
-
+let app=getApp();
 import Toast from './../../vant-weapp/dist/toast/toast.js'
 import areaList from './../area.js'
 import {
@@ -20,6 +20,13 @@ import {
 } from '../../api/city.js'
 
 let citymodel = new CityModel();
+
+
+import {
+  CommonModel
+} from '../../api/common.js'
+
+let commonModel = new CommonModel();
 
 
 var WxParse = require('../../wxParse/wxParse.js');
@@ -67,30 +74,55 @@ Page({
     city_code: '',
     area: '',
     city_list: [],
-    goods_sub_price: ''
+    goods_sub_price: '',
+    collectionText:'收藏商品'
+  },
+
+
+  collection() {
+    var that = this;
+    let temp = {
+      user_id: app.globalData.user_id,
+      goods_id: this.data.detailed.id,
+      type: 2
+    }
+    commonModel.PostCollection(temp, res => {
+      if (res.code == 200) {
+        that.setData({
+          collectionText: '取消收藏',
+        })
+      } else {
+        that.setData({
+          collectionText: '收藏商品',
+        })
+      }
+    })
   },
   onLoad(option) {
 
     var that = this;
     that.calTotalPrice();
-
-    shopmodel.GetIdGoodsByInfo(option.id, res => {
-      res.suk_name = res.suk[0].name
-      res.price = res.suk[0].price
+    var temp={
+      id: option.id,
+      user_id:app.globalData.user_id
+    }
+    shopmodel.GetIdGoodsByInfo(temp, res => {
+      res.data.suk_name = res.data.suk[0].name
+      res.data.price = res.data.price
 
       that.setData({
-        detailed: res,
-        imgUrls: res.banner,
-        suk: res.suk,
-        images_url: res.suk[0].images_url,
-
-        suk_id: res.suk[0].id
+        detailed: res.data,
+        imgUrls: res.data.banner,
+        suk: res.data.suk,
+        images_url: res.data.suk[0].images_url,
+        suk_id: res.data.suk[0].id,
+        collectionText: res.message
       })
       that.data.detailed.count = 0;
-      WxParse.wxParse('article', 'html', res.content, that, 5);
+      WxParse.wxParse('article', 'html', res.data.content, that, 5);
 
-      WxParse.wxParse('pack', 'html', res.pack.content, that, 5);
-      WxParse.wxParse('spec', 'html', res.spec.content, that, 5);
+      WxParse.wxParse('pack', 'html', res.data.pack.content, that, 5);
+      WxParse.wxParse('spec', 'html', res.data.spec.content, that, 5);
 
     })
     citymodel.getProvinces(res => {
@@ -111,6 +143,7 @@ Page({
     var index = e.currentTarget.dataset.index
     var data = that.data.detailed;
     data.suk_name = data.suk[index].name
+    console.log(data.suk_name)
     data.price = data.suk[index].price
     images_url: data.suk[index].images_url,
       that.setData({

@@ -1,5 +1,4 @@
 <!--pages/index/map/index.wxml-->
-
 <view class="shop-map-container">
   <view class="control-bar">
     <view class="city-item area" bindtap="toggleShowCityPop">
@@ -28,51 +27,54 @@
         <view class="shop-name-distance">
           <view class="shop-name">{{item.area}}丨{{item.name}}</view>
           <view class="shop-distance">
-            <van-icon name="location-o" class="locate-icon" />距离您{{item.km}}m</view>
+            <van-icon name="location-o" class="locate-icon" />距离您{{item.km}}km</view>
         </view>
       </view>
     </view>
   </van-transition>
   <!-- 地图  -->
+
   <van-transition show="{{ showType }}" custom-class="block">
     <view class="shop-item" wx:if="{{showType}}">
-
-      <map id="map"  longitude="{{longitude}}" latitude="{{latitude}}" scale="16" controls="{{controls}}" markers="{{markers}}" bindmarkertap="markerTap" show-location style="width: 100%; height: 600rpx;">
+      <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="16" controls="{{controls}}" markers="{{markers}}" bindmarkertap="markerTap" show-location style="width: 100%; height: 600rpx;">
       </map>
-      <view class="shop-detail" data-id="{{markers[currentBtnId].id}}" bindtap="handeShop">
-        <view class="shop-img-wrapper">
-          <image src="{{markers[currentBtnId].logo}}"></image>
+      <scroll-view scroll-x class="card-scroll" bindscrolltoupper="leftEnd" bindscrolltolower="rightEnd" scroll-with-animation="{{true}}">
+        <view class="row-container">
+          <view class="shop-detail" wx:for="{{markers}}" wx:key="{{index}}" data-id="{{item.id}}" bindtap="handeShop">
+            <view class="detail-wrap">
+              <view class="shop-img-wrapper">
+                <image src="{{item.logo}}"></image>
+              </view>
+              <!-- 点击地图门店显示对应的门店信息 -->
+              <view class="shop-info-wrapper" wx:if="{{shoptrue==true}}">
+                <view class="shop-name-item">{{item.name}}</view>
+                <view class="shop-on-sale">营业时间：{{item.startTime}}-{{item.endTime}}</view>
+                <view class="shop-address-item">地址：{{item.location}}</view>
+              </view>
+              <view class="shop-info-wrapper" wx:else>
+                <view class="shop-name-item">当前地区没有店铺</view>
+              </view>
+            </view>
+          </view>
         </view>
-        <!-- 点击地图门店显示对应的门店信息 -->
-        <view class="shop-info-wrapper" wx:if="{{shoptrue==true}}">
-          <view class="shop-name-item">{{markers[currentBtnId].name}}</view>
-          <view class="shop-on-sale">营业时间：{{markers[currentBtnId].startTime}}-{{markers[currentBtnId].endTime}}</view>
-          <view class="shop-address-item">地址：{{markers[currentBtnId].location}}</view>
-        </view>
-
-           <view class="shop-info-wrapper" wx:else>
-          <view class="shop-name-item">当前地区没有店铺</view>
-        
-        </view>
-      </view>
+      </scroll-view>
     </view>
   </van-transition>
-
 </view>
 
 
- <van-popup show="{{ showAddress }}" bind:close="onCloseAddress" position="bottom">
-      <view class="tab">
-        <text bindtap="handeProvince" class="provinces">{{provinces}}</text>
-        <text bindtap="handeCity">{{city}}</text>
-        <text bindtap="handeArea">{{area}}</text>
-      </view>
-      <view class="city_list">
-        <text wx:for="{{city_list}}" data-id="{{item.id}}" data-name='{{item.area_name}}' data-level="{{item.level}}" data-area_code='{{item.area_code}}' bindtap="handelProvinces">
+<van-popup show="{{ showAddress }}" bind:close="onCloseAddress" position="bottom">
+  <view class="tab">
+    <text bindtap="handeProvince" class="provinces">{{provinces}}</text>
+    <text bindtap="handeCity">{{city}}</text>
+    <text bindtap="handeArea">{{area}}</text>
+  </view>
+  <view class="city_list">
+    <text wx:for="{{city_list}}" data-id="{{item.id}}" data-name='{{item.area_name}}' data-level="{{item.level}}" data-area_code='{{item.area_code}}' bindtap="handelProvinces">
           {{item.area_name}}
         </text>
-      
-      </view>
 
-     
-    </van-popup>
+  </view>
+
+
+</van-popup>

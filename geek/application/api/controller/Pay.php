@@ -41,8 +41,8 @@ class Pay extends Base
             $out_trade_no = time() . rand(1000, 9999);
             $attributes = [
                 'trade_type' => 'JSAPI', // JSAPI，NATIVE，APP...
-                'body' => '11',
-                'detail' => '22',
+                'body' => $post['title'],
+                'detail' => $post['title'],
                 'out_trade_no' => $out_trade_no,
                 'total_fee' => $total_money * 100, // 单位：分
                 'notify_url' => '/', // 支付结果通知网址，如果不设置则会使用配置里的默认地址

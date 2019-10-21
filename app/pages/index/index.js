@@ -20,6 +20,8 @@ let commonModel = new CommonModel();
 
 Page({
   data: {
+    curIndex: 2,
+    showText: false,
     motto: 'Hello World',
     userInfo: {},
    
@@ -73,7 +75,8 @@ Page({
         wx.setStorageSync('loca', locatlres)
         let area_code= wx.getStorageSync('area_code')
         if (wx.getStorageSync('area_code')!==null){
-          locatlres.area_code = area_code
+          locatlres.area_code = area_code,
+            locatlres.area = wx.getStorageSync('dist')
         }
         shopmodel.GetShopByList(locatlres,res=>{
           wx.setStorageSync('shopbaner', res.banner)
@@ -111,6 +114,13 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
+  },
+
+  toggleText (e) {
+    console.log(e.currentTarget.dataset.index)
+    let that = this
+    let index = e.currentTarget.dataset.index
+    that.setData({ curIndex: index})
   },
   /**
   * 用户点击右上角分享

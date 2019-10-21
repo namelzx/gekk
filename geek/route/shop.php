@@ -96,9 +96,9 @@ Route::group('api/shop/', function () {
     Route::get('/courier/getDataByDetail', 'shop/home/GetShopByHome');//获取商家首页数据
 
 
-    Route::post('shop/PostDataByAdd', 'admin/Shop/PostDataByAdd'); /* 添加数据*/
-    Route::get('shop/GetDataByList', 'admin/Shop/GetDataByList'); /* 获取数据列表*/
-    Route::get('shop/GetIdBydetailed', 'admin/Shop/GetIdBydetailed'); /* 获取数据列表*/
+    Route::rule('shop/PostDataByAdd', 'shop/Shop/PostDataByAdd'); /* 添加数据*/
+    Route::get('shop/GetDataByList', 'shop/Shop/GetDataByList'); /* 获取数据列表*/
+    Route::get('shop/GetIdBydetailed', 'shop/Shop/GetIdBydetailed'); /* 获取数据列表*/
 
 
     Route::get('city/getProvinces', 'admin/shop/getProvinces'); /* 获取省份*/

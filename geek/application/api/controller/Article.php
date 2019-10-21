@@ -11,6 +11,7 @@ namespace app\api\controller;
 
 use app\common\model\ArticleEvaluationModel;
 use app\common\model\ArticleModel;
+use app\common\model\CollectionModel;
 use app\common\model\IntegralLogModel;
 
 class Article extends Base
@@ -34,7 +35,13 @@ class Article extends Base
 
         ArticleModel::where('id', $data['id'])->setInc('view');
 
-        return json($res);
+        $text = '收藏';
+        $checol = CollectionModel::where(['article_id' => $data['id'], 'user_id' => $data['user_id'],'type'=>3])->count();
+        if ($checol > 0) {
+            $text = '取消';
+        }
+
+        return json(['data' => $res, 'text' => $text]);
     }
 
     /**

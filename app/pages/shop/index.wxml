@@ -1,4 +1,7 @@
 <!--pages/order/order.wxml-->
+
+<!-- {{scene}} -->
+<view class="collection" bindtap="collection">{{collectionText}}</view>
 <!--head -->
 <view class="header">
   <van-toast id="van-toast" />

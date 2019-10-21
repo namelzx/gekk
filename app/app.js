@@ -37,8 +37,10 @@ App({
   globalData: {
     userInfo: null,
     user_id: 0,//当前用户id
+    shop_id:0,
     isLogin: false,//是否登陆
     integral:10,
+    
     base_url:'https://hhh.10huisp.com/api/app/'
   }
 })

@@ -31,10 +31,15 @@ class ShopModel extends BaseModel
         return $this->hasOne('GoodsModel', 'shop_id', 'id');
     }
 
+    public function area()
+    {
+        return $this->hasOne('PositionModel', 'area_code', 'area_code');
+    }
+
     public static function GetByList($data)
     {
 
-        $res = self::paginate($data['limit'], false, ['query' => $data['page']]);
+        $res = self::where('status', 'neq', 404)->paginate($data['limit'], false, ['query' => $data['page']]);
         return $res;
     }
 
@@ -72,23 +77,27 @@ class ShopModel extends BaseModel
         $arr = [];
         $Radiusarr = [
             [
-                'xRadius' => 60,
-                'yRadius' => 360
+                'xRadius' => 100,
+                'yRadius' => 400
             ],
             [
-                'xRadius' => 200,
-                'yRadius' => 160
+                'xRadius' => 40,
+                'yRadius' => 260
             ],
             [
-                'xRadius' => 460,
-                'yRadius' => 320
-            ],
-            [
-                'xRadius' => 325,
-                'yRadius' => 42
+                'xRadius' => 400,
+                'yRadius' => 100
             ],
             [
                 'xRadius' => 460,
+                'yRadius' => 380
+            ],
+            [
+                'xRadius' => 290,
+                'yRadius' => 5
+            ],
+            [
+                'xRadius' => 270,
                 'yRadius' => 480
             ],
             [
@@ -97,6 +106,15 @@ class ShopModel extends BaseModel
             ],
             [
                 'xRadius' => 480,
+                'yRadius' => 200
+            ],
+            [
+                'xRadius' => 200,
+                'yRadius' => 500
+            ],
+
+            [
+                'xRadius' => 580,
                 'yRadius' => 140
             ],
 

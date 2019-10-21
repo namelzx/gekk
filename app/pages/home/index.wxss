@@ -154,3 +154,15 @@
   margin-right: 30rpx;
   color: #333;
 }
+
+.home-category button{
+  text-align: left;
+  background: #fff;
+  padding-left: 0;
+  padding-right: 0;
+  border: none;
+
+}
+.home-category button::after{
+ border: none;
+}

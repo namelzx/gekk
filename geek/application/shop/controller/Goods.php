@@ -43,6 +43,17 @@ class Goods extends Base
             $temp['goods_id'] = $Goods['id'];
             GoodsSukModel::create($temp);
         }
+
+        $banner = $data['banner'];
+        $banrarr = [];
+        foreach ($banner as $i => $item) {
+            $banrarr['url'] = $item['url'];
+            $banrarr['name'] = $item['name'];
+            $banrarr['status'] = $item['status'];
+            $banrarr['goods_id'] = $Goods['id'];
+            GoodsImagesModel::create($banrarr);
+        }
+
         return json(['msg' => '添加成功', 'code' => 20000], 200);
 
     }
@@ -50,6 +61,7 @@ class Goods extends Base
     public function PostDataUpdate($data)
     {
         $model = new GoodsModel();
+        $data['temp']['create_time'] = time();
         $model->allowField(true)->save($data['temp'], ['id' => $data['temp']['id']]);
         $id = $data['temp']['id'];
         GoodsSukModel::where('goods_id', $id)->delete();
@@ -65,14 +77,14 @@ class Goods extends Base
         }
 
         $banner = $data['banner'];
+        $barr = [];
         GoodsImagesModel::where('goods_id', $id)->delete();
         foreach ($banner as $i => $item) {
-            $banner['url'] = $item['url'];
-            $banner['name'] = $item['name'];
-            $banner['status'] = $item['status'];
-//            $banner['shop_id'] = $item['shop_id']?'1';
-            $banner['goods_id'] = $id;
-            GoodsImagesModel::create($banner);
+            $barr['url'] = $item['url'];
+            $barr['name'] = $item['name'];
+            $barr['status'] = $item['status'];
+            $barr['goods_id'] = $id;
+            GoodsImagesModel::create($barr);
         }
     }
 

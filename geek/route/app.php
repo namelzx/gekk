@@ -20,10 +20,7 @@ Route::group('api/app/', function () {
 
     Route::rule('refund', 'api/Base/refund'); /*退款*/
 
-
-
-
-
+    Route::rule('PostCollection', 'api/Collection/PostCollection'); /*收藏*/
 
 
     Route::rule('distribution', 'api/Base/distribution'); /*进行分销操作*/
@@ -35,7 +32,7 @@ Route::group('api/app/', function () {
 
     Route::rule('GetBannerByList', 'api/Banner/GetBannerByList'); /*文件上传*/
 
-    Route::post('shop/GetShopByList', 'api/shop/GetShopByList'); /* 登陆*/
+    Route::rule('shop/GetShopByList', 'api/shop/GetShopByList'); /* 登陆*/
     Route::get('shop/GetShopGoodsByList', 'api/shop/GetShopGoodsByList'); /* 根据店铺id获取店铺所有的数据*/
 
     Route::get('shop/GetIdGoodsByInfo', 'api/shop/GetIdGoodsByInfo'); /* 根据店铺id获取店铺所有的数据*/
@@ -124,6 +121,11 @@ Route::group('api/app/', function () {
      */
     Route::rule('Dist/GetUserByDist', 'api/Dist/GetUserByDist'); /* 获取分销订单*/
     Route::rule('Dist/GetUserByTeam', 'api/Dist/GetUserByTeam'); /* 获取我的团队*/
+
+    /**
+     * 收藏
+     */
+    Route::rule('Coll/GetCollGoods', 'api/Collection/GetCollGoods'); /* 获取分销订单*/
 
 
 });

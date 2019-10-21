@@ -586,3 +586,19 @@
 .wxParse-p image{
   width: 100% !important;
 }
+
+
+
+.collection{
+  position: absolute;
+  top: 490rpx;
+  right: 20rpx;
+  z-index: 100;
+  background: #606266;
+  color: #fff;
+  font-size: 23rpx;
+  padding: 6rpx;
+  padding-left: 15rpx;
+  padding-right: 15rpx;
+  border-radius: 30rpx;
+}

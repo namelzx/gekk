@@ -8,6 +8,13 @@ import {
 let articleModel = new ArticleModel();
 var WxParse = require('../../../wxParse/wxParse.js');
 
+
+
+import {
+  CommonModel
+} from '../../../api/common.js'
+
+let commonModel = new CommonModel();
 Page({
 
   /**
@@ -18,7 +25,8 @@ Page({
     user_id: 0,
     article_id: 0,
     eav: [],
-    value:''
+    value:'',
+    text: '收藏',
   },
   /**
    * 生命周期函数--监听页面加载
@@ -30,12 +38,17 @@ Page({
     this.setData({
       article_id: options.id
     })
-    articleModel.GetDataByDetailed(id, res => {
+    var temp={
+      id,
+      user_id:app.globalData.user_id
+    }
+    articleModel.GetDataByDetailed(temp, res => {
       that.setData({
-        Detailed: res
+        Detailed: res.data,
+        text:res.text
       })
       that.geteav();
-      WxParse.wxParse('article', 'html', res.content, that, 5);
+      WxParse.wxParse('article', 'html', res.data.content, that, 5);
     })
   },
   /**
@@ -63,6 +76,29 @@ Page({
       that.setData({ value:''})
     })
   },
+
+
+  collection() {
+    var that = this;
+    let temp = {
+      user_id: app.globalData.user_id,
+      article_id: that.data.article_id,
+      type: 3
+    }
+    commonModel.PostCollection(temp, res => {
+      if (res.code == 200) {
+        that.setData({
+          text: '取消',
+        })
+      } else {
+        that.setData({
+          text: '收藏',
+        })
+      }
+    })
+    console.log(temp)
+  },
+
   /**
    * 文章点赞
    */

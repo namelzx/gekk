@@ -20,15 +20,17 @@ Page({
     title: '',
     
     userInfo: {
-      name: '我就是狗剩先生啊',
-      phone: '185****5017',
-      email: '2016573508@qq.com',
-      address: '广州白云区coco大院',
-      sex: '男'
+     
     }
   },
   onShow(){
     let that=this;
+
+    if (app.globalData.isLogin===false){
+      wx.navigateTo({
+        url: '/pages/login/index'
+      })
+    }
     userModel.GetUserByInfo(app.globalData.user_id,res=>{
       that.setData({
         userInfo:res

@@ -32,12 +32,12 @@ class ArticleModel extends HTTP {
 
 
   //查看文章详细
-  GetDataByDetailed(id, res) {
+  GetDataByDetailed(temp, res) {
     var params = {
       url: 'Article/GetDataByDetailed',//接口路径
       method: 'get', //请求方式
       success: res,
-      data: { id }
+      data: temp
     }
     this.request(params)
   }

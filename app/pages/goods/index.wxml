@@ -1,5 +1,6 @@
 <!--pages/goods/index.wxml-->
 
+<view class="collection" bindtap="collection">{{collectionText}}</view>
 <import src="../../wxParse/wxParse.wxml" />
 
 <view class="goods-container">
@@ -62,7 +63,6 @@
 
       </view>
     </van-popup>
-
     <!-- 选择商品规格 -->
     <view class="choose-goods">
       <view class="choose choose-title">选择</view>
@@ -101,7 +101,7 @@
         <label>颜色</label>
         <view class="checked-btn">
 
-          <view wx:for="{{suk}}" class="suk {{suk_id==item.id?'ac':''}}" data-id="{{item.id }}" data-index="{{index}}" bindtap="handelsuk">
+          <view wx:for="{{suk}}" class="suk {{suk_id==item.id?'ac':''}}" data-id="{{item.id }}" data-name="{{item.name}}" data-index="{{index}}" bindtap="handelsuk">
             {{item.name}}
           </view>
 

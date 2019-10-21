@@ -15,12 +15,12 @@ class CommonModel extends HTTP {
     this.request(params)
   }
 //获取轮播图
-  GetBannerByList(shop_id, res) {
+  GetBannerByList(data, res) {
     var params = {
       url: 'GetBannerByList',//接口路径
       method: 'get', //请求方式
       success: res,
-      data:{shop_id}
+      data
     }
     this.request(params)
   }
@@ -44,6 +44,18 @@ class CommonModel extends HTTP {
     this.request(params)
   }
 
+  PostCollection(data, res) {
+    var params = {
+      url: 'PostCollection',//接口路径
+      method: 'post', //请求方式
+      data,
+      success: res,
+    }
+    this.request(params)
+  }
+
+
+  
   
 
   

@@ -135,13 +135,25 @@
 .info-item {
   display: flex;
   background: #dfdfdf;
-  border-top-left-radius: 38%;
-  border-bottom-left-radius: 38%;
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
   border-top-right-radius: 50rpx;
   border-bottom-right-radius: 50rpx;
   padding-right: 0 20rpx;
-  width: 230rpx;
+  width: 80rpx;
+  color: transparent;
 }
+
+.show-text {
+  width: 230rpx;
+  color: #333;
+  transition: width 1.2s, color 2s;
+}
+
+.locate-name {
+  font-size: 24rpx;
+}
+
 
 .info-item .info-text {
   width: 54%;

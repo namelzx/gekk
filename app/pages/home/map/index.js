@@ -16,7 +16,6 @@ import {
 
 let citymodel = new CityModel();
 
-
 Page({
   /**
    * 页面的初始数据
@@ -30,42 +29,42 @@ Page({
     currentBtnId: 0, //  下标
     showType: true, // 决定门店以列表/地图形式展示
     shopCard: [
-      
+
     ], //视图为列表时的商铺列表
     shopList: [
-      
+
     ], // 视图为地图时的店铺列表
     areaList: areaList, //地区列表
     showCityPop: false, //城市弹出层
     cityMsg: '', //城市选中值
     showAreaPop: false, //地区弹出层
     areaMsg: '', //地区选中值
-    city_list:[],
-    shoptrue:true,
-    areainfo:'',
-    city_code:'',
-    area_code:'',//选择区域
+    city_list: [],
+    shoptrue: true,
+    areainfo: '',
+    city_code: '',
+    area_code: '', //选择区域
     icon: [
-      
+
     ], //模拟测试按钮
-    showAddress:false,
+    showAddress: false,
     // 地图
-    latitude: 21.4486600000, //地图初始经度
-    longitude: 109.1742200000, //地图初始纬度
+    latitude: 0, //地图初始经度
+    longitude: 0, //地图初始纬度
     markers: [
-      
     ] // 地图标注
   },
-  handeShop(e){
-    let { id } = e.currentTarget.dataset
-
+  handeShop(e) {
+    let {
+      id
+    } = e.currentTarget.dataset
     wx.navigateTo({
       url: '/pages/shop/index?id=' + id,
     })
   },
   onShow() {
     var that = this;
-    if(wx.getStorageSync('dist')!=null){
+    if (wx.getStorageSync('dist') != null) {
       that.setData({
         areainfo: wx.getStorageSync('dist')
       })
@@ -73,19 +72,21 @@ Page({
     wx.getLocation({
       success: function(locatlres) {
         wx.setStorageSync('loca', locatlres)
-        that.setData({
-            latitude: locatlres.latitude,
-            longitude: locatlres.longitude,
-        })
+      
         that.data.area_code = wx.getStorageSync('area_code')
-        if(that.data.area_code!==''){
-          locatlres.area_code = that.data.area_code
+
+        that.setData({
+          latitude: locatlres.latitude,
+          longitude: locatlres.longitude,
+        })
+        if (that.data.area_code !== '') {
+          locatlres.area_code = that.data.area_code,
+            locatlres.area = that.data.areainfo
         }
         shopmodel.GetShopByList(locatlres, res => {
-         
-          for (let i = 0; i < res.length; i++) {
-            res[i]['label'] = {
-              'content': res[i].name,
+          for (let i = 0; i < res.data.length; i++) {
+            res.data[i]['label'] = {
+              'content': res.data[i].name,
               'color': '#666',
               'fontSize': '10',
               'padding': 2,
@@ -98,15 +99,23 @@ Page({
               'borderRadius': 20,
               'display': 'ALWAYS',
             }
-            res[i]['width'] = 35
-            res[i]['height'] = 35
-            res[i]['iconPath'] = res[i]['logo']
-            res[i]['latitude'] = res[i]['lat']
-            res[i]['longitude'] = res[i]['lng']
+            res.data[i]['width'] = 35
+            res.data[i]['height'] = 35
+            res.data[i]['iconPath'] = res.data[i]['logo']
+            res.data[i]['latitude'] = res.data[i]['lat']
+            res.data[i]['longitude'] = res.data[i]['lng']
           }
-       let   shoptrue=true;
-          if(res.data===false){
-              shoptrue=false
+          let shoptrue = true;
+          if (res.data === false) {
+            shoptrue = false
+          }
+          if (res.loca===[]){
+           
+          }else{
+            that.setData({
+              latitude: res.loca.lat,
+              longitude: res.loca.lng,
+            })
           }
           that.setData({
             markers: res.data,
@@ -114,7 +123,6 @@ Page({
           })
 
         })
-
         citymodel.getProvinces(res => {
           that.setData({
             city_list: res
@@ -256,15 +264,15 @@ Page({
     }
     if (level == 3) {
 
-     that.data.area_code=e.currentTarget.dataset.area_code,
-       wx.setStorageSync('area_code', e.currentTarget.dataset.area_code) //保存所选择地址
+      that.data.area_code = e.currentTarget.dataset.area_code,
+        wx.setStorageSync('area_code', e.currentTarget.dataset.area_code) //保存所选择地址
 
       wx.setStorageSync('dist', that.data.city + e.currentTarget.dataset.name) //保存所选择地址
       that.onShow();
       that.setData({
         area: e.currentTarget.dataset.name,
         city_list: [],
-      
+
         isArea: true,
         showAddress: false,
         areainfo: that.data.provinces + that.data.city + e.currentTarget.dataset.name
@@ -274,14 +282,14 @@ Page({
   },
   // 点击地图图标
   markerTap(event) {
-    var that=this;
+    var that = this;
     let val = event.markerId
     console.log(val)
-    
+
     var markers = that.data.markers;
-    for(let i=0;i<markers.length;i++){
-      if (val === markers[i].id){
-          val=i
+    for (let i = 0; i < markers.length; i++) {
+      if (val === markers[i].id) {
+        val = i
       }
     }
     this.setData({

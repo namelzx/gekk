@@ -63,6 +63,13 @@
       <input value="{{value}}" adjust-position confirm-type="send" bindconfirm="postsend" auto-focus/>
     </view>
     <view class="social-btn">
+
+     <view class="good-btn" bindtap="collection">
+        <van-icon name="star-o"  wx:if="{{text==='收藏'}}" class="s-btn" />
+
+    <van-icon name="star"  wx:else class="s-btn" />
+            <view class="btn-text">{{text}}</view>
+      </view>
       <view class="good-btn" bindtap="ArticleLike">
         <van-icon name="good-job-o" class="s-btn" />
         <view class="btn-text">点赞</view>

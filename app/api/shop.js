@@ -47,11 +47,11 @@ class ShopModel extends HTTP {
     this.request(params)
   }
 
-  GetIdGoodsByInfo(id, res) {
+  GetIdGoodsByInfo(data, res) {
     var params = {
       url: 'shop/GetIdGoodsByInfo',//接口路径
       method: 'get', //请求方式
-      data: { id },
+      data,
       success: res
     }
     this.request(params)

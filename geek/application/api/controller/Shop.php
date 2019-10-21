@@ -11,6 +11,7 @@ namespace app\api\controller;
 
 use app\common\model\BannerModel;
 use app\common\model\CategoryModel;
+use app\common\model\CollectionModel;
 use app\common\model\CouponModel;
 use app\common\model\EvaluateModel;
 use app\common\model\GoodsModel;
@@ -25,6 +26,7 @@ class Shop extends Base
      */
     public function GetShopByList()
     {
+
         $data = input('param.');
         $url = 'https://apis.map.qq.com/ws/geocoder/v1/?location='
             . $data['latitude'] . ','
@@ -33,19 +35,30 @@ class Shop extends Base
         $jx = curlSend($url);
         $district = $jx['result']['address_component']['district'];//获取当前所在区
         $get_code = PositionModel::where('area_name', 'like', '%' . $district . '%')->find();
+
         if (!empty($data['area_code'])) {
-            $get_code['area_code']=$data['area_code'];
+            $get_code['area_code'] = $data['area_code'];
+            $jx = $data['area'];
+        } else {
+            $jx= $jx['result']['ad_info']['city'] . $jx['result']['ad_info']['district'];
         }
+        $loca = [];
+        if (!empty($data['area'])) {
+            $loca = $this->getCoord($data['area']);
+        }
+
 
         $res = ShopModel::where('status', 1)
             ->where('area_code', $get_code['area_code'])
+            ->where('status', 'neq', 404)
+            ->limit(9)
             ->all();
         $model = new ShopModel();
         $dd = $model->range($data['latitude'], $data['longitude'], $res);
         $banner = BannerModel::where('shop_id', 0)->where('type_', 1)->select();
         $arbaner = BannerModel::where('shop_id', 0)->where('type_', 2)->select();
 
-        return json(['data' => $dd, 'banner' => $banner, 'arbaner' => $arbaner, 'dist' => $jx['result']['ad_info']['city'] . $jx['result']['ad_info']['district']]);
+        return json(['data' => $dd, 'banner' => $banner, 'arbaner' => $arbaner, 'loca' => $loca, 'dist' => $jx]);
     }
 
     /**
@@ -81,9 +94,20 @@ class Shop extends Base
     public function GetShopListGoodsByList()
     {
         $data = input('param.');
+        $shopwhere = [];
+        $shopwhere[] = ['status', 'neq', 1];
+        $shopwhere[] = ['status', 'eq', 404];
+
+
+        $shop = ShopModel::where($shopwhere)->select();
+
+        $shop_in = [];
+        foreach ($shop as $i => $item) {
+            $shop_in[$i] = $item['id'];
+        }
         $res = GoodsModel::with(['suk' => function ($query) {
             $query->where('status', 1);
-        }])->withCount('eva')->where('category_id', $data['category_id'])->paginate();
+        }])->withCount('eva')->whereNotIn('shop_id', $shop_in)->where('category_id', $data['category_id'])->paginate();
         return json($res);
     }
 
@@ -117,9 +141,13 @@ class Shop extends Base
             $res['eavnumber'] = 100;
         } else {
             $res['eavnumber'] = round($stcount / ($res['eavcout'] * 5) * 100, 2);
-
         }
-        return json($res);
+        $text = '收藏商品';
+        $checol = CollectionModel::where(['goods_id' => $data['id'], 'user_id' => $data['user_id']])->count();
+        if ($checol > 0) {
+            $text = '取消收藏';
+        }
+        return json(msg(200, $res, $text));
     }
 
 

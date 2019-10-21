@@ -15,7 +15,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userinfo:{},
+    userinfo: {},
 
   },
   // 前往我的积分
@@ -24,7 +24,7 @@ Page({
       url: './score/index',
     })
   },
-  onShow(){
+  onShow() {
     let userinfo = wx.getStorageSync('userinfo')
     this.setData({
       userinfo
@@ -34,7 +34,6 @@ Page({
   // 前往分销中心
   goRetail() {
     let user_id = app.globalData.user_id
-
     userModel.GetUserByInfo(user_id, res => {
       console.log(res)
       if (res.isdist === 2) {
@@ -47,7 +46,6 @@ Page({
         })
       }
     })
-
   },
   // 前往个人资料
   goProfile() {
@@ -81,10 +79,23 @@ Page({
       url: './ticket/index'
     })
   },
+  goShare(){
+    wx.navigateTo({
+      url: "/pages/my/share/index",
+      success: function(res) {},
+      fail: function(res) {},
+      complete: function(res) {},
+    })
+  },
   // 我的优惠券
   goMyTicket() {
     wx.navigateTo({
       url: './ticket/myTicket/index'
+    })
+  },
+  goMyCollect () {
+    wx.navigateTo({
+      url: './collect/index'
     })
   }
 })

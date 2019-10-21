@@ -10,6 +10,7 @@ namespace app\admin\controller;
 
 use app\common\model\PositionModel;
 use app\common\model\ShopModel;
+use app\common\model\WxModel;
 use think\Controller;
 
 
@@ -28,6 +29,28 @@ defined('ReqURL') or define('ReqURL', 'http://api.kdniao.com/Ebusiness/Ebusiness
 
 class Base extends Controller
 {
+
+
+    public $config;
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $wx = WxModel::find();
+        $this->config = [
+            'app_id' => $wx['app_id'],
+            'secret' => $wx['secret'],
+            // 指定 API 调用返回结果的类型：array(default)/collection/object/raw/自定义类名
+            'response_type' => 'array',
+
+            'log' => [
+                'level' => 'debug',
+                'file' => __DIR__ . '/wechat.log',
+            ],
+        ];
+
+    }
 
 
     public function upload()
@@ -52,7 +75,9 @@ class Base extends Controller
 //        $address = '广西北海市银海区银滩镇桂林电子科技大学北海小区';
         $url = 'https://apis.map.qq.com/ws/geocoder/v1/?address=' . $address . '&key=XB2BZ-J7PW3-DIZ3P-YC34A-BWFW7-ELBOI';
         $res = curlSend($url);
-//        dump($res);
+        if ($res['message'] !== 'query ok') {
+            return $res['message'];
+        }
         return $res['result']['location'];
     }
 
@@ -166,5 +191,51 @@ class Base extends Controller
         $res = ShopModel::all();
         return json(['msg' => '获取店铺成功', 'data' => $res, 'code' => 20000]);
     }
+
+
+    public function buildBg($url)
+    {
+        $imageDefault = array(
+            'left' => 130,
+            'top' => 320,
+            'right' => 0,
+            'bottom' => 0,
+            'width' => 180,
+            'height' => 200,
+            'opacity' => 100
+        );
+        $textDefault = array(
+            'text' => '',
+            'left' => 0,
+            'top' => 0,
+            'fontSize' => 32,       //字号
+            'fontColor' => '255,255,255', //字体颜色
+            'angle' => 0,
+        );
+
+        $background = './static/bg.jpg';//海报最底层得背景
+        $config['image'][]['url'] = $url;
+        $time = time();
+        $filename = './code/' . $time . '.jpg';
+        getbgqrcode($imageDefault, $textDefault, $background, $filename, $config);
+        return '/code/' . $time . '.jpg';;
+    }
+
+    public function BuildCode($shop_id)
+    {
+
+        $app = \EasyWeChat\Factory::miniProgram($this->config);
+        $response = $app->app_code->getUnlimit('scene-value', [
+            'scene' => $shop_id,
+            'page' => 'pages/shop/index',
+        ]);
+        $comm = config('common');
+        if ($response instanceof \EasyWeChat\Kernel\Http\StreamResponse) {
+            $filename = $response->saveAs('./code/', time() . '.png');
+            return $comm['url'] . '/code/' . $filename;
+        }
+
+    }
+
 
 }

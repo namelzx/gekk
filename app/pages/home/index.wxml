@@ -10,7 +10,7 @@
         <view class="user-name-level">
           <view class="user-name" bindtap="goProfile">{{userinfo.nickName}}</view>
           <view class="user-level" >
-            <image src="./../../static/images/vip-level-1.png" bindtap="goVip"></image>
+            <image src="./../../static/images/vip-level-1.png"></image>
           </view>
         </view>
       </view>
@@ -69,9 +69,13 @@
       <van-cell title="我的地址 " is-link icon="location-o" class="h-category-cell" bindtap="goMyAddress"/>
       <van-cell title="我的优惠券" is-link icon="coupon-o" class="h-category-cell" bindtap="goMyTicket"/>
       <van-cell title="领券中心" is-link icon="aim" class="h-category-cell" bindtap="goGetTicket"/>
-      <van-cell title="分享有利" is-link icon="gift-o" class="h-category-cell"/>
-      <van-cell title="我的收藏" is-link icon="like-o" class="h-category-cell"/>
+      <van-cell title="分享有利" bindtap="goShare" is-link icon="gift-o" class="h-category-cell"/>
+      <van-cell title="我的收藏" catchtap="goMyCollect" is-link icon="like-o" class="h-category-cell"/>
+
+             <button open-type='contact'>
+
       <van-cell title="联系客服" is-link icon="service-o" class="h-category-cell" border="{{ false }}" />
+      </button>
     </van-cell-group>
   </view>
 </view>

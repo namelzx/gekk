@@ -26,10 +26,13 @@ class CategoryModel extends BaseModel
 
         $where = [];
         if (!empty($data['title'])) {
-            $where[] = ['name', '=', $data['title']];
+            $where[] = ['name', 'eq', $data['title']];
+        }
+        if (!empty($data['shop_id'])) {
+            $where[] = ['shop_id', 'eq', $data['shop_id']];
         }
 
-        $res = self::where($where)->where('shop_id',$data['shop_id'])->paginate($data['limit'], false, ['query' => $data['page']]);
+        $res = self::where($where)->paginate($data['limit'], false, ['query' => $data['page']]);
         return $res;
 
     }

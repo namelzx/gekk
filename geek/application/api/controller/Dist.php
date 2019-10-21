@@ -24,7 +24,7 @@ class Dist extends Base
     {
         $data = input('param.');
         $res = IntegralLogModel::where('user_id', $data['user_id'])->order('id desc')->select();
-        $cheLog = IntegralLogModel::where('user_id', $data['user_id'])
+        $cheLog = IntegralLogModel::where('user_id', $data['user_id'])->where('type',1)
             ->whereTime('create_time', 'd')
             ->count();
         $integral = IntegralLogModel::where('user_id', $data['user_id'])->where('type_', 1)->sum('integral');

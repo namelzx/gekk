@@ -35,7 +35,9 @@
     "pages/home/score/pay/index",
     "pages/cart/index",
     "pages/shoplist/index",
-    "pages/home/distributor/distributor/index"
+    "pages/home/distributor/distributor/index",
+    "pages/home/collect/index",
+    "pages/my/share/index"
   ],
   "permission": {
     "scope.userLocation": {

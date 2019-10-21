@@ -112,13 +112,26 @@ page {
   max-height: 560rpx;
 }
 
+.row-container {
+  white-space: nowrap;
+  display: inline-block;
+  padding: 0 5%;
+}
+
 .shop-detail {
-  display: flex;
+  display: inline-block;
+  width: 600rpx;
   padding: 20rpx 10rpx;
   border: 1px solid #f1f1f1;
-  margin: 100rpx 20rpx;
+  margin: 50rpx 20rpx;
   background: #fff;
   box-shadow: 10rpx 10rpx 10rpx 4rpx #d1d1d1;
+  min-height: 250rpx;
+  max-height: 250rpx;
+}
+
+.detail-wrap {
+  display: flex;
 }
 
 .shop-img-wrapper {
@@ -127,8 +140,8 @@ page {
 }
 
 .shop-img-wrapper image {
-  width: 100%;
-  height: 100%;
+  width: 220rpx;
+  height: 220rpx;
 }
 
 .shop-info-wrapper {
@@ -138,6 +151,11 @@ page {
 
 .shop-name-item {
   font-size: 32rpx;
+  overflow: hidden;
+  max-width: 350rpx;
+  text-overflow: ellisis;
+  white-space: nowrap;
+  width: 350rpx;
 }
 
 .shop-on-sale {
@@ -149,10 +167,13 @@ page {
 .shop-address-item {
   font-size: 26rpx;
   color: #333;
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  text-overflow: ellisis;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
 }
-
-
-
 
 /* 城市模块 */
 
@@ -197,6 +218,7 @@ page {
 .addres-detailed {
   margin-top: 30rpx;
 }
-.wxParse-p image{
+
+.wxParse-p image {
   width: 100% !important;
 }

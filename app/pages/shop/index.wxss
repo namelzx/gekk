@@ -1039,3 +1039,18 @@ van-transition image {
   padding-left: 10rpx;
   padding-right: 10rpx;
 }
+
+
+.collection{
+  position: absolute;
+  top: 540rpx;
+  right: 20rpx;
+  z-index: 100;
+  background: #606266;
+  color: #fff;
+  font-size: 23rpx;
+  padding: 6rpx;
+  padding-left: 15rpx;
+  padding-right: 15rpx;
+  border-radius: 30rpx;
+}

@@ -35,9 +35,11 @@ Route::group('api/admin/', function () {
     /*
      * 商铺管理
      */
-    Route::post('shop/PostDataByAdd', 'admin/Shop/PostDataByAdd'); /* 添加数据*/
+    Route::rule('shop/PostDataByAdd', 'admin/Shop/PostDataByAdd'); /* 添加数据*/
     Route::get('shop/GetDataByList', 'admin/Shop/GetDataByList'); /* 获取数据列表*/
     Route::get('shop/GetIdBydetailed', 'admin/Shop/GetIdBydetailed'); /* 获取数据列表*/
+    Route::get('shop/GetIdByDelShop', 'admin/Shop/GetIdByDelShop'); /* 删除店铺*/
+
 
     /**
      * 分销管理
@@ -110,6 +112,15 @@ Route::group('api/admin/', function () {
     Route::rule('data/GetShopByOrder', 'admin/data/GetShopByOrder'); /*获取店铺订单*/
 
     Route::rule('data/GetShopByGoods', 'admin/data/GetShopByGoods'); /*获取店铺商品*/
+
+
+    /**
+     * 分类模块管理
+     */
+    Route::rule('category/GetDataByList', 'shop/Category/GetDataByList'); /* 获取分类列表*/
+    Route::rule('category/PostDataBySave', 'shop/Category/PostDataBySave'); /* 更新或保存数据*/
+    Route::rule('category/GetIdByDel', 'shop/Category/GetIdByDel'); /* 删除数据*/
+    Route::rule('category/GetCategory', 'shop/Category/GetCategory'); /* 获取所有的一级分类*/
 
 
 });

@@ -355,7 +355,8 @@ Page({
 
     var paytemp = {
       openid: user.openid,
-      actualPrice: that.data.actualPrice
+      actualPrice: that.data.actualPrice,
+      title: that.data.goods[0].name,
     }
     var goods = that.data.goods;
     let keyContainer = {};

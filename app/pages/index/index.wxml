@@ -14,20 +14,20 @@
 
   <view class="mask">
     <view style="position:relative;">
-      <view class="shop-avatar" wx:for="{{avatarList}}" wx:key="item.id" style="left:{{item.xRadius}}rpx;top:{{item.yRadius}}rpx;" data-id="{{item.id}}" bindtap="toShop">
-        <view class="info-item">
-          <image src="{{item.logo}}">
+      <view class="shop-avatar" wx:for="{{avatarList}}" wx:key="item.id" style="left:{{item.xRadius}}rpx;top:{{item.yRadius}}rpx;" >
+        <view class="info-item {{index===curIndex ? 'show-text' :''}}">
+          <image src="{{item.logo}}" catchtap="toggleText" data-index="{{index}}">
           </image>
-          <view class="info-text">
+          <view class="info-text" wx:if="{{index===curIndex}}" bindtap="toShop" data-id="{{item.id}}">
             <!-- 如果地图上不显示商家店铺地址，就使用 .no-locate-name -->
             <text class="{{item.shop_locate_name==='' ?'no-locate-name':''}}">{{item.name}} </text>
-            <view class="locate-name">{{item.shop_locate_name}}</view>
+            <view class="locate-name">{{item.km}}km</view>
           </view>
 
         </view>
-        <view class="shop-distance">
+        <!-- <view class="shop-distance">
           <text>{{item.km}}km</text>
-        </view>
+        </view> -->
       </view>
     </view>
   </view>

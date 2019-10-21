@@ -11,6 +11,7 @@ namespace app\common\model;
 
 class ArticleModel extends BaseModel
 {
+
     protected $table = 'ee_article';
     protected $createTime = 'create_time';
 
