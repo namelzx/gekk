@@ -28,11 +28,11 @@ class Article extends Base
         return json($res);
     }
 
+
     public function GetDataByDetailed()
     {
         $data = input('param.');
         $res = ArticleModel::where('id', $data['id'])->find();
-
         ArticleModel::where('id', $data['id'])->setInc('view');
 
         $text = '收藏';

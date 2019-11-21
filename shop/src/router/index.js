@@ -196,19 +196,19 @@ export const constantRoutes = [
   },
   orderRouter,
   IntegralRouter,
-  // {
-  //   path: '/courier',
-  //   component: Layout,
-  //   redirect: '/courier',
-  //   children: [
-  //     {
-  //       path: 'courier',
-  //       component: () => import('@/views/courier/index'),
-  //       name: 'courier',
-  //       meta: {title: '快递管理', icon: 'dashboard'}
-  //     },
-  //   ]
-  // },
+  {
+    path: '/data',
+    component: Layout,
+    redirect: '/data',
+    children: [
+      {
+        path: 'data',
+        component: () => import('@/views/data/index'),
+        name: 'data',
+        meta: {title: '门店数据', icon: 'dashboard'}
+      },
+    ]
+  },
   {
     path: '/user',
     component: Layout,

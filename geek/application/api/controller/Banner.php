@@ -11,6 +11,7 @@ namespace app\api\controller;
 
 use app\common\model\BannerModel;
 use app\common\model\CollectionModel;
+use app\common\model\GoodsModel;
 use app\common\model\ShopModel;
 
 class Banner extends Base
@@ -33,9 +34,10 @@ class Banner extends Base
         if ($checoll > 0) {
             $text = '取消收藏';
         }
+        $cheshopgoods=GoodsModel::where(['shop_id'=>$data['shop_id'],'status'=>1])->count();
         $shop = ShopModel::where($shwhere)->find();
         $res = BannerModel::where($where)->limit(3)->select();
-        return json(['banner' => $res, 'shop' => $shop, 'text' => $text]);
+        return json(['banner' => $res, 'shop' => $shop, 'text' => $text,'goods'=>$cheshopgoods]);
     }
 
 }

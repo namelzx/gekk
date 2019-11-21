@@ -7,7 +7,6 @@
   display: flex;
   flex-direction: row;
   align-items: center;
- 
 }
 
 .container .locate-item .locate-icon {
@@ -18,11 +17,12 @@
 .container .locate-item .link-icon {
   position: relative;
 }
+
 .container .locate-item  .link-icon .arrow-icon {
   position: absolute;
   top: -16rpx;
   color: #333;
-} 
+}
 
 .container .locate-item .shop-name {
   color: #646464;
@@ -43,8 +43,8 @@
 /* 商铺范围 */
 
 .locate-area {
-  min-height: 800rpx;
-  height: 800rpx;
+  min-height: 750rpx;
+  height: 750rpx;
   width: 100%;
   margin-top: 60rpx;
 }
@@ -104,6 +104,7 @@
 }
 
 /* 用户范围内显示的商铺 */
+
 .mask {
   width: 680rpx;
   height: 680rpx;
@@ -121,26 +122,25 @@
   font-weight: 300;
   letter-spacing: 2rpx;
   position: absolute;
+  
 }
 
 .shop-avatar image {
-  width: 80rpx;
-  height: 80rpx;
+  width: 104rpx;
+  height: 104rpx;
   border-radius: 50%;
   box-shadow: 0 0 8rpx 4rpx #cecece;
-
+  z-index: 3;
 }
-
 
 .info-item {
   display: flex;
-  background: #dfdfdf;
   border-top-left-radius: 50%;
   border-bottom-left-radius: 50%;
   border-top-right-radius: 50rpx;
   border-bottom-right-radius: 50rpx;
   padding-right: 0 20rpx;
-  width: 80rpx;
+  width: 104rpx;
   color: transparent;
 }
 
@@ -154,9 +154,19 @@
   font-size: 24rpx;
 }
 
-
 .info-item .info-text {
-  width: 54%;
+  width: 118rpx;
+  display: inline-block;
+  height: 35px;
+  background: #dfdfdf;
+  border-top-right-radius: 40rpx;
+  border-bottom-right-radius: 40rpx;
+  padding: 0 40rpx;
+  line-height: 70rpx;
+  padding-left: 40rpx;
+  margin-top: 16rpx;
+  position: absolute;
+  left: 74rpx;
 }
 
 .info-item .info-text text {
@@ -169,4 +179,30 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   display: inline-block;
+}
+
+.lo {
+  text-align: center;
+}
+
+.lo .zb {
+  /* background: #f2f2f2; */
+  width: 50%;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 13rpx;
+  font-size: 28rpx;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+  border-radius: 40rpx;
+  justify-content: center;
+  /* border: 1px solid black; */
+}
+
+.zb image {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 10rpx;
 }

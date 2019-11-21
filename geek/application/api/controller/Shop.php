@@ -40,7 +40,7 @@ class Shop extends Base
             $get_code['area_code'] = $data['area_code'];
             $jx = $data['area'];
         } else {
-            $jx= $jx['result']['ad_info']['city'] . $jx['result']['ad_info']['district'];
+            $jx = $jx['result']['ad_info']['city'] . $jx['result']['ad_info']['district'];
         }
         $loca = [];
         if (!empty($data['area'])) {
@@ -68,7 +68,7 @@ class Shop extends Base
     {
         $data = input('param.');
         $res = CategoryModel::with(['foods' => function ($query) use ($data) {
-            $query->where('shop_id', $data['shop_id']);
+            $query->where('shop_id', $data['shop_id'])->where('status', 1);
         }])->all();
         return json($this->suk($res));
     }
@@ -98,26 +98,28 @@ class Shop extends Base
         $shopwhere[] = ['status', 'neq', 1];
         $shopwhere[] = ['status', 'eq', 404];
 
-
         $shop = ShopModel::where($shopwhere)->select();
 
         $shop_in = [];
         foreach ($shop as $i => $item) {
             $shop_in[$i] = $item['id'];
         }
+        $where=[];
+        if (!empty($data['shop_id'])) {
+            $where[] = ['shop_id', 'eq', $data['shop_id']];
+        }
         $res = GoodsModel::with(['suk' => function ($query) {
             $query->where('status', 1);
-        }])->withCount('eva')->whereNotIn('shop_id', $shop_in)->where('category_id', $data['category_id'])->paginate();
+        }])->withCount('eva')->where('status', 1)->where($where)->whereNotIn('shop_id', $shop_in)->paginate();
         return json($res);
     }
-
     /**
      * 获取店铺的商品分类
      */
     public function GetShopListGoodsByCategory()
     {
         $data = input('param.');
-        $res = CategoryModel::all();
+        $res = ShopModel::where('status', 1)->all();
         return json($res);
     }
 

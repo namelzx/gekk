@@ -7,7 +7,6 @@ import {
 
 let shopmodel = new ShopModel();
 
-
 import {
   CommonModel
 } from '../../api/common.js'
@@ -449,6 +448,12 @@ Page({
     }
  
     shopmodel.GetShopGoodsByList(id, res => {
+      if(res.length<1){
+        wx.showToast({
+          title: '当前店铺没有商品',
+          icon:'none'
+        })
+      }
       that.setData({
         goods: res,
         shop_id:id,
@@ -461,12 +466,17 @@ Page({
       type:1,
     }
     commonModel.GetBannerByList(temb, res => {
-      
+      if(res.goods===0){
+        wx.showToast({
+          title: '该店铺尚未上架商品',
+          icon:'none'
+        })
+      }
       that.setData({
         imgUrls: res.banner,
         shopinfo:res.shop,
         shop_name:res.shop.name,
-        logo:res.shop.shop_logo,
+        logo: res.shop.logo,
         collectionText:res.text
       })
       

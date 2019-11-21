@@ -16,7 +16,7 @@
   <view class="menu-wrapper">
     <scroll-view scroll-y="true" style="height: 450px;">
       <view wx:for="{{goods}}" class="menu-item border-1px {{action===index?'actcss':''}}" bindtap="selectMenu" data-item-index="{{index}}">
-        <view class="text">
+        <view class="text" >
           {{item.name}}
         </view>
       </view>
@@ -24,7 +24,10 @@
   </view>
   <scroll-view scroll-y="true" style="height: 500px;" scroll-into-view="{{toView}}" class="foods-wrapper">
     <view wx:for="{{goods}}" class="food-list food-list-hook" wx:for-index="parentIndex">
-      <view id="order{{parentIndex}}" class="title">{{item.name}}</view>
+      <view id="order{{parentIndex}}"
+        wx:if="{{item.foods.length>0}}"
+      
+       class="title"  >{{item.name}} </view>
       <view wx:for="{{item.foods}}" class="food-item" wx:for-item="food" data-food="{{food}}" data-id='{{food.id}}'>
         <view class="icon">
           <image src="{{food.images_url}}"></image>

@@ -26,3 +26,13 @@ export function GetIdBydetailed(id) {
 }
 
 
+
+export function UpdateCode(id) {
+  return request({
+    url: '/shop/UpdateCode',
+    method: 'get',
+    params: {id}
+  })
+}
+
+

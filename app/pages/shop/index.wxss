@@ -4,7 +4,7 @@
   display: flex;
   position: absolute;
   width: 100%;
-  top: 300px;
+  top: 330px;
   bottom: 46px;
   overflow: hidden;
   font-family: "微软雅黑";
@@ -72,6 +72,7 @@
 
 .food-list-hook {
   background: #fdfdfd;
+  margin-bottom: 30px;
 }
 
 .goods .foods-wrapper .food-list .food-item {
@@ -1043,7 +1044,7 @@ van-transition image {
 
 .collection{
   position: absolute;
-  top: 540rpx;
+  top: 640rpx;
   right: 20rpx;
   z-index: 100;
   background: #606266;

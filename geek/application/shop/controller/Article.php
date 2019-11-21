@@ -31,6 +31,7 @@ class Article extends Base
     public function PostDataBySave()
     {
         $data = input('param.');
+        $data['create_time'] = time();
         if (!empty($data['id'])) {
             $this->PostDataUpdate($data);
             return json(['msg' => '更新成功', 'data' => '', 'code' => 20000], 200);
@@ -54,7 +55,7 @@ class Article extends Base
     public function GetIdByDel()
     {
         $data = input('param.');
-        $res = ArticleModel::where('id', $data['id'])->data(['status' => 3])->update();
+        $res = ArticleModel::where('id', $data['id'])->delete();
         return json(['msg' => '删除成功', 'data' => $res, 'code' => 20000], 200);
     }
 

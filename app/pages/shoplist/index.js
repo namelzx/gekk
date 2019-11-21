@@ -27,7 +27,9 @@ Page({
     shop_logo: './../../../static/images/shop-logo-1.png',
     shop_name: '',
     shop_distance: '2.4',
-    category:[],
+    category:[
+
+    ],
     list: [    ]
   },
   onLoad(e){
@@ -39,15 +41,19 @@ Page({
   },
   getCategory(shop_id){
     shopmodel.GetShopListGoodsByCategory(shop_id, res => {
+      let ca = [{
+        id: 0,
+        name: '全部'
+      }]
       this.setData({
-        category: res,
+        category: ca.concat(res),
       })
-      this.getGoods(res[0].id)
+      this.getGoods(0)
     })
   },
-  getGoods(category_id){
+  getGoods(shop_id){
     var that=this;
-    shopmodel.GetShopListGoodsByList(category_id, res => {
+    shopmodel.GetShopListGoodsByList(shop_id, res => {
       that.setData({
         list:res.data,
       })
@@ -56,7 +62,6 @@ Page({
   onShow(){
     var d=wx.getStorageSync('dist');
     var im = wx.getStorageSync('shopbaner');
-    console.log(im)
     this.setData({
       shop_name:d,
       imgUrls: im

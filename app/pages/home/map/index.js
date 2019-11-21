@@ -44,15 +44,13 @@ Page({
     areainfo: '',
     city_code: '',
     area_code: '', //选择区域
-    icon: [
-
-    ], //模拟测试按钮
+    icon: [], //模拟测试按钮
     showAddress: false,
     // 地图
     latitude: 0, //地图初始经度
     longitude: 0, //地图初始纬度
-    markers: [
-    ] // 地图标注
+    markers: [], // 地图标注,
+    curIndex: '' //当前显示图标下标
   },
   handeShop(e) {
     let {
@@ -61,6 +59,14 @@ Page({
     wx.navigateTo({
       url: '/pages/shop/index?id=' + id,
     })
+  },
+
+  onLoad(opt) {
+    console.log(opt)
+    this.setData({
+      curIndex: opt.index
+    })
+    console.log(this.data.markers)
   },
   onShow() {
     var that = this;
@@ -72,7 +78,6 @@ Page({
     wx.getLocation({
       success: function(locatlres) {
         wx.setStorageSync('loca', locatlres)
-      
         that.data.area_code = wx.getStorageSync('area_code')
 
         that.setData({
@@ -84,34 +89,37 @@ Page({
             locatlres.area = that.data.areainfo
         }
         shopmodel.GetShopByList(locatlres, res => {
+
           for (let i = 0; i < res.data.length; i++) {
-            res.data[i]['label'] = {
-              'content': res.data[i].name,
-              'color': '#666',
-              'fontSize': '10',
-              'padding': 2,
-              'anchorX': 10,
-              'anchorY': -28,
-              'borderWidth': 1,
-              'bgColor': '#fff',
-              'textAlign': 'right',
-              'borderColor': '#000',
-              'borderRadius': 20,
-              'display': 'ALWAYS',
+            if (Number(that.data.curIndex) === i) {
+              res.data[i]['label'] = {
+                'content': res.data[i].name,
+                'color': '#666',
+                'fontSize': '10',
+                'padding': 2,
+                'anchorX': 10,
+                'anchorY': -28,
+                'borderWidth': 1,
+                'bgColor': '#fff',
+                'textAlign': 'right',
+                'borderColor': '#000',
+                'borderRadius': 20,
+                'display': 'ALWAYS',
+              }
+              res.data[i]['width'] = 35
+              res.data[i]['height'] = 35
+              res.data[i]['iconPath'] = res.data[i]['logo']
+              res.data[i]['latitude'] = res.data[i]['lat']
+              res.data[i]['longitude'] = res.data[i]['lng']
             }
-            res.data[i]['width'] = 35
-            res.data[i]['height'] = 35
-            res.data[i]['iconPath'] = res.data[i]['logo']
-            res.data[i]['latitude'] = res.data[i]['lat']
-            res.data[i]['longitude'] = res.data[i]['lng']
           }
           let shoptrue = true;
           if (res.data === false) {
             shoptrue = false
           }
-          if (res.loca===[]){
-           
-          }else{
+          if (res.loca === []) {
+
+          } else {
             that.setData({
               latitude: res.loca.lat,
               longitude: res.loca.lng,
@@ -128,6 +136,23 @@ Page({
             city_list: res
           })
         })
+        setTimeout(() => {
+          let newShop = that.data.markers
+          let curIndex = Number(that.data.curIndex)
+          let fisrtItem = newShop[curIndex]
+          if (newShop) {
+            for (let i = 0; i < newShop.length; i++) {
+              if (i === curIndex) {
+                newShop.splice(i, 1)
+                break;
+              }
+            }
+            newShop.unshift(fisrtItem)
+            that.setData({
+              markers: newShop
+            })
+          }
+        }, 1300)
       },
     })
   },
@@ -137,8 +162,6 @@ Page({
       showAddress: false
     })
   },
-
-
   //点击城市
   handeCity() {
     var that = this;
@@ -254,6 +277,7 @@ Page({
   },
 
   handelProvinces(e) {
+
     var that = this;
     var level = e.currentTarget.dataset.level
     if (level == 1) {
@@ -284,16 +308,19 @@ Page({
   markerTap(event) {
     var that = this;
     let val = event.markerId
-    console.log(val)
-
-    var markers = that.data.markers;
-    for (let i = 0; i < markers.length; i++) {
-      if (val === markers[i].id) {
-        val = i
-      }
-    }
-    this.setData({
-      currentBtnId: val
+    wx.navigateTo({
+      url: '/pages/shop/index?id=' + val,
     })
-  }
+  },
+  clickmap: function(e) {
+    let info = e.currentTarget.dataset.info
+    console.log(info)
+    wx.openLocation({
+      latitude: Number(info.lat),
+      longitude: Number(info.lng),
+      scale: 18,
+      name: info.name,
+      address: info.location
+    })
+  },
 })

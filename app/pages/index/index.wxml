@@ -1,14 +1,16 @@
 <!--index.wxml-->
 <view class="container">
   <view class="locate-item"  data-id="{{avatarList[0].id}}" bindtap="tomap">
-    <van-icon name="location-o" class="locate-icon"/>
+    <!-- <van-icon name="location-o" class="locate-icon"/> -->
     <view class="shop-name">
       <text>{{dist}}</text>
       <!-- <view class="distance">
         <text>距离你{{avatarList[0].km}}km</text>
       </view> -->
     </view>
-    <view class="link-icon"><van-icon name="arrow" class="arrow-icon" /></view>
+    <view class="link-icon">
+    <van-icon name="arrow" class="arrow-icon" />
+    </view>
     
   </view>
 
@@ -18,9 +20,9 @@
         <view class="info-item {{index===curIndex ? 'show-text' :''}}">
           <image src="{{item.logo}}" catchtap="toggleText" data-index="{{index}}">
           </image>
-          <view class="info-text" wx:if="{{index===curIndex}}" bindtap="toShop" data-id="{{item.id}}">
+          <view class="info-text" wx:if="{{index===curIndex}}" bindtap="tomap" data-id="{{item.id}}">
             <!-- 如果地图上不显示商家店铺地址，就使用 .no-locate-name -->
-            <text class="{{item.shop_locate_name==='' ?'no-locate-name':''}}">{{item.name}} </text>
+            <!-- <text class="{{item.shop_locate_name==='' ?'no-locate-name':''}}">{{item.name}} </text> -->
             <view class="locate-name">{{item.km}}km</view>
           </view>
 
@@ -45,4 +47,11 @@
       </view>
     </view>
   </view>
+</view>
+
+
+<view class="lo" bindtap="tomap">
+  <view class="zb">
+  <!-- <image src="../../static/images/jt.png"></image> -->
+  开启您的咖啡探索之旅</view>
 </view>

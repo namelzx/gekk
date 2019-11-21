@@ -24,8 +24,10 @@ class User extends Base
         if (!empty($data['name'])) {
             $where[] = ['nickName', 'eq', $data['name']];
         }
-        $res = UserModel::where($where)->paginate();
-        return json(msg(20000, $res, ''));
+        $res = UserModel::withSum('comm', 'price')->
+        withSum('order','actualPrice')->
+        where($where)->paginate();
+        return json(msg(20000, $res, '33'));
     }
 
 }

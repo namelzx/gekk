@@ -19,14 +19,47 @@ class Data extends Base
     public function Shop()
     {
         $data = input('param.');
+        $where = [];
+        if (!empty($data['povinces_code'])) {
+            $where[] = ['povinces_code', 'eq', $data['povinces_code']];
+        }
+
+        if (!empty($data['city_code'])) {
+            $where[] = ['city_code', 'eq', $data['city_code']];
+        }
+
+        if (!empty($data['area_code'])) {
+            $where[] = ['area_code', 'eq', $data['area_code']];
+        }
         $res = ShopModel::withSum(['order' => function ($query) use ($data) {
 //            $query->where('id', 1);//条件
+            if (!empty($data['dateTime'])) {
+                $query->where('create_time', 'between time', $data['dateTime']);
+            }
         }], 'actualPrice')
+            ->withSum(['comm' => function ($query) use ($data) {
+//            $query->where('id', 1);//条件
+                if (!empty($data['dateTime'])) {
+                    $query->where('create_time', 'between time', $data['dateTime']);
+                }
+            }], 'price')
             ->withCount(['user' => function ($query) use ($data) {
+                if (!empty($data['dateTime'])) {
+                    $query->where('create_time', 'between time', $data['dateTime']);
+                }
 //            $query->where('id', 1);
             }])->withCount(['goods' => function ($query) use ($data) {
+                if (!empty($data['dateTime'])) {
+                    $query->where('create_time', 'between time', $data['dateTime']);
+                }
 //            $query->where('id', 1);
-            }])->withCount('order');
+            }])->withCount(['order'=> function ($query) use ($data) {
+                if (!empty($data['dateTime'])) {
+                    $query->where('create_time', 'between time', $data['dateTime']);
+                }
+//            $query->where('id', 1);
+            }])
+            ->where($where);
 
         if (!empty($data['shop_id'])) {
             $res = $res->where('id', $data['shop_id']);

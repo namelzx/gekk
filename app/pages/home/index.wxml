@@ -26,10 +26,10 @@
         <view class="icon-title">我的积分</view>
       </view>
       <!-- 分销中心 -->
-      <view class="u-category my-retail" bindtap="goRetail">
+      <!-- <view class="u-category my-retail" bindtap="goRetail">
         <van-icon name="friends-o" class="retail-icon"/>
         <view class="icon-title">分销中心</view>
-      </view>
+      </view> -->
       <!-- 个人资料 -->
       <view class="u-category my-profile" bindtap="goProfile">
         <van-icon name="contact" class="profile-icon" />

@@ -98,14 +98,20 @@ Page({
       },
     })
   },
-  toShop(e){
-   wx.navigateTo({
-     url: '/pages/shop/index?id=' + e.currentTarget.dataset.id,
-   })
+  toggleText(e) {
+    console.log(e.currentTarget.dataset.index)
+    let that = this
+    let index = e.currentTarget.dataset.index
+    that.setData({ curIndex: index })
+  },
+  toShop(e) {
+    wx.navigateTo({
+      url: '/pages/shop/index?id=' + e.currentTarget.dataset.id,
+    })
   },
   tomap(){
     wx.navigateTo({
-      url: '/pages/home/map/index' 
+      url: '/pages/home/map/index?index='+this.data.curIndex 
     })
   },
   getUserInfo: function(e) {
@@ -116,12 +122,7 @@ Page({
     })
   },
 
-  toggleText (e) {
-    console.log(e.currentTarget.dataset.index)
-    let that = this
-    let index = e.currentTarget.dataset.index
-    that.setData({ curIndex: index})
-  },
+ 
   /**
   * 用户点击右上角分享
   */

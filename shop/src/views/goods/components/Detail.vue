@@ -114,6 +114,12 @@
                 <el-input v-model="postForm.line_price" placeholder="输入划线价格"></el-input>
               </el-form-item>
             </el-col>
+
+            <el-col :span="7">
+              <el-form-item label-width="100px" label="佣金:">
+                <el-input v-model="postForm.commission" placeholder="输入商品佣金"></el-input>
+              </el-form-item>
+            </el-col>
       
           </el-row>
         </div>
@@ -163,13 +169,13 @@
                   </el-form-item>
                 </el-col>
               </el-row>
-              <el-row :gutter="20">
-                <el-col :span="7">
-                  <el-form-item label-width="100px">
-                    <el-button type="text">添加选择项</el-button>
-                  </el-form-item>
-                </el-col>
-              </el-row>
+              <!--<el-row :gutter="20">-->
+                <!--<el-col :span="7">-->
+                  <!--<el-form-item label-width="100px">-->
+                    <!--<el-button type="text">添加选择项</el-button>-->
+                  <!--</el-form-item>-->
+                <!--</el-col>-->
+              <!--</el-row>-->
               <!--买断-->
             </el-card>
           </div>

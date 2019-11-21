@@ -50,6 +50,12 @@
         </template>
       </el-table-column>
 
+      <el-table-column label="佣金" min-width="100px">
+        <template slot-scope="scope">
+          <span v-if="scope.row.comm_sum">{{scope.row.comm_sum}}</span>
+        </template>
+      </el-table-column>
+
       <el-table-column label="付款状态" min-width="100px" align="center">
         <template slot-scope="scope">
           <div v-if="scope.row.status<5">

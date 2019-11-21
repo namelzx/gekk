@@ -45,7 +45,7 @@ class Order extends Base
     {
         $data = input('param.');
         $res = OrderModel::where('id', $data['id'])->data($data)->update();
-        return json(['msg' => '订单取消成功', 'data' => $res, 'code' => 20000], 200);
+        return json(['msg' => '订单更新成功', 'data' => $res, 'code' => 20000], 200);
     }
 
 
@@ -83,6 +83,7 @@ class Order extends Base
         $requestData = "{'OrderCode':'" . $data['out_courier_no'] . "','ShipperCode':'" . $che['value'] . "','LogisticCode':'" . $data['out_courier_no'] . "'}";
 
         $logistics = json_decode($this->getOrderTracesByJson($requestData));
+//        dump($logistics);
         if ($logistics->State === '0') {
             return json(['msg' => '该订单号不存在,请检查订单号或者快递公司', 'data' => $logistics, 'code' => 20000, 'status' => 204]);
         }

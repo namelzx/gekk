@@ -14,8 +14,8 @@
 </view>
 <view class="read-swiper">
   <!-- 遮罩 -->
-  <view class="bg-mask-top"></view>
-  <view class="bg-mask-bottom"></view>
+  <!-- <view class="bg-mask-top"></view>
+  <view class="bg-mask-bottom"></view> -->
   <!-- 遮罩 -->
   <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular>
     <block wx:for="{{swiperImg}}" wx:key="{{index}}">

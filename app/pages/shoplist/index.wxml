@@ -5,6 +5,8 @@
 
   <view class="displa-list">
     <van-tabs active="{{ active }}"  bind:change="onChange">
+
+    
       <van-tab wx:for="{{category}}"  title="{{item.name}}">
         <view class="command-container">
           <my-shop-card list="{{list}}" ></my-shop-card>

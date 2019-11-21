@@ -39,6 +39,7 @@ Route::group('api/admin/', function () {
     Route::get('shop/GetDataByList', 'admin/Shop/GetDataByList'); /* 获取数据列表*/
     Route::get('shop/GetIdBydetailed', 'admin/Shop/GetIdBydetailed'); /* 获取数据列表*/
     Route::get('shop/GetIdByDelShop', 'admin/Shop/GetIdByDelShop'); /* 删除店铺*/
+    Route::rule('shop/UpdateCode', 'admin/Shop/UpdateCode'); /* 更新小程序码*/
 
 
     /**

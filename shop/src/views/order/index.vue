@@ -52,17 +52,19 @@
             type="primary"
             icon="el-icon-search"
             @click="handleFilter"
-          >搜索</el-button>
+          >搜索
+          </el-button>
         </el-col>
 
-           <el-col :span="2">
+        <el-col :span="2">
           <el-button
             v-waves
             class="filter-item"
             type="primary"
             icon="el-icon-download"
             @click="handleDownload"
-          >导出订单</el-button>
+          >导出订单
+          </el-button>
         </el-col>
       </el-form>
     </div>
@@ -87,6 +89,12 @@
       <el-table-column label="商品名称" min-width="200px">
         <template slot-scope="scope">
           <span>{{scope.row.goods.name}}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="佣金" min-width="200px">
+        <template slot-scope="scope">
+          <span v-if="scope.row.comm_sum">{{scope.row.comm_sum}}</span>
+          <span v-else>0</span>
         </template>
       </el-table-column>
 
@@ -156,43 +164,43 @@
 </template>
 
 <script>
-import { GetDataByList, PostDataByCancel, PostDataBySave,GetOrderByDownload} from "@/api/order";
-import waves from "@/directive/waves"; // waves directive
-import { parseTime } from "@/utils";
-import Pagination from "@/components/Pagination"; // secondary package based on el-pagination
-import { mapGetters } from "vuex";
+  import {GetDataByList, GetOrderByDownload, PostDataByCancel, PostDataBySave} from "@/api/order";
+  import waves from "@/directive/waves"; // waves directive
+  import {parseTime} from "@/utils";
+  import Pagination from "@/components/Pagination"; // secondary package based on el-pagination
+  import {mapGetters} from "vuex";
 
-export default {
-  name: "ComplexTable",
-  components: { Pagination },
-  directives: { waves },
-  filters: {
-    statusFilter(status) {
-      const statusMap = {
-        published: "success",
-        draft: "info",
-        deleted: "danger"
-      };
-      return statusMap[status];
+  export default {
+    name: "ComplexTable",
+    components: {Pagination},
+    directives: {waves},
+    filters: {
+      statusFilter(status) {
+        const statusMap = {
+          published: "success",
+          draft: "info",
+          deleted: "danger"
+        };
+        return statusMap[status];
+      },
+      statusText(status) {
+        const statusMap = {
+          1: "未支付",
+          2: "已支付",
+          3: "已确认",
+          4: "已发货",
+          5: "已收货"
+        };
+        return statusMap[status];
+      }
     },
-    statusText(status) {
-      const statusMap = {
-        1: "未支付",
-        2: "已支付",
-        3: "已确认",
-        4: "已发货",
-        5: "已收货"
-      };
-      return statusMap[status];
-    }
-  },
     computed: {
-  
-    ...mapGetters(["shop_id"])
-  },
-  data() {
-    return {
-       options: [{
+
+      ...mapGetters(["shop_id"])
+    },
+    data() {
+      return {
+        options: [{
           value: '0',
           label: '全部'
         }, {
@@ -213,131 +221,131 @@ export default {
             label: '已取消'
           },
         ],
-      value: "",
-      tableKey: 0,
-      list: null,
-      total: 0,
-      listLoading: false,
-      listQuery: {
-        page: 1,
-        limit: 20,
-        importance: undefined,
-        title: undefined,
-        type: undefined,
-        sort: "+id"
-      },
+        value: "",
+        tableKey: 0,
+        list: null,
+        total: 0,
+        listLoading: false,
+        listQuery: {
+          page: 1,
+          limit: 20,
+          importance: undefined,
+          title: undefined,
+          type: undefined,
+          sort: "+id"
+        },
 
-      temp: {
-        id: undefined,
-        importance: 1,
-        remark: "",
-        timestamp: new Date(),
-        title: "",
-        type: "",
-        status: "published"
-      },
-      dialogFormVisible: false,
-      dialogStatus: "",
-      textMap: {
-        update: "Edit",
-        create: "Create"
-      },
-      dialogPvVisible: false
-    };
-  },
-  created() {
-    // this.getList()
-  },
-  methods: {
-    getList() {
-      this.listLoading = true;
-      this.listQuery.shop_id=this.shop_id
-      GetDataByList(this.listQuery).then(response => {
-        this.list = response.data.data;
-        this.total = response.data.total;
-        setTimeout(() => {
-          this.listLoading = false;
-        }, 1.5 * 1000);
-      });
+        temp: {
+          id: undefined,
+          importance: 1,
+          remark: "",
+          timestamp: new Date(),
+          title: "",
+          type: "",
+          status: "published"
+        },
+        dialogFormVisible: false,
+        dialogStatus: "",
+        textMap: {
+          update: "Edit",
+          create: "Create"
+        },
+        dialogPvVisible: false
+      };
     },
-    handleFilter() {
-      this.listQuery.page = 1;
-      this.getList();
+    created() {
+      // this.getList()
     },
-    handleModifyStatus(row, status) {
-      this.$message({
-        message: "操作Success",
-        type: "success"
-      });
-      row.status = status;
-    },
-    sortChange(data) {
-      const { prop, order } = data;
-      if (prop === "id") {
-        this.sortByID(order);
-      }
-    },
-    sortByID(order) {
-      if (order === "ascending") {
-        this.listQuery.sort = "+id";
-      } else {
-        this.listQuery.sort = "-id";
-      }
-      this.handleFilter();
-    },
-    handleDelete(row) {
-      GetIdByDel(row.id).then(res => {
-        this.$notify({
-          title: "Success",
-          message: "Delete Successfully",
-          type: "success",
-          duration: 2000
+    methods: {
+      getList() {
+        this.listLoading = true;
+        this.listQuery.shop_id = this.shop_id
+        GetDataByList(this.listQuery).then(response => {
+          this.list = response.data.data;
+          this.total = response.data.total;
+          setTimeout(() => {
+            this.listLoading = false;
+          }, 1.5 * 1000);
         });
-        const index = this.list.indexOf(row);
-        this.list.splice(index, 1);
-      });
-    },
-
-    handleDownload() {
-      
-      this.downloadLoading = true
-      GetOrderByDownload(this.listQuery).then(res=>{
-          this.downLoad(res.data)
-      })
-     
-    },
-    downLoad(list){
-       import('@/vendor/Export2Excel').then(excel => {
-        const tHeader = ['Id', '下单时间', '下单店铺', '商品名称', '属性','价格','数量']
-        const filterVal = ['id', 'create_time', 'shopname', 'name', 'suk_name','price','num']
-        const data = this.formatJson(filterVal, list)
-        excel.export_json_to_excel({
-          header: tHeader,
-          data,
-          filename: this.filename,
-          autoWidth: this.autoWidth,
-          bookType: this.bookType
-        })
-        this.downloadLoading = false
-      })
-    },
-    formatJson(filterVal, jsonData) {
-      return jsonData.map(v => filterVal.map(j => {
-        console.log(j)
-        if (j === 'create_time') {
-          return parseTime(v[j])
-        } else {
-          return v[j]
+      },
+      handleFilter() {
+        this.listQuery.page = 1;
+        this.getList();
+      },
+      handleModifyStatus(row, status) {
+        this.$message({
+          message: "操作Success",
+          type: "success"
+        });
+        row.status = status;
+      },
+      sortChange(data) {
+        const {prop, order} = data;
+        if (prop === "id") {
+          this.sortByID(order);
         }
-      }))
+      },
+      sortByID(order) {
+        if (order === "ascending") {
+          this.listQuery.sort = "+id";
+        } else {
+          this.listQuery.sort = "-id";
+        }
+        this.handleFilter();
+      },
+      handleDelete(row) {
+        GetIdByDel(row.id).then(res => {
+          this.$notify({
+            title: "Success",
+            message: "Delete Successfully",
+            type: "success",
+            duration: 2000
+          });
+          const index = this.list.indexOf(row);
+          this.list.splice(index, 1);
+        });
+      },
+
+      handleDownload() {
+
+        this.downloadLoading = true
+        GetOrderByDownload(this.listQuery).then(res => {
+          this.downLoad(res.data)
+        })
+
+      },
+      downLoad(list) {
+        import('@/vendor/Export2Excel').then(excel => {
+          const tHeader = ['Id', '下单时间', '下单店铺', '商品名称', '属性', '价格', '数量']
+          const filterVal = ['id', 'create_time', 'shopname', 'name', 'suk_name', 'price', 'num']
+          const data = this.formatJson(filterVal, list)
+          excel.export_json_to_excel({
+            header: tHeader,
+            data,
+            filename: this.filename,
+            autoWidth: this.autoWidth,
+            bookType: this.bookType
+          })
+          this.downloadLoading = false
+        })
+      },
+      formatJson(filterVal, jsonData) {
+        return jsonData.map(v => filterVal.map(j => {
+          console.log(j)
+          if (j === 'create_time') {
+            return parseTime(v[j])
+          } else {
+            return v[j]
+          }
+        }))
+      }
+
     }
-   
-  }
-};
+  };
 </script>
 <style>
-img {
-  width: 100px;
-  height: 100px;
-}
+  img {
+    width: 100px;
+    height: 100px;
+  }
 </style>

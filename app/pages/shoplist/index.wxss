@@ -8,6 +8,7 @@
 .read-swiper {
   position: relative;
   margin: 50rpx 0;
+  margin-top: 100rpx;
 }
 
 .read-swiper  swiper {
@@ -47,4 +48,9 @@ swiper .wx-swiper-dot::before {
 swiper .wx-swiper-dot-active::before {
   background: #e45265 !important;
   border-radius: 50%;
+}
+.displa-list .van-ellipsis {
+  overflow:inherit;
+  white-space: normal;
+
 }

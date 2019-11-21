@@ -99,7 +99,7 @@ Route::group('api/shop/', function () {
     Route::rule('shop/PostDataByAdd', 'shop/Shop/PostDataByAdd'); /* 添加数据*/
     Route::get('shop/GetDataByList', 'shop/Shop/GetDataByList'); /* 获取数据列表*/
     Route::get('shop/GetIdBydetailed', 'shop/Shop/GetIdBydetailed'); /* 获取数据列表*/
-
+    Route::rule('shop/UpdateCode', 'admin/Shop/UpdateCode'); /* 更新小程序码*/
 
     Route::get('city/getProvinces', 'admin/shop/getProvinces'); /* 获取省份*/
     Route::get('city/getCity', 'admin/shop/getCity'); /* 获取城市*/
@@ -143,6 +143,16 @@ Route::group('api/shop/', function () {
      * 用户模块
      */
     Route::get('user/GetDataByList', 'shop/user/GetDataByList');//获取用户
+
+
+    /**
+     * 数据统计
+     */
+    Route::rule('data/ShopInfo', 'admin/data/Shop'); /* 获取店铺信息*/
+
+    Route::rule('data/GetShopByOrder', 'admin/data/GetShopByOrder'); /*获取店铺订单*/
+
+    Route::rule('data/GetShopByGoods', 'admin/data/GetShopByGoods'); /*获取店铺商品*/
 
 
 });

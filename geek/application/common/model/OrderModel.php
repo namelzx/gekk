@@ -53,19 +53,28 @@ class OrderModel extends BaseModel
         return $this->hasOne('UserModel', 'id', 'user_id');
     }
 
+    public function comm()
+    {
+        return $this->hasMany('CommissionModel', 'order_id', 'id');
+    }
+
     //快递订单
     public function getCourier()
     {
         return $this->hasOne('OrderCourierModel', 'order_id', 'id');
     }
-    public function invoice(){
+
+    public function invoice()
+    {
         return $this->hasOne('OrderInvoiceModel', 'order_id', 'id');
 
     }
+
     public static function GetDataByList($data)
     {
 
-        $res = self::with(['goods', 'address', 'shop','getUser']);
+        $res = self::with(['goods', 'address', 'shop', 'getUser'])
+            ->withSum('comm', 'price');
 
         if (!empty($data['time'])) {
             $res = $res->where('create_time', 'between time', $data['time']);

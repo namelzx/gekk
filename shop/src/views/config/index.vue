@@ -1,6 +1,9 @@
 <template>
   <div class="createPost-container">
-    <el-form ref="postForm" :model="postForm" :rules="rules" class="form-container">
+    <el-form ref="postForm" :model="postForm" :rules="rules" class="form-container" element-loading-text="更新中"
+             element-loading-spinner="el-icon-loading"
+             element-loading-background="rgba(0, 0, 0, 0.8)"
+             v-loading="bloading">
       <sticky :z-index="10" :class-name="'sub-navbar draft'">
         <el-button v-loading="loading" type="warning" @click="submitForm">保存</el-button>
       </sticky>
@@ -32,24 +35,26 @@
                       placeholder="起始时间"
                       v-model="postForm.startTime"
                       :picker-options="{
-      start: '08:30',
+      start: '00:00',
       step: '00:15',
-      end: '18:30'
+      end: '24:00'
     }"
                     ></el-time-select>
                     <el-time-select
                       placeholder="结束时间"
                       v-model="postForm.endTime"
                       :picker-options="{
-      start: '08:30',
+      start: '00:30',
       step: '00:15',
-      end: '18:30',
-      minTime: endTime
+      end: '24:00',
+
     }"
                     ></el-time-select>
                   </el-form-item>
                 </el-col>
               </el-row>
+
+
               <el-row>
                 <el-col :span="8">
                   <el-form-item label-width="120px" label="所在城市:">
@@ -90,15 +95,40 @@
                 </el-col>
               </el-row>
 
+
               <el-row>
                 <el-col :span="10">
-                  <el-form-item label-width="120px" label="店铺Logo:" prop="logo">
-                    <LoginImages :logo="postForm.logo" @handelImages="handelLogin"></LoginImages>
+                  <el-form-item label-width="120px" label="二维码背景图:">
+                    <LoginImages :logo="postForm.low_bg" @handelImages="handelLow"></LoginImages>
+
+                    背景图图标规格 429x678
+
                   </el-form-item>
                 </el-col>
               </el-row>
 
-                 <el-row>
+
+              <el-row v-if="postForm.id">
+                <el-col :span="10">
+                  <el-form-item label-width="120px" label="店铺二维码:" prop="logo">
+                    <img class="shop_code" :src="Img+postForm.shop_code">
+                    <el-button type="text" @click="handelCode">更新店铺二维码</el-button>
+
+                  </el-form-item>
+                </el-col>
+              </el-row>
+
+              <el-row>
+                <el-col :span="10">
+                  <el-form-item label-width="120px" label="店铺Logo:" prop="logo">
+                    <LoginImages :logo="postForm.logo" @handelImages="handelLogin"></LoginImages>
+
+
+                  </el-form-item>
+                </el-col>
+              </el-row>
+
+              <el-row>
                 <el-col :span="10">
                   <el-form-item label-width="120px" label="店铺首页Logo:" prop="logo">
                     <LoginImages :logo="postForm.shop_logo " @handelImages="handelShopLogo"></LoginImages>
@@ -141,211 +171,234 @@
 </template>
 
 <script>
-import Tinymce from "@/components/Tinymce";
-import Upload from "@/components/Upload/SingleImage3";
-import MDinput from "@/components/MDinput";
-import Sticky from "@/components/Sticky"; // 粘性header组件
-import { validURL } from "@/utils/validate";
-import { fetchArticle } from "@/api/article";
-import { searchUser } from "@/api/remote-search";
-// import Warning from './Warning'
-// import { CommentDropdown, PlatformDropdown, SourceUrlDropdown } from './Dropdown'
-import LoginImages from "@/components/Upload/LoginImages";
+  import Tinymce from "@/components/Tinymce";
+  import Upload from "@/components/Upload/SingleImage3";
+  import MDinput from "@/components/MDinput";
+  import Sticky from "@/components/Sticky"; // 粘性header组件
+  import {validURL} from "@/utils/validate";
+  import {fetchArticle} from "@/api/article";
+  import {searchUser} from "@/api/remote-search";
+  // import Warning from './Warning'
+  // import { CommentDropdown, PlatformDropdown, SourceUrlDropdown } from './Dropdown'
+  import LoginImages from "@/components/Upload/LoginImages";
 
-import { GetIdBydetailed, PostDataByAdd } from "@/api/shop";
+  import {GetIdBydetailed, PostDataByAdd, UpdateCode} from "@/api/shop";
 
-import { getArea, getCity, getProvinces } from "@/api/city";
-import { mapGetters } from "vuex";
+  import {getArea, getCity, getProvinces} from "@/api/city";
+  import {mapGetters} from "vuex";
 
-const defaultForm = {
-  name: "", //店铺名称-->
-  shopname: "", // 登录名称-->
-  password: "", // 登录密码-->
-  location: "", // 店铺地址-->
-  status: 1, // 店铺状态-->
-  logo: "", // logo-->
-  phone: undefined, // 联系电话-->
-  startTime: "",
-  endTime: ""
-};
-export default {
-  name: "ArticleDetail",
-  components: { Tinymce, MDinput, Upload, Sticky, LoginImages },
-  props: {
-    isEdit: {
-      type: Boolean,
-      default: false
-    }
-  },
-  computed: {
-    ...mapGetters(["shop_id"])
-  },
-  data() {
-    const validateRequire = (rule, value, callback) => {
-      if (value === "") {
-        this.$message({
-          message: rule.field + "为必传项",
-          type: "error"
-        });
-        callback(new Error(rule.field + "为必传项"));
-      } else {
-        callback();
+  const defaultForm = {
+    name: "", //店铺名称-->
+    shopname: "", // 登录名称-->
+    password: "", // 登录密码-->
+    location: "", // 店铺地址-->
+    status: 1, // 店铺状态-->
+    logo: "", // logo-->
+    phone: undefined, // 联系电话-->
+    startTime: "",
+    endTime: ""
+  };
+  export default {
+    name: "ArticleDetail",
+    components: {Tinymce, MDinput, Upload, Sticky, LoginImages},
+    props: {
+      isEdit: {
+        type: Boolean,
+        default: false
       }
-    };
-    return {
-      Provinces: [],
-      City: [],
-      Area: [],
-      postForm: Object.assign({}, defaultForm),
-      loading: false,
-      userListOptions: [],
-      rules: {
-        name: [{ validator: validateRequire }],
-        shopname: [{ validator: validateRequire }],
-        password: [{ validator: validateRequire }],
-        location: [{ validator: validateRequire }],
-        phone: [{ validator: validateRequire }]
-      }
-    };
-  },
-  created() {
-    const id = this.shop_id;
-    this.fetchData(id);
-    getProvinces().then(res => {
-      this.Provinces = res.data;
-    });
-    // Why need to make a copy of this.$route here?
-    // Because if you enter this page and quickly switch tag, may be in the execution of the setTagsViewTitle function, this.$route is no longer pointing to the current page
-    // https://github.com/PanJiaChen/vue-element-admin/issues/1221
-    this.tempRoute = Object.assign({}, this.$route);
-  },
-  methods: {
-    handelProvinces(e) {
-      this.City = [];
-      this.postForm.city_code = "";
-      this.Area = [];
-      this.postForm.area_code = "";
-      getCity(e).then(res => {
-        this.City = res.data;
-      });
     },
-    handelCity(e) {
-      this.Area = [];
-      this.postForm.area_code = "";
-      getArea(e).then(res => {
-        this.Area = res.data;
-      });
+    computed: {
+      ...mapGetters(["shop_id"])
     },
-    handelLogin(e) {
-      this.postForm.logo = e;
-    },
-    handelShopLogo(e){
-      this.postForm.shop_logo = e;
-
-    },
-    fetchData(id) {
-      var that = this;
-      GetIdBydetailed(id)
-        .then(response => {
-          this.postForm = response.data;
-          this.setTagsViewTitle();
-          getCity(this.postForm.povinces_code).then(res => {
-            this.City = res.data;
+    data() {
+      const validateRequire = (rule, value, callback) => {
+        if (value === "") {
+          this.$message({
+            message: rule.field + "为必传项",
+            type: "error"
           });
-          getArea(this.postForm.city_code).then(res => {
-            this.Area = res.data;
-          });
-          // set page title
-          this.setPageTitle();
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    },
-    setTagsViewTitle() {
-      const title = "编辑";
-      const route = Object.assign({}, this.tempRoute, {
-        title: `${title}-${this.postForm.name}`
-      });
-      this.$store.dispatch("tagsView/updateVisitedView", route);
-    },
-    setPageTitle() {
-      const title = "编辑";
-      document.title = `${title} - ${this.postForm.name}`;
-    },
-    submitForm() {
-      this.$refs.postForm.validate(valid => {
-        if (valid) {
-          PostDataByAdd(this.postForm).then(res => {
-            this.loading = true;
-            if (res.status === 20004) {
-              this.$message({
-                message: res.message,
-                type: "warning"
-              });
-              this.postForm.status="2"
-              return;
-            }
-            this.$notify({
-              title: "成功",
-              message: res.message,
-              type: "success",
-              duration: 2000
-            });
-            this.loading = false;
-            //   this.$router.go(-1);//返回上一层
-          });
+          callback(new Error(rule.field + "为必传项"));
         } else {
-          return false;
+          callback();
         }
-      });
-    },
+      };
+      return {
+        bloading: false,
+        Provinces: [],
+        City: [],
+        Area: [],
+        Img: process.env.VUE_APP_BASE_IMG,
 
-    getRemoteUserList(query) {
-      searchUser(query).then(response => {
-        if (!response.data.items) return;
-        this.userListOptions = response.data.items.map(v => v.name);
+        postForm: Object.assign({}, defaultForm),
+        loading: false,
+        userListOptions: [],
+        rules: {
+          name: [{validator: validateRequire}],
+          shopname: [{validator: validateRequire}],
+          password: [{validator: validateRequire}],
+          location: [{validator: validateRequire}],
+          phone: [{validator: validateRequire}]
+        }
+      };
+    },
+    created() {
+      const id = this.shop_id;
+      this.fetchData(id);
+      getProvinces().then(res => {
+        this.Provinces = res.data;
       });
+      // Why need to make a copy of this.$route here?
+      // Because if you enter this page and quickly switch tag, may be in the execution of the setTagsViewTitle function, this.$route is no longer pointing to the current page
+      // https://github.com/PanJiaChen/vue-element-admin/issues/1221
+      this.tempRoute = Object.assign({}, this.$route);
+    },
+    methods: {
+
+      handelLow(e) {
+        this.postForm.low_bg = e
+      },
+      /**
+       * 更新店铺二维码
+       */
+      handelCode() {
+        this.bloading = true
+        UpdateCode(this.shop_id).then(res => {
+          this.postForm.shop_code = res.data
+          this.bloading = false
+          this.$message('更新后记得保存数据!!!!!');
+        })
+      },
+      handelProvinces(e) {
+        this.City = [];
+        this.postForm.city_code = "";
+        this.Area = [];
+        this.postForm.area_code = "";
+        getCity(e).then(res => {
+          this.City = res.data;
+        });
+      },
+      handelCity(e) {
+        this.Area = [];
+        this.postForm.area_code = "";
+        getArea(e).then(res => {
+          this.Area = res.data;
+        });
+      },
+      handelLogin(e) {
+        this.postForm.logo = e;
+      },
+      handelShopLogo(e) {
+        this.postForm.shop_logo = e;
+
+      },
+      fetchData(id) {
+        var that = this;
+        GetIdBydetailed(id)
+          .then(response => {
+            this.postForm = response.data;
+            this.setTagsViewTitle();
+            getCity(this.postForm.povinces_code).then(res => {
+              this.City = res.data;
+            });
+            getArea(this.postForm.city_code).then(res => {
+              this.Area = res.data;
+            });
+            // set page title
+            this.setPageTitle();
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      },
+      setTagsViewTitle() {
+        const title = "编辑";
+        const route = Object.assign({}, this.tempRoute, {
+          title: `${title}-${this.postForm.name}`
+        });
+        this.$store.dispatch("tagsView/updateVisitedView", route);
+      },
+      setPageTitle() {
+        const title = "编辑";
+        document.title = `${title} - ${this.postForm.name}`;
+      },
+      submitForm() {
+        this.$refs.postForm.validate(valid => {
+          if (valid) {
+            PostDataByAdd(this.postForm).then(res => {
+              this.loading = true;
+              if (res.status === 20004) {
+                this.$message({
+                  message: res.message,
+                  type: "warning"
+                });
+                this.postForm.status = "2"
+                return;
+              }
+              this.$notify({
+                title: "成功",
+                message: res.message,
+                type: "success",
+                duration: 2000
+              });
+              this.loading = false;
+              //   this.$router.go(-1);//返回上一层
+            });
+          } else {
+            return false;
+          }
+        });
+      },
+
+      getRemoteUserList(query) {
+        searchUser(query).then(response => {
+          if (!response.data.items) return;
+          this.userListOptions = response.data.items.map(v => v.name);
+        });
+      }
     }
-  }
-};
+  };
 </script>
 
 <style lang="scss" scoped>
-@import "~@/styles/mixin.scss";
+  @import "~@/styles/mixin.scss";
 
-.createPost-container {
-  position: relative;
+  .createPost-container {
+    position: relative;
 
-  .createPost-main-container {
-    padding: 40px 45px 20px 50px;
+    .createPost-main-container {
+      padding: 40px 45px 20px 50px;
 
-    .postInfo-container {
-      position: relative;
-      @include clearfix;
-      margin-bottom: 10px;
+      .postInfo-container {
+        position: relative;
+        @include clearfix;
+        margin-bottom: 10px;
 
-      .postInfo-container-item {
-        float: left;
+        .postInfo-container-item {
+          float: left;
+        }
       }
+    }
+
+    .word-counter {
+      width: 40px;
+      position: absolute;
+      right: 10px;
+      top: 0px;
     }
   }
 
-  .word-counter {
-    width: 40px;
-    position: absolute;
-    right: 10px;
-    top: 0px;
+  .article-textarea /deep/ {
+    textarea {
+      padding-right: 40px;
+      resize: none;
+      border: none;
+      border-radius: 0px;
+      border-bottom: 1px solid #bfcbd9;
+    }
   }
-}
 
-.article-textarea /deep/ {
-  textarea {
-    padding-right: 40px;
-    resize: none;
-    border: none;
-    border-radius: 0px;
-    border-bottom: 1px solid #bfcbd9;
+  .shop_code {
+    width: 100px;
+    height: 150px;
   }
-}
 </style>

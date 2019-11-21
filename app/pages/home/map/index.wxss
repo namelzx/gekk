@@ -126,8 +126,8 @@ page {
   margin: 50rpx 20rpx;
   background: #fff;
   box-shadow: 10rpx 10rpx 10rpx 4rpx #d1d1d1;
-  min-height: 250rpx;
-  max-height: 250rpx;
+  min-height: 280rpx;
+  max-height: 280rpx;
 }
 
 .detail-wrap {
@@ -173,6 +173,7 @@ page {
   text-overflow: ellisis;
   overflow: hidden;
   -webkit-box-orient: vertical;
+  height: 108rpx;
 }
 
 /* 城市模块 */
@@ -221,4 +222,21 @@ page {
 
 .wxParse-p image {
   width: 100% !important;
+}
+
+
+.shop-btn-group {
+  display: flex;
+  padding-top:  12rpx;
+}
+
+.shop-btn-group text {
+  width: 100%;
+  margin: 0 5%;
+  text-align: center;
+  padding: 4rpx 8rpx;
+  font-size: 24rpx;
+  border-radius: 40rpx;
+  border: 1px solid #e5e5e5;
+
 }

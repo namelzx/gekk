@@ -9,6 +9,7 @@
 namespace app\api\controller;
 
 
+use app\common\model\CommissionModel;
 use app\common\model\CouponReceiveModel;
 use app\common\model\DistOrderModel;
 use app\common\model\EvaluateImgModel;
@@ -31,6 +32,8 @@ class Order extends Base
 
         $data = input('param.');
         $arr = [];
+
+        //遍历店铺商品
         foreach ($data['dorder'] as $i => $item) {
             $arr[$i] = $data['order'];
             $arr[$i]['goods'] = $item;
@@ -40,6 +43,8 @@ class Order extends Base
                 $arr[$i]['claim_code'] = mt_rand(100, 1000000);
             }
             $res = OrderModel::create($arr[$i]);
+
+
             if (!empty($data['order']['isInvoice'])) {
                 if ($data['order']['isInvoice'] == 1) {//开发票
                     $data['invoice']['order_id'] = $res['id'];
@@ -59,11 +64,23 @@ class Order extends Base
                 $garr[$i]['integral'] = $gitem['integral'];
                 $goods = OrderGoodsModel::create($garr[$i]);
                 $this->distribution($data['order']['user_id'], $res['id'], $goods['id'], 3, $gitem['integral'], $gitem['price']);
+
+                //订单佣金
+                $goodscommission = GoodsModel::where('id', $gitem['goods_id'])->field('commission')->find();
+                $comm = [
+                    'title' => '商品佣金',
+                    'order_id' => $res['id'],//所属订单
+                    'price' => $goodscommission['commission'] * $gitem['num'],
+                    'user_id' => $data['order']['user_id'],
+                    'shop_id' => $item[0]['shop_id']//所属店铺
+                ];
+                if ($goodscommission['commission'] > 0) {
+                    CommissionModel::create($comm);
+                }
             }
         }
         return json(msg(200, $res, '3'));
 
-        return json($arr);
         $data['order']['order_no'] = time() . mt_rand(100, 1000000);
 //        $data['order']['status'] = 2;
 
@@ -129,6 +146,8 @@ class Order extends Base
     public function GetIdByCancel()
     {
         $data = input('param.');
+
+        //
         $res = OrderModel::where('id', $data['id'])->data(['status' => $data['status']])->update();
 
 
@@ -152,6 +171,20 @@ class Order extends Base
                 'integral' => $item['goods']['integral'] * $item['num'],//积分数量
                 'user_id' => $order['user_id']
             ];
+
+
+//            //订单佣金
+//            $comm = [
+//                'title' => '商品佣金',
+//                'order_id' => $data['id'],//所属订单
+//                'price' => $item['goods']['commission'] * $item['num'],
+//                'user_id' => $order['user_id'],
+//                'shop_id' => $order['shop_id']//所属店铺
+//            ];
+//
+//            if ($item['goods']['commission'] > 0) {
+//                CommissionModel::create($comm);
+//            }
             if ($item['goods']['integral'] > 0) {
                 IntegralLogModel::create($instdata);
             }

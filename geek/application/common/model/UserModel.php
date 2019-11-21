@@ -15,6 +15,11 @@ class UserModel extends BaseModel
     protected $createTime = 'create_time';
 
 
+    public function comm()
+    {
+        return $this->hasMany('CommissionModel', 'user_id', 'id');
+    }
+
     public function distUser()
     {
         return $this->hasMany('UserModel', 'p_id', 'id');

@@ -21,16 +21,13 @@ class User extends Base
     {
         $data = input('param.');
         $comm = config('common');
-
         $app = Factory::miniProgram($this->config);
         $res = $app->auth->session($data['code']);
         $data['temp']['openid'] = $res['openid'];
-
         $pid = 0;
         if (!empty($data['p_id'])) {
             $pid = $data['p_id'];
         }
-
         $res = UserModel::postUserByRegistered($data['temp'], $pid);
         if (empty($res['bg'])) {//判断是否生成海报
             $qrcode = $this->BuildCode($res['id']);//获取二维码
@@ -38,9 +35,7 @@ class User extends Base
             UserModel::where('id', $res['id'])->data(['bg' => $comm['url'] . $bg])->update();//更新海报内容
             $res = UserModel::where('id', $res['id'])->find();//重新获取数据
         }
-
         $res = UserModel::where('id', $res['id'])->find();//重新获取数据
-
         return json($res);
     }
 

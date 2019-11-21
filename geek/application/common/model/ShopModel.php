@@ -20,6 +20,9 @@ class ShopModel extends BaseModel
 
     }
 
+    public function comm(){
+        return $this->hasMany('CommissionModel','shop_id','id');
+    }
     public function user()
     {
         return $this->hasOne('UserModel', 'shop_id', 'id');

@@ -193,7 +193,7 @@ class Base extends Controller
     }
 
 
-    public function buildBg($url)
+    public function buildBg($url, $bg = './static/bg.jpg')
     {
         $imageDefault = array(
             'left' => 130,
@@ -212,13 +212,40 @@ class Base extends Controller
             'fontColor' => '255,255,255', //字体颜色
             'angle' => 0,
         );
-
-        $background = './static/bg.jpg';//海报最底层得背景
+        $background = $bg;//海报最底层得背景
         $config['image'][]['url'] = $url;
         $time = time();
         $filename = './code/' . $time . '.jpg';
         getbgqrcode($imageDefault, $textDefault, $background, $filename, $config);
-        return '/code/' . $time . '.jpg';;
+        return '/code/' . $time . '.jpg';
+    }
+
+    public function buildHead($head, $bg = './static/bg.jpg')
+    {
+
+        $imageDefault = array(
+            'left' => 180,
+            'top' => 380,
+            'right' => 0,
+            'bottom' => 0,
+            'width' => 80,
+            'height' => 80,
+            'opacity' => 100
+        );
+        $textDefault = array(
+            'text' => '',
+            'left' => 0,
+            'top' => 0,
+            'fontSize' => 32,       //字号
+            'fontColor' => '255,255,255', //字体颜色
+            'angle' => 0,
+        );
+        $background = $bg;//海报最底层得背景
+        $config['image'][]['url'] = $head;//放至店铺头像
+        $time = time();
+        $filename = './code/' . $time . '.jpg';
+        getbgqrcode($imageDefault, $textDefault, $background, $filename, $config);
+        return '/code/' . $time . '.jpg';
     }
 
     public function BuildCode($shop_id)
